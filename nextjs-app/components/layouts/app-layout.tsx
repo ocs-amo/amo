@@ -6,11 +6,9 @@ import { FC, ReactNode } from "react";
 import { usePathname } from "next/navigation";
 
 export const AppLayout: FC<{ children: ReactNode }> = ({ children }) => {
+
     const pathname = usePathname()
 
-    console.log(pathname);
-    
-    
     return pathname !== '/login' ? <HStack w='100vw' h='100dvh' gap={0}>
         <VStack
             w="fit-content"
@@ -30,6 +28,7 @@ export const AppLayout: FC<{ children: ReactNode }> = ({ children }) => {
                     variant='ghost'
                     href='/'
                     icon={<HomeIcon />}
+                    title="ホーム"
                 />
                 <IconButton
                     w="50px"
@@ -40,6 +39,7 @@ export const AppLayout: FC<{ children: ReactNode }> = ({ children }) => {
                     variant='ghost'
                     href='/'
                     icon={<UsersIcon />}
+                    title="サークル一覧"
                 />
                 <IconButton
                     w="50px"
@@ -50,6 +50,7 @@ export const AppLayout: FC<{ children: ReactNode }> = ({ children }) => {
                     variant='ghost'
                     href='/'
                     icon={<MessageCircleMoreIcon />}
+                    title="DM"
                 />
                 <IconButton
                     w="50px"
@@ -60,6 +61,7 @@ export const AppLayout: FC<{ children: ReactNode }> = ({ children }) => {
                     variant='ghost'
                     href='/'
                     icon={<CalendarDaysIcon />}
+                    title="カレンダー"
                 />
                 <IconButton
                     w="50px"
@@ -70,6 +72,7 @@ export const AppLayout: FC<{ children: ReactNode }> = ({ children }) => {
                     variant='ghost'
                     href=''
                     icon={<FileDigitIcon />}
+                    title="今日のイベント"
                 />
                 <IconButton
                     w="50px"
@@ -80,6 +83,7 @@ export const AppLayout: FC<{ children: ReactNode }> = ({ children }) => {
                     variant='ghost'
                     href=''
                     icon={<BellIcon />}
+                    title="通知"
                 />
             </VStack>
             <IconButton
@@ -91,6 +95,7 @@ export const AppLayout: FC<{ children: ReactNode }> = ({ children }) => {
                 variant='ghost'
                 href='/'
                 icon={<SettingsIcon />}
+                title="設定"
             />
         </VStack>
         <Box w='full' h='full' overflowY='auto'>
