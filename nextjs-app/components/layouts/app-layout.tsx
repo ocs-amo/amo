@@ -27,7 +27,7 @@ export const AppLayout: FC<{ children?: ReactNode }> = ({ children }) => {
                     as={Link}
                     variant='ghost'
                     href='/'
-                    icon={<HomeIcon />}
+                    icon={<HomeIcon size="2xl" />}
                     title="ホーム"
                 />
                 <IconButton
@@ -38,7 +38,7 @@ export const AppLayout: FC<{ children?: ReactNode }> = ({ children }) => {
                     as={Link}
                     variant='ghost'
                     href='/'
-                    icon={<UsersIcon />}
+                    icon={<UsersIcon size="2xl" />}
                     title="サークル一覧"
                 />
                 <IconButton
@@ -49,7 +49,7 @@ export const AppLayout: FC<{ children?: ReactNode }> = ({ children }) => {
                     as={Link}
                     variant='ghost'
                     href='/'
-                    icon={<MessageCircleMoreIcon />}
+                    icon={<MessageCircleMoreIcon size="2xl" />}
                     title="DM"
                 />
                 <IconButton
@@ -60,7 +60,7 @@ export const AppLayout: FC<{ children?: ReactNode }> = ({ children }) => {
                     as={Link}
                     variant='ghost'
                     href='/'
-                    icon={<CalendarDaysIcon />}
+                    icon={<CalendarDaysIcon size="2xl" />}
                     title="カレンダー"
                 />
                 <IconButton
@@ -71,7 +71,7 @@ export const AppLayout: FC<{ children?: ReactNode }> = ({ children }) => {
                     as={Link}
                     variant='ghost'
                     href=''
-                    icon={<FileDigitIcon />}
+                    icon={<FileDigitIcon size="2xl" />}
                     title="今日のイベント"
                 />
                 <IconButton
@@ -82,7 +82,7 @@ export const AppLayout: FC<{ children?: ReactNode }> = ({ children }) => {
                     as={Link}
                     variant='ghost'
                     href=''
-                    icon={<BellIcon />}
+                    icon={<BellIcon size="2xl" />}
                     title="通知"
                 />
             </VStack>
@@ -94,7 +94,7 @@ export const AppLayout: FC<{ children?: ReactNode }> = ({ children }) => {
                 as={Link}
                 variant='ghost'
                 href='/'
-                icon={<SettingsIcon />}
+                icon={<SettingsIcon size="2xl" />}
                 title="設定"
             />
         </VStack>
