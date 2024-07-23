@@ -5,7 +5,7 @@ import Link from "next/link";
 import { FC, ReactNode } from "react";
 import { usePathname } from "next/navigation";
 
-export const AppLayout: FC<{ children: ReactNode }> = ({ children }) => {
+export const AppLayout: FC<{ children?: ReactNode }> = ({ children }) => {
 
     const pathname = usePathname()
 
