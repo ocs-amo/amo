@@ -1,4 +1,4 @@
-import { Box, Card, CardBody, CardHeader, Divider, Grid, GridItem, Heading, VStack } from "@yamada-ui/react";
+import { Box, Card, CardBody, CardHeader, Divider, Flex, Grid, GridItem, Heading, HStack, Image, InfoIcon, VStack } from "@yamada-ui/react";
 
 const notificationMockData = [
   { id: 1, icon: "", title: "今月からの新メンバー", createdAt: "2024-06-02 9:00", type: "alert"},
@@ -15,31 +15,44 @@ export default function Home() {
       </VStack>
       <Grid w="full" flexGrow={1} templateAreas={{
         base: `
-        "notification circles"
-        "notification circles"
-        "notification calendar"
-        "notification calendar"
+        "notification circles circles circles" 
+        "notification circles circles circles" 
+        "notification calendar calendar calendar" 
+        "notification calendar calendar calendar" 
         `,
         md: `
         "notification"
         "circles"
         "calendar"
         `
-      }} gap="md">
+      }} gap="lg">
         <GridItem as={Card} area="notification">
-          <CardHeader><Heading as="h3" size="sm">通知</Heading></CardHeader>
+          <CardHeader><Heading as="h3" size="sm">お知らせ</Heading></CardHeader>
           <CardBody>
             <VStack overflowY="auto" gap="md">
               {notificationMockData.map((data) => (
-                <Box key={data.id}>
-                  {data.title}
-                </Box>
+                <HStack key={data.id} p="sm" borderWidth={1}>
+                  <Box>
+                    <Image src="https://i.pravatar.cc/100" w="full" />
+                  </Box>
+                  <VStack>
+                    <HStack gap="sm">
+                      {data.type === "alert" ? <InfoIcon size="lg" color="primary" /> : undefined}
+                      <Heading size="xs" as="h4">
+                        {data.title}
+                      </Heading>
+                    </HStack>
+                    <Flex justifyContent="right">
+                      {data.createdAt}
+                    </Flex>
+                  </VStack>
+                </HStack>
               ))}
             </VStack>
           </CardBody>
         </GridItem>
         <GridItem as={Card} area="circles">
-          <CardHeader><Heading as="h3" size="sm">サークル一覧</Heading></CardHeader>
+          <CardHeader><Heading as="h3" size="sm">所属サークル</Heading></CardHeader>
           <CardBody></CardBody>
         </GridItem>
         <GridItem as={Card} area="calendar">
