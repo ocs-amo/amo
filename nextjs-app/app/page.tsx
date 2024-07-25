@@ -61,11 +61,11 @@ export default function Home() {
         <GridItem as={Card} area="circles">
           <CardHeader><Heading as="h3" size="sm">所属サークル</Heading></CardHeader>
           <CardBody>
-            <HStack flexDir={{md: "column"}} flexWrap="wrap"  w="full">
+            <Grid gridTemplateColumns={{base: "repeat(3, 1fr)", xl: "repeat(2, 1fr)", lg: "repeat(1, 1fr)", md: "repeat(2, 1fr)", sm: "repeat(1, 1fr)"}} gap="md"  w="full">
               {
                 circleMockData.map(data => (
-                  <VStack key={data.id} gap={0} borderWidth={1} w="fit-content">
-                    <Image w="240px" h="150px"  src={`https://picsum.photos/seed/${randomInteger(100)}/200/100`} />
+                  <VStack key={data.id} gap={0} borderWidth={1} w="full">
+                    <Image w="full" h="auto"  src={`https://picsum.photos/seed/${randomInteger(100)}/200/100`} />
                     <Box p="sm">
                       <Heading as="h4" size="xs">{data.name}</Heading>
                       <Text>人数：{data.people}</Text>
@@ -74,7 +74,7 @@ export default function Home() {
                   </VStack>
                 ))
               }
-            </HStack>
+            </Grid>
           </CardBody>
         </GridItem>
         <GridItem as={Card} area="calendar">
