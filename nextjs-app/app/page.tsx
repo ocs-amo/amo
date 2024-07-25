@@ -1,8 +1,15 @@
-import { Box, Card, CardBody, CardHeader, Divider, Flex, Grid, GridItem, Heading, HStack, Image, InfoIcon, VStack } from "@yamada-ui/react";
+import { randomInteger } from "@/utils/random";
+import { Box, Card, CardBody, CardHeader, Divider, Flex, Grid, GridItem, Heading, HStack, Image, InfoIcon, Text, VStack } from "@yamada-ui/react";
 
 const notificationMockData = [
-  { id: 1, icon: "", title: "今月からの新メンバー", createdAt: "2024-06-02 9:00", type: "alert"},
-  { id: 2, icon: "", title: "やってみたいこと募集", createdAt: "2024-06-02 9:00", type: ""},
+  { id: 1, icon: "https://i.pravatar.cc/100", title: "今月からの新メンバー", createdAt: "2024-06-02 9:00", type: "alert"},
+  { id: 2, icon: "https://picsum.photos/seed/picsum/100/100", title: "やってみたいこと募集", createdAt: "2024-06-02 9:00", type: ""},
+]
+
+const circleMockData = [
+  {id: 1, thumbnail: "", name: "プログラミングサークル", people: 10, activityDay: "木・金" },
+  {id: 2, thumbnail: "", name: "ゲームサークル", people: 10, activityDay: "木・金" },
+  {id: 3, thumbnail: "", name: "イラストサークル", people: 10, activityDay: "木・金" }
 ]
 
 export default function Home() {
@@ -26,14 +33,14 @@ export default function Home() {
         "calendar"
         `
       }} gap="lg">
-        <GridItem as={Card} area="notification">
+        <GridItem as={Card} area="notification" minW={{base:"md", sm: "full"}}>
           <CardHeader><Heading as="h3" size="sm">お知らせ</Heading></CardHeader>
           <CardBody>
             <VStack overflowY="auto" gap="md">
               {notificationMockData.map((data) => (
                 <HStack key={data.id} p="sm" borderWidth={1}>
                   <Box>
-                    <Image src="https://i.pravatar.cc/100" w="full" />
+                    <Image src={data.icon} w="full" />
                   </Box>
                   <VStack>
                     <HStack gap="sm">
@@ -53,7 +60,22 @@ export default function Home() {
         </GridItem>
         <GridItem as={Card} area="circles">
           <CardHeader><Heading as="h3" size="sm">所属サークル</Heading></CardHeader>
-          <CardBody></CardBody>
+          <CardBody>
+            <HStack flexDir={{md: "column"}} flexWrap="wrap"  w="full">
+              {
+                circleMockData.map(data => (
+                  <VStack key={data.id} gap={0} borderWidth={1} w="fit-content">
+                    <Image w="240px" h="150px"  src={`https://picsum.photos/seed/${randomInteger(100)}/200/100`} />
+                    <Box p="sm">
+                      <Heading as="h4" size="xs">{data.name}</Heading>
+                      <Text>人数：{data.people}</Text>
+                      <Text>活動日：{data.activityDay}</Text>
+                    </Box>
+                  </VStack>
+                ))
+              }
+            </HStack>
+          </CardBody>
         </GridItem>
         <GridItem as={Card} area="calendar">
           <CardHeader><Heading as="h3" size="sm">カレンダー</Heading></CardHeader>
