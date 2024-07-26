@@ -8,6 +8,14 @@ NEXTJS_PORT=8080
 
 2. 必要なライブラリをインストール
 
+lintツール
+
+```bash
+npm i
+```
+
+アプリ
+
 ```bash
 docker compose run --rm nextjs-app npm i
 ```
