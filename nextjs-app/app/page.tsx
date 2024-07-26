@@ -87,27 +87,29 @@ export default function Home() {
             </Grid>
           </CardBody>
         </GridItem>
-        <GridItem as={Card} area="calendar">
+        <GridItem as={Card} area="calendar" w="full" overflowX="auto">
           <CardHeader><Heading as="h3" size="sm">カレンダー</Heading></CardHeader>
           <CardBody>
-            <HStack w="full" gap={0} flexDir={{sm: "column"}}>
-              {
-                calendarMockData.map((data, index) => (
-                  <VStack h="full" flex={1} borderWidth={1} borderLeftWidth={ index === 0 ? undefined : 0 } p="md">
-                    <Box>
-                      {data.date}
-                    </Box>
-                    <VStack h="sm">
-                      {
-                        data.events.map((event, i) => (
-                          <Tag key={i}>{event.title}</Tag>
-                        ))
-                      }
+            <Box w="full" overflowX="auto">
+              <HStack w="full" gap={0}>
+                {
+                  calendarMockData.map((data, index) => (
+                    <VStack key={index} h="full" flex={1} borderWidth={1} borderLeftWidth={index === 0 ? undefined : 0} p="md" minW="2xs">
+                      <Box>
+                        {data.date}
+                      </Box>
+                      <VStack h="sm" overflowY="auto">
+                        {
+                          data.events.map((event, i) => (
+                            <Tag key={i}>{event.title}</Tag>
+                          ))
+                        }
+                      </VStack>
                     </VStack>
-                  </VStack>
-                ))
-              }
-            </HStack>
+                  ))
+                }
+              </HStack>
+            </Box>
           </CardBody>
         </GridItem>
       </Grid>
