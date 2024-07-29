@@ -37,7 +37,7 @@ export const AppLayout: FC<{ children?: ReactNode }> = ({ children }) => {
           alignItems="center"
           as={Link}
           variant='ghost'
-          href='/'
+          href='/circles'
           icon={<UsersIcon size="2xl" />}
           title="サークル一覧"
         />
