@@ -14,8 +14,7 @@ export const AppLayout: FC<{ children?: ReactNode }> = ({ children }) => {
       w="fit-content"
       h="full"
       p="sm"
-      borderRight="1px solid"
-      borderRightColor={['blackAlpha.500', 'whiteAlpha.500']}
+      borderRightWidth={1}
       justifyContent='space-between'
     >
       <VStack>
