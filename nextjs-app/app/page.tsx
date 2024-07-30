@@ -1,5 +1,5 @@
-import { randomInteger } from '@/utils/random';
-import { Box, Card, CardBody, CardHeader, Divider, Flex, Grid, GridItem, Heading, HStack, Image, InfoIcon, Tag, Text, VStack } from '@yamada-ui/react';
+import { CircleCard } from '@/components/data-display/circle-card';
+import { Box, Card, CardBody, CardHeader, Divider, Flex, Grid, GridItem, Heading, HStack, Image, InfoIcon, Tag, VStack } from '@yamada-ui/react';
 
 const notificationMockData = [
   { id: 1, icon: 'https://i.pravatar.cc/100', title: '今月からの新メンバー', createdAt: '2024-06-02 9:00', type: 'alert' },
@@ -73,16 +73,7 @@ export default function Home() {
           <CardBody>
             <Grid gridTemplateColumns={{ base: 'repeat(3, 1fr)', xl: 'repeat(2, 1fr)', lg: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)', sm: 'repeat(1, 1fr)' }} gap="md" w="full">
               {
-                circleMockData.map(data => (
-                  <VStack key={data.id} gap={0} borderWidth={1} w="full" as={GridItem}>
-                    <Image w="full" h="auto" src={`https://picsum.photos/seed/${randomInteger(100)}/200/100`} alt='preview image' />
-                    <Box p="sm">
-                      <Heading as="h4" size="xs">{data.name}</Heading>
-                      <Text>人数：{data.people}</Text>
-                      <Text>活動日：{data.activityDay}</Text>
-                    </Box>
-                  </VStack>
-                ))
+                circleMockData.map(data => <CircleCard key={data.id} data={data} />)
               }
             </Grid>
           </CardBody>
