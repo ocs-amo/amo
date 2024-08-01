@@ -13,8 +13,8 @@ const NotificationsPage = () => {
       <Divider w="full" borderWidth="2px" orientation="horizontal" variant="solid" />
     </VStack>
     {notificationMockData.map((data) => (
-      <HStack key={data.id} w="full">
-        <HStack flexGrow={1} p="sm" borderWidth={1}>
+      <HStack key={data.id} w="full" flexDir={{sm: "column"}} gap={{sm: "sm"}}>
+        <HStack flexGrow={1} p="sm" borderWidth={1} w="full">
           <Box>
             <Image src={data.icon} w="full" alt='icon image' />
           </Box>
