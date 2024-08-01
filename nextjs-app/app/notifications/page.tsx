@@ -30,7 +30,7 @@ const NotificationsPage = () => {
             </Text>
           </VStack>
         </HStack>
-        <Flex w="20" justifyContent="left">
+        <Flex w={{base: "20", sm: "full"}} justifyContent={{base: "left", sm: "right"}}>
           {data.createdAt}
         </Flex>
       </HStack>
