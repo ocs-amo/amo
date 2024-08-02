@@ -80,7 +80,7 @@ export const AppLayout: FC<{ children?: ReactNode }> = ({ children }) => {
           alignItems="center"
           as={Link}
           variant='ghost'
-          href=''
+          href='/notifications'
           icon={<BellIcon size="2xl" />}
           title="通知"
         />
