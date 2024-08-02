@@ -40,3 +40,7 @@ pre-commit:
       glob: "*.{js,jsx,ts,tsx}"
       run: npx eslint {staged_files} --fix
       stage_fixed: true
+commit-msg:
+  commands:
+    "lint commit message":
+      run: npx commitlint --edit {1}
