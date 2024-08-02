@@ -1,5 +1,5 @@
 import { CircleCard } from '@/components/data-display/circle-card';
-import { Box, Card, CardBody, CardHeader, Divider, Flex, Grid, GridItem, Heading, HStack, Image, InfoIcon, Tag, VStack } from '@yamada-ui/react';
+import { Box, Card, CardBody, CardHeader, Divider, Flex, Grid, GridItem, Heading, HStack, Image, InfoIcon, ScrollArea, Tag, VStack } from '@yamada-ui/react';
 
 const notificationMockData = [
   { id: 1, icon: 'https://i.pravatar.cc/100', title: '今月からの新メンバー', createdAt: '2024-06-02 9:00', type: 'alert' },
@@ -26,7 +26,7 @@ export default function Home() {
   return (
     <VStack w="full" h="fit-content" p="md">
       <VStack>
-        <Heading as="h2" size="lg">ようそこ！</Heading>
+        <Heading as="h2" size="lg">ようこそ！</Heading>
         <Divider w="full" borderWidth="2px" orientation="horizontal" variant="solid" />
         <Heading as="h2" size="lg">R4SA00{'　'}加古 林檎</Heading>
       </VStack>
@@ -81,11 +81,11 @@ export default function Home() {
         <GridItem as={Card} area="calendar" w="full" overflowX="auto">
           <CardHeader><Heading as="h3" size="sm">カレンダー</Heading></CardHeader>
           <CardBody>
-            <Box w="full" overflowX="auto">
+            <ScrollArea w="full" borderWidth={1}>
               <HStack w="full" gap={0}>
                 {
                   calendarMockData.map((data, index) => (
-                    <VStack key={index} h="full" flex={1} borderWidth={1} borderLeftWidth={index === 0 ? undefined : 0} p="md" minW="2xs">
+                    <VStack key={index} h="full" flex={1} borderRightWidth={index < calendarMockData.length - 1 ? 1 : 0} p="md" minW="2xs">
                       <Box>
                         {data.date}
                       </Box>
@@ -100,7 +100,7 @@ export default function Home() {
                   ))
                 }
               </HStack>
-            </Box>
+            </ScrollArea>
           </CardBody>
         </GridItem>
       </Grid>
