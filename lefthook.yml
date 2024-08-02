@@ -38,4 +38,5 @@ pre-commit:
   commands:
     eslint:
       glob: "*.{js,jsx,ts,tsx}"
-      run: npx eslint {staged_files} --fix && git add {staged_files}
+      run: npx eslint {staged_files} --fix
+      stage_fixed: true
