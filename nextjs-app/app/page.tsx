@@ -94,7 +94,7 @@ export default function Home() {
               <HStack w="full" gap={0}>
                 {
                   calendarMockData.map((data, index) => (
-                    <VStack key={index} h="full" flex={1} borderRightWidth={index >= 0 ? '1' : '0'} p="md" minW="2xs">
+                    <VStack key={index} h="full" flex={1} borderRightWidth={index < calendarMockData.length - 1 ? 1 : 0} p="md" minW="2xs">
                       <Box>
                         {data.date}
                       </Box>
