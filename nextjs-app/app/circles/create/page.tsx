@@ -1,7 +1,8 @@
 'use client';
 import { CameraIcon } from '@yamada-ui/lucide';
 import type { SelectItem} from '@yamada-ui/react';
-import { Center, FormControl, Heading, Input, Label, Select, Text, VStack } from '@yamada-ui/react';
+import { Button, Center, FormControl, Heading, Input, Label, Select, Text, VStack } from '@yamada-ui/react';
+import Link from 'next/link';
 
 const items: SelectItem[] = [
   {
@@ -19,14 +20,14 @@ const items: SelectItem[] = [
 ];
 
 const CircleCreate = () => {
-  return <VStack gap={0}>
+  return <VStack gap={0} w="full" h="full">
     <Center w="full" h="40" backgroundColor="gray.100">
       <VStack alignItems="center" gap={0}>
         <CameraIcon size="9xl" color="gray" />
         <Text color="gray" size="xl">ヘッダー画像</Text>
       </VStack>
     </Center>
-    <VStack p="md">
+    <VStack p="md" maxW="5xl" m="auto" gap="lg" flexGrow={1}>
       <Heading as="h1" size="lg">サークル作成</Heading>
       <form onSubmit={e => e.preventDefault()}>
         <VStack px="md">
@@ -50,6 +51,10 @@ const CircleCreate = () => {
             <Label flexGrow={1}>活動時間</Label>
             <Input type="text" w={{base: 'md', md: 'full'}} placeholder="活動時間を入力" />
           </FormControl>
+          <Center gap="md" justifyContent="end">
+            <Button as={Link} href="/circles">キャンセル</Button>
+            <Button type="submit">作成</Button>
+          </Center>
         </VStack>
       </form>
     </VStack>
