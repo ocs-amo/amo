@@ -2,6 +2,7 @@
 import { CircleCard } from '@/components/data-display/circle-card';
 import { SearchIcon, TriangleIcon } from '@yamada-ui/lucide';
 import { Box, Button, Grid, Heading, HStack, IconButton, Input, InputGroup, InputLeftElement, VStack } from '@yamada-ui/react';
+import Link from 'next/link';
 import { useRef } from 'react';
 
 const circleMockData = [
@@ -44,7 +45,7 @@ const CirclesPage = () => {
               <Input type="search" placeholder="サークルを検索" pl="lg" />
             </InputGroup>
           </HStack>
-          <Box textAlign="right"><Button>サークル作成</Button></Box>
+          <Box textAlign="right"><Button as={Link} href="/circles/create">サークル作成</Button></Box>
         </VStack>
         <Grid pb="md" gridTemplateColumns={{ base: 'repeat(4, 1fr)', lg: 'repeat(3, 1fr)', md: 'repeat(2, 1fr)', sm: 'repeat(1, 1fr)' }} gap="md" w="full">
           {
