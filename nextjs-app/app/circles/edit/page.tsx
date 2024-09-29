@@ -118,7 +118,7 @@ const CircleEdit = () => {
           {errorMessage2 && <Text color="red">{errorMessage2}</Text>}
           <Center gap="md" justifyContent="end">
             <Button as={Link} href="/circles">キャンセル</Button>
-            <Button type="submit">作成</Button>
+            <Button type="submit">更新</Button>
           </Center>
         </VStack>
       </form>
