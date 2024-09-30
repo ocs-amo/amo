@@ -1,23 +1,16 @@
 # 環境構築
 
-1. `.env`ファイルを作成し必要な環境変数を設定
+1. 依存関係のインストール
 
-```env
-NEXTJS_PORT=8080
+```sh
+npm i -g pnpm # pnpmをグローバルにインストールしていない場合
+pnpm i # Windowsの場合はnpx pnpm i
 ```
 
-2. 必要なライブラリをインストール
+2. Next.jsの起動
 
-lintツール
-
-```bash
-npm i
-```
-
-アプリ
-
-```bash
-docker compose run --rm nextjs-app npm i
+```sh
+pnpm dev
 ```
 
 3. コンテナの起動
