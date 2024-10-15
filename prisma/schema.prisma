@@ -1,43 +1,78 @@
 generator client {
-  provider = "prisma-client-js"
+    provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
 }
 
 model User {
-  id               String     @id @default(uuid()) // Primary key
-  studentNumber    String     // Student number as a string
-  name             String     // User's name
-  email            String     @unique // Email, set as unique
-  password         String     // Hashed password (for credentials login)
-  createdAt        DateTime   @default(now()) // Creation timestamp
-  updatedAt        DateTime   @updatedAt // Updated timestamp
-  iconImagePath    String?    // Optional: Icon image URL or base64 string
-  profileText      String?    // Optional: Markdown profile text
-  
-  accounts         Account[]  // One-to-many relationship with Account (for OAuth)
+    id            String   @id @default(uuid()) // Primary key
+    studentNumber String // Student number as a string
+    name          String // User's name
+    email         String   @unique // Email, set as unique
+    password      String // Hashed password (for credentials login)
+    createdAt     DateTime @default(now()) // Creation timestamp
+    updatedAt     DateTime @updatedAt // Updated timestamp
+    iconImagePath String? // Optional: Icon image URL or base64 string
+    profileText   String? // Optional: Markdown profile text
 
-  @@index([email]) // Optional: Index on email
+    accounts     Account[] // One-to-many relationship with Account (for OAuth)
+    CircleMember CircleMember[]
+
+    @@index([email]) // Optional: Index on email
 }
 
 model Account {
-  id                 String  @id @default(uuid()) // Primary key
-  userId             String       // Foreign key to User
-  provider           String    // Provider name (e.g., "google", "github", "credentials")
-  providerAccountId  String    // Provider's unique account ID for this user
-  refresh_token      String?   // Optional: OAuth refresh token
-  access_token       String?   // Optional: OAuth access token
-  expires_at         Int?      // Optional: OAuth token expiration timestamp
-  token_type         String?   // Optional: OAuth token type
-  scope              String?   // Optional: OAuth token scope
-  id_token           String?   // Optional: OAuth ID token for OpenID Connect
-  session_state      String?   // Optional: OAuth session state
+    id                String  @id @default(uuid()) // Primary key
+    userId            String // Foreign key to User
+    provider          String // Provider name (e.g., "google", "github", "credentials")
+    providerAccountId String // Provider's unique account ID for this user
+    refresh_token     String? // Optional: OAuth refresh token
+    access_token      String? // Optional: OAuth access token
+    expires_at        Int? // Optional: OAuth token expiration timestamp
+    token_type        String? // Optional: OAuth token type
+    scope             String? // Optional: OAuth token scope
+    id_token          String? // Optional: OAuth ID token for OpenID Connect
+    session_state     String? // Optional: OAuth session state
 
-  user               User      @relation(fields: [userId], references: [id]) // Relation to User
+    user User @relation(fields: [userId], references: [id]) // Relation to User
 
-  @@unique([provider, providerAccountId]) // Ensures unique account per provider
-  @@index([userId]) // Index on userId for fast lookup
+    @@unique([provider, providerAccountId]) // Ensures unique account per provider
+    @@index([userId]) // Index on userId for fast lookup
+}
+
+model Circle {
+    id           String         @id @default(uuid()) // Primary key, UUID形式
+    name         String // Circle name
+    description  String // Circle description
+    location     String // Activity location
+    createdAt    DateTime       @default(now()) // Creation timestamp
+    updatedAt    DateTime       @updatedAt // Updated timestamp
+    imagePath    String? // Optional: Circle image URL or base64 string
+    activityDay  String? // 活動日
+    CircleMember CircleMember[]
+
+    @@index([name]) // Optional: Index on circle name for fast lookup
+}
+
+model CircleMember {
+    id        Int       @id @default(autoincrement())
+    userId    String // 外部キー (User テーブルへの参照)
+    circleId  String // 外部キー (Circle テーブルへの参照)
+    joinDate  DateTime  @default(now()) // 加入日
+    leaveDate DateTime? // 退会日 (論理削除用)
+    roleId    Int // 外部キー (Role テーブルへの参照)
+
+    user   User   @relation(fields: [userId], references: [id])
+    circle Circle @relation(fields: [circleId], references: [id])
+    role   Role   @relation(fields: [roleId], references: [id])
+}
+
+model Role {
+    id       Int    @id @default(autoincrement())
+    roleName String // ロール名 (例: 代表、副代表)
+
+    members CircleMember[] // 1対多のリレーション (ロールに関連するメンバー)
 }
