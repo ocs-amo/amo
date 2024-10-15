@@ -10,7 +10,7 @@ pnpm i # Windowsの場合はnpx pnpm i
 `.env`ファイルに作成
 
 ```env
-NEXTAUTH_SECRET="" // run `openssl rand -base64 32`
+NEXTAUTH_SECRET="" // 「openssl rand -base64 32」を実行した結果を貼り付ける
 
 DATABASE_URL="postgresql://johndoe:postgres@localhost:54320/mydb?schema=public"
 ```
