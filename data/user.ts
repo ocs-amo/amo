@@ -20,6 +20,17 @@ export const getUserById = async (id: string) => {
       where: {
         id,
       },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        profileText: true,
+        studentNumber: true,
+        updatedAt: true,
+        createdAt: true,
+        iconImagePath: true,
+        accounts: true,
+      },
     })
     return user
   } catch (error) {
