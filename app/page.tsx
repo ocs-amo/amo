@@ -123,7 +123,7 @@ export default function Home() {
                   <VStack>
                     <HStack gap="sm">
                       {data.type === "alert" ? (
-                        <InfoIcon size="lg" color="primary" />
+                        <InfoIcon fontSize="lg" color="primary" />
                       ) : undefined}
                       <Heading size="xs" as="h4">
                         {data.title}

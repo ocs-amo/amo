@@ -1,6 +1,7 @@
 import { UIProvider } from "@yamada-ui/react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
+import { SessionProvider } from "next-auth/react"
 import { AppLayout } from "@/components/layouts/app-layout"
 const inter = Inter({ subsets: ["latin"] })
 
@@ -18,7 +19,9 @@ export default function RootLayout({
     <html lang="ja">
       <body className={inter.className}>
         <UIProvider>
-          <AppLayout>{children}</AppLayout>
+          <SessionProvider>
+            <AppLayout>{children}</AppLayout>
+          </SessionProvider>
         </UIProvider>
       </body>
     </html>
