@@ -1,4 +1,6 @@
 import { circle } from "./seeds/circle"
+import { circleMemberRole } from "./seeds/circle-member-role"
+import { circleMembers } from "./seeds/circle-members"
 import { user } from "./seeds/user"
 import { db } from "@/utils/db"
 
@@ -6,6 +8,8 @@ async function main() {
   const result = await db.$transaction([
     user(), // PrismaPromiseをトランザクションに渡す
     circle(),
+    circleMemberRole(),
+    circleMembers(),
   ])
 
   console.log("Transaction result:", result) // 結果を確認

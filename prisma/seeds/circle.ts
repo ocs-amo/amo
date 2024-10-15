@@ -4,7 +4,7 @@ export const circle = () =>
   db.circle.createMany({
     data: [
       {
-        id: "**00", // 固定UUID
+        id: "circle00-uuid", // 固定UUID
         name: "プログラミングサークル",
         description: "プログラミングを学び、実践するサークルです。",
         location: "404教室",
@@ -12,7 +12,7 @@ export const circle = () =>
         activityDay: "火、水、木",
       },
       {
-        id: "**01",
+        id: "circle01-uuid",
         name: "ゲームサークル",
         description: "様々なゲームを楽しむサークルです。",
         location: "604教室",
@@ -20,7 +20,7 @@ export const circle = () =>
         activityDay: "火、水、木",
       },
       {
-        id: "**02",
+        id: "circle02-uuid",
         name: "読書サークル",
         description: "本を読み、感想を共有するサークルです。",
         location: "101教室",
@@ -28,7 +28,7 @@ export const circle = () =>
         activityDay: "火、水、木",
       },
       {
-        id: "**03",
+        id: "circle03-uuid",
         name: "映画鑑賞サークル",
         description: "映画を観て、みんなで語り合うサークルです。",
         location: "202教室",
@@ -36,7 +36,7 @@ export const circle = () =>
         activityDay: "火、水、木",
       },
       {
-        id: "**04",
+        id: "circle04-uuid",
         name: "料理サークル",
         description: "一緒に料理を作り、美味しい食事を楽しむサークルです。",
         location: "302教室",
@@ -44,7 +44,7 @@ export const circle = () =>
         activityDay: "週に1回",
       },
       {
-        id: "**05",
+        id: "circle05-uuid",
         name: "音楽サークル",
         description: "音楽を楽しみ、演奏会を開くサークルです。",
         location: "403教室",
@@ -52,7 +52,7 @@ export const circle = () =>
         activityDay: "火、水、木",
       },
       {
-        id: "**06",
+        id: "circle06-uuid",
         name: "スポーツサークル",
         description: "様々なスポーツを楽しむサークルです。",
         location: "体育館",
@@ -60,7 +60,7 @@ export const circle = () =>
         activityDay: "火、水、木",
       },
       {
-        id: "**07",
+        id: "circle07-uuid",
         name: "アートサークル",
         description: "絵画や彫刻など、アートを楽しむサークルです。",
         location: "505教室",
@@ -68,7 +68,7 @@ export const circle = () =>
         activityDay: "火、水、木",
       },
       {
-        id: "**08",
+        id: "circle08-uuid",
         name: "写真サークル",
         description: "写真を撮り、技術を磨くサークルです。",
         location: "606教室",
@@ -76,7 +76,7 @@ export const circle = () =>
         activityDay: "火、水、木",
       },
       {
-        id: "**09",
+        id: "circle09-uuid",
         name: "サイエンスサークル",
         description: "科学実験を通じて学ぶサークルです。",
         location: "707教室",
@@ -84,7 +84,7 @@ export const circle = () =>
         activityDay: "火、水、木",
       },
       {
-        id: "**0A",
+        id: "circle0A-uuid",
         name: "ダンスサークル",
         description: "ダンスを楽しむ仲間を募集中です。",
         location: "808教室",
@@ -92,7 +92,7 @@ export const circle = () =>
         activityDay: "火、水、木",
       },
       {
-        id: "**0B",
+        id: "circle0B-uuid",
         name: "マジックサークル",
         description: "マジックを学び、パフォーマンスを行うサークルです。",
         location: "909教室",
@@ -100,7 +100,7 @@ export const circle = () =>
         activityDay: "火、水、木",
       },
       {
-        id: "**0C",
+        id: "circle0C-uuid",
         name: "ボードゲームサークル",
         description: "ボードゲームを楽しむサークルです。",
         location: "1010教室",
@@ -108,7 +108,7 @@ export const circle = () =>
         activityDay: "火、水、木",
       },
       {
-        id: "**0D",
+        id: "circle0D-uuid",
         name: "サステナビリティサークル",
         description: "環境保護について学び、活動するサークルです。",
         location: "111教室",
@@ -116,7 +116,7 @@ export const circle = () =>
         activityDay: "火、水、木",
       },
       {
-        id: "**0E",
+        id: "circle0E-uuid",
         name: "ビデオ編集サークル",
         description: "映像制作を学び、作品を作成するサークルです。",
         location: "121教室",
@@ -124,7 +124,7 @@ export const circle = () =>
         activityDay: "火、水、木",
       },
       {
-        id: "**0F",
+        id: "circle0F-uuid",
         name: "旅行サークル",
         description: "旅行を企画し、仲間と楽しむサークルです。",
         location: "131教室",
@@ -132,7 +132,7 @@ export const circle = () =>
         activityDay: "火、水、木",
       },
       {
-        id: "**10",
+        id: "circle10-uuid",
         name: "ボランティアサークル",
         description: "地域活動を通じて貢献するサークルです。",
         location: "141教室",
@@ -140,7 +140,7 @@ export const circle = () =>
         activityDay: "火、水、木",
       },
       {
-        id: "**11",
+        id: "circle11-uuid",
         name: "プログラミング初心者サークル",
         description: "プログラミングを始めたい人のためのサークルです。",
         location: "151教室",
@@ -148,7 +148,7 @@ export const circle = () =>
         activityDay: "火、水、木",
       },
       {
-        id: "**12",
+        id: "circle12-uuid",
         name: "エコサークル",
         description: "エコ活動を通じて持続可能な社会を目指すサークルです。",
         location: "161教室",
@@ -156,7 +156,7 @@ export const circle = () =>
         activityDay: "火、水、木",
       },
       {
-        id: "**13",
+        id: "circle13-uuid",
         name: "ファッションサークル",
         description: "ファッションを楽しむ仲間を募集中です。",
         location: "171教室",
@@ -164,7 +164,7 @@ export const circle = () =>
         activityDay: "火、水、木",
       },
       {
-        id: "**14",
+        id: "circle14-uuid",
         name: "哲学サークル",
         description: "哲学について語り合うサークルです。",
         location: "181教室",

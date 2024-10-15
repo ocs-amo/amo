@@ -13,11 +13,13 @@ import { randomInteger } from "@/utils/random"
 
 export interface CircleCardProps {
   data: {
-    id: number
-    thumbnail: string
+    id: string
     name: string
-    people: number
-    activityDay: string
+    description: string
+    location: string
+    imagePath: string | null
+    activityDay: string | null
+    memberCount: number
   }
 }
 
@@ -35,7 +37,7 @@ export const CircleCard = memo(
           <Heading as="h4" size="xs">
             {data.name}
           </Heading>
-          <Text>人数：{data.people}</Text>
+          <Text>人数：{data.memberCount}</Text>
           <Text>活動日：{data.activityDay}</Text>
         </Box>
       </VStack>
