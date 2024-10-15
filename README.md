@@ -7,19 +7,30 @@ npm i -g pnpm # pnpmをグローバルにインストールしていない場合
 pnpm i # Windowsの場合はnpx pnpm i
 ```
 
+`.env`ファイルに作成
+
+```env
+NEXTAUTH_SECRET="" // 「openssl rand -base64 32」を実行した結果を貼り付ける
+
+DATABASE_URL="postgresql://johndoe:postgres@localhost:54320/mydb?schema=public"
+```
+
 2. Next.jsの起動
 
 ```sh
 pnpm dev
 ```
 
-3. コンテナの起動
+3. コンテナ（データベース）の起動とマイグレーション
 
 ```bash
 docker compose up -d
+pnpm migrate
+pnpm generate
+pnpm seed
 ```
 
-4. コンテナの終了
+4. コンテナ（データベース）の終了
 
 ```bash
 docker compose down

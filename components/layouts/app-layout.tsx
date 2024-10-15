@@ -4,6 +4,7 @@ import {
   CalendarDaysIcon,
   FileDigitIcon,
   HouseIcon,
+  LogOutIcon,
   MessageCircleMoreIcon,
   SettingsIcon,
   UsersIcon,
@@ -12,11 +13,12 @@ import { Box, HStack, IconButton, VStack } from "@yamada-ui/react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import type { FC, ReactNode } from "react"
+import { signout } from "@/actions/auth/signout"
 
 export const AppLayout: FC<{ children?: ReactNode }> = ({ children }) => {
   const pathname = usePathname()
 
-  return pathname !== "/login" ? (
+  return pathname !== "/signin" ? (
     <HStack w="100vw" h="100dvh" gap={0}>
       <VStack
         w="fit-content"
@@ -91,6 +93,16 @@ export const AppLayout: FC<{ children?: ReactNode }> = ({ children }) => {
             href="/notifications"
             icon={<BellIcon fontSize="2xl" />}
             title="通知"
+          />
+          <IconButton
+            w="50px"
+            h="50px"
+            justifyContent="center"
+            alignItems="center"
+            variant="ghost"
+            onClick={() => signout()}
+            icon={<LogOutIcon fontSize="2xl" />}
+            title="ログアウト"
           />
         </VStack>
         <IconButton

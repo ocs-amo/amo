@@ -1,0 +1,43 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id               String     @id @default(uuid()) // Primary key
+  studentNumber    String     // Student number as a string
+  name             String     // User's name
+  email            String     @unique // Email, set as unique
+  password         String     // Hashed password (for credentials login)
+  createdAt        DateTime   @default(now()) // Creation timestamp
+  updatedAt        DateTime   @updatedAt // Updated timestamp
+  iconImagePath    String?    // Optional: Icon image URL or base64 string
+  profileText      String?    // Optional: Markdown profile text
+  
+  accounts         Account[]  // One-to-many relationship with Account (for OAuth)
+
+  @@index([email]) // Optional: Index on email
+}
+
+model Account {
+  id                 String  @id @default(uuid()) // Primary key
+  userId             String       // Foreign key to User
+  provider           String    // Provider name (e.g., "google", "github", "credentials")
+  providerAccountId  String    // Provider's unique account ID for this user
+  refresh_token      String?   // Optional: OAuth refresh token
+  access_token       String?   // Optional: OAuth access token
+  expires_at         Int?      // Optional: OAuth token expiration timestamp
+  token_type         String?   // Optional: OAuth token type
+  scope              String?   // Optional: OAuth token scope
+  id_token           String?   // Optional: OAuth ID token for OpenID Connect
+  session_state      String?   // Optional: OAuth session state
+
+  user               User      @relation(fields: [userId], references: [id]) // Relation to User
+
+  @@unique([provider, providerAccountId]) // Ensures unique account per provider
+  @@index([userId]) // Index on userId for fast lookup
+}
