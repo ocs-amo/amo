@@ -15,7 +15,9 @@ import {
   Tag,
   VStack,
 } from "@yamada-ui/react"
+import { auth } from "@/auth"
 import { CircleCard } from "@/components/data-display/circle-card"
+import { getUserById } from "@/data/user"
 
 const notificationMockData = [
   {
@@ -68,7 +70,9 @@ const calendarMockData = [
   { date: "8", events: [] },
 ]
 
-export default function Home() {
+export default async function Home() {
+  const session = await auth()
+  const user = await getUserById(session?.user?.id || "")
   return (
     <VStack w="full" h="fit-content" p="md">
       <VStack>
@@ -82,7 +86,9 @@ export default function Home() {
           variant="solid"
         />
         <Heading as="h2" size="lg">
-          R4SA00{"　"}加古 林檎
+          {user?.studentNumber}
+          {` `}
+          {user?.name}
         </Heading>
       </VStack>
       <Grid
