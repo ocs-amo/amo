@@ -7,10 +7,10 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-generator erd {
-  provider = "prisma-erd-generator"
-  output = "./ERD.svg"
-}
+// generator erd {
+//   provider = "prisma-erd-generator"
+//   output = "./ERD.svg"
+// }
 
 model User {
     id            String   @id @default(uuid()) // Primary key
