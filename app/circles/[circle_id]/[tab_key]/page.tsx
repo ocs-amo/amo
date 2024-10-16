@@ -17,6 +17,8 @@ export const dynamicParams = false
 export const generateStaticParams = async () => {
   const circles = await getCircles()
 
+  if (!circles) return []
+
   // 各サークルのIDとタブキーの組み合わせを生成
   return circles?.flatMap((circle) =>
     list.map((tab_key) => ({

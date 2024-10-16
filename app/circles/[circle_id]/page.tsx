@@ -1,5 +1,4 @@
-import type {
-  FC} from "@yamada-ui/react";
+import type { FC } from "@yamada-ui/react"
 import {
   Box,
   Button,
@@ -40,7 +39,11 @@ export const dynamicParams = false
 export const generateStaticParams = async () => {
   const circles = await getCircles()
 
-  return circles?.map((circle) => ({ circle_id: circle.id }))
+  if (!circles) {
+    return []
+  }
+
+  return circles.map((circle) => ({ circle_id: circle.id }))
 }
 
 export const CircleDetailPage: FC<{
