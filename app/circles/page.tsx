@@ -41,6 +41,7 @@ const CirclesPage = () => {
           top={0}
           backgroundColor="Menu"
           as="header"
+          zIndex={1}
         >
           <HStack
             alignItems={{ base: "center", sm: "start" }}
