@@ -1,3 +1,5 @@
+import type {
+  FC} from "@yamada-ui/react";
 import {
   Box,
   Button,
@@ -41,11 +43,11 @@ export const generateStaticParams = async () => {
   return circles?.map((circle) => ({ circle_id: circle.id }))
 }
 
-const Page = async ({ params }: Props) => {
-  const { circle_id } = params
-  const circle = await getCircleById(circle_id || "")
-  const members = await getMemberByCircleId(circle_id || "")
-
+export const CircleDetailPage: FC<{
+  circle: Awaited<ReturnType<typeof getCircleById>>
+  members: Awaited<ReturnType<typeof getMemberByCircleId>>
+  tabKey?: string
+}> = ({ circle, members, tabKey }) => {
   if (!circle) {
     return <>サークルがありません</>
   }
@@ -81,9 +83,24 @@ const Page = async ({ params }: Props) => {
             </Box>
           </VStack>
         </HStack>
-        <CircleDetailTabs members={members} />
+        <CircleDetailTabs members={members} circle={circle} tabKey={tabKey} />
       </VStack>
     </VStack>
+  )
+}
+
+const Page = async ({ params }: Props) => {
+  const { circle_id } = params
+  const circle = await getCircleById(circle_id || "")
+  const members = await getMemberByCircleId(circle_id || "")
+
+  return (
+    <CircleDetailPage
+      {...{
+        circle,
+        members,
+      }}
+    />
   )
 }
 

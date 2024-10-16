@@ -1,6 +1,5 @@
 "use client"
-import type {
-  FC} from "@yamada-ui/react";
+import type { FC } from "@yamada-ui/react"
 import {
   Avatar,
   Badge,
@@ -17,15 +16,61 @@ import {
   Tabs,
   Text,
 } from "@yamada-ui/react"
-import type { getMemberByCircleId } from "@/data/circle"
+import { useRouter } from "next/navigation"
+import { useState } from "react"
+import type { getCircleById, getMemberByCircleId } from "@/data/circle"
 
 interface CircleDetailTabsProps {
   members: Awaited<ReturnType<typeof getMemberByCircleId>>
+  circle: Awaited<ReturnType<typeof getCircleById>>
+  tabKey?: string
 }
 
-export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({ members }) => {
+const handlingTab = (key: string) => {
+  switch (key) {
+    case "days":
+      return 0
+    case "images":
+      return 1
+    case "notifications":
+      return 2
+    case "members":
+      return 3
+
+    default:
+      return 0
+  }
+}
+
+export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
+  members,
+  circle,
+  tabKey,
+}) => {
+  const [tabIndex, setTabIndex] = useState(handlingTab(tabKey || ""))
+  const router = useRouter()
+  const handleChange = (index: number) => {
+    setTabIndex(index)
+    switch (index) {
+      case 0:
+        router.push(`/circles/${circle?.id}/days`)
+        break
+      case 1:
+        router.push(`/circles/${circle?.id}/images`)
+        break
+      case 2:
+        router.push(`/circles/${circle?.id}/notifications`)
+        break
+      case 3:
+        router.push(`/circles/${circle?.id}/members`)
+        break
+
+      default:
+        break
+    }
+  }
   return (
-    <Tabs>
+    <Tabs index={tabIndex} onChange={handleChange}>
       <TabList>
         <Tab>活動日程</Tab>
         <Tab>画像</Tab>
