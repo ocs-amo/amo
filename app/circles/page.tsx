@@ -10,107 +10,19 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
+  useAsync,
   VStack,
 } from "@yamada-ui/react"
 import Link from "next/link"
 import { useRef } from "react"
 import { CircleCard } from "@/components/data-display/circle-card"
-
-const circleMockData = [
-  {
-    id: 1,
-    thumbnail: "",
-    name: "プログラミングサークル",
-    people: 10,
-    activityDay: "木・金",
-  },
-  {
-    id: 2,
-    thumbnail: "",
-    name: "ゲームサークル",
-    people: 10,
-    activityDay: "木・金",
-  },
-  {
-    id: 3,
-    thumbnail: "",
-    name: "読書サークル",
-    people: 10,
-    activityDay: "木・金",
-  },
-  {
-    id: 4,
-    thumbnail: "",
-    name: "料理サークル",
-    people: 10,
-    activityDay: "木・金",
-  },
-  {
-    id: 5,
-    thumbnail: "",
-    name: "スポーツサークル",
-    people: 10,
-    activityDay: "木・金",
-  },
-  {
-    id: 6,
-    thumbnail: "",
-    name: "サイクリングサークル",
-    people: 10,
-    activityDay: "木・金",
-  },
-  {
-    id: 7,
-    thumbnail: "",
-    name: "旅行サークル",
-    people: 10,
-    activityDay: "木・金",
-  },
-  {
-    id: 8,
-    thumbnail: "",
-    name: "旅行サークル",
-    people: 10,
-    activityDay: "木・金",
-  },
-  {
-    id: 9,
-    thumbnail: "",
-    name: "旅行サークル",
-    people: 10,
-    activityDay: "木・金",
-  },
-  {
-    id: 10,
-    thumbnail: "",
-    name: "旅行サークル",
-    people: 10,
-    activityDay: "木・金",
-  },
-  {
-    id: 11,
-    thumbnail: "",
-    name: "旅行サークル",
-    people: 10,
-    activityDay: "木・金",
-  },
-  {
-    id: 12,
-    thumbnail: "",
-    name: "旅行サークル",
-    people: 10,
-    activityDay: "木・金",
-  },
-  {
-    id: 13,
-    thumbnail: "",
-    name: "旅行サークル",
-    people: 10,
-    activityDay: "木・金",
-  },
-]
+import { getCircles } from "@/data/circle"
 
 const CirclesPage = () => {
+  const { value } = useAsync(async () => {
+    return await getCircles()
+  }, [])
+
   const scrollRef = useRef<HTMLDivElement | null>(null)
 
   const handleScroll = () => {
@@ -129,6 +41,7 @@ const CirclesPage = () => {
           top={0}
           backgroundColor="Menu"
           as="header"
+          zIndex={1}
         >
           <HStack
             alignItems={{ base: "center", sm: "start" }}
@@ -161,9 +74,7 @@ const CirclesPage = () => {
           gap="md"
           w="full"
         >
-          {circleMockData.map((data) => (
-            <CircleCard key={data.id} data={data} />
-          ))}
+          {value?.map((data) => <CircleCard key={data.id} data={data} />)}
         </Grid>
       </VStack>
       <IconButton

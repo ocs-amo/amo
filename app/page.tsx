@@ -1,8 +1,10 @@
 import {
   Box,
+  Button,
   Card,
   CardBody,
   CardHeader,
+  Center,
   Divider,
   Flex,
   Grid,
@@ -13,9 +15,14 @@ import {
   InfoIcon,
   ScrollArea,
   Tag,
+  Text,
   VStack,
 } from "@yamada-ui/react"
+import Link from "next/link"
+import { auth } from "@/auth"
 import { CircleCard } from "@/components/data-display/circle-card"
+import { getCirclesByUserId } from "@/data/circle"
+import { getUserById } from "@/data/user"
 
 const notificationMockData = [
   {
@@ -34,30 +41,6 @@ const notificationMockData = [
   },
 ]
 
-const circleMockData = [
-  {
-    id: 1,
-    thumbnail: "",
-    name: "プログラミングサークル",
-    people: 10,
-    activityDay: "木・金",
-  },
-  {
-    id: 2,
-    thumbnail: "",
-    name: "ゲームサークル",
-    people: 10,
-    activityDay: "木・金",
-  },
-  {
-    id: 3,
-    thumbnail: "",
-    name: "イラストサークル",
-    people: 10,
-    activityDay: "木・金",
-  },
-]
-
 const calendarMockData = [
   { date: "2", events: [] },
   { date: "3", events: [{ title: "ゲームサークル" }] },
@@ -68,7 +51,10 @@ const calendarMockData = [
   { date: "8", events: [] },
 ]
 
-export default function Home() {
+export default async function Home() {
+  const session = await auth()
+  const user = await getUserById(session?.user?.id || "")
+  const circles = await getCirclesByUserId(user?.id || "")
   return (
     <VStack w="full" h="fit-content" p="md">
       <VStack>
@@ -82,7 +68,9 @@ export default function Home() {
           variant="solid"
         />
         <Heading as="h2" size="lg">
-          R4SA00{"　"}加古 林檎
+          {user?.studentNumber}
+          {` `}
+          {user?.name}
         </Heading>
       </VStack>
       <Grid
@@ -144,19 +132,30 @@ export default function Home() {
           </CardHeader>
           <CardBody>
             <Grid
-              gridTemplateColumns={{
-                base: "repeat(3, 1fr)",
-                xl: "repeat(2, 1fr)",
-                lg: "repeat(1, 1fr)",
-                md: "repeat(2, 1fr)",
-                sm: "repeat(1, 1fr)",
-              }}
+              gridTemplateColumns={
+                circles?.length
+                  ? {
+                      base: "repeat(3, 1fr)",
+                      xl: "repeat(2, 1fr)",
+                      lg: "repeat(1, 1fr)",
+                      md: "repeat(2, 1fr)",
+                      sm: "repeat(1, 1fr)",
+                    }
+                  : undefined
+              }
               gap="md"
               w="full"
             >
-              {circleMockData.map((data) => (
-                <CircleCard key={data.id} data={data} />
-              ))}
+              {circles?.length ? (
+                circles?.map((data) => <CircleCard key={data.id} data={data} />)
+              ) : (
+                <Center w="full" as={VStack}>
+                  <Text>サークルに入っていません</Text>
+                  <Button as={Link} href="/circles">
+                    サークルを探す
+                  </Button>
+                </Center>
+              )}
             </Grid>
           </CardBody>
         </GridItem>

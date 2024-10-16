@@ -1,3 +1,4 @@
+"use server"
 import { db } from "@/utils/db"
 
 export const getUserByEmail = async (email: string) => {
@@ -19,6 +20,17 @@ export const getUserById = async (id: string) => {
     const user = await db.user.findUnique({
       where: {
         id,
+      },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        profileText: true,
+        studentNumber: true,
+        updatedAt: true,
+        createdAt: true,
+        iconImagePath: true,
+        accounts: true,
       },
     })
     return user
