@@ -44,7 +44,12 @@ export const CircleDetailPage: FC<{
             </HStack>
           </VStack>
           <VStack alignItems="end">
-            <Text>講師：〇〇</Text>
+            <Text>
+              講師：
+              {circle.instructors
+                ?.map((instructor) => instructor.name)
+                .join(", ")}
+            </Text>
             <Text>人数：{circle.memberCount}人</Text>
             <Text>活動場所：{circle.location}</Text>
             <Box>
