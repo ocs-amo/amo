@@ -18,10 +18,9 @@ import {
 } from "@yamada-ui/react"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
-import type { getCircleById, getMemberByCircleId } from "@/data/circle"
+import type { getCircleById } from "@/data/circle"
 
 interface CircleDetailTabsProps {
-  members: Awaited<ReturnType<typeof getMemberByCircleId>>
   circle: Awaited<ReturnType<typeof getCircleById>>
   tabKey?: string
 }
