@@ -11,6 +11,7 @@ erDiagram
     DateTime updatedAt
     String iconImagePath "❓"
     String profileText "❓"
+    Boolean instructorFlag
     }
 
 
@@ -47,6 +48,11 @@ erDiagram
     }
 
 
+  "CircleInstructor" {
+    Int id "🗝️"
+    }
+
+
   "Role" {
     Int id "🗝️"
     String roleName
@@ -54,10 +60,14 @@ erDiagram
 
     "User" o{--}o "Account" : "accounts"
     "User" o{--}o "CircleMember" : "CircleMember"
+    "User" o{--}o "CircleInstructor" : "CircleInstructor"
     "Account" o|--|| "User" : "user"
     "Circle" o{--}o "CircleMember" : "CircleMember"
+    "Circle" o{--}o "CircleInstructor" : "CircleInstructor"
     "CircleMember" o|--|| "User" : "user"
     "CircleMember" o|--|| "Circle" : "circle"
     "CircleMember" o|--|| "Role" : "role"
+    "CircleInstructor" o|--|| "User" : "user"
+    "CircleInstructor" o|--|| "Circle" : "circle"
     "Role" o{--}o "CircleMember" : "members"
 ```
