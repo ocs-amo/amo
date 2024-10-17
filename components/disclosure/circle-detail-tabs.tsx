@@ -43,7 +43,6 @@ const handlingTab = (key: string) => {
 }
 
 export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
-  members,
   circle,
   tabKey,
 }) => {
@@ -84,7 +83,7 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
         <TabPanel>掲示板</TabPanel>
         <TabPanel>
           <SimpleGrid w="full" columns={{ base: 2, md: 1 }} gap="md">
-            {members?.map((member) => (
+            {circle?.members?.map((member) => (
               <GridItem key={member.id} w="full" rounded="md" as={Card}>
                 <CardBody>
                   <HStack as={Center}>
