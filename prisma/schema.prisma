@@ -61,6 +61,7 @@ model Circle {
     activityDay      String? // 活動日
     CircleMember     CircleMember[]
     CircleInstructor CircleInstructor[] // New relation for instructors
+    CircleTag CircleTag[]
 
     @@index([name]) // Optional: Index on circle name for fast lookup
 }
@@ -85,6 +86,16 @@ model CircleInstructor {
 
     user   User   @relation(fields: [userId], references: [id])
     circle Circle @relation(fields: [circleId], references: [id])
+}
+
+model CircleTag {
+  id       String  @id @default(uuid()) // Primary key
+  tagName  String  // タグ名
+  circleId String  // 外部キー (Circle テーブルへの参照)
+
+  circle Circle @relation(fields: [circleId], references: [id]) // サークルとのリレーション
+
+  @@index([circleId]) // Optional: Index on circleId for fast lookup
 }
 
 model Role {

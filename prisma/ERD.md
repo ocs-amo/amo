@@ -53,6 +53,12 @@ erDiagram
     }
 
 
+  "CircleTag" {
+    String id "🗝️"
+    String tagName
+    }
+
+
   "Role" {
     Int id "🗝️"
     String roleName
@@ -64,10 +70,12 @@ erDiagram
     "Account" o|--|| "User" : "user"
     "Circle" o{--}o "CircleMember" : "CircleMember"
     "Circle" o{--}o "CircleInstructor" : "CircleInstructor"
+    "Circle" o{--}o "CircleTag" : "CircleTag"
     "CircleMember" o|--|| "User" : "user"
     "CircleMember" o|--|| "Circle" : "circle"
     "CircleMember" o|--|| "Role" : "role"
     "CircleInstructor" o|--|| "User" : "user"
     "CircleInstructor" o|--|| "Circle" : "circle"
+    "CircleTag" o|--|| "Circle" : "circle"
     "Role" o{--}o "CircleMember" : "members"
 ```
