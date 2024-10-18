@@ -87,7 +87,7 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
                 <CardBody>
                   <HStack as={Center}>
                     <Avatar src={member.iconImagePath || ""} />
-                    <Badge>代表</Badge>
+                    {member.role ? <Badge>{member.role}</Badge> : undefined}
                     <Text>{member.name}</Text>
                     <Text>{member.studentNumber}</Text>
                   </HStack>

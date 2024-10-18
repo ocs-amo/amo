@@ -38,9 +38,7 @@ export const CircleDetailPage: FC<{
           <VStack>
             <Text as="pre">{circle.description}</Text>
             <HStack>
-              <Tag>初心者歓迎</Tag>
-              <Tag>プログラミング</Tag>
-              <Tag>パソコン</Tag>
+              {circle.tags?.map((tag) => <Tag key={tag.id}>{tag.tagName}</Tag>)}
             </HStack>
           </VStack>
           <VStack alignItems="end">
