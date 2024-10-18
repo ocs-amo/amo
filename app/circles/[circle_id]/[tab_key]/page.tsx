@@ -1,4 +1,4 @@
-import { CircleDetailPage } from "../page"
+import { CircleDetailPage } from "@/components/layouts/circle-detail-page"
 import { getCircleById, getCircles, getMemberByCircleId } from "@/data/circle"
 
 interface Props {
