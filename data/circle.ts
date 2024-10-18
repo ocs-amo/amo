@@ -39,6 +39,7 @@ export const getCircleById = async (id: string) => {
         CircleMember: {
           include: {
             user: true, // 関連するユーザー情報を含める
+            role: true,
           },
         },
         CircleInstructor: {
@@ -46,6 +47,7 @@ export const getCircleById = async (id: string) => {
             user: true, // 関連するユーザー情報を含める
           },
         },
+        CircleTag: true,
         _count: {
           select: { CircleMember: true }, // メンバーの数をカウント
         },
@@ -63,7 +65,7 @@ export const getCircleById = async (id: string) => {
         studentNumber: member.user.studentNumber,
         profileText: member.user.profileText,
         joinDate: member.joinDate,
-        // role: member.role.roleName, // 必要に応じてロール名を含める
+        role: member.role.roleName,
       })),
       instructors: circle?.CircleInstructor.map((instructor) => ({
         id: instructor.user.id,
@@ -72,6 +74,10 @@ export const getCircleById = async (id: string) => {
         iconImagePath: instructor.user.iconImagePath,
         studentNumber: instructor.user.studentNumber,
         profileText: instructor.user.profileText,
+      })),
+      tags: circle?.CircleTag.map((tag) => ({
+        id: tag.id,
+        tagName: tag.tagName,
       })),
     }
   } catch (error) {
