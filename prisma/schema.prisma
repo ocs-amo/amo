@@ -7,24 +7,26 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-// generator erd {
-//   provider = "prisma-erd-generator"
-//   output = "./ERD.svg"
-// }
+generator erd {
+  provider = "prisma-erd-generator"
+  output = "./ERD.md"
+}
 
 model User {
-    id            String   @id @default(uuid()) // Primary key
-    studentNumber String // Student number as a string
-    name          String // User's name
-    email         String   @unique // Email, set as unique
-    password      String // Hashed password (for credentials login)
-    createdAt     DateTime @default(now()) // Creation timestamp
-    updatedAt     DateTime @updatedAt // Updated timestamp
-    iconImagePath String? // Optional: Icon image URL or base64 string
-    profileText   String? // Optional: Markdown profile text
+    id             String   @id @default(uuid()) // Primary key
+    studentNumber  String // Student number as a string
+    name           String // User's name
+    email          String   @unique // Email, set as unique
+    password       String // Hashed password (for credentials login)
+    createdAt      DateTime @default(now()) // Creation timestamp
+    updatedAt      DateTime @updatedAt // Updated timestamp
+    iconImagePath  String? // Optional: Icon image URL or base64 string
+    profileText    String? // Optional: Markdown profile text
+    instructorFlag Boolean  @default(false) // Indicates if the user is an instructor
 
-    accounts     Account[] // One-to-many relationship with Account (for OAuth)
-    CircleMember CircleMember[]
+    accounts         Account[] // One-to-many relationship with Account (for OAuth)
+    CircleMember     CircleMember[]
+    CircleInstructor CircleInstructor[] // New relation for instructors
 
     @@index([email]) // Optional: Index on email
 }
@@ -49,15 +51,16 @@ model Account {
 }
 
 model Circle {
-    id           String         @id @default(uuid()) // Primary key, UUID形式
-    name         String // Circle name
-    description  String // Circle description
-    location     String // Activity location
-    createdAt    DateTime       @default(now()) // Creation timestamp
-    updatedAt    DateTime       @updatedAt // Updated timestamp
-    imagePath    String? // Optional: Circle image URL or base64 string
-    activityDay  String? // 活動日
-    CircleMember CircleMember[]
+    id               String             @id @default(uuid()) // Primary key, UUID形式
+    name             String // Circle name
+    description      String // Circle description
+    location         String // Activity location
+    createdAt        DateTime           @default(now()) // Creation timestamp
+    updatedAt        DateTime           @updatedAt // Updated timestamp
+    imagePath        String? // Optional: Circle image URL or base64 string
+    activityDay      String? // 活動日
+    CircleMember     CircleMember[]
+    CircleInstructor CircleInstructor[] // New relation for instructors
 
     @@index([name]) // Optional: Index on circle name for fast lookup
 }
@@ -73,6 +76,15 @@ model CircleMember {
     user   User   @relation(fields: [userId], references: [id])
     circle Circle @relation(fields: [circleId], references: [id])
     role   Role   @relation(fields: [roleId], references: [id])
+}
+
+model CircleInstructor {
+    id       Int    @id @default(autoincrement()) // Unique ID for each instructor record
+    userId   String // Foreign key to User
+    circleId String // Foreign key to Circle
+
+    user   User   @relation(fields: [userId], references: [id])
+    circle Circle @relation(fields: [circleId], references: [id])
 }
 
 model Role {

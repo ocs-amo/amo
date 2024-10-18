@@ -18,10 +18,9 @@ import {
 } from "@yamada-ui/react"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
-import type { getCircleById, getMemberByCircleId } from "@/data/circle"
+import type { getCircleById } from "@/data/circle"
 
 interface CircleDetailTabsProps {
-  members: Awaited<ReturnType<typeof getMemberByCircleId>>
   circle: Awaited<ReturnType<typeof getCircleById>>
   tabKey?: string
 }
@@ -43,7 +42,6 @@ const handlingTab = (key: string) => {
 }
 
 export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
-  members,
   circle,
   tabKey,
 }) => {
@@ -84,7 +82,7 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
         <TabPanel>掲示板</TabPanel>
         <TabPanel>
           <SimpleGrid w="full" columns={{ base: 2, md: 1 }} gap="md">
-            {members?.map((member) => (
+            {circle?.members?.map((member) => (
               <GridItem key={member.id} w="full" rounded="md" as={Card}>
                 <CardBody>
                   <HStack as={Center}>

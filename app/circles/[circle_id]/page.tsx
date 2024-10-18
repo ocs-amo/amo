@@ -1,7 +1,5 @@
-
-
 import { CircleDetailPage } from "@/components/layouts/circle-detail-page"
-import { getCircleById, getCircles, getMemberByCircleId } from "@/data/circle"
+import { getCircleById, getCircles } from "@/data/circle"
 
 interface Props {
   params: { circle_id?: string }
@@ -39,16 +37,8 @@ export const generateStaticParams = async () => {
 const Page = async ({ params }: Props) => {
   const { circle_id } = params
   const circle = await getCircleById(circle_id || "")
-  const members = await getMemberByCircleId(circle_id || "")
 
-  return (
-    <CircleDetailPage
-      {...{
-        circle,
-        members,
-      }}
-    />
-  )
+  return <CircleDetailPage circle={circle} />
 }
 
 export default Page

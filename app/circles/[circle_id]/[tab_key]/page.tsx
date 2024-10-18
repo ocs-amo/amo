@@ -1,5 +1,5 @@
 import { CircleDetailPage } from "@/components/layouts/circle-detail-page"
-import { getCircleById, getCircles, getMemberByCircleId } from "@/data/circle"
+import { getCircleById, getCircles } from "@/data/circle"
 
 interface Props {
   params: {
@@ -33,9 +33,8 @@ const Page = async ({ params }: Props) => {
   const { circle_id, tab_key } = params
 
   const circle = await getCircleById(circle_id || "")
-  const members = await getMemberByCircleId(circle_id || "")
 
-  return <CircleDetailPage circle={circle} members={members} tabKey={tab_key} />
+  return <CircleDetailPage circle={circle} tabKey={tab_key} />
 }
 
 export default Page

@@ -1,5 +1,4 @@
-import type {
-  FC} from "@yamada-ui/react";
+import type { FC } from "@yamada-ui/react"
 import {
   Box,
   Button,
@@ -11,14 +10,13 @@ import {
   VStack,
 } from "@yamada-ui/react"
 import { CircleDetailTabs } from "../disclosure/circle-detail-tabs"
-import type { getCircleById, getMemberByCircleId } from "@/data/circle"
+import type { getCircleById } from "@/data/circle"
 import { randomInteger } from "@/utils/random"
 
 export const CircleDetailPage: FC<{
   circle: Awaited<ReturnType<typeof getCircleById>>
-  members: Awaited<ReturnType<typeof getMemberByCircleId>>
   tabKey?: string
-}> = ({ circle, members, tabKey }) => {
+}> = ({ circle, tabKey }) => {
   if (!circle) {
     return <>サークルがありません</>
   }
@@ -46,7 +44,12 @@ export const CircleDetailPage: FC<{
             </HStack>
           </VStack>
           <VStack alignItems="end">
-            <Text>講師：〇〇</Text>
+            <Text>
+              講師：
+              {circle.instructors
+                ?.map((instructor) => instructor.name)
+                .join(", ")}
+            </Text>
             <Text>人数：{circle.memberCount}人</Text>
             <Text>活動場所：{circle.location}</Text>
             <Box>
@@ -54,7 +57,7 @@ export const CircleDetailPage: FC<{
             </Box>
           </VStack>
         </HStack>
-        <CircleDetailTabs members={members} circle={circle} tabKey={tabKey} />
+        <CircleDetailTabs circle={circle} tabKey={tabKey} />
       </VStack>
     </VStack>
   )

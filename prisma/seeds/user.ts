@@ -25,5 +25,21 @@ export const user = () =>
         email: "ringo@email.com",
         password: hashPassword("password"),
       },
+      {
+        id: "user4-uuid",
+        studentNumber: "",
+        name: "講師1",
+        email: "koushi1@email.com",
+        password: hashPassword("password"),
+        instructorFlag: true,
+      },
+      {
+        id: "user5-uuid",
+        studentNumber: "",
+        name: "講師2",
+        email: "koushi2@email.com",
+        password: hashPassword("password"),
+        instructorFlag: true,
+      },
     ],
   })

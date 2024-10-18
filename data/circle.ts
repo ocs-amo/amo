@@ -36,8 +36,18 @@ export const getCircleById = async (id: string) => {
         id,
       },
       include: {
+        CircleMember: {
+          include: {
+            user: true, // 関連するユーザー情報を含める
+          },
+        },
+        CircleInstructor: {
+          include: {
+            user: true, // 関連するユーザー情報を含める
+          },
+        },
         _count: {
-          select: { CircleMember: true }, // メンバー数をカウント
+          select: { CircleMember: true }, // メンバーの数をカウント
         },
       },
     })
@@ -45,6 +55,24 @@ export const getCircleById = async (id: string) => {
     return {
       ...circle,
       memberCount: circle?._count.CircleMember,
+      members: circle?.CircleMember.map((member) => ({
+        id: member.user.id,
+        name: member.user.name,
+        email: member.user.email,
+        iconImagePath: member.user.iconImagePath,
+        studentNumber: member.user.studentNumber,
+        profileText: member.user.profileText,
+        joinDate: member.joinDate,
+        // role: member.role.roleName, // 必要に応じてロール名を含める
+      })),
+      instructors: circle?.CircleInstructor.map((instructor) => ({
+        id: instructor.user.id,
+        name: instructor.user.name,
+        email: instructor.user.email,
+        iconImagePath: instructor.user.iconImagePath,
+        studentNumber: instructor.user.studentNumber,
+        profileText: instructor.user.profileText,
+      })),
     }
   } catch (error) {
     console.error("getCircleById: ", error)
