@@ -15,19 +15,25 @@ NEXTAUTH_SECRET="" #「openssl rand -base64 32」を実行した結果を貼り�
 DATABASE_URL="postgresql://johndoe:postgres@localhost:54320/mydb?schema=public"
 ```
 
-2. Next.jsの起動
-
-```sh
-pnpm dev
-```
-
-3. コンテナ（データベース）の起動とマイグレーション
+2. コンテナ（データベース）の起動とマイグレーション
 
 ```bash
 docker compose up -d
 pnpm migrate
 pnpm generate
 pnpm seed
+```
+
+データベースを見る場合は以下を実行
+
+```sh
+pnpm studio
+```
+
+3. Next.jsの起動
+
+```sh
+pnpm dev
 ```
 
 4. コンテナ（データベース）の終了
