@@ -50,7 +50,7 @@ export const FrontCreateCircleSchema = CreateCircleSchema.extend({
 // バックエンド用のスキーマ
 export const BackCreateCircleSchema = CreateCircleSchema.extend({
   tags: z.array(z.string()), // バックエンドでは既に配列として受け取る
-  imagePath: z.string().optional(), // 画像データはbase64の文字列として受け取る
+  imagePath: z.string().optional().nullable(), // 画像データはbase64の文字列として受け取る
 })
 
 export type CreateCircleForm = z.infer<typeof CreateCircleSchema>
