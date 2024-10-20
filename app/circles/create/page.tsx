@@ -21,14 +21,22 @@ import {
   VStack,
 } from "@yamada-ui/react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { useSession } from "next-auth/react"
 import { useState } from "react"
 import { Controller, useForm } from "react-hook-form"
+import { CreateCircle } from "@/actions/circle/create-circle"
 import { getInstructors } from "@/data/user"
-import { FrontCreateCircleSchema } from "@/schema/circle"
+import {
+  BackCreateCircleSchema,
+  FrontCreateCircleSchema,
+} from "@/schema/circle"
 import type { FrontCreateCircleForm } from "@/schema/circle"
 
 const CircleCreate = () => {
+  const { data } = useSession()
   const [imagePreview, setImagePreview] = useState<string>("")
+  const router = useRouter()
   const {
     register,
     handleSubmit,
@@ -43,7 +51,40 @@ const CircleCreate = () => {
   })
 
   const onSubmit = async (values: FrontCreateCircleForm) => {
-    console.log(values)
+    try {
+      // バックエンドのスキーマで値をバリデーション
+      const {
+        success,
+        error,
+        data: parseData,
+      } = BackCreateCircleSchema.safeParse(values)
+
+      if (!success) {
+        // エラーメッセージを表示
+        console.error("Validation failed:", error)
+        return
+      }
+
+      // ユーザーIDの取得
+      const userId = data?.user?.id
+      if (!userId) {
+        console.error("ユーザーが存在しません。")
+        return
+      }
+
+      // サークル作成処理
+      const circle = await CreateCircle(parseData, userId)
+
+      // サークル作成が成功した場合
+      if (circle) {
+        router.push(`/circles/${circle.circleId}`)
+      } else {
+        // サークル作成に失敗した場合の処理
+        console.error("サークルの作成に失敗しました。")
+      }
+    } catch (error) {
+      console.error("Error during circle creation:", error)
+    }
   }
 
   // watchでimagePathを監視
