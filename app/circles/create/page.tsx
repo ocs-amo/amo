@@ -1,125 +1,347 @@
 "use client"
+import { zodResolver } from "@hookform/resolvers/zod"
 import { CameraIcon } from "@yamada-ui/lucide"
-import type { SelectItem } from "@yamada-ui/react"
 import {
+  AutocompleteOption,
   Button,
   Center,
+  ErrorMessage,
+  FileButton,
   FormControl,
   Heading,
+  IconButton,
   Input,
   Label,
-  Select,
-  Text,
+  MultiAutocomplete,
+  Spacer,
+  Textarea,
+  Tooltip,
+  useAsync,
+  useSafeLayoutEffect,
   VStack,
 } from "@yamada-ui/react"
 import Link from "next/link"
-
-const items: SelectItem[] = [
-  {
-    label: "乃木",
-    value: "乃木",
-  },
-  {
-    label: "西村",
-    value: "西村",
-  },
-  {
-    label: "木村",
-    value: "木村",
-  },
-]
+import { useRouter } from "next/navigation"
+import { useSession } from "next-auth/react"
+import { useState } from "react"
+import { Controller, useForm } from "react-hook-form"
+import { CreateCircle } from "@/actions/circle/create-circle"
+import { getInstructors } from "@/data/user"
+import {
+  BackCreateCircleSchema,
+  FrontCreateCircleSchema,
+} from "@/schema/circle"
+import type { FrontCreateCircleForm } from "@/schema/circle"
 
 const CircleCreate = () => {
+  const { data } = useSession()
+  const [imagePreview, setImagePreview] = useState<string>("")
+  const router = useRouter()
+  const {
+    register,
+    handleSubmit,
+    watch,
+    control,
+    formState: { errors, isSubmitting },
+  } = useForm<FrontCreateCircleForm>({
+    resolver: zodResolver(FrontCreateCircleSchema),
+    defaultValues: {
+      instructors: [],
+    },
+  })
+
+  const onSubmit = async (values: FrontCreateCircleForm) => {
+    try {
+      // バックエンドのスキーマで値をバリデーション
+      const {
+        success,
+        error,
+        data: parseData,
+      } = BackCreateCircleSchema.safeParse(values)
+
+      if (!success) {
+        // エラーメッセージを表示
+        console.error("Validation failed:", error)
+        return
+      }
+
+      // ユーザーIDの取得
+      const userId = data?.user?.id
+      if (!userId) {
+        console.error("ユーザーが存在しません。")
+        return
+      }
+
+      // サークル作成処理
+      const circle = await CreateCircle(parseData, userId)
+
+      // サークル作成が成功した場合
+      if (circle) {
+        router.push(`/circles/${circle.circleId}`)
+      } else {
+        // サークル作成に失敗した場合の処理
+        console.error("サークルの作成に失敗しました。")
+      }
+    } catch (error) {
+      console.error("Error during circle creation:", error)
+    }
+  }
+
+  // watchでimagePathを監視
+  const imagePath = watch("imagePath") as unknown as FileList | null
+
+  // 画像選択時にプレビューを更新
+  useSafeLayoutEffect(() => {
+    if (imagePath && imagePath.length > 0) {
+      const file = imagePath[0]
+      setImagePreview(URL.createObjectURL(file))
+    } else {
+      setImagePreview("")
+    }
+    // クリーンアップ関数でURLを解放
+    return () => {
+      if (imagePreview) URL.revokeObjectURL(imagePreview)
+    }
+  }, [imagePath])
+
+  const { value } = useAsync(async () => ({
+    instructors: (await getInstructors()).map((instructor) => ({
+      label: instructor.name,
+      value: instructor.id,
+    })),
+  }))
   return (
-    <VStack gap={0} w="full" h="full">
-      <Center w="full" h="40" backgroundColor="gray.100">
-        <VStack alignItems="center" gap={0}>
-          <CameraIcon size="9xl" color="gray" />
-          <Text color="gray" size="xl">
-            ヘッダー画像
-          </Text>
-        </VStack>
+    <VStack
+      gap={0}
+      w="full"
+      h="full"
+      as="form"
+      onSubmit={handleSubmit(onSubmit)}
+    >
+      <Center
+        w="full"
+        h="40"
+        minH="40"
+        {...(imagePreview
+          ? {
+              backgroundImage: imagePreview,
+              backgroundSize: "cover",
+            }
+          : {
+              backgroundColor: "gray.100",
+            })}
+      >
+        <FormControl
+          isInvalid={!!errors.imagePath}
+          errorMessage={errors.imagePath ? errors.imagePath.message : undefined}
+        >
+          <Controller
+            name="imagePath"
+            control={control}
+            render={({ field: { ref, name, onChange, onBlur } }) => (
+              <VStack alignItems="center" gap={0}>
+                <Tooltip label="画像を選択" placement="bottom">
+                  <FileButton
+                    {...{ ref, name, onChange, onBlur }}
+                    w="28"
+                    h="28"
+                    as={IconButton}
+                    accept="image/*"
+                    bg="gray.100"
+                    onChange={onChange}
+                    icon={<CameraIcon fontSize="9xl" color="gray" />}
+                  />
+                </Tooltip>
+              </VStack>
+            )}
+          />
+        </FormControl>
       </Center>
       <VStack p="md" maxW="5xl" m="auto" gap="lg" flexGrow={1}>
         <Heading as="h1" size="lg">
           サークル作成
         </Heading>
-        <form onSubmit={(e) => e.preventDefault()}>
-          <VStack px="md">
-            <FormControl
-              isRequired
-              display="flex"
-              flexDirection={{ base: "row", md: "column" }}
-              gap={{ base: "2xl", md: "md" }}
-              maxW="2xl"
-            >
-              <Label flexGrow={1}>サークル名</Label>
+        <VStack px="md">
+          <FormControl
+            display="flex"
+            flexDirection={{ base: "row", md: "column" }}
+            gap={{ base: "2xl", md: "md" }}
+            maxW="2xl"
+            isInvalid={!!errors.name}
+          >
+            <Label flexGrow={1} isRequired>
+              サークル名
+            </Label>
+            <VStack w="auto">
               <Input
                 type="text"
                 w={{ base: "md", md: "full" }}
                 placeholder="サークル名を入力"
+                {...register("name")}
               />
-            </FormControl>
-            <FormControl
-              display="flex"
-              flexDirection={{ base: "row", md: "column" }}
-              gap={{ base: "2xl", md: "md" }}
-              maxW="2xl"
-            >
-              <Label flexGrow={1}>講師</Label>
-              <Select
+              {errors.name ? (
+                <ErrorMessage mt={0}>{errors.name.message}</ErrorMessage>
+              ) : (
+                <>
+                  <Spacer />
+                  <Spacer />
+                </>
+              )}
+            </VStack>
+          </FormControl>
+          <FormControl
+            display="flex"
+            flexDirection={{ base: "row", md: "column" }}
+            gap={{ base: "2xl", md: "md" }}
+            maxW="2xl"
+            isInvalid={!!errors.description}
+          >
+            <Label flexGrow={1} isRequired>
+              説明
+            </Label>
+            <VStack w="auto">
+              <Textarea
                 w={{ base: "md", md: "full" }}
-                placeholder="講師を選択"
-                items={items}
+                placeholder="説明を入力"
+                autosize
+                {...register("description")}
               />
-            </FormControl>
-            <FormControl
-              display="flex"
-              flexDirection={{ base: "row", md: "column" }}
-              gap={{ base: "2xl", md: "md" }}
-              maxW="2xl"
-            >
-              <Label flexGrow={1}>タグ</Label>
+              {errors.description ? (
+                <ErrorMessage mt={0}>{errors.description.message}</ErrorMessage>
+              ) : (
+                <>
+                  <Spacer />
+                  <Spacer />
+                </>
+              )}
+            </VStack>
+          </FormControl>
+          <FormControl
+            display="flex"
+            flexDirection={{ base: "row", md: "column" }}
+            gap={{ base: "2xl", md: "md" }}
+            maxW="2xl"
+            isInvalid={!!errors.instructors}
+          >
+            <Controller
+              name="instructors"
+              control={control}
+              render={({ field }) => (
+                <>
+                  <Label flexGrow={1} isRequired>
+                    講師
+                  </Label>
+                  <VStack w="auto">
+                    <MultiAutocomplete
+                      w={{ base: "md", md: "full" }}
+                      placeholder="講師を選択"
+                      {...field}
+                    >
+                      {value?.instructors.map((instructor) => (
+                        <AutocompleteOption
+                          value={instructor.value}
+                          key={instructor.value}
+                        >
+                          {instructor.label}
+                        </AutocompleteOption>
+                      ))}
+                    </MultiAutocomplete>
+                    {errors.instructors ? (
+                      <ErrorMessage mt={0}>
+                        {errors.instructors.message}
+                      </ErrorMessage>
+                    ) : (
+                      <>
+                        <Spacer />
+                        <Spacer />
+                      </>
+                    )}
+                  </VStack>
+                </>
+              )}
+            />
+          </FormControl>
+          <FormControl
+            display="flex"
+            flexDirection={{ base: "row", md: "column" }}
+            gap={{ base: "2xl", md: "md" }}
+            maxW="2xl"
+          >
+            <Label flexGrow={1}>タグ</Label>
+            <VStack w="auto">
               <Input
                 type="text"
                 w={{ base: "md", md: "full" }}
-                placeholder="タグを入力"
+                placeholder="タグを入力（カンマ区切り）"
+                {...register("tags")}
               />
-            </FormControl>
-            <FormControl
-              display="flex"
-              flexDirection={{ base: "row", md: "column" }}
-              gap={{ base: "2xl", md: "md" }}
-              maxW="2xl"
-            >
-              <Label flexGrow={1}>活動場所</Label>
+              <Spacer />
+              <Spacer />
+            </VStack>
+          </FormControl>
+          <FormControl
+            display="flex"
+            flexDirection={{ base: "row", md: "column" }}
+            gap={{ base: "2xl", md: "md" }}
+            maxW="2xl"
+            isInvalid={!!errors.location}
+          >
+            <Label flexGrow={1} isRequired>
+              活動場所
+            </Label>
+            <VStack w="auto">
               <Input
+                {...register("location")}
                 type="text"
                 w={{ base: "md", md: "full" }}
                 placeholder="活動場所を入力"
               />
-            </FormControl>
-            <FormControl
-              display="flex"
-              flexDirection={{ base: "row", md: "column" }}
-              gap={{ base: "2xl", md: "md" }}
-              maxW="2xl"
-            >
-              <Label flexGrow={1}>活動時間</Label>
+              {errors.location ? (
+                <ErrorMessage mt={0}>{errors.location.message}</ErrorMessage>
+              ) : (
+                <>
+                  <Spacer />
+                  <Spacer />
+                </>
+              )}
+            </VStack>
+          </FormControl>
+          <FormControl
+            display="flex"
+            flexDirection={{ base: "row", md: "column" }}
+            gap={{ base: "2xl", md: "md" }}
+            maxW="2xl"
+            isInvalid={!!errors.activityDay}
+          >
+            <Label flexGrow={1} isRequired>
+              活動日
+            </Label>
+            <VStack w="auto">
               <Input
                 type="text"
                 w={{ base: "md", md: "full" }}
-                placeholder="活動時間を入力"
+                placeholder="活動日を入力"
+                {...register("activityDay")}
               />
-            </FormControl>
-            <Center gap="md" justifyContent="end">
-              <Button as={Link} href="/circles">
-                キャンセル
-              </Button>
-              <Button type="submit">作成</Button>
-            </Center>
-          </VStack>
-        </form>
+              {errors.activityDay ? (
+                <ErrorMessage mt={0}>{errors.activityDay.message}</ErrorMessage>
+              ) : (
+                <>
+                  <Spacer />
+                  <Spacer />
+                </>
+              )}
+            </VStack>
+          </FormControl>
+          <Center gap="md" justifyContent="end">
+            <Button as={Link} href="/circles">
+              キャンセル
+            </Button>
+            <Button type="submit" isLoading={isSubmitting}>
+              作成
+            </Button>
+          </Center>
+        </VStack>
       </VStack>
     </VStack>
   )
