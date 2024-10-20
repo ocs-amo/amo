@@ -13,17 +13,22 @@ import {
   Input,
   Label,
   MultiAutocomplete,
+  Spacer,
   Textarea,
+  Tooltip,
   useAsync,
+  useSafeLayoutEffect,
   VStack,
 } from "@yamada-ui/react"
 import Link from "next/link"
+import { useState } from "react"
 import { Controller, useForm } from "react-hook-form"
 import { getInstructors } from "@/data/user"
 import { FrontCreateCircleSchema } from "@/schema/circle"
 import type { FrontCreateCircleForm } from "@/schema/circle"
 
 const CircleCreate = () => {
+  const [imagePreview, setImagePreview] = useState<string>("")
   const {
     register,
     handleSubmit,
@@ -32,13 +37,31 @@ const CircleCreate = () => {
     formState: { errors, isSubmitting },
   } = useForm<FrontCreateCircleForm>({
     resolver: zodResolver(FrontCreateCircleSchema),
+    defaultValues: {
+      instructors: [],
+    },
   })
-  console.log(watch("imagePath"))
-  console.log(errors)
 
   const onSubmit = async (values: FrontCreateCircleForm) => {
     console.log(values)
   }
+
+  // watchでimagePathを監視
+  const imagePath = watch("imagePath") as unknown as FileList | null
+
+  // 画像選択時にプレビューを更新
+  useSafeLayoutEffect(() => {
+    if (imagePath && imagePath.length > 0) {
+      const file = imagePath[0]
+      setImagePreview(URL.createObjectURL(file))
+    } else {
+      setImagePreview("")
+    }
+    // クリーンアップ関数でURLを解放
+    return () => {
+      if (imagePreview) URL.revokeObjectURL(imagePreview)
+    }
+  }, [imagePath])
 
   const { value } = useAsync(async () => ({
     instructors: (await getInstructors()).map((instructor) => ({
@@ -54,10 +77,19 @@ const CircleCreate = () => {
       as="form"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <Center w="full" h="40" backgroundColor="gray.100">
-        {/* {
-          watch("imagePath") ? <Image src={watch("imagePath")} w="full" h="full" objectFit="cover" /> : undefined
-        } */}
+      <Center
+        w="full"
+        h="40"
+        minH="40"
+        {...(imagePreview
+          ? {
+              backgroundImage: imagePreview,
+              backgroundSize: "cover",
+            }
+          : {
+              backgroundColor: "gray.100",
+            })}
+      >
         <FormControl
           isInvalid={!!errors.imagePath}
           errorMessage={errors.imagePath ? errors.imagePath.message : undefined}
@@ -67,15 +99,18 @@ const CircleCreate = () => {
             control={control}
             render={({ field: { ref, name, onChange, onBlur } }) => (
               <VStack alignItems="center" gap={0}>
-                <FileButton
-                  {...{ ref, name, onChange, onBlur }}
-                  w="28"
-                  h="28"
-                  as={IconButton}
-                  accept="image/*"
-                  bg="gray.100"
-                  icon={<CameraIcon fontSize="9xl" color="gray" />}
-                />
+                <Tooltip label="画像を選択" placement="bottom">
+                  <FileButton
+                    {...{ ref, name, onChange, onBlur }}
+                    w="28"
+                    h="28"
+                    as={IconButton}
+                    accept="image/*"
+                    bg="gray.100"
+                    onChange={onChange}
+                    icon={<CameraIcon fontSize="9xl" color="gray" />}
+                  />
+                </Tooltip>
               </VStack>
             )}
           />
@@ -105,7 +140,12 @@ const CircleCreate = () => {
               />
               {errors.name ? (
                 <ErrorMessage mt={0}>{errors.name.message}</ErrorMessage>
-              ) : undefined}
+              ) : (
+                <>
+                  <Spacer />
+                  <Spacer />
+                </>
+              )}
             </VStack>
           </FormControl>
           <FormControl
@@ -125,9 +165,14 @@ const CircleCreate = () => {
                 autosize
                 {...register("description")}
               />
-              {errors.name ? (
-                <ErrorMessage mt={0}>{errors.name.message}</ErrorMessage>
-              ) : undefined}
+              {errors.description ? (
+                <ErrorMessage mt={0}>{errors.description.message}</ErrorMessage>
+              ) : (
+                <>
+                  <Spacer />
+                  <Spacer />
+                </>
+              )}
             </VStack>
           </FormControl>
           <FormControl
@@ -135,30 +180,42 @@ const CircleCreate = () => {
             flexDirection={{ base: "row", md: "column" }}
             gap={{ base: "2xl", md: "md" }}
             maxW="2xl"
+            isInvalid={!!errors.instructors}
           >
             <Controller
               name="instructors"
               control={control}
-              rules={{
-                required: { value: true, message: "This is required." },
-              }}
               render={({ field }) => (
                 <>
-                  <Label flexGrow={1}>講師</Label>
-                  <MultiAutocomplete
-                    w={{ base: "md", md: "full" }}
-                    placeholder="講師を選択"
-                    {...field}
-                  >
-                    {value?.instructors.map((instructor) => (
-                      <AutocompleteOption
-                        value={instructor.value}
-                        key={instructor.value}
-                      >
-                        {instructor.label}
-                      </AutocompleteOption>
-                    ))}
-                  </MultiAutocomplete>
+                  <Label flexGrow={1} isRequired>
+                    講師
+                  </Label>
+                  <VStack w="auto">
+                    <MultiAutocomplete
+                      w={{ base: "md", md: "full" }}
+                      placeholder="講師を選択"
+                      {...field}
+                    >
+                      {value?.instructors.map((instructor) => (
+                        <AutocompleteOption
+                          value={instructor.value}
+                          key={instructor.value}
+                        >
+                          {instructor.label}
+                        </AutocompleteOption>
+                      ))}
+                    </MultiAutocomplete>
+                    {errors.instructors ? (
+                      <ErrorMessage mt={0}>
+                        {errors.instructors.message}
+                      </ErrorMessage>
+                    ) : (
+                      <>
+                        <Spacer />
+                        <Spacer />
+                      </>
+                    )}
+                  </VStack>
                 </>
               )}
             />
@@ -170,37 +227,70 @@ const CircleCreate = () => {
             maxW="2xl"
           >
             <Label flexGrow={1}>タグ</Label>
-            <Input
-              type="text"
-              w={{ base: "md", md: "full" }}
-              placeholder="タグを入力"
-            />
+            <VStack w="auto">
+              <Input
+                type="text"
+                w={{ base: "md", md: "full" }}
+                placeholder="タグを入力（カンマ区切り）"
+                {...register("tags")}
+              />
+              <Spacer />
+              <Spacer />
+            </VStack>
           </FormControl>
           <FormControl
             display="flex"
             flexDirection={{ base: "row", md: "column" }}
             gap={{ base: "2xl", md: "md" }}
             maxW="2xl"
+            isInvalid={!!errors.location}
           >
-            <Label flexGrow={1}>活動場所</Label>
-            <Input
-              type="text"
-              w={{ base: "md", md: "full" }}
-              placeholder="活動場所を入力"
-            />
+            <Label flexGrow={1} isRequired>
+              活動場所
+            </Label>
+            <VStack w="auto">
+              <Input
+                {...register("location")}
+                type="text"
+                w={{ base: "md", md: "full" }}
+                placeholder="活動場所を入力"
+              />
+              {errors.location ? (
+                <ErrorMessage mt={0}>{errors.location.message}</ErrorMessage>
+              ) : (
+                <>
+                  <Spacer />
+                  <Spacer />
+                </>
+              )}
+            </VStack>
           </FormControl>
           <FormControl
             display="flex"
             flexDirection={{ base: "row", md: "column" }}
             gap={{ base: "2xl", md: "md" }}
             maxW="2xl"
+            isInvalid={!!errors.activityDay}
           >
-            <Label flexGrow={1}>活動時間</Label>
-            <Input
-              type="text"
-              w={{ base: "md", md: "full" }}
-              placeholder="活動時間を入力"
-            />
+            <Label flexGrow={1} isRequired>
+              活動日
+            </Label>
+            <VStack w="auto">
+              <Input
+                type="text"
+                w={{ base: "md", md: "full" }}
+                placeholder="活動日を入力"
+                {...register("activityDay")}
+              />
+              {errors.activityDay ? (
+                <ErrorMessage mt={0}>{errors.activityDay.message}</ErrorMessage>
+              ) : (
+                <>
+                  <Spacer />
+                  <Spacer />
+                </>
+              )}
+            </VStack>
           </FormControl>
           <Center gap="md" justifyContent="end">
             <Button as={Link} href="/circles">
