@@ -1,3 +1,4 @@
+import { auth } from "@/auth"
 import { CircleDetailPage } from "@/components/layouts/circle-detail-page"
 import { getCircleById, getCircles } from "@/data/circle"
 
@@ -31,10 +32,16 @@ export const generateStaticParams = async () => {
 // ダイナミックルートのページコンポーネント
 const Page = async ({ params }: Props) => {
   const { circle_id, tab_key } = params
-
+  const session = await auth()
   const circle = await getCircleById(circle_id || "")
 
-  return <CircleDetailPage circle={circle} tabKey={tab_key} />
+  return (
+    <CircleDetailPage
+      circle={circle}
+      tabKey={tab_key}
+      userId={session?.user?.id || ""}
+    />
+  )
 }
 
 export default Page

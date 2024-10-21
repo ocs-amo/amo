@@ -1,5 +1,5 @@
 import { auth } from "@/auth"
-import { CircleDetailPage } from "@/components/layouts/circle-detail-page"
+import { CircleEditForm } from "@/components/forms/circle-edit-form"
 import { getCircleById, getCircles } from "@/data/circle"
 
 interface Props {
@@ -35,12 +35,11 @@ export const generateStaticParams = async () => {
   return circles.map((circle) => ({ circle_id: circle.id }))
 }
 
-const Page = async ({ params }: Props) => {
+const Edit = async ({ params }: Props) => {
   const { circle_id } = params
   const session = await auth()
   const circle = await getCircleById(circle_id || "")
-
-  return <CircleDetailPage circle={circle} userId={session?.user?.id || ""} />
+  return <CircleEditForm circle={circle} userId={session?.user?.id || ""} />
 }
 
-export default Page
+export default Edit
