@@ -26,6 +26,7 @@ export const FrontCreateCircleSchema = CreateCircleSchema.extend({
     .optional() // 画像ファイルはオプション
     .refine(
       (file) =>
+        typeof file === "string" ||
         !file ||
         file.length === 0 ||
         (file.length > 0 && file[0].type.startsWith("image/")),
@@ -34,7 +35,7 @@ export const FrontCreateCircleSchema = CreateCircleSchema.extend({
       },
     )
     .transform(async (file) => {
-      if (!file || file.length === 0) {
+      if (typeof file === "string" || !file || file.length === 0) {
         return null // 画像がない場合はnullを返す
       }
       const selectedFile = file[0]

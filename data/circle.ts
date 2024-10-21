@@ -137,7 +137,7 @@ export const getCircleById = async (id: string) => {
         studentNumber: member.user.studentNumber,
         profileText: member.user.profileText,
         joinDate: member.joinDate,
-        role: member.role.roleName,
+        role: member.role,
       })),
       instructors: circle?.CircleInstructor.map((instructor) => ({
         id: instructor.user.id,
