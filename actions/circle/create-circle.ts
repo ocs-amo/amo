@@ -1,3 +1,4 @@
+"use server"
 import {
   addCircle,
   addInitialMember,
@@ -5,14 +6,11 @@ import {
   addTags,
 } from "@/data/circle"
 import { getUserById } from "@/data/user"
-import type { BackCreateCircleForm} from "@/schema/circle";
-import { BackCreateCircleSchema } from "@/schema/circle"
+import type { BackCircleForm } from "@/schema/circle"
+import { BackCircleSchem } from "@/schema/circle"
 
-export const CreateCircle = async (
-  values: BackCreateCircleForm,
-  userId: string,
-) => {
-  const { success, error } = BackCreateCircleSchema.safeParse(values)
+export const CreateCircle = async (values: BackCircleForm, userId: string) => {
+  const { success, error } = BackCircleSchem.safeParse(values)
 
   if (!success && error) {
     return { error }

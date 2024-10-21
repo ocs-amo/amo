@@ -1,16 +1,15 @@
 "use client"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { CameraIcon } from "@yamada-ui/lucide"
-import type {
-  FC} from "@yamada-ui/react";
+import { CameraIcon, TrashIcon } from "@yamada-ui/lucide"
+import type { AutocompleteItem, FC } from "@yamada-ui/react"
 import {
-  AutocompleteOption,
   Button,
   Center,
   ErrorMessage,
   FileButton,
   FormControl,
   Heading,
+  HStack,
   IconButton,
   Input,
   Label,
@@ -18,44 +17,45 @@ import {
   Spacer,
   Textarea,
   Tooltip,
-  useAsync,
   useSafeLayoutEffect,
   VStack,
 } from "@yamada-ui/react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { Controller, useForm } from "react-hook-form"
-import type { getCircleById } from "@/data/circle"
-import { getInstructors } from "@/data/user"
-import {
-  FrontCreateCircleSchema,
-} from "@/schema/circle"
-import type {
-  FrontCreateCircleForm} from "@/schema/circle";
+import { CreateCircle } from "@/actions/circle/create-circle"
+import { UpdateCircle } from "@/actions/circle/update-circle"
+import { type getCircleById } from "@/data/circle"
+import { BackCircleSchem, FrontCircleSchem } from "@/schema/circle"
+import type { FrontCircleForm } from "@/schema/circle"
 
-interface CircleEditFormProps {
-  circle: Awaited<ReturnType<typeof getCircleById>>
+interface CircleFormProps {
+  circle?: Awaited<ReturnType<typeof getCircleById>>
   userId: string
+  mode: "create" | "edit"
+  instructors: AutocompleteItem[]
 }
 
-export const CircleEditForm: FC<CircleEditFormProps> = ({ circle, userId }) => {
-  // ユーザーがサークルの管理者かどうかを確認
-  const isAdmin = circle?.members?.some(
-    (member) => member.id === userId && member.role,
-  )
-
+export const CircleForm: FC<CircleFormProps> = ({
+  circle,
+  userId,
+  mode,
+  instructors,
+}) => {
   const [imagePreview, setImagePreview] = useState<string>(
     circle?.imagePath || "",
   )
-  // const router = useRouter()
+  const router = useRouter()
   const {
     register,
     handleSubmit,
     watch,
+    setValue,
     control,
     formState: { errors, isSubmitting },
-  } = useForm<FrontCreateCircleForm>({
-    resolver: zodResolver(FrontCreateCircleSchema),
+  } = useForm<FrontCircleForm>({
+    resolver: zodResolver(FrontCircleSchem),
     defaultValues: {
       name: circle?.name,
       description: circle?.description,
@@ -63,16 +63,59 @@ export const CircleEditForm: FC<CircleEditFormProps> = ({ circle, userId }) => {
       activityDay: circle?.activityDay || "",
       imagePath: circle?.imagePath,
       tags: circle?.tags?.map((tag) => tag.tagName),
-      instructors: circle?.instructors?.map((instructor) => instructor.id),
+      instructors:
+        circle?.instructors?.map((instructor) => instructor.id) || [],
     },
   })
 
-  const onSubmit = async (values: FrontCreateCircleForm) => {
+  const onSubmit = async (values: FrontCircleForm) => {
+    const {
+      success,
+      error,
+      data: parseData,
+    } = BackCircleSchem.safeParse(values)
+
+    if (!success) {
+      // エラーメッセージを表示
+      console.error("Validation failed:", error)
+      return
+    }
+    if (!userId) {
+      console.error("ユーザーが存在しません。")
+      return
+    }
     try {
-      console.log(values)
+      if (mode === "create") {
+        // サークル作成処理
+        const circle = await CreateCircle(parseData, userId)
+
+        // サークル作成が成功した場合
+        if (circle) {
+          router.push(`/circles/${circle.circleId}`)
+        } else {
+          // サークル作成に失敗した場合の処理
+          console.error("サークルの作成に失敗しました。")
+        }
+      } else if (mode === "edit") {
+        // 編集
+        const result = await UpdateCircle(parseData, circle?.id || "", userId)
+
+        // サークル作成が成功した場合
+        if (result) {
+          router.push(`/circles/${result?.circleId}`)
+        } else {
+          // サークル作成に失敗した場合の処理
+          console.error("サークルの作成に失敗しました。")
+        }
+      }
     } catch (error) {
       console.error("Error during circle creation:", error)
     }
+  }
+
+  const onResetImage = () => {
+    setValue("imagePath", null)
+    setImagePreview("")
   }
 
   // watchでimagePathを監視
@@ -93,13 +136,7 @@ export const CircleEditForm: FC<CircleEditFormProps> = ({ circle, userId }) => {
     }
   }, [imagePath])
 
-  const { value } = useAsync(async () => ({
-    instructors: (await getInstructors()).map((instructor) => ({
-      label: instructor.name,
-      value: instructor.id,
-    })),
-  }))
-  return isAdmin ? (
+  return (
     <VStack
       gap={0}
       w="full"
@@ -128,27 +165,39 @@ export const CircleEditForm: FC<CircleEditFormProps> = ({ circle, userId }) => {
             name="imagePath"
             control={control}
             render={({ field: { ref, name, onChange, onBlur } }) => (
-              <VStack alignItems="center" gap={0}>
+              <HStack w="full" justifyContent="center">
                 <Tooltip label="画像を選択" placement="bottom">
                   <FileButton
                     {...{ ref, name, onChange, onBlur }}
-                    w="28"
-                    h="28"
+                    w="16"
+                    h="16"
                     as={IconButton}
                     accept="image/*"
                     bg="gray.100"
                     onChange={onChange}
-                    icon={<CameraIcon fontSize="9xl" color="gray" />}
+                    icon={<CameraIcon fontSize="5xl" color="gray" />}
+                    isRounded
                   />
                 </Tooltip>
-              </VStack>
+                <Tooltip label="画像を削除" placement="bottom">
+                  <IconButton
+                    w="16"
+                    h="16"
+                    colorScheme="danger"
+                    variant="outline"
+                    onClick={onResetImage}
+                    icon={<TrashIcon fontSize="5xl" />}
+                    isRounded
+                  />
+                </Tooltip>
+              </HStack>
             )}
           />
         </FormControl>
       </Center>
       <VStack p="md" maxW="5xl" m="auto" gap="lg" flexGrow={1}>
         <Heading as="h1" size="lg">
-          サークル編集
+          サークル{mode === "create" ? "作成" : "編集"}
         </Heading>
         <VStack px="md">
           <FormControl
@@ -225,16 +274,8 @@ export const CircleEditForm: FC<CircleEditFormProps> = ({ circle, userId }) => {
                       w={{ base: "md", md: "full" }}
                       placeholder="講師を選択"
                       {...field}
-                    >
-                      {value?.instructors.map((instructor) => (
-                        <AutocompleteOption
-                          value={instructor.value}
-                          key={instructor.value}
-                        >
-                          {instructor.label}
-                        </AutocompleteOption>
-                      ))}
-                    </MultiAutocomplete>
+                      items={instructors}
+                    />
                     {errors.instructors ? (
                       <ErrorMessage mt={0}>
                         {errors.instructors.message}
@@ -327,15 +368,11 @@ export const CircleEditForm: FC<CircleEditFormProps> = ({ circle, userId }) => {
               キャンセル
             </Button>
             <Button type="submit" isLoading={isSubmitting}>
-              更新
+              {mode === "create" ? "作成" : "更新"}
             </Button>
           </Center>
         </VStack>
       </VStack>
     </VStack>
-  ) : (
-    <Center w="full" h="full">
-      権限がありません
-    </Center>
   )
 }

@@ -1,6 +1,8 @@
+import type { AutocompleteItem } from "@yamada-ui/react"
+import { Center } from "@yamada-ui/react"
 import { auth } from "@/auth"
-import { CircleEditForm } from "@/components/forms/circle-edit-form"
-import { getCircleById, getCircles } from "@/data/circle"
+import { CircleForm } from "@/components/forms/circle-form"
+import { getCircleById, getCircles, getInstructors } from "@/data/circle"
 
 interface Props {
   params: { circle_id?: string }
@@ -39,7 +41,27 @@ const Edit = async ({ params }: Props) => {
   const { circle_id } = params
   const session = await auth()
   const circle = await getCircleById(circle_id || "")
-  return <CircleEditForm circle={circle} userId={session?.user?.id || ""} />
+  const isAdmin = circle?.members?.some(
+    (member) => member.id === session?.user?.id && member.role,
+  )
+  const instructors: AutocompleteItem[] = (await getInstructors()).map(
+    (instructor) => ({
+      label: instructor.name,
+      value: instructor.id,
+    }),
+  )
+  return isAdmin ? (
+    <CircleForm
+      circle={circle}
+      userId={session?.user?.id || ""}
+      mode="edit"
+      instructors={instructors}
+    />
+  ) : (
+    <Center w="full" h="full">
+      権限がありません
+    </Center>
+  )
 }
 
 export default Edit
