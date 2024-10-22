@@ -1,8 +1,8 @@
 "use server"
-import type { BackCreateCircleForm } from "@/schema/circle"
+import type { BackCircleForm } from "@/schema/circle"
 import { db } from "@/utils/db"
 
-export const addCircle = async (values: BackCreateCircleForm) => {
+export const addCircle = async (values: BackCircleForm) => {
   try {
     const circle = await db.circle.create({
       data: {
@@ -17,6 +17,109 @@ export const addCircle = async (values: BackCreateCircleForm) => {
   } catch (error) {
     console.error("Failed to add circle: ", error)
     return null // エラーが発生した場合はnullを返す
+  }
+}
+
+export const updateCircle = async (
+  circleId: string,
+  values: BackCircleForm,
+) => {
+  try {
+    return await db.circle.update({
+      where: { id: circleId },
+      data: {
+        name: values.name,
+        description: values.description,
+        location: values.location,
+        imagePath: values.imagePath,
+        activityDay: values.activityDay,
+      },
+    })
+  } catch (error) {
+    console.error("Failed to update circle: ", error)
+    return null
+  }
+}
+
+export const updateInstructors = async (
+  circleId: string,
+  newInstructors: string[],
+) => {
+  try {
+    const existingInstructors = await db.circleInstructor.findMany({
+      where: { circleId },
+    })
+
+    const newInstructorsSet = new Set(newInstructors)
+
+    // トランザクションで削除と追加を行う
+    const deletePromises = existingInstructors
+      .filter((instructor) => !newInstructorsSet.has(instructor.userId))
+      .map((instructor) =>
+        db.circleInstructor.delete({
+          where: { id: instructor.id },
+        }),
+      )
+
+    const createPromises = newInstructors
+      .filter(
+        (instructorId) =>
+          !existingInstructors.some(
+            (instructor) => instructor.userId === instructorId,
+          ),
+      )
+      .map((instructorId) =>
+        db.circleInstructor.create({
+          data: {
+            circleId,
+            userId: instructorId,
+          },
+        }),
+      )
+
+    await db.$transaction([...deletePromises, ...createPromises])
+
+    return true
+  } catch (error) {
+    console.error("Failed to update instructors: ", error)
+    return null
+  }
+}
+
+export const updateTags = async (circleId: string, newTags: string[]) => {
+  try {
+    const existingTags = await db.circleTag.findMany({
+      where: { circleId },
+    })
+
+    const newTagsSet = new Set(newTags)
+
+    // トランザクションで削除と追加を行う
+    const deletePromises = existingTags
+      .filter((tag) => !newTagsSet.has(tag.tagName))
+      .map((tag) =>
+        db.circleTag.delete({
+          where: { id: tag.id },
+        }),
+      )
+
+    const createPromises = newTags
+      .filter((newTag) => !existingTags.some((tag) => tag.tagName === newTag))
+      .map((newTag) =>
+        db.circleTag.create({
+          data: {
+            circleId,
+            tagName: newTag,
+          },
+        }),
+      )
+
+    await db.$transaction([...deletePromises, ...createPromises])
+
+    return true
+  } catch (error) {
+    console.error("Failed to update tags: ", error)
+    return null
   }
 }
 
@@ -73,6 +176,24 @@ export const addTags = async (circleId: string, tags: string[]) => {
   }
 }
 
+export const getInstructors = async () =>
+  db.user.findMany({
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      profileText: true,
+      studentNumber: true,
+      updatedAt: true,
+      createdAt: true,
+      iconImagePath: true,
+      accounts: true,
+    },
+    where: {
+      instructorFlag: true,
+    },
+  })
+
 export const getMemberByCircleId = async (circleId: string) => {
   try {
     const members = await db.circleMember.findMany({
@@ -81,6 +202,7 @@ export const getMemberByCircleId = async (circleId: string) => {
       },
       include: {
         user: true, // 関連するユーザー情報を含める
+        role: true,
       },
     })
 
@@ -92,8 +214,7 @@ export const getMemberByCircleId = async (circleId: string) => {
       studentNumber: member.user.studentNumber,
       profileText: member.user.profileText,
       joinDate: member.joinDate,
-
-      // role: member.role.roleName, // ロール名を含める
+      role: member.role, // ロール名を含める
     }))
   } catch (error) {
     console.error("getMemberByCircleId: ", error)
@@ -137,7 +258,7 @@ export const getCircleById = async (id: string) => {
         studentNumber: member.user.studentNumber,
         profileText: member.user.profileText,
         joinDate: member.joinDate,
-        role: member.role.roleName,
+        role: member.role,
       })),
       instructors: circle?.CircleInstructor.map((instructor) => ({
         id: instructor.user.id,

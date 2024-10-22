@@ -72,11 +72,11 @@ model CircleMember {
     circleId  String // 外部キー (Circle テーブルへの参照)
     joinDate  DateTime  @default(now()) // 加入日
     leaveDate DateTime? // 退会日 (論理削除用)
-    roleId    Int // 外部キー (Role テーブルへの参照)
+    roleId    Int? // 外部キー (Role テーブルへの参照)
 
     user   User   @relation(fields: [userId], references: [id])
     circle Circle @relation(fields: [circleId], references: [id])
-    role   Role   @relation(fields: [roleId], references: [id])
+    role   Role?   @relation(fields: [roleId], references: [id])
 }
 
 model CircleInstructor {

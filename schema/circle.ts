@@ -1,7 +1,7 @@
 import { z } from "zod"
 
 // 共通の基本スキーマ（バックエンドでも使用）
-export const CreateCircleSchema = z.object({
+export const CircleSchem = z.object({
   name: z.string().trim().min(1, { message: "サークル名は必須です。" }), // サークル名は必須
   description: z.string().trim().min(1, { message: "説明は必須です。" }), // 説明は必須
   instructors: z
@@ -12,7 +12,7 @@ export const CreateCircleSchema = z.object({
 })
 
 // フロントエンド用のスキーマ
-export const FrontCreateCircleSchema = CreateCircleSchema.extend({
+export const FrontCircleSchem = CircleSchem.extend({
   tags: z
     .string() // カンマ区切りの文字列を受け取る
     .transform((value) =>
@@ -26,6 +26,7 @@ export const FrontCreateCircleSchema = CreateCircleSchema.extend({
     .optional() // 画像ファイルはオプション
     .refine(
       (file) =>
+        typeof file === "string" ||
         !file ||
         file.length === 0 ||
         (file.length > 0 && file[0].type.startsWith("image/")),
@@ -34,7 +35,7 @@ export const FrontCreateCircleSchema = CreateCircleSchema.extend({
       },
     )
     .transform(async (file) => {
-      if (!file || file.length === 0) {
+      if (typeof file === "string" || !file || file.length === 0) {
         return null // 画像がない場合はnullを返す
       }
       const selectedFile = file[0]
@@ -48,11 +49,11 @@ export const FrontCreateCircleSchema = CreateCircleSchema.extend({
 })
 
 // バックエンド用のスキーマ
-export const BackCreateCircleSchema = CreateCircleSchema.extend({
+export const BackCircleSchem = CircleSchem.extend({
   tags: z.array(z.string()), // バックエンドでは既に配列として受け取る
   imagePath: z.string().optional().nullable(), // 画像データはbase64の文字列として受け取る
 })
 
-export type CreateCircleForm = z.infer<typeof CreateCircleSchema>
-export type FrontCreateCircleForm = z.infer<typeof FrontCreateCircleSchema>
-export type BackCreateCircleForm = z.infer<typeof BackCreateCircleSchema>
+export type CircleForm = z.infer<typeof CircleSchem>
+export type FrontCircleForm = z.infer<typeof FrontCircleSchem>
+export type BackCircleForm = z.infer<typeof BackCircleSchem>
