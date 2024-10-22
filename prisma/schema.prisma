@@ -95,8 +95,6 @@ model MembershipRequest {
   user   User   @relation(fields: [userId], references: [id]) // User テーブルとのリレーション
   circle Circle @relation(fields: [circleId], references: [id]) // Circle テーブルとのリレーション
   admin  User?  @relation("ProcessedBy", fields: [processedBy], references: [id]) // 管理者ユーザーとのリレーション（null可）
-
-  @@unique([circleId, userId, requestType]) // 同じサークルに対して同じリクエストは1つだけ許可
 }
 
 model CircleInstructor {
