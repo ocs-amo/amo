@@ -8,7 +8,7 @@ export const circle = () =>
         name: "プログラミングサークル",
         description: "プログラミングを学び、実践するサークルです。",
         location: "404教室",
-        imagePath: "",
+        imagePath: "https://user0514.cdnw.net/shared/img/thumb/21830aIMGL99841974_TP_V.jpg",
         activityDay: "火、水、木",
       },
       {
@@ -16,7 +16,7 @@ export const circle = () =>
         name: "ゲームサークル",
         description: "様々なゲームを楽しむサークルです。",
         location: "604教室",
-        imagePath: "",
+        imagePath: "https://user0514.cdnw.net/shared/img/thumb/aig-ai23717041-xl_TP_V.jpg",
         activityDay: "火、水、木",
       },
       {
@@ -24,7 +24,7 @@ export const circle = () =>
         name: "読書サークル",
         description: "本を読み、感想を共有するサークルです。",
         location: "101教室",
-        imagePath: "",
+        imagePath: "https://www.free-materials.com/adm/wp-content/uploads/2020/07/adpDSC_6635-760x507-1.jpg",
         activityDay: "火、水、木",
       },
       {
