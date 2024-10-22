@@ -52,7 +52,7 @@ const CirclesPage = () => {
             </Heading>
             <InputGroup flex={1}>
               <InputLeftElement>
-                <SearchIcon color=".500" />
+                <SearchIcon color="gray.500" />
               </InputLeftElement>
               <Input type="search" placeholder="サークルを検索" pl="lg" />
             </InputGroup>

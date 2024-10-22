@@ -32,8 +32,7 @@ export const CircleDetailPage: FC<{
   return (
     <VStack w="full" h="fit-content" gap={0} p={0}>
       <Box w="full" h="2xs">
-        {
-          circle.imagePath ? 
+        {circle.imagePath ? (
           <Image
             w="full"
             h="full"
@@ -41,12 +40,9 @@ export const CircleDetailPage: FC<{
             alt="preview image"
             objectFit="cover"
           />
-          : <Box
-              w="full"
-              h="full"
-              {...({backgroundColor: "gray.100"})}
-            />
-        }
+        ) : (
+          <Box w="full" h="full" backgroundColor="gray.100" />
+        )}
       </Box>
       <VStack w="full" flexGrow={1} p="md">
         <Heading>{circle.name}</Heading>
