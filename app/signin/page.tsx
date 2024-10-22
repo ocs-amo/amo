@@ -61,9 +61,9 @@ const LoginPage = () => {
   return (
     <Container m="auto" maxW="4xl" w="full" h="100dvh" as={Center}>
       <VStack as="form" onSubmit={handleSubmit(onSubmit)}>
-        <Flex justify="center" mb={5}>
+        <Center>
           <AmoLogo />
-        </Flex>
+        </Center>
         <Heading textAlign="center">サークル管理アプリ</Heading>
         <FormControl
           label="メールアドレス"
