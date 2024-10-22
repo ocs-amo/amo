@@ -32,13 +32,21 @@ export const CircleDetailPage: FC<{
   return (
     <VStack w="full" h="fit-content" gap={0} p={0}>
       <Box w="full" h="2xs">
-        <Image
-          w="full"
-          h="full"
-          src={`https://picsum.photos/seed/${randomInteger(100)}/200/100`}
-          alt="preview image"
-          objectFit="cover"
-        />
+        {
+          circle.imagePath ? 
+          <Image
+            w="full"
+            h="full"
+            src={circle.imagePath}
+            alt="preview image"
+            objectFit="cover"
+          />
+          : <Box
+              w="full"
+              h="full"
+              {...({backgroundColor: "gray.100"})}
+            />
+        }
       </Box>
       <VStack w="full" flexGrow={1} p="md">
         <Heading>{circle.name}</Heading>

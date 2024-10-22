@@ -20,7 +20,7 @@ export interface CircleCardProps {
     name: string
     description: string
     location: string
-    imagePath: string | null
+    imagePath: string
     activityDay: string | null
     memberCount: number
   }
@@ -31,12 +31,20 @@ export const CircleCard = memo(
     return (
       <VStack ref={ref} gap={0} borderWidth={1} w="full" as={GridItem}>
         <LinkBox>
-          <Image
-            w="full"
-            h="auto"
-            src={`https://picsum.photos/seed/${randomInteger(100)}/200/100`}
-            alt="preview image"
-          />
+          {
+            data.imagePath ? 
+            <Image
+              w="full"
+              h="40"
+              src={data.imagePath}
+              alt="preview image"
+            />
+            : <Box
+              w="full"
+              h="40"
+              {...({backgroundColor: "gray.100"})}
+            />
+          }
           <Box p="sm">
             <Heading as="h4" size="xs">
               <LinkOverlay as={Link} href={`/circles/${data.id}`}>
