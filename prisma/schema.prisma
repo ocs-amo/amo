@@ -27,6 +27,8 @@ model User {
     accounts         Account[] // One-to-many relationship with Account (for OAuth)
     CircleMember     CircleMember[]
     CircleInstructor CircleInstructor[] // New relation for instructors
+    MembershipRequests MembershipRequest[] // ユーザーが送信したメンバーシップリクエスト
+    ProcessedRequests  MembershipRequest[] @relation("ProcessedBy") // 管理者として処理したリクエスト
 
     @@index([email]) // Optional: Index on email
 }
@@ -62,6 +64,7 @@ model Circle {
     CircleMember     CircleMember[]
     CircleInstructor CircleInstructor[] // New relation for instructors
     CircleTag CircleTag[]
+    MembershipRequest MembershipRequest[]
 
     @@index([name]) // Optional: Index on circle name for fast lookup
 }
@@ -77,6 +80,23 @@ model CircleMember {
     user   User   @relation(fields: [userId], references: [id])
     circle Circle @relation(fields: [circleId], references: [id])
     role   Role?   @relation(fields: [roleId], references: [id])
+}
+
+model MembershipRequest {
+  id          String   @id @default(uuid()) // プライマリキー
+  circleId    String   // Circle テーブルへの外部キー
+  userId      String   // User テーブルへの外部キー
+  requestType String   // 'join'（入会申請）または 'withdrawal'（退会申請）
+  status      String   // 'pending'（保留中）, 'approved'（承認済み）, 'rejected'（拒否済み）
+  requestDate DateTime @default(now()) // 申請日
+  resolvedDate DateTime?  // 承認/拒否された日
+  processedBy String?  // 処理した管理者のuserId（nullの場合はまだ未処理）
+
+  user   User   @relation(fields: [userId], references: [id]) // User テーブルとのリレーション
+  circle Circle @relation(fields: [circleId], references: [id]) // Circle テーブルとのリレーション
+  admin  User?  @relation("ProcessedBy", fields: [processedBy], references: [id]) // 管理者ユーザーとのリレーション（null可）
+
+  @@unique([circleId, userId, requestType]) // 同じサークルに対して同じリクエストは1つだけ許可
 }
 
 model CircleInstructor {
