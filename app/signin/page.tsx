@@ -9,7 +9,6 @@ import {
   Input,
   Text,
   VStack,
-  Flex,
 } from "@yamada-ui/react"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
