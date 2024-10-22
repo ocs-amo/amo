@@ -12,7 +12,6 @@ import {
 import Link from "next/link"
 import { CircleDetailTabs } from "../disclosure/circle-detail-tabs"
 import type { getCircleById } from "@/data/circle"
-import { randomInteger } from "@/utils/random"
 
 export const CircleDetailPage: FC<{
   circle: Awaited<ReturnType<typeof getCircleById>>

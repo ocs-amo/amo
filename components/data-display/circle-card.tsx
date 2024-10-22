@@ -12,7 +12,6 @@ import {
 } from "@yamada-ui/react"
 import Link from "next/link"
 import { memo } from "react"
-import { randomInteger } from "@/utils/random"
 
 export interface CircleCardProps {
   data: {
