@@ -73,7 +73,7 @@ erDiagram
     "Circle" o{--}o "CircleTag" : "CircleTag"
     "CircleMember" o|--|| "User" : "user"
     "CircleMember" o|--|| "Circle" : "circle"
-    "CircleMember" o|--|| "Role" : "role"
+    "CircleMember" o|--|o "Role" : "role"
     "CircleInstructor" o|--|| "User" : "user"
     "CircleInstructor" o|--|| "Circle" : "circle"
     "CircleTag" o|--|| "Circle" : "circle"
