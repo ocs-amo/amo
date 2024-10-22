@@ -40,6 +40,24 @@ export const getUserById = async (id: string) => {
   }
 }
 
+export const getInstructors = async () =>
+  db.user.findMany({
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      profileText: true,
+      studentNumber: true,
+      updatedAt: true,
+      createdAt: true,
+      iconImagePath: true,
+      accounts: true,
+    },
+    where: {
+      instructorFlag: true,
+    },
+  })
+
 export const createUser = async (
   name: string,
   email: string,
