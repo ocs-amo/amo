@@ -1,4 +1,4 @@
-import type { NextAuthConfig} from "next-auth";
+import type { NextAuthConfig } from "next-auth"
 import Credentials from "next-auth/providers/credentials"
 import { getUserByEmail } from "./data/user"
 import { SigninSchema } from "./schema/auth"

@@ -13,7 +13,7 @@ import {
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { signin } from "@/actions/auth/signin"
-import type { SigninForm} from "@/schema/auth";
+import type { SigninForm } from "@/schema/auth"
 import { SigninSchema } from "@/schema/auth"
 
 const LoginPage = () => {

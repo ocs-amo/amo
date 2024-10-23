@@ -12,7 +12,6 @@ import { CircleDetailTabs } from "../disclosure/circle-detail-tabs"
 import { CircleMembershipButton } from "../forms/circle-membership-button"
 import type { getMembershipRequests } from "@/actions/circle/membership-request"
 import type { getCircleById } from "@/data/circle"
-import { randomInteger } from "@/utils/random"
 
 export const CircleDetailPage: FC<{
   circle: Awaited<ReturnType<typeof getCircleById>>
@@ -33,13 +32,17 @@ export const CircleDetailPage: FC<{
   return (
     <VStack w="full" h="fit-content" gap={0} p={0}>
       <Box w="full" h="2xs">
-        <Image
-          w="full"
-          h="full"
-          src={`https://picsum.photos/seed/${randomInteger(100)}/200/100`}
-          alt="preview image"
-          objectFit="cover"
-        />
+        {circle.imagePath ? (
+          <Image
+            w="full"
+            h="full"
+            src={circle.imagePath}
+            alt="preview image"
+            objectFit="cover"
+          />
+        ) : (
+          <Box w="full" h="full" backgroundColor="gray.100" />
+        )}
       </Box>
       <VStack w="full" flexGrow={1} p="md">
         <Heading>{circle.name}</Heading>
