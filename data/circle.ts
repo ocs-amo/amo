@@ -2,6 +2,34 @@
 import type { BackCircleForm } from "@/schema/circle"
 import { db } from "@/utils/db"
 
+// メンバーの入会処理
+export const addMemberToCircle = async (userId: string, circleId: string) => {
+  return await db.circleMember.create({
+    data: {
+      userId,
+      circleId,
+      // joinDate: new Date(), // 入会日を現在の日付に設定
+    },
+  })
+}
+
+// メンバーの退会処理（論理削除）
+export const removeMemberFromCircle = async (
+  userId: string,
+  circleId: string,
+) => {
+  return await db.circleMember.updateMany({
+    where: {
+      userId,
+      circleId,
+      leaveDate: null, // 現在退会していないメンバーのみが対象
+    },
+    data: {
+      leaveDate: new Date(), // 退会日を現在の日付に設定
+    },
+  })
+}
+
 export const isUserAdmin = async (userId: string, circleId: string) => {
   const admin = await db.circleMember.findFirst({
     where: {

@@ -73,6 +73,7 @@ export const CircleDetailPage: FC<{
           circle={circle}
           tabKey={tabKey}
           membershipRequests={membershipRequests}
+          userId={userId}
         />
       </VStack>
     </VStack>

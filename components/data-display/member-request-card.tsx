@@ -12,20 +12,44 @@ import {
   HStack,
   Text,
 } from "@yamada-ui/react"
-import type { getMembershipRequests } from "@/actions/circle/membership-request"
+import {
+  handleMembershipRequestAction,
+  type getMembershipRequests,
+} from "@/actions/circle/membership-request"
 
 interface MemberRequestCardProps {
+  userId: string
+  circleId: string
   member: NonNullable<
     Awaited<ReturnType<typeof getMembershipRequests>>["data"]
   >[number]
 }
 
-export const MemberRequestCard: FC<MemberRequestCardProps> = ({ member }) => {
+export const MemberRequestCard: FC<MemberRequestCardProps> = ({
+  userId,
+  circleId,
+  member,
+}) => {
+  const requestType = member.requestType === "join" ? "join" : "withdrawal"
   const handleApprove = async () => {
-    console.log("handleApprove")
+    const { message, success } = await handleMembershipRequestAction(
+      userId,
+      circleId,
+      member.id,
+      requestType,
+      "approve",
+    )
+    console.log(message, success)
   }
   const handleReject = async () => {
-    console.log("handleReject")
+    const { message, success } = await handleMembershipRequestAction(
+      userId,
+      circleId,
+      member.id,
+      requestType,
+      "reject",
+    )
+    console.log(message, success)
   }
   return (
     <GridItem w="full" rounded="md" as={Card}>

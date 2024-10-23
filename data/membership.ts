@@ -42,3 +42,33 @@ export const fetchPendingMembershipRequests = async (circleId: string) => {
     },
   })
 }
+
+// メンバー申請の承認
+export const approveMembershipRequest = async (
+  requestId: string,
+  adminId: string,
+) => {
+  return await db.membershipRequest.update({
+    where: { id: requestId },
+    data: {
+      status: "approved", // ステータスを'approved'に更新
+      resolvedDate: new Date(), // 承認日を現在の日付に設定
+      processedBy: adminId, // 処理した管理者のIDを保存
+    },
+  })
+}
+
+// メンバー申請の拒否
+export const rejectMembershipRequest = async (
+  requestId: string,
+  adminId: string,
+) => {
+  return await db.membershipRequest.update({
+    where: { id: requestId },
+    data: {
+      status: "rejected", // ステータスを'rejected'に更新
+      resolvedDate: new Date(), // 拒否日を現在の日付に設定
+      processedBy: adminId, // 処理した管理者のIDを保存
+    },
+  })
+}

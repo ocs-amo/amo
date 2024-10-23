@@ -26,6 +26,7 @@ interface CircleDetailTabsProps {
   circle: Awaited<ReturnType<typeof getCircleById>>
   membershipRequests: Awaited<ReturnType<typeof getMembershipRequests>>
   tabKey?: string
+  userId: string
 }
 
 const handlingTab = (key: string) => {
@@ -48,6 +49,7 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
   circle,
   tabKey,
   membershipRequests,
+  userId,
 }) => {
   const [tabIndex, setTabIndex] = useState(handlingTab(tabKey || ""))
   const { data } = membershipRequests
@@ -88,7 +90,12 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
         <TabPanel>
           <SimpleGrid w="full" columns={{ base: 2, md: 1 }} gap="md">
             {data?.map((member) => (
-              <MemberRequestCard key={member.id} member={member} />
+              <MemberRequestCard
+                key={member.id}
+                member={member}
+                userId={userId}
+                circleId={circle?.id || ""}
+              />
             ))}
             {circle?.members?.map((member) => (
               <GridItem key={member.id} w="full" rounded="md" as={Card}>

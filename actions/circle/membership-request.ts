@@ -1,9 +1,15 @@
 "use server"
-import { isUserAdmin } from "@/data/circle"
 import {
+  addMemberToCircle,
+  isUserAdmin,
+  removeMemberFromCircle,
+} from "@/data/circle"
+import {
+  approveMembershipRequest,
   checkExistingMembershipRequest,
   createMembershipRequest,
   fetchPendingMembershipRequests,
+  rejectMembershipRequest,
 } from "@/data/membership"
 
 export const handleMembershipRequest = async (
@@ -87,5 +93,54 @@ export const getMembershipRequests = async (
       success: false,
       message: "申請リストの取得中にエラーが発生しました。",
     }
+  }
+}
+
+export const handleMembershipRequestAction = async (
+  adminUserId: string, // サークルの管理者（アクションを行うユーザー）
+  circleId: string,
+  requestId: string,
+  requestType: "join" | "withdrawal",
+  action: "approve" | "reject",
+) => {
+  try {
+    // ユーザーがサークルの管理者かどうかを確認
+    const isAdmin = await isUserAdmin(adminUserId, circleId)
+
+    if (!isAdmin) {
+      return { success: false, message: "サークルの管理者ではありません。" }
+    }
+
+    // 承認または拒否処理
+    if (action === "approve") {
+      // 承認と共に対象となるユーザーID（申請者のID）を取得
+      const { userId: targetUserId } = await approveMembershipRequest(
+        requestId,
+        adminUserId,
+      )
+
+      // リクエストタイプに応じて入会/退会処理を行う
+      if (requestType === "join") {
+        await addMemberToCircle(targetUserId, circleId) // 対象ユーザーをメンバーに追加
+        return {
+          success: true,
+          message: "入会申請を承認しました。メンバーに追加しました。",
+        }
+      } else {
+        await removeMemberFromCircle(targetUserId, circleId) // 対象ユーザーを退会
+        return {
+          success: true,
+          message: "退会申請を承認しました。メンバーリストから削除しました。",
+        }
+      }
+    } else if (action === "reject") {
+      await rejectMembershipRequest(requestId, adminUserId)
+      return { success: true, message: "申請を拒否しました。" }
+    } else {
+      return { success: false, message: "無効なアクションです。" }
+    }
+  } catch (error) {
+    console.error("申請処理中にエラーが発生しました:", error)
+    return { success: false, message: "申請処理中にエラーが発生しました。" }
   }
 }
