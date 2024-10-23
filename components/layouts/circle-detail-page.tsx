@@ -1,7 +1,6 @@
 import type { FC } from "@yamada-ui/react"
 import {
   Box,
-  Button,
   Heading,
   HStack,
   Image,
@@ -9,8 +8,8 @@ import {
   Text,
   VStack,
 } from "@yamada-ui/react"
-import Link from "next/link"
 import { CircleDetailTabs } from "../disclosure/circle-detail-tabs"
+import { CircleMembershipButton } from "../forms/circle-membership-button"
 import type { getCircleById } from "@/data/circle"
 import { randomInteger } from "@/utils/random"
 
@@ -59,20 +58,12 @@ export const CircleDetailPage: FC<{
             <Text>人数：{circle.memberCount}人</Text>
             <Text>活動場所：{circle.location}</Text>
             <Box>
-              {/* 管理者であれば編集ボタンを表示 */}
-              {isAdmin ? (
-                <Button
-                  colorScheme="primary"
-                  as={Link}
-                  href={`/circles/${circle.id}/edit`}
-                >
-                  編集
-                </Button>
-              ) : isMember ? (
-                <Button>退会申請</Button>
-              ) : (
-                <Button>入会申請</Button>
-              )}
+              <CircleMembershipButton
+                circleId={circle?.id || ""}
+                userId={userId}
+                isAdmin={!!isAdmin}
+                isMember={!!isMember}
+              />
             </Box>
           </VStack>
         </HStack>
