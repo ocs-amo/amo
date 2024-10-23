@@ -10,14 +10,16 @@ import {
 } from "@yamada-ui/react"
 import { CircleDetailTabs } from "../disclosure/circle-detail-tabs"
 import { CircleMembershipButton } from "../forms/circle-membership-button"
+import type { getMembershipRequests } from "@/actions/circle/membership-request"
 import type { getCircleById } from "@/data/circle"
 import { randomInteger } from "@/utils/random"
 
 export const CircleDetailPage: FC<{
   circle: Awaited<ReturnType<typeof getCircleById>>
+  membershipRequests: Awaited<ReturnType<typeof getMembershipRequests>>
   tabKey?: string
   userId: string
-}> = ({ userId, circle, tabKey }) => {
+}> = ({ userId, circle, tabKey, membershipRequests }) => {
   if (!circle) {
     return <>サークルがありません</>
   }
@@ -67,7 +69,11 @@ export const CircleDetailPage: FC<{
             </Box>
           </VStack>
         </HStack>
-        <CircleDetailTabs circle={circle} tabKey={tabKey} />
+        <CircleDetailTabs
+          circle={circle}
+          tabKey={tabKey}
+          membershipRequests={membershipRequests}
+        />
       </VStack>
     </VStack>
   )

@@ -2,6 +2,20 @@
 import type { BackCircleForm } from "@/schema/circle"
 import { db } from "@/utils/db"
 
+export const isUserAdmin = async (userId: string, circleId: string) => {
+  const admin = await db.circleMember.findFirst({
+    where: {
+      circleId,
+      userId,
+      roleId: {
+        not: null, // 役職がある場合は管理者とみなす
+      },
+    },
+  })
+
+  return !!admin // 管理者であればtrueを返す
+}
+
 export const addCircle = async (values: BackCircleForm) => {
   try {
     const circle = await db.circle.create({

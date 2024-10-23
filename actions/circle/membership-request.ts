@@ -1,7 +1,9 @@
 "use server"
+import { isUserAdmin } from "@/data/circle"
 import {
   checkExistingMembershipRequest,
   createMembershipRequest,
+  fetchPendingMembershipRequests,
 } from "@/data/membership"
 
 export const handleMembershipRequest = async (
@@ -47,5 +49,43 @@ export const checkPendingRequest = async (
   } catch (error) {
     console.error("リクエスト確認中にエラーが発生しました:", error)
     return false // エラー時は false を返す（申請がないとみなす）
+  }
+}
+
+// サークルの申請リストを取得する関数
+export const getMembershipRequests = async (
+  userId: string,
+  circleId: string,
+) => {
+  try {
+    // ユーザーがサークルの管理者かどうかを確認
+    const isAdmin = await isUserAdmin(userId, circleId)
+
+    // 管理者でなければエラーメッセージを返す
+    if (!isAdmin) {
+      return { success: false, message: "サークルの管理者ではありません。" }
+    }
+
+    // 保留中の申請を取得
+    const requests = await fetchPendingMembershipRequests(circleId)
+
+    // 申請データを整形して返す
+    const formattedRequests = requests.map((request) => ({
+      id: request.id,
+      userId: request.userId,
+      userName: request.user.name,
+      iconImagePath: request.user.iconImagePath,
+      studentNumber: request.user.studentNumber,
+      requestType: request.requestType,
+      requestDate: request.requestDate,
+    }))
+
+    return { success: true, data: formattedRequests }
+  } catch (error) {
+    console.error("申請リストの取得中にエラーが発生しました:", error)
+    return {
+      success: false,
+      message: "申請リストの取得中にエラーが発生しました。",
+    }
   }
 }

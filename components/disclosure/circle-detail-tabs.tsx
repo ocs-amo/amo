@@ -3,6 +3,7 @@ import type { FC } from "@yamada-ui/react"
 import {
   Avatar,
   Badge,
+  Button,
   Card,
   CardBody,
   Center,
@@ -18,10 +19,12 @@ import {
 } from "@yamada-ui/react"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
+import type { getMembershipRequests } from "@/actions/circle/membership-request"
 import type { getCircleById } from "@/data/circle"
 
 interface CircleDetailTabsProps {
   circle: Awaited<ReturnType<typeof getCircleById>>
+  membershipRequests: Awaited<ReturnType<typeof getMembershipRequests>>
   tabKey?: string
 }
 
@@ -44,8 +47,10 @@ const handlingTab = (key: string) => {
 export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
   circle,
   tabKey,
+  membershipRequests,
 }) => {
   const [tabIndex, setTabIndex] = useState(handlingTab(tabKey || ""))
+  const { data } = membershipRequests
   const router = useRouter()
   const handleChange = (index: number) => {
     setTabIndex(index)
@@ -82,6 +87,32 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
         <TabPanel>掲示板</TabPanel>
         <TabPanel>
           <SimpleGrid w="full" columns={{ base: 2, md: 1 }} gap="md">
+            {data?.map((member) => (
+              <GridItem key={member.id} w="full" rounded="md" as={Card}>
+                <CardBody>
+                  <HStack as={Center} justifyContent="space-between" w="full">
+                    <HStack>
+                      <Avatar src={member.iconImagePath || ""} />
+                      {member.requestType === "join" ? (
+                        <Badge colorScheme="success">入会</Badge>
+                      ) : (
+                        <Badge colorScheme="danger">退会</Badge>
+                      )}
+                      <Text>{member.userName}</Text>
+                      <Text>{member.studentNumber}</Text>
+                    </HStack>
+                    <HStack>
+                      <Button variant="outline" colorScheme="primary">
+                        承認
+                      </Button>
+                      <Button variant="outline" colorScheme="danger">
+                        拒否
+                      </Button>
+                    </HStack>
+                  </HStack>
+                </CardBody>
+              </GridItem>
+            ))}
             {circle?.members?.map((member) => (
               <GridItem key={member.id} w="full" rounded="md" as={Card}>
                 <CardBody>
