@@ -3,7 +3,6 @@ import type { FC } from "@yamada-ui/react"
 import {
   Avatar,
   Badge,
-  Button,
   Card,
   CardBody,
   Center,
@@ -19,6 +18,7 @@ import {
 } from "@yamada-ui/react"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
+import { MemberRequestCard } from "../data-display/member-request-card"
 import type { getMembershipRequests } from "@/actions/circle/membership-request"
 import type { getCircleById } from "@/data/circle"
 
@@ -88,30 +88,7 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
         <TabPanel>
           <SimpleGrid w="full" columns={{ base: 2, md: 1 }} gap="md">
             {data?.map((member) => (
-              <GridItem key={member.id} w="full" rounded="md" as={Card}>
-                <CardBody>
-                  <HStack as={Center} justifyContent="space-between" w="full">
-                    <HStack>
-                      <Avatar src={member.iconImagePath || ""} />
-                      {member.requestType === "join" ? (
-                        <Badge colorScheme="success">入会</Badge>
-                      ) : (
-                        <Badge colorScheme="danger">退会</Badge>
-                      )}
-                      <Text>{member.userName}</Text>
-                      <Text>{member.studentNumber}</Text>
-                    </HStack>
-                    <HStack>
-                      <Button variant="outline" colorScheme="primary">
-                        承認
-                      </Button>
-                      <Button variant="outline" colorScheme="danger">
-                        拒否
-                      </Button>
-                    </HStack>
-                  </HStack>
-                </CardBody>
-              </GridItem>
+              <MemberRequestCard key={member.id} member={member} />
             ))}
             {circle?.members?.map((member) => (
               <GridItem key={member.id} w="full" rounded="md" as={Card}>
