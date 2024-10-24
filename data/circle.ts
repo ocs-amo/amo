@@ -241,6 +241,7 @@ export const getMemberByCircleId = async (circleId: string) => {
     const members = await db.circleMember.findMany({
       where: {
         circleId: circleId, // 特定のサークルIDに関連するメンバーをフィルタリング
+        leaveDate: null, // 退会日が設定されていない（退会していない）メンバーのみ取得
       },
       include: {
         user: true, // 関連するユーザー情報を含める
@@ -272,6 +273,9 @@ export const getCircleById = async (id: string) => {
       },
       include: {
         CircleMember: {
+          where: {
+            leaveDate: null, // 退会日が設定されていないメンバーのみ取得
+          },
           include: {
             user: true, // 関連するユーザー情報を含める
             role: true,
