@@ -1,6 +1,6 @@
 "use client"
 
-import type { FC } from "@yamada-ui/react"
+import type { AlertStatus, FC } from "@yamada-ui/react"
 import {
   Avatar,
   Badge,
@@ -8,10 +8,13 @@ import {
   Card,
   CardBody,
   Center,
+  Dialog,
   GridItem,
   HStack,
   Text,
+  useDisclosure,
 } from "@yamada-ui/react"
+import { useState } from "react"
 import {
   handleMembershipRequestAction,
   type getMembershipRequests,
@@ -23,14 +26,28 @@ interface MemberRequestCardProps {
   member: NonNullable<
     Awaited<ReturnType<typeof getMembershipRequests>>["data"]
   >[number]
+  fetchData: () => Promise<void>
+  handleSnack: (title: string, status: AlertStatus) => string | number
 }
 
 export const MemberRequestCard: FC<MemberRequestCardProps> = ({
   userId,
   circleId,
   member,
+  fetchData,
+  handleSnack,
 }) => {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const [confirmState, setConfirmState] = useState("")
   const requestType = member.requestType === "join" ? "join" : "withdrawal"
+  const handleApproveConfirm = () => {
+    onOpen()
+    setConfirmState("approve")
+  }
+  const handleRejectConfirm = () => {
+    onOpen()
+    setConfirmState("reject")
+  }
   const handleApprove = async () => {
     const { message, success } = await handleMembershipRequestAction(
       userId,
@@ -39,7 +56,12 @@ export const MemberRequestCard: FC<MemberRequestCardProps> = ({
       requestType,
       "approve",
     )
-    console.log(message, success)
+    if (success) {
+      handleSnack(message, "success")
+      await fetchData()
+    } else {
+      handleSnack(message, "error")
+    }
   }
   const handleReject = async () => {
     const { message, success } = await handleMembershipRequestAction(
@@ -49,10 +71,33 @@ export const MemberRequestCard: FC<MemberRequestCardProps> = ({
       requestType,
       "reject",
     )
-    console.log(message, success)
+    if (success) {
+      handleSnack(message, "success")
+      await fetchData()
+    } else {
+      handleSnack(message, "error")
+    }
   }
   return (
     <GridItem w="full" rounded="md" as={Card}>
+      <Dialog
+        isOpen={isOpen}
+        onClose={onClose}
+        onSuccess={() => {
+          if (confirmState === "approve") {
+            handleApprove()
+          } else if (confirmState === "reject") {
+            handleReject()
+          }
+          onClose()
+        }}
+        onCancel={onClose}
+        cancel="キャンセル"
+        success="OK"
+      >
+        {confirmState === "approve" ? "本当に承認しますか？" : undefined}
+        {confirmState === "reject" ? "本当に拒否しますか？" : undefined}
+      </Dialog>
       <CardBody>
         <HStack as={Center} justifyContent="space-between" w="full">
           <HStack>
@@ -69,14 +114,14 @@ export const MemberRequestCard: FC<MemberRequestCardProps> = ({
             <Button
               variant="outline"
               colorScheme="primary"
-              onClick={handleApprove}
+              onClick={handleApproveConfirm}
             >
               承認
             </Button>
             <Button
               variant="outline"
               colorScheme="danger"
-              onClick={handleReject}
+              onClick={handleRejectConfirm}
             >
               拒否
             </Button>
