@@ -1,3 +1,4 @@
+import { getMembershipRequests } from "@/actions/circle/membership-request"
 import { auth } from "@/auth"
 import { CircleDetailPage } from "@/components/layouts/circle-detail-page"
 import { getCircleById, getCircles } from "@/data/circle"
@@ -38,9 +39,20 @@ export const generateStaticParams = async () => {
 const Page = async ({ params }: Props) => {
   const { circle_id } = params
   const session = await auth()
+  const userId = session?.user?.id || ""
   const circle = await getCircleById(circle_id || "")
+  const membershipRequests = await getMembershipRequests(
+    userId,
+    circle_id || "",
+  )
 
-  return <CircleDetailPage circle={circle} userId={session?.user?.id || ""} />
+  return (
+    <CircleDetailPage
+      circle={circle}
+      userId={userId}
+      membershipRequests={membershipRequests}
+    />
+  )
 }
 
 export default Page
