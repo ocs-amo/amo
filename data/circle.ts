@@ -287,15 +287,15 @@ export const getCircleById = async (id: string) => {
           },
         },
         CircleTag: true,
-        _count: {
-          select: { CircleMember: true }, // メンバーの数をカウント
-        },
       },
     })
 
+    // メンバー数を手動でカウント
+    const memberCount = circle?.CircleMember.length || 0
+
     return {
       ...circle,
-      memberCount: circle?._count.CircleMember,
+      memberCount, // 退会していないメンバーのみカウント
       members: circle?.CircleMember.map((member) => ({
         id: member.user.id,
         name: member.user.name,
@@ -329,8 +329,10 @@ export const getCircles = async () => {
   try {
     const circles = await db.circle.findMany({
       include: {
-        _count: {
-          select: { CircleMember: true }, // メンバー数をカウント
+        CircleMember: {
+          where: {
+            leaveDate: null, // 退会日が設定されていないメンバーのみを取得
+          },
         },
       },
     })
@@ -342,7 +344,7 @@ export const getCircles = async () => {
       location: circle.location,
       imagePath: circle.imagePath,
       activityDay: circle.activityDay,
-      memberCount: circle._count.CircleMember, // メンバー合計
+      memberCount: circle.CircleMember.length, // 退会していないメンバーのみカウント
     }))
   } catch (error) {
     console.error("getCircles: ", error)
