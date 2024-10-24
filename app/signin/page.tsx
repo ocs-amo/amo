@@ -8,6 +8,7 @@ import {
   Heading,
   Input,
   Text,
+  useBoolean,
   VStack,
 } from "@yamada-ui/react"
 import { useState } from "react"
@@ -40,21 +41,24 @@ const AmoLogo = () => (
 )
 
 const LoginPage = () => {
+  const [isLoading, { on: start, off: end }] = useBoolean()
   const [error, setError] = useState("")
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm<SigninForm>({
     resolver: zodResolver(SigninSchema),
   })
 
   const onSubmit = async (values: SigninForm) => {
+    start()
     setError("")
     const result = await signin(values)
     if (result?.error) {
       setError(result.error)
     }
+    end()
   }
 
   return (
@@ -63,7 +67,7 @@ const LoginPage = () => {
         <Center>
           <AmoLogo />
         </Center>
-        <Heading textAlign="center">サークル管理アプリ</Heading>
+        <Heading textAlign="center">amo</Heading>
         <FormControl
           label="メールアドレス"
           isInvalid={!!errors.email}
@@ -92,7 +96,7 @@ const LoginPage = () => {
             type="submit"
             colorScheme="primary"
             width="90%"
-            isLoading={isSubmitting}
+            isLoading={isLoading}
             mt={6}
             bgGradient="linear(to-r, teal.400, blue.500)"
             _hover={{
