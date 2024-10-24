@@ -363,8 +363,10 @@ export const getCirclesByUserId = async (userId: string) => {
         },
       },
       include: {
-        _count: {
-          select: { CircleMember: true }, // メンバー数をカウント
+        CircleMember: {
+          where: {
+            leaveDate: null, // 退会日が設定されていないメンバーのみ取得
+          },
         },
       },
     })
@@ -376,7 +378,7 @@ export const getCirclesByUserId = async (userId: string) => {
       location: circle.location,
       imagePath: circle.imagePath,
       activityDay: circle.activityDay,
-      memberCount: circle._count.CircleMember, // メンバー合計
+      memberCount: circle.CircleMember.length, // 退会していないメンバーのみをカウント
     }))
   } catch (error) {
     console.error("getCirclesByUserId: ", error)
