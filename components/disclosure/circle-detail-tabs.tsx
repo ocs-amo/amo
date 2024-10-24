@@ -22,8 +22,8 @@ import {
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { MemberRequestCard } from "../data-display/member-request-card"
-import { getMembershipRequests } from "@/actions/circle/membership-request"
-import { getCircleById } from "@/data/circle"
+import type { getMembershipRequests } from "@/actions/circle/membership-request"
+import type { getCircleById } from "@/data/circle"
 
 interface CircleDetailTabsProps {
   circle: Awaited<ReturnType<typeof getCircleById>>
@@ -31,6 +31,7 @@ interface CircleDetailTabsProps {
   tabKey?: string
   userId: string
   isAdmin?: boolean
+  fetchData: () => Promise<void>
 }
 
 const handlingTab = (key: string) => {
@@ -55,23 +56,13 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
   membershipRequests,
   userId,
   isAdmin,
+  fetchData,
 }) => {
   const [tabIndex, setTabIndex] = useState(handlingTab(tabKey || ""))
   const { data } = membershipRequests
-  const [members, setMembers] = useState<
-    NonNullable<Awaited<ReturnType<typeof getCircleById>>>["members"]
-  >(circle?.members)
-  const [requests, setRequests] =
-    useState<Awaited<ReturnType<typeof getMembershipRequests>>["data"]>(data)
   const { snack, snacks } = useSnacks()
   const handleSnack = (title: string, status: AlertStatus) =>
     snack({ title, status })
-  const fetchData = async () => {
-    if (circle?.id) {
-      setMembers((await getCircleById(circle.id))?.members)
-      setRequests((await getMembershipRequests(userId, circle.id)).data)
-    }
-  }
 
   const router = useRouter()
   const handleChange = (index: number) => {
@@ -106,8 +97,8 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
             size="sm"
             placement="right"
             offset={-1.5}
-            label={requests?.length}
-            isDisabled={!requests?.length || !isAdmin}
+            label={data?.length}
+            isDisabled={!data?.length || !isAdmin}
           >
             メンバー一覧
           </Indicator>
@@ -121,7 +112,7 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
         <TabPanel>
           <Snacks snacks={snacks} />
           <SimpleGrid w="full" columns={{ base: 2, md: 1 }} gap="md">
-            {requests?.map((member) => (
+            {data?.map((member) => (
               <MemberRequestCard
                 key={member.id}
                 member={member}
@@ -131,7 +122,7 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
                 handleSnack={handleSnack}
               />
             ))}
-            {members?.map((member) => (
+            {circle?.members?.map((member) => (
               <GridItem key={member.id} w="full" rounded="md" as={Card}>
                 <CardBody>
                   <HStack as={Center}>
