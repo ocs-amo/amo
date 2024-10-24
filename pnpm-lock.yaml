@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@yamada-ui/use-disclosure':
+        specifier: ^1.1.0
+        version: 1.1.0(react@18.3.1)
       next:
         specifier: 14.2.10
         version: 14.2.10(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -1598,6 +1601,11 @@ packages:
     peerDependencies:
       react: '>=18'
 
+  '@yamada-ui/use-disclosure@1.1.0':
+    resolution: {integrity: sha512-sw2E2Pg84J314r7ZO+eet07oIbn0gf+fFsNluVI5CWO00DrVSNc7edPCXNCV6wCsIGSksQkRqXf6FPGTYxCUKQ==}
+    peerDependencies:
+      react: '>=18'
+
   '@yamada-ui/use-event-listener@1.0.22':
     resolution: {integrity: sha512-dik4tNenZK9Eq2N4kQoa3gLzTKmtJUiXD3X+15IoDAHp/K3wLRH+r25IdeI8pRh7VV641m3+X7frnPA/FnBHdQ==}
     peerDependencies:
@@ -1710,6 +1718,11 @@ packages:
 
   '@yamada-ui/utils@1.5.3':
     resolution: {integrity: sha512-hdOUAUK2vPr1JIrzAHy4hrXbUGQ3ItsFjryqiqLu9elcZ5SCMHsqagj4VRrC09csrFDjSQE0WanFnzp5d6UTsw==}
+    peerDependencies:
+      react: '>=18'
+
+  '@yamada-ui/utils@1.5.4':
+    resolution: {integrity: sha512-2FCoOQqgR9olZAifusVNkeD/wNx/u6gzqHUQ3ylLhvOVsgwYqoX0UxyWu3Vbvyk66bBqL4POYXLWTHGYXhfLWA==}
     peerDependencies:
       react: '>=18'
 
@@ -6408,6 +6421,11 @@ snapshots:
       '@yamada-ui/utils': 1.5.3(react@18.3.1)
       react: 18.3.1
 
+  '@yamada-ui/use-disclosure@1.1.0(react@18.3.1)':
+    dependencies:
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
+      react: 18.3.1
+
   '@yamada-ui/use-event-listener@1.0.22(react@18.3.1)':
     dependencies:
       '@yamada-ui/utils': 1.5.3(react@18.3.1)
@@ -6549,6 +6567,11 @@ snapshots:
       react: 18.3.1
 
   '@yamada-ui/utils@1.5.3(react@18.3.1)':
+    dependencies:
+      color2k: 2.0.3
+      react: 18.3.1
+
+  '@yamada-ui/utils@1.5.4(react@18.3.1)':
     dependencies:
       color2k: 2.0.3
       react: 18.3.1
