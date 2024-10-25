@@ -37,7 +37,7 @@ export const CircleDetailPage: FC<{
   const isMember = circle?.members?.some((member) => member.id === userId)
   // ユーザーがサークルの管理者かどうかを確認
   const isAdmin = circle?.members?.some(
-    (member) => member.id === userId && member.role,
+    (member) => member.id === userId && [0, 1].includes(member.role.id),
   )
 
   return (

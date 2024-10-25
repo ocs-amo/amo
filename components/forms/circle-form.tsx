@@ -18,14 +18,22 @@ import {
   Textarea,
   Tooltip,
   useBoolean,
+  useDisclosure,
   useSafeLayoutEffect,
   VStack,
+  Modal,
+  ModalOverlay,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Text,
 } from "@yamada-ui/react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { Controller, useForm } from "react-hook-form"
 import { CreateCircle } from "@/actions/circle/create-circle"
+import { removeCircle } from "@/actions/circle/delete-circle"
 import { UpdateCircle } from "@/actions/circle/update-circle"
 import { type getCircleById } from "@/data/circle"
 import { BackCircleSchem, FrontCircleSchem } from "@/schema/circle"
@@ -38,12 +46,66 @@ interface CircleFormProps {
   instructors: AutocompleteItem[]
 }
 
+const DeleteCircleButton: FC<{ circleId: string; userId: string }> = ({
+  circleId,
+  userId,
+}) => {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const router = useRouter()
+  const handleDelete = async () => {
+    try {
+      // 実際の削除処理
+      const { message, success } = await removeCircle(circleId, userId)
+      if (success) {
+        console.log(message)
+        router.push("/circles")
+      } else {
+        console.error(message)
+      }
+      onClose()
+      // 必要であれば、削除後のリダイレクトや他のアクションを追加
+    } catch (error) {
+      console.error("削除中にエラーが発生しました:", error)
+    }
+  }
+
+  return (
+    <>
+      <Center>
+        <Button colorScheme="red" onClick={onOpen}>
+          サークルを削除する
+        </Button>
+      </Center>
+
+      {/* 削除確認モーダル  */}
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalHeader>サークルの削除確認</ModalHeader>
+        <ModalBody>
+          <Text>
+            本当にこのサークルを削除しますか？この操作は元に戻せません。
+          </Text>
+        </ModalBody>
+        <ModalFooter>
+          <Button variant="ghost" onClick={onClose}>
+            いいえ
+          </Button>
+          <Button colorScheme="red" onClick={handleDelete} ml={3}>
+            削除
+          </Button>
+        </ModalFooter>
+      </Modal>
+    </>
+  )
+}
+
 export const CircleForm: FC<CircleFormProps> = ({
   circle,
   userId,
   mode,
   instructors,
 }) => {
+  const user = circle?.members?.find((member) => member.id === userId)
   const [isLoading, { on: start, off: end }] = useBoolean()
   const [imagePreview, setImagePreview] = useState<string>(
     circle?.imagePath || "",
@@ -376,6 +438,10 @@ export const CircleForm: FC<CircleFormProps> = ({
               {mode === "create" ? "作成" : "更新"}
             </Button>
           </Center>
+
+          {mode === "edit" && circle?.id && user?.role.id === 0 ? (
+            <DeleteCircleButton circleId={circle.id} userId={userId || ""} />
+          ) : undefined}
         </VStack>
       </VStack>
     </VStack>

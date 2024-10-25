@@ -62,7 +62,7 @@ export const CircleMembershipButton: FC<CircleMembershipButtonProps> = ({
         as={Link}
         href={`/circles/${circleId}/edit`}
       >
-        編集
+        サークル編集
       </Button>
     )
   }
