@@ -359,6 +359,7 @@ export const getCirclesByUserId = async (userId: string) => {
         CircleMember: {
           some: {
             userId: userId, // 特定のユーザーIDに関連するサークルをフィルタリング
+            leaveDate: null, // 退会していない場合のみ取得
           },
         },
       },
