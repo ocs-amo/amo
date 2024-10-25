@@ -17,6 +17,7 @@ import {
   Spacer,
   Textarea,
   Tooltip,
+  useBoolean,
   useSafeLayoutEffect,
   VStack,
 } from "@yamada-ui/react"
@@ -43,6 +44,7 @@ export const CircleForm: FC<CircleFormProps> = ({
   mode,
   instructors,
 }) => {
+  const [isLoading, { on: start, off: end }] = useBoolean()
   const [imagePreview, setImagePreview] = useState<string>(
     circle?.imagePath || "",
   )
@@ -53,7 +55,7 @@ export const CircleForm: FC<CircleFormProps> = ({
     watch,
     setValue,
     control,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm<FrontCircleForm>({
     resolver: zodResolver(FrontCircleSchem),
     defaultValues: {
@@ -69,6 +71,7 @@ export const CircleForm: FC<CircleFormProps> = ({
   })
 
   const onSubmit = async (values: FrontCircleForm) => {
+    start()
     const {
       success,
       error,
@@ -110,6 +113,8 @@ export const CircleForm: FC<CircleFormProps> = ({
       }
     } catch (error) {
       console.error("Error during circle creation:", error)
+    } finally {
+      end()
     }
   }
 
@@ -367,7 +372,7 @@ export const CircleForm: FC<CircleFormProps> = ({
             <Button as={Link} href={`/circles/${circle?.id || ""}`}>
               キャンセル
             </Button>
-            <Button type="submit" isLoading={isSubmitting}>
+            <Button type="submit" isLoading={isLoading}>
               {mode === "create" ? "作成" : "更新"}
             </Button>
           </Center>
