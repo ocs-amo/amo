@@ -30,7 +30,7 @@ export const CircleActivitydays: FC = () => {
       </HStack>
       <VStack>
         {activitys.map((row) => (
-          <GridItem>
+          <GridItem key={row[0]}>
             <Card variant="outline">
               <CardBody>
                 <HStack justifyContent="space-between" w="full">
