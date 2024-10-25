@@ -67,7 +67,9 @@ export const CircleDetailPage: FC<{
           <VStack>
             <Text>{circle?.description}</Text>
             <HStack flexWrap="wrap">
-              {circle?.tags?.map((tag) => <Tag key={tag.id}>{tag.tagName}</Tag>)}
+              {circle?.tags?.map((tag) => (
+                <Tag key={tag.id}>{tag.tagName}</Tag>
+              ))}
             </HStack>
           </VStack>
           <VStack alignItems="end">
