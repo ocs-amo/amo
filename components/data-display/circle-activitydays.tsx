@@ -13,7 +13,6 @@ import {
 } from "@yamada-ui/react"
 import { HiOutlineDotsCircleHorizontal } from "react-icons/hi"
 import "dayjs/locale/ja"
-import { date } from "zod"
 
 const activitys = [
   {
