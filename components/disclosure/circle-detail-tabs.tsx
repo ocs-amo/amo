@@ -57,9 +57,10 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
   const tabIndex = handlingTab(tabKey || "")
   const { data } = membershipRequests
   const { snack, snacks } = useSnacks()
-  const handleSnack = (title: string, status: AlertStatus) =>
+  const handleSnack = (title: string, status: AlertStatus) => {
+    snack.closeAll()
     snack({ title, status })
-
+  }
   const handleRoleChange = async (
     targetMemberId: string,
     newRoleId: number,
