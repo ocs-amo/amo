@@ -125,7 +125,7 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
             {circle?.members?.map((member) => (
               <GridItem key={member.id} w="full" rounded="md" as={Card}>
                 <CardBody>
-                  <HStack as={Center}>
+                  <HStack as={Center} flexWrap="wrap">
                     <Avatar src={member.iconImagePath || ""} />
                     {member.role ? (
                       <Badge>{member.role.roleName}</Badge>
