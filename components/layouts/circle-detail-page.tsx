@@ -2,7 +2,6 @@ import type { FC } from "@yamada-ui/react"
 import {
   Box,
   Button,
-  Flex,
   Heading,
   HStack,
   Image,
@@ -46,10 +45,13 @@ export const CircleDetailPage: FC<{
       </Box>
       <VStack w="full" flexGrow={1} p="md">
         <Heading>{circle.name}</Heading>
-        <HStack w="full" flexDirection={{
-          base: `row`,
+        <HStack
+          w="full"
+          flexDirection={{
+            base: `row`,
             md: `column`,
-        }}>
+          }}
+        >
           <VStack>
             <Text>{circle.description}</Text>
             <HStack flexWrap="wrap">
