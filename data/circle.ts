@@ -328,8 +328,8 @@ export const getCircleById = async (id: string) => {
               roleId: "asc",
             },
             {
-              user:{
-                name:"asc",
+              user: {
+                name: "asc",
               },
             },
           ],

@@ -41,7 +41,8 @@ export const user = () =>
         password: hashPassword("password"),
         instructorFlag: true,
       },
-      {//ソート確認用
+      {
+        //ソート確認用
         id: "user6-uuid",
         studentNumber: "000001",
         name: "A",
