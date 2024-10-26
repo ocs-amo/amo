@@ -40,6 +40,9 @@ export const fetchPendingMembershipRequests = async (circleId: string) => {
     include: {
       user: true, // 申請者のユーザー情報も取得
     },
+    orderBy: {
+      requestType: 'asc'
+    }
   })
 }
 
