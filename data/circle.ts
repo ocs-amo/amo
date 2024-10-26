@@ -325,10 +325,10 @@ export const getCircleById = async (id: string) => {
           },
           orderBy: [
             {
-              roleId: 'asc',
+              roleId: "asc",
             },
             {
-              id: 'asc',
+              id: "asc",
             },
           ],
         },
