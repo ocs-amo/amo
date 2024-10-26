@@ -22,5 +22,24 @@ export const circleMembers = () =>
         roleId: 2, // 一般ロールID
       },
       // 他のメンバーを追加
+      {
+        //ソート確認用
+        userId: "user6-uuid",
+        circleId: "circle00-uuid",
+        joinDate: new Date(),
+        roleId: 2,
+      },
+      {
+        userId: "user7-uuid",
+        circleId: "circle00-uuid",
+        joinDate: new Date(),
+        roleId: 2,
+      },
+      {
+        userId: "user8-uuid",
+        circleId: "circle00-uuid",
+        joinDate: new Date(),
+        roleId: 2,
+      },
     ],
   })
