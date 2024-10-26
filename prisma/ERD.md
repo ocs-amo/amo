@@ -75,7 +75,6 @@ erDiagram
     }
 
 
-
   "Activity" {
     Int id "🗝️"
     String title
@@ -97,7 +96,6 @@ erDiagram
     DateTime joinedAt
     DateTime removedAt "❓"
     }
-
 
     "User" o{--}o "Account" : "accounts"
     "User" o{--}o "CircleMember" : "CircleMember"
