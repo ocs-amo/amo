@@ -41,5 +41,26 @@ export const user = () =>
         password: hashPassword("password"),
         instructorFlag: true,
       },
+      {//ソート確認用
+        id: "user6-uuid",
+        studentNumber: "000001",
+        name: "A",
+        email: "a@email.com",
+        password: hashPassword("password"),
+      },
+      {
+        id: "user7-uuid",
+        studentNumber: "000002",
+        name: "B",
+        email: "b@email.com",
+        password: hashPassword("password"),
+      },
+      {
+        id: "user8-uuid",
+        studentNumber: "000003",
+        name: "C",
+        email: "c@email.com",
+        password: hashPassword("password"),
+      },
     ],
   })
