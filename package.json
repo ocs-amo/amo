@@ -21,7 +21,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "ja": "link:dayjs/locale/ja",
+    "dayjs": "^1.11.13",
     "next": "14.2.10",
     "next-auth": "5.0.0-beta.22",
     "prisma": "^5.21.0",

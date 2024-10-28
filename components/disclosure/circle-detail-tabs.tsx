@@ -21,6 +21,7 @@ import {
 } from "@yamada-ui/react"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
+import { CircleActivitydays } from "../data-display/circle-activitydays"
 import { MemberRequestCard } from "../data-display/member-request-card"
 import type { getMembershipRequests } from "@/actions/circle/membership-request"
 import type { getCircleById } from "@/data/circle"
@@ -106,7 +107,9 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
       </TabList>
 
       <TabPanels>
-        <TabPanel>活動日程</TabPanel>
+        <TabPanel>
+          <CircleActivitydays />
+        </TabPanel>
         <TabPanel>画像</TabPanel>
         <TabPanel>掲示板</TabPanel>
         <TabPanel>

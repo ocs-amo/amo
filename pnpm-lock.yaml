@@ -8,9 +8,9 @@ importers:
 
   .:
     dependencies:
-      ja:
-        specifier: link:dayjs/locale/ja
-        version: link:dayjs/locale/ja
+      dayjs:
+        specifier: ^1.11.13
+        version: 1.11.13
       next:
         specifier: 14.2.10
         version: 14.2.10(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
