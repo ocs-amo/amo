@@ -99,8 +99,13 @@ export const MemberRequestCard: FC<MemberRequestCardProps> = ({
         {confirmState === "reject" ? "本当に拒否しますか？" : undefined}
       </Dialog>
       <CardBody>
-        <HStack as={Center} justifyContent="space-between" w="full">
-          <HStack>
+        <HStack
+          as={Center}
+          justifyContent="space-between"
+          w="full"
+          flexWrap="wrap"
+        >
+          <HStack flexWrap="wrap">
             <Avatar src={member.iconImagePath || ""} />
             {member.requestType === "join" ? (
               <Badge colorScheme="success">入会</Badge>
