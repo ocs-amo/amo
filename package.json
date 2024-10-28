@@ -21,6 +21,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "ja": "link:dayjs/locale/ja",
     "next": "14.2.10",
     "next-auth": "5.0.0-beta.22",
     "prisma": "^5.21.0",
@@ -51,6 +52,7 @@
     "@types/react-dom": "^18",
     "@typescript-eslint/eslint-plugin": "^8.3.0",
     "@typescript-eslint/typescript-estree": "^8.3.0",
+    "@yamada-ui/calendar": "^1.8.3",
     "@yamada-ui/lucide": "^1.7.0",
     "@yamada-ui/react": "^1.5.4",
     "eslint": "^9.9.1",
