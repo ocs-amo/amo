@@ -1,4 +1,5 @@
 "use client"
+import { EllipsisIcon } from "@yamada-ui/lucide"
 import type { AlertStatus, FC } from "@yamada-ui/react"
 import {
   Avatar,
@@ -8,7 +9,13 @@ import {
   Center,
   GridItem,
   HStack,
+  IconButton,
   Indicator,
+  Menu,
+  MenuButton,
+  MenuDivider,
+  MenuItem,
+  MenuList,
   SimpleGrid,
   Snacks,
   Tab,
@@ -125,15 +132,38 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
             {circle?.members?.map((member) => (
               <GridItem key={member.id} w="full" rounded="md" as={Card}>
                 <CardBody>
-                  <HStack as={Center} flexWrap="wrap">
-                    <Avatar src={member.iconImagePath || ""} />
-                    {member.role ? (
-                      <Badge>{member.role.roleName}</Badge>
-                    ) : (
-                      <Badge visibility="hidden">一般</Badge>
-                    )}
-                    <Text>{member.name}</Text>
-                    <Text>{member.studentNumber}</Text>
+                  <HStack
+                    as={Center}
+                    w="full"
+                    flexWrap="wrap"
+                    justifyContent="space-between"
+                  >
+                    <HStack flexWrap="wrap">
+                      <Avatar src={member.iconImagePath || ""} />
+                      {member.role ? (
+                        <Badge>{member.role.roleName}</Badge>
+                      ) : (
+                        <Badge visibility="hidden">一般</Badge>
+                      )}
+                      <Text>{member.name}</Text>
+                      <Text>{member.studentNumber}</Text>
+                    </HStack>
+                    <Menu>
+                      <MenuButton
+                        as={IconButton}
+                        icon={<EllipsisIcon fontSize="2xl" />}
+                        variant="outline"
+                        isRounded
+                      />
+
+                      <MenuList>
+                        <MenuItem>代表</MenuItem>
+                        <MenuItem>副代表</MenuItem>
+                        <MenuItem>一般</MenuItem>
+                        <MenuDivider />
+                        <MenuItem color="red">退会</MenuItem>
+                      </MenuList>
+                    </Menu>
                   </HStack>
                 </CardBody>
               </GridItem>
