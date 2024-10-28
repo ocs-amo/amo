@@ -87,11 +87,11 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
   }
   return (
     <Tabs index={tabIndex} onChange={handleChange}>
-      <TabList>
-        <Tab>活動日程</Tab>
-        <Tab>画像</Tab>
-        <Tab>掲示板</Tab>
-        <Tab>
+      <TabList overflowX="auto">
+        <Tab flexShrink={0}>活動日程</Tab>
+        <Tab flexShrink={0}>画像</Tab>
+        <Tab flexShrink={0}>掲示板</Tab>
+        <Tab flexShrink={0}>
           <Indicator
             colorScheme="danger"
             size="sm"
@@ -125,7 +125,7 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
             {circle?.members?.map((member) => (
               <GridItem key={member.id} w="full" rounded="md" as={Card}>
                 <CardBody>
-                  <HStack as={Center}>
+                  <HStack as={Center} flexWrap="wrap">
                     <Avatar src={member.iconImagePath || ""} />
                     {member.role ? (
                       <Badge>{member.role.roleName}</Badge>

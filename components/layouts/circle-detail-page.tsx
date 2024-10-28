@@ -57,10 +57,18 @@ export const CircleDetailPage: FC<{
       </Box>
       <VStack w="full" flexGrow={1} p="md">
         <Heading>{circle?.name}</Heading>
-        <HStack w="full">
+        <HStack
+          w="full"
+          flexDirection={{
+            base: `row`,
+            md: `column`,
+          }}
+        >
           <VStack>
-            <Text as="pre">{circle?.description}</Text>
-            <HStack>
+            <Text as="pre" textWrap="wrap">
+              {circle?.description}
+            </Text>
+            <HStack flexWrap="wrap">
               {circle?.tags?.map((tag) => (
                 <Tag key={tag.id}>{tag.tagName}</Tag>
               ))}
