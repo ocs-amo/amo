@@ -1,17 +1,5 @@
 import type { AutocompleteItem } from "@yamada-ui/react"
-import {
-  Button,
-  Center,
-  VStack,
-  useDisclosure,
-  Modal,
-  ModalOverlay,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  ModalCloseButton,
-  Text,
-} from "@yamada-ui/react"
+import { Center } from "@yamada-ui/react"
 import { auth } from "@/auth"
 import { CircleForm } from "@/components/forms/circle-form"
 import { getCircleById, getCircles, getInstructors } from "@/data/circle"
@@ -58,35 +46,13 @@ const Edit = async ({ params }: Props) => {
     }),
   )
 
-  const { isOpen, onOpen, onClose } = useDisclosure()
   return isAdmin ? (
-    <VStack>
-      <CircleForm
-        circle={circle}
-        userId={session?.user?.id || ""}
-        mode="edit"
-        instructors={instructors}
-      />
-      <Button colorScheme="red" onClick={onOpen}>
-        サークルを削除する
-      </Button>
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalHeader>本当に削除しますか？</ModalHeader>
-        <ModalCloseButton />
-        <ModalBody>
-          <Text color="red.500" fontWeight="bold">
-            *一度削除すると復元できません
-          </Text>
-        </ModalBody>
-        <ModalFooter>
-          <Button variant="outline" mr={3}>
-            キャンセル
-          </Button>
-          <Button colorScheme="red">削除</Button>
-        </ModalFooter>
-      </Modal>
-    </VStack>
+    <CircleForm
+      circle={circle}
+      userId={session?.user?.id || ""}
+      mode="edit"
+      instructors={instructors}
+    />
   ) : (
     <Center w="full" h="full">
       権限がありません

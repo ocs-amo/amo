@@ -17,8 +17,16 @@ import {
   Spacer,
   Textarea,
   Tooltip,
+  useBoolean,
+  useDisclosure,
   useSafeLayoutEffect,
   VStack,
+  Modal,
+  ModalOverlay,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Text,
 } from "@yamada-ui/react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
@@ -37,12 +45,57 @@ interface CircleFormProps {
   instructors: AutocompleteItem[]
 }
 
+const DeleteCircleButton: FC<{ circleId: string }> = ({ circleId }) => {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const handleDelete = async () => {
+    try {
+      // 実際の削除処理
+
+      console.log("サークルが削除されました。")
+      onClose()
+      // 必要であれば、削除後のリダイレクトや他のアクションを追加
+    } catch (error) {
+      console.error("削除中にエラーが発生しました:", error)
+    }
+  }
+
+  return (
+    <>
+      <Center>
+        <Button colorScheme="red" onClick={onOpen}>
+          サークルを削除する
+        </Button>
+      </Center>
+
+      {/* 削除確認モーダル  */}
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalHeader>サークルの削除確認</ModalHeader>
+        <ModalBody>
+          <Text>
+            本当にこのサークルを削除しますか？この操作は元に戻せません。
+          </Text>
+        </ModalBody>
+        <ModalFooter>
+          <Button variant="ghost" onClick={onClose}>
+            いいえ
+          </Button>
+          <Button colorScheme="red" onClick={handleDelete} ml={3}>
+            削除
+          </Button>
+        </ModalFooter>
+      </Modal>
+    </>
+  )
+}
+
 export const CircleForm: FC<CircleFormProps> = ({
   circle,
   userId,
   mode,
   instructors,
 }) => {
+  const [isLoading, { on: start, off: end }] = useBoolean()
   const [imagePreview, setImagePreview] = useState<string>(
     circle?.imagePath || "",
   )
@@ -53,7 +106,7 @@ export const CircleForm: FC<CircleFormProps> = ({
     watch,
     setValue,
     control,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm<FrontCircleForm>({
     resolver: zodResolver(FrontCircleSchem),
     defaultValues: {
@@ -69,6 +122,7 @@ export const CircleForm: FC<CircleFormProps> = ({
   })
 
   const onSubmit = async (values: FrontCircleForm) => {
+    start()
     const {
       success,
       error,
@@ -110,6 +164,8 @@ export const CircleForm: FC<CircleFormProps> = ({
       }
     } catch (error) {
       console.error("Error during circle creation:", error)
+    } finally {
+      end()
     }
   }
 
@@ -367,10 +423,14 @@ export const CircleForm: FC<CircleFormProps> = ({
             <Button as={Link} href={`/circles/${circle?.id || ""}`}>
               キャンセル
             </Button>
-            <Button type="submit" isLoading={isSubmitting}>
+            <Button type="submit" isLoading={isLoading}>
               {mode === "create" ? "作成" : "更新"}
             </Button>
           </Center>
+
+          {mode === "edit" && circle?.id && (
+            <DeleteCircleButton circleId={circle.id} />
+          )}
         </VStack>
       </VStack>
     </VStack>
