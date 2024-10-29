@@ -68,7 +68,7 @@ export const changeMemberRole = async ({
     // 6. 権限変更の実行
     await db.circleMember.update({
       where: { id: targetMember.id },
-      data: { roleId: newRoleId },
+      data: { roleId: newRoleId || null },
     })
 
     return {
