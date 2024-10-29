@@ -1,10 +1,11 @@
+"use server"
 import { db } from "@/utils/db"
 
 interface ChangeRoleParams {
   userId: string // 権限を変更するユーザーのID
   circleId: string // サークルのID
   targetMemberId: string // 変更対象のメンバーID
-  newRoleId: number // 新しい役職ID (0: 代表, 1: 副代表, 2: 一般)
+  newRoleId?: number // 新しい役職ID (0: 代表, 1: 副代表, null: 一般)
 }
 
 // サーバーアクション：権限変更

@@ -29,6 +29,7 @@ import {
 import Link from "next/link"
 import { MemberRequestCard } from "../data-display/member-request-card"
 import type { getMembershipRequests } from "@/actions/circle/membership-request"
+import { changeMemberRole } from "@/actions/circle/update-role"
 import type { getCircleById } from "@/data/circle"
 
 interface CircleDetailTabsProps {
@@ -69,6 +70,31 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
   const { snack, snacks } = useSnacks()
   const handleSnack = (title: string, status: AlertStatus) =>
     snack({ title, status })
+
+  const handleRoleChange = async (
+    targetMemberId: string,
+    newRoleId?: number,
+  ) => {
+    try {
+      const { message, success } = await changeMemberRole({
+        userId, // 現在のユーザーID
+        circleId: circle?.id || "", // サークルID
+        targetMemberId, // 変更対象のメンバーID
+        newRoleId, // 新しい役職ID
+      })
+      if (success) {
+        handleSnack(message, "success")
+        await fetchData() // データを再フェッチ
+      } else {
+        handleSnack(message, "error")
+      }
+    } catch (error) {
+      handleSnack(
+        error instanceof Error ? error.message : "エラーが発生しました。",
+        "error",
+      )
+    }
+  }
 
   return (
     <Tabs index={tabIndex}>
@@ -147,19 +173,19 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
                           {userRole?.id === 0 && (
                             <>
                               <MenuItem
-                                // onClick={() => handleRoleChange(member.id, "代表")}
+                                onClick={() => handleRoleChange(member.id, 0)}
                                 isDisabled={member.role?.id === 0}
                               >
                                 代表
                               </MenuItem>
                               <MenuItem
-                                // onClick={() => handleRoleChange(member.id, "副代表")}
+                                onClick={() => handleRoleChange(member.id, 1)}
                                 isDisabled={member.role?.id === 1}
                               >
                                 副代表
                               </MenuItem>
                               <MenuItem
-                                // onClick={() => handleRoleChange(member.id, "一般")}
+                                onClick={() => handleRoleChange(member.id)}
                                 isDisabled={!member.role?.id}
                               >
                                 一般
@@ -178,13 +204,13 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
                           {userRole?.id === 1 && (
                             <>
                               <MenuItem
-                                // onClick={() => handleRoleChange(member.id, "副代表")}
+                                onClick={() => handleRoleChange(member.id, 1)}
                                 isDisabled={member.role?.id === 1}
                               >
                                 副代表
                               </MenuItem>
                               <MenuItem
-                                // onClick={() => handleRoleChange(member.id, "一般")}
+                                onClick={() => handleRoleChange(member.id)}
                                 isDisabled={!member.role?.id}
                               >
                                 一般
