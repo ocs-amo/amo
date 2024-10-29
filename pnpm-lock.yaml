@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      '@yamada-ui/use-disclosure':
-        specifier: ^1.1.0
-        version: 1.1.0(react@18.3.1)
       next:
         specifier: 14.2.10
         version: 14.2.10(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -1598,11 +1595,6 @@ packages:
 
   '@yamada-ui/use-disclosure@1.0.22':
     resolution: {integrity: sha512-q1Id7AnEBd6AFpb3k6NHLE7KV7P33U4BjErfSWpn9YKWjx5KTLL4b/TMUCRQtiO6zMfYk589loh3TzWzYn4GzA==}
-    peerDependencies:
-      react: '>=18'
-
-  '@yamada-ui/use-disclosure@1.1.0':
-    resolution: {integrity: sha512-sw2E2Pg84J314r7ZO+eet07oIbn0gf+fFsNluVI5CWO00DrVSNc7edPCXNCV6wCsIGSksQkRqXf6FPGTYxCUKQ==}
     peerDependencies:
       react: '>=18'
 
@@ -6419,11 +6411,6 @@ snapshots:
   '@yamada-ui/use-disclosure@1.0.22(react@18.3.1)':
     dependencies:
       '@yamada-ui/utils': 1.5.3(react@18.3.1)
-      react: 18.3.1
-
-  '@yamada-ui/use-disclosure@1.1.0(react@18.3.1)':
-    dependencies:
-      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
 
   '@yamada-ui/use-event-listener@1.0.22(react@18.3.1)':
