@@ -50,7 +50,6 @@ const handlingTab = (key: string) => {
       return 2
     case "members":
       return 3
-
     default:
       return 0
   }
@@ -64,6 +63,7 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
   isAdmin,
   fetchData,
 }) => {
+  const userRole = circle?.members?.find((member) => member.id === userId)?.role
   const tabIndex = handlingTab(tabKey || "")
   const { data } = membershipRequests
   const { snack, snacks } = useSnacks()
@@ -132,22 +132,75 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
                       <Text>{member.name}</Text>
                       <Text>{member.studentNumber}</Text>
                     </HStack>
-                    <Menu>
-                      <MenuButton
-                        as={IconButton}
-                        icon={<EllipsisIcon fontSize="2xl" />}
-                        variant="outline"
-                        isRounded
-                      />
+                    {isAdmin &&
+                    userId !== member.id &&
+                    member?.role?.id !== 0 ? (
+                      <Menu>
+                        <MenuButton
+                          as={IconButton}
+                          icon={<EllipsisIcon fontSize="2xl" />}
+                          variant="outline"
+                          isRounded
+                        />
+                        <MenuList>
+                          {/* 代表のメニューオプション */}
+                          {userRole?.id === 0 && (
+                            <>
+                              <MenuItem
+                                // onClick={() => handleRoleChange(member.id, "代表")}
+                                isDisabled={member.role?.id === 0}
+                              >
+                                代表
+                              </MenuItem>
+                              <MenuItem
+                                // onClick={() => handleRoleChange(member.id, "副代表")}
+                                isDisabled={member.role?.id === 1}
+                              >
+                                副代表
+                              </MenuItem>
+                              <MenuItem
+                                // onClick={() => handleRoleChange(member.id, "一般")}
+                                isDisabled={!member.role?.id}
+                              >
+                                一般
+                              </MenuItem>
+                              <MenuDivider />
+                              <MenuItem
+                                color="red"
+                                // onClick={() => handleRemoveMember(member.id)}
+                              >
+                                退会
+                              </MenuItem>
+                            </>
+                          )}
 
-                      <MenuList>
-                        <MenuItem>代表</MenuItem>
-                        <MenuItem>副代表</MenuItem>
-                        <MenuItem>一般</MenuItem>
-                        <MenuDivider />
-                        <MenuItem color="red">退会</MenuItem>
-                      </MenuList>
-                    </Menu>
+                          {/* 副代表のメニューオプション */}
+                          {userRole?.id === 1 && (
+                            <>
+                              <MenuItem
+                                // onClick={() => handleRoleChange(member.id, "副代表")}
+                                isDisabled={member.role?.id === 1}
+                              >
+                                副代表
+                              </MenuItem>
+                              <MenuItem
+                                // onClick={() => handleRoleChange(member.id, "一般")}
+                                isDisabled={!member.role?.id}
+                              >
+                                一般
+                              </MenuItem>
+                              <MenuDivider />
+                              <MenuItem
+                                color="red"
+                                // onClick={() => handleRemoveMember(member.id)}
+                              >
+                                退会
+                              </MenuItem>
+                            </>
+                          )}
+                        </MenuList>
+                      </Menu>
+                    ) : undefined}
                   </HStack>
                 </CardBody>
               </GridItem>
