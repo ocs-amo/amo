@@ -26,8 +26,7 @@ import {
   Text,
   useSnacks,
 } from "@yamada-ui/react"
-import { useRouter } from "next/navigation"
-import { useState } from "react"
+import Link from "next/link"
 import { MemberRequestCard } from "../data-display/member-request-card"
 import type { getMembershipRequests } from "@/actions/circle/membership-request"
 import type { getCircleById } from "@/data/circle"
@@ -65,40 +64,25 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
   isAdmin,
   fetchData,
 }) => {
-  const [tabIndex, setTabIndex] = useState(handlingTab(tabKey || ""))
+  const tabIndex = handlingTab(tabKey || "")
   const { data } = membershipRequests
   const { snack, snacks } = useSnacks()
   const handleSnack = (title: string, status: AlertStatus) =>
     snack({ title, status })
 
-  const router = useRouter()
-  const handleChange = (index: number) => {
-    setTabIndex(index)
-    switch (index) {
-      case 0:
-        router.push(`/circles/${circle?.id}/days`)
-        break
-      case 1:
-        router.push(`/circles/${circle?.id}/images`)
-        break
-      case 2:
-        router.push(`/circles/${circle?.id}/notifications`)
-        break
-      case 3:
-        router.push(`/circles/${circle?.id}/members`)
-        break
-
-      default:
-        break
-    }
-  }
   return (
-    <Tabs index={tabIndex} onChange={handleChange}>
+    <Tabs index={tabIndex}>
       <TabList overflowX="auto">
-        <Tab flexShrink={0}>活動日程</Tab>
-        <Tab flexShrink={0}>画像</Tab>
-        <Tab flexShrink={0}>掲示板</Tab>
-        <Tab flexShrink={0}>
+        <Tab as={Link} href={`/circles/${circle?.id}/days`}>
+          活動日程
+        </Tab>
+        <Tab as={Link} href={`/circles/${circle?.id}/images`}>
+          画像
+        </Tab>
+        <Tab as={Link} href={`/circles/${circle?.id}/notifications`}>
+          掲示板
+        </Tab>
+        <Tab as={Link} href={`/circles/${circle?.id}/members`}>
           <Indicator
             colorScheme="danger"
             size="sm"
