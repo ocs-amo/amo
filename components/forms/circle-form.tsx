@@ -45,7 +45,7 @@ interface CircleFormProps {
   instructors: AutocompleteItem[]
 }
 
-const DeleteCircleButton: FC<{ circleId: string }> = ({ circleId }) => {
+const DeleteCircleButton: FC<{ circleId: string }> = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const handleDelete = async () => {
     try {
