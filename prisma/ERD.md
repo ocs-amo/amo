@@ -36,6 +36,7 @@ erDiagram
     String location
     DateTime createdAt
     DateTime updatedAt
+    DateTime deletedAt "❓"
     String imagePath "❓"
     String activityDay "❓"
     }
