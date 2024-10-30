@@ -85,7 +85,7 @@ erDiagram
     "Circle" o{--}o "MembershipRequest" : "MembershipRequest"
     "CircleMember" o|--|| "User" : "user"
     "CircleMember" o|--|| "Circle" : "circle"
-    "CircleMember" o|--|o "Role" : "role"
+    "CircleMember" o|--|| "Role" : "role"
     "MembershipRequest" o|--|| "User" : "user"
     "MembershipRequest" o|--|| "Circle" : "circle"
     "MembershipRequest" o|--|o "User" : "admin"

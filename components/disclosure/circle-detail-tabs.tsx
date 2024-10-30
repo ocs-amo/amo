@@ -1,13 +1,6 @@
 "use client"
 import type { AlertStatus, FC } from "@yamada-ui/react"
 import {
-  Avatar,
-  Badge,
-  Card,
-  CardBody,
-  Center,
-  GridItem,
-  HStack,
   Indicator,
   SimpleGrid,
   Snacks,
@@ -16,12 +9,16 @@ import {
   TabPanel,
   TabPanels,
   Tabs,
-  Text,
   useSnacks,
 } from "@yamada-ui/react"
 import Link from "next/link"
+import { MemberCard } from "../data-display/member-card"
 import { MemberRequestCard } from "../data-display/member-request-card"
-import type { getMembershipRequests } from "@/actions/circle/membership-request"
+import {
+  removeMember,
+  type getMembershipRequests,
+} from "@/actions/circle/membership-request"
+import { changeMemberRole } from "@/actions/circle/update-role"
 import type { getCircleById } from "@/data/circle"
 
 interface CircleDetailTabsProps {
@@ -43,7 +40,6 @@ const handlingTab = (key: string) => {
       return 2
     case "members":
       return 3
-
     default:
       return 0
   }
@@ -57,11 +53,58 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
   isAdmin,
   fetchData,
 }) => {
+  const userRole = circle?.members?.find((member) => member.id === userId)?.role
   const tabIndex = handlingTab(tabKey || "")
   const { data } = membershipRequests
   const { snack, snacks } = useSnacks()
   const handleSnack = (title: string, status: AlertStatus) =>
     snack({ title, status })
+
+  const handleRoleChange = async (
+    targetMemberId: string,
+    newRoleId: number,
+  ) => {
+    try {
+      const { message, success } = await changeMemberRole({
+        userId, // 現在のユーザーID
+        circleId: circle?.id || "", // サークルID
+        targetMemberId, // 変更対象のメンバーID
+        newRoleId, // 新しい役職ID
+      })
+      if (success) {
+        handleSnack(message, "success")
+        await fetchData() // データを再フェッチ
+      } else {
+        handleSnack(message, "error")
+      }
+    } catch (error) {
+      handleSnack(
+        error instanceof Error ? error.message : "エラーが発生しました。",
+        "error",
+      )
+    }
+  }
+
+  const handleRemoveMember = async (targetMemberId: string) => {
+    try {
+      const { message, success } = await removeMember({
+        circleId: circle?.id || "",
+        targetMemberId,
+        userId,
+      })
+      if (success) {
+        handleSnack(message, "success")
+        await fetchData() // データを再フェッチ
+      } else {
+        handleSnack(message, "error")
+      }
+    } catch (error) {
+      handleSnack(
+        error instanceof Error ? error.message : "エラーが発生しました。",
+        "error",
+      )
+    }
+  }
 
   return (
     <Tabs index={tabIndex}>
@@ -107,20 +150,15 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
               />
             ))}
             {circle?.members?.map((member) => (
-              <GridItem key={member.id} w="full" rounded="md" as={Card}>
-                <CardBody>
-                  <HStack as={Center} flexWrap="wrap">
-                    <Avatar src={member.iconImagePath || ""} />
-                    {member.role ? (
-                      <Badge>{member.role.roleName}</Badge>
-                    ) : (
-                      <Badge visibility="hidden">一般</Badge>
-                    )}
-                    <Text>{member.name}</Text>
-                    <Text>{member.studentNumber}</Text>
-                  </HStack>
-                </CardBody>
-              </GridItem>
+              <MemberCard
+                key={member.id}
+                member={member}
+                isAdmin={isAdmin}
+                userId={userId}
+                userRole={userRole}
+                handleRoleChange={handleRoleChange}
+                handleRemoveMember={handleRemoveMember}
+              />
             ))}
           </SimpleGrid>
         </TabPanel>

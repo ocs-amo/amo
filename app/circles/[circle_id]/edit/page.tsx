@@ -37,7 +37,8 @@ const Edit = async ({ params }: Props) => {
   const session = await auth()
   const circle = await getCircleById(circle_id || "")
   const isAdmin = circle?.members?.some(
-    (member) => member.id === session?.user?.id && member.role,
+    (member) =>
+      member.id === session?.user?.id && [0, 1].includes(member.role.id),
   )
   const instructors: AutocompleteItem[] = (await getInstructors()).map(
     (instructor) => ({
