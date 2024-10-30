@@ -73,7 +73,7 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
 
   const handleRoleChange = async (
     targetMemberId: string,
-    newRoleId?: number,
+    newRoleId: number,
   ) => {
     try {
       const { message, success } = await changeMemberRole({
@@ -150,11 +150,7 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
                   >
                     <HStack flexWrap="wrap">
                       <Avatar src={member.iconImagePath || ""} />
-                      {member.role ? (
-                        <Badge>{member.role.roleName}</Badge>
-                      ) : (
-                        <Badge visibility="hidden">一般</Badge>
-                      )}
+                      <Badge>{member.role.roleName}</Badge>
                       <Text>{member.name}</Text>
                       <Text>{member.studentNumber}</Text>
                     </HStack>
@@ -185,7 +181,7 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
                                 副代表
                               </MenuItem>
                               <MenuItem
-                                onClick={() => handleRoleChange(member.id)}
+                                onClick={() => handleRoleChange(member.id, 2)}
                                 isDisabled={!member.role?.id}
                               >
                                 一般
@@ -210,7 +206,7 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
                                 副代表
                               </MenuItem>
                               <MenuItem
-                                onClick={() => handleRoleChange(member.id)}
+                                onClick={() => handleRoleChange(member.id, 2)}
                                 isDisabled={!member.role?.id}
                               >
                                 一般

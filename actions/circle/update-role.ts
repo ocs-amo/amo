@@ -5,7 +5,7 @@ interface ChangeRoleParams {
   userId: string // 権限を変更するユーザーのID
   circleId: string // サークルのID
   targetMemberId: string // 変更対象のメンバーID
-  newRoleId?: number // 新しい役職ID (0: 代表, 1: 副代表, null: 一般)
+  newRoleId: number // 新しい役職ID (0: 代表, 1: 副代表, 3: 一般)
 }
 
 // サーバーアクション：権限変更
@@ -65,10 +65,18 @@ export const changeMemberRole = async ({
       )
     }
 
-    // 6. 権限変更の実行
+    // 6. 他人を代表に昇格させる場合、現在の代表は副代表に降格
+    if (newRoleId === 0) {
+      await db.circleMember.update({
+        where: { id: currentUser.id },
+        data: { roleId: 1 }, // 現在の代表を副代表に変更
+      })
+    }
+
+    // 7. 権限変更の実行
     await db.circleMember.update({
       where: { id: targetMember.id },
-      data: { roleId: newRoleId || null },
+      data: { roleId: newRoleId },
     })
 
     return {

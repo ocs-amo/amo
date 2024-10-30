@@ -121,7 +121,7 @@ export const handleMembershipRequestAction = async (
 
       // リクエストタイプに応じて入会/退会処理を行う
       if (requestType === "join") {
-        await addMemberToCircle(targetUserId, circleId) // 対象ユーザーをメンバーに追加
+        await addMemberToCircle(targetUserId, circleId, 2) // 対象ユーザーをメンバーに追加
         return {
           success: true,
           message: "入会申請を承認しました。メンバーに追加しました。",
