@@ -93,7 +93,10 @@ export const updateCircle = async (
 ) => {
   try {
     return await db.circle.update({
-      where: { id: circleId },
+      where: {
+        id: circleId,
+        deletedAt: null,
+      },
       data: {
         name: values.name,
         description: values.description,
@@ -295,6 +298,7 @@ export const getCircleById = async (id: string) => {
     const circle = await db.circle.findUnique({
       where: {
         id,
+        deletedAt: null,
       },
       include: {
         CircleMember: {
@@ -353,6 +357,9 @@ export const getCircleById = async (id: string) => {
 export const getCircles = async () => {
   try {
     const circles = await db.circle.findMany({
+      where: {
+        deletedAt: null,
+      },
       include: {
         CircleMember: {
           where: {
@@ -381,6 +388,7 @@ export const getCirclesByUserId = async (userId: string) => {
   try {
     const circles = await db.circle.findMany({
       where: {
+        deletedAt: null,
         CircleMember: {
           some: {
             userId: userId, // 特定のユーザーIDに関連するサークルをフィルタリング
