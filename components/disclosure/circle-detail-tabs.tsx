@@ -1,21 +1,7 @@
 "use client"
-import { EllipsisIcon } from "@yamada-ui/lucide"
 import type { AlertStatus, FC } from "@yamada-ui/react"
 import {
-  Avatar,
-  Badge,
-  Card,
-  CardBody,
-  Center,
-  GridItem,
-  HStack,
-  IconButton,
   Indicator,
-  Menu,
-  MenuButton,
-  MenuDivider,
-  MenuItem,
-  MenuList,
   SimpleGrid,
   Snacks,
   Tab,
@@ -23,10 +9,10 @@ import {
   TabPanel,
   TabPanels,
   Tabs,
-  Text,
   useSnacks,
 } from "@yamada-ui/react"
 import Link from "next/link"
+import { MemberCard } from "../data-display/member-card"
 import { MemberRequestCard } from "../data-display/member-request-card"
 import {
   removeMember,
@@ -164,92 +150,15 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
               />
             ))}
             {circle?.members?.map((member) => (
-              <GridItem key={member.id} w="full" rounded="md" as={Card}>
-                <CardBody>
-                  <HStack
-                    as={Center}
-                    w="full"
-                    flexWrap="wrap"
-                    justifyContent="space-between"
-                  >
-                    <HStack flexWrap="wrap">
-                      <Avatar src={member.iconImagePath || ""} />
-                      <Badge>{member.role.roleName}</Badge>
-                      <Text>{member.name}</Text>
-                      <Text>{member.studentNumber}</Text>
-                    </HStack>
-                    {isAdmin &&
-                    userId !== member.id &&
-                    member?.role?.id !== 0 ? (
-                      <Menu>
-                        <MenuButton
-                          as={IconButton}
-                          icon={<EllipsisIcon fontSize="2xl" />}
-                          variant="outline"
-                          isRounded
-                        />
-                        <MenuList>
-                          {/* 代表のメニューオプション */}
-                          {userRole?.id === 0 && (
-                            <>
-                              <MenuItem
-                                onClick={() => handleRoleChange(member.id, 0)}
-                                isDisabled={member.role?.id === 0}
-                              >
-                                代表
-                              </MenuItem>
-                              <MenuItem
-                                onClick={() => handleRoleChange(member.id, 1)}
-                                isDisabled={member.role?.id === 1}
-                              >
-                                副代表
-                              </MenuItem>
-                              <MenuItem
-                                onClick={() => handleRoleChange(member.id, 2)}
-                                isDisabled={member.role?.id === 2}
-                              >
-                                一般
-                              </MenuItem>
-                              <MenuDivider />
-                              <MenuItem
-                                color="red"
-                                onClick={() => handleRemoveMember(member.id)}
-                              >
-                                退会
-                              </MenuItem>
-                            </>
-                          )}
-
-                          {/* 副代表のメニューオプション */}
-                          {userRole?.id === 1 && (
-                            <>
-                              <MenuItem
-                                onClick={() => handleRoleChange(member.id, 1)}
-                                isDisabled={member.role?.id === 1}
-                              >
-                                副代表
-                              </MenuItem>
-                              <MenuItem
-                                onClick={() => handleRoleChange(member.id, 2)}
-                                isDisabled={member.role?.id === 2}
-                              >
-                                一般
-                              </MenuItem>
-                              <MenuDivider />
-                              <MenuItem
-                                color="red"
-                                onClick={() => handleRemoveMember(member.id)}
-                              >
-                                退会
-                              </MenuItem>
-                            </>
-                          )}
-                        </MenuList>
-                      </Menu>
-                    ) : undefined}
-                  </HStack>
-                </CardBody>
-              </GridItem>
+              <MemberCard
+                key={member.id}
+                member={member}
+                isAdmin={isAdmin}
+                userId={userId}
+                userRole={userRole}
+                handleRoleChange={handleRoleChange}
+                handleRemoveMember={handleRemoveMember}
+              />
             ))}
           </SimpleGrid>
         </TabPanel>
