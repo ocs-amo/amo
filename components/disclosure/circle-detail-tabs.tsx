@@ -206,7 +206,7 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
                               </MenuItem>
                               <MenuItem
                                 onClick={() => handleRoleChange(member.id, 2)}
-                                isDisabled={!member.role?.id}
+                                isDisabled={member.role?.id === 2}
                               >
                                 一般
                               </MenuItem>
@@ -231,7 +231,7 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
                               </MenuItem>
                               <MenuItem
                                 onClick={() => handleRoleChange(member.id, 2)}
-                                isDisabled={!member.role?.id}
+                                isDisabled={member.role?.id === 2}
                               >
                                 一般
                               </MenuItem>
