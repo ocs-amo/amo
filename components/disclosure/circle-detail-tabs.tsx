@@ -28,7 +28,10 @@ import {
 } from "@yamada-ui/react"
 import Link from "next/link"
 import { MemberRequestCard } from "../data-display/member-request-card"
-import type { getMembershipRequests } from "@/actions/circle/membership-request"
+import {
+  removeMember,
+  type getMembershipRequests,
+} from "@/actions/circle/membership-request"
 import { changeMemberRole } from "@/actions/circle/update-role"
 import type { getCircleById } from "@/data/circle"
 
@@ -81,6 +84,27 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
         circleId: circle?.id || "", // サークルID
         targetMemberId, // 変更対象のメンバーID
         newRoleId, // 新しい役職ID
+      })
+      if (success) {
+        handleSnack(message, "success")
+        await fetchData() // データを再フェッチ
+      } else {
+        handleSnack(message, "error")
+      }
+    } catch (error) {
+      handleSnack(
+        error instanceof Error ? error.message : "エラーが発生しました。",
+        "error",
+      )
+    }
+  }
+
+  const handleRemoveMember = async (targetMemberId: string) => {
+    try {
+      const { message, success } = await removeMember({
+        circleId: circle?.id || "",
+        targetMemberId,
+        userId,
       })
       if (success) {
         handleSnack(message, "success")
@@ -189,7 +213,7 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
                               <MenuDivider />
                               <MenuItem
                                 color="red"
-                                // onClick={() => handleRemoveMember(member.id)}
+                                onClick={() => handleRemoveMember(member.id)}
                               >
                                 退会
                               </MenuItem>
@@ -214,7 +238,7 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
                               <MenuDivider />
                               <MenuItem
                                 color="red"
-                                // onClick={() => handleRemoveMember(member.id)}
+                                onClick={() => handleRemoveMember(member.id)}
                               >
                                 退会
                               </MenuItem>

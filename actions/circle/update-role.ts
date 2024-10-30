@@ -1,5 +1,6 @@
 "use server"
-import { db } from "@/utils/db"
+import { findActiveMember, isUserAdmin } from "@/data/circle"
+import { demoteCurrentAdmin, updateMemberRole } from "@/data/role"
 
 interface ChangeRoleParams {
   userId: string // 権限を変更するユーザーのID
@@ -17,16 +18,10 @@ export const changeMemberRole = async ({
 }: ChangeRoleParams) => {
   try {
     // 1. 現在のユーザーの権限を確認
-    const currentUser = await db.circleMember.findFirst({
-      where: {
-        userId,
-        circleId,
-        leaveDate: null,
-      },
-    })
+    const currentUser = await isUserAdmin(userId, circleId)
 
     // 権限確認: 現在のユーザーが存在しない、もしくは役職が未設定の場合エラー
-    if (!currentUser || currentUser.roleId === null) {
+    if (!currentUser) {
       throw new Error(
         "操作に必要な権限がありません。サークルのメンバーであること、および役職が設定されていることが必要です。",
       )
@@ -37,19 +32,8 @@ export const changeMemberRole = async ({
       throw new Error("自分自身の権限を変更することはできません。")
     }
 
-    // 3. 代表または副代表以外は権限変更できない
-    if (![0, 1].includes(currentUser.roleId)) {
-      throw new Error("この操作を行うための権限が不足しています。")
-    }
-
     // 4. 対象メンバーの情報を取得
-    const targetMember = await db.circleMember.findFirst({
-      where: {
-        userId: targetMemberId,
-        circleId,
-        leaveDate: null,
-      },
-    })
+    const targetMember = await findActiveMember(targetMemberId, circleId)
 
     // 対象メンバーが見つからない場合エラー
     if (!targetMember) {
@@ -67,17 +51,11 @@ export const changeMemberRole = async ({
 
     // 6. 他人を代表に昇格させる場合、現在の代表は副代表に降格
     if (newRoleId === 0) {
-      await db.circleMember.update({
-        where: { id: currentUser.id },
-        data: { roleId: 1 }, // 現在の代表を副代表に変更
-      })
+      await demoteCurrentAdmin(currentUser.id)
     }
 
     // 7. 権限変更の実行
-    await db.circleMember.update({
-      where: { id: targetMember.id },
-      data: { roleId: newRoleId },
-    })
+    await updateMemberRole(targetMember.id, newRoleId)
 
     return {
       success: true,

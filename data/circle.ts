@@ -2,6 +2,25 @@
 import type { BackCircleForm } from "@/schema/circle"
 import { db } from "@/utils/db"
 
+// メンバーを退会（論理削除）させる関数
+export const markMemberAsInactive = async (memberId: number) => {
+  return await db.circleMember.update({
+    where: { id: memberId },
+    data: { leaveDate: new Date() }, // leaveDateに現在の日付を設定
+  })
+}
+
+// 共通化されたメンバーの検索関数
+export const findActiveMember = async (userId: string, circleId: string) => {
+  return db.circleMember.findFirst({
+    where: {
+      userId,
+      circleId,
+      leaveDate: null, // leaveDateがnullなら退会していないメンバー
+    },
+  })
+}
+
 // メンバーの入会処理
 export const addMemberToCircle = async (
   userId: string,
@@ -40,13 +59,14 @@ export const isUserAdmin = async (userId: string, circleId: string) => {
     where: {
       circleId,
       userId,
+      leaveDate: null,
       roleId: {
         in: [0, 1], // 代表または副代表であれば管理者とみなす
       },
     },
   })
 
-  return !!admin // 管理者であれば true を返す
+  return admin // 管理者であれば true を返す
 }
 
 export const addCircle = async (values: BackCircleForm) => {
