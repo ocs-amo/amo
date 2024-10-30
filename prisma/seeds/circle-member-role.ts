@@ -11,5 +11,9 @@ export const circleMemberRole = () =>
         id: 1,
         roleName: "副代表",
       },
+      {
+        id: 2,
+        roleName: "一般",
+      },
     ],
   })

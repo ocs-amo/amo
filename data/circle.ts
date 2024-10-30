@@ -3,11 +3,16 @@ import type { BackCircleForm } from "@/schema/circle"
 import { db } from "@/utils/db"
 
 // メンバーの入会処理
-export const addMemberToCircle = async (userId: string, circleId: string) => {
+export const addMemberToCircle = async (
+  userId: string,
+  circleId: string,
+  roleId: number,
+) => {
   return await db.circleMember.create({
     data: {
       userId,
       circleId,
+      roleId,
       // joinDate: new Date(), // 入会日を現在の日付に設定
     },
   })
@@ -36,12 +41,12 @@ export const isUserAdmin = async (userId: string, circleId: string) => {
       circleId,
       userId,
       roleId: {
-        not: null, // 役職がある場合は管理者とみなす
+        in: [0, 1], // 代表または副代表であれば管理者とみなす
       },
     },
   })
 
-  return !!admin // 管理者であればtrueを返す
+  return !!admin // 管理者であれば true を返す
 }
 
 export const addCircle = async (values: BackCircleForm) => {
