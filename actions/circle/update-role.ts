@@ -7,7 +7,7 @@ interface ChangeRoleParams {
   userId: string // 権限を変更するユーザーのID
   circleId: string // サークルのID
   targetMemberId: string // 変更対象のメンバーID
-  newRoleId: number // 新しい役職ID (0: 代表, 1: 副代表, 3: 一般)
+  newRoleId: number // 新しい役職ID (0: 代表, 1: 副代表, 2: 一般)
 }
 
 // サーバーアクション：権限変更
@@ -50,7 +50,7 @@ export const changeMemberRole = async ({
       )
     } else if (newRoleId === 1 && currentUser.roleId !== 0) {
       throw new Error("代表のみが副代表に昇格させることができます。")
-    } else if (newRoleId === 3 && currentUser.roleId === 3) {
+    } else if (newRoleId === 2 && currentUser.roleId === 2) {
       throw new Error("一般メンバーの役職に昇格させることはできません。")
     }
 
