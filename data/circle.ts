@@ -69,6 +69,20 @@ export const isUserAdmin = async (userId: string, circleId: string) => {
   return admin // 管理者であれば true を返す
 }
 
+// サークルを論理削除する関数
+export const deleteCircle = async (circleId: string) => {
+  try {
+    // サークルの削除（論理削除）
+    return await db.circle.update({
+      where: { id: circleId },
+      data: { deletedAt: new Date() }, // 現在の日時を設定
+    })
+  } catch (error) {
+    console.error("サークル削除エラー:", error)
+    return null
+  }
+}
+
 export const addCircle = async (values: BackCircleForm) => {
   try {
     const circle = await db.circle.create({
