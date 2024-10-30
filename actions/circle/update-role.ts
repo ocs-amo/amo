@@ -1,5 +1,6 @@
 "use server"
 import { findActiveMember, isUserAdmin } from "@/data/circle"
+import { checkExistingMembershipRequest } from "@/data/membership"
 import { demoteCurrentAdmin, updateMemberRole } from "@/data/role"
 
 interface ChangeRoleParams {
@@ -32,7 +33,7 @@ export const changeMemberRole = async ({
       throw new Error("自分自身の権限を変更することはできません。")
     }
 
-    // 4. 対象メンバーの情報を取得
+    // 3. 対象メンバーの情報を取得
     const targetMember = await findActiveMember(targetMemberId, circleId)
 
     // 対象メンバーが見つからない場合エラー
@@ -42,11 +43,29 @@ export const changeMemberRole = async ({
       )
     }
 
-    // 5. 代表のみが他人を代表に昇格できる
+    // 4. 役職確認: 新しい役職に応じて権限を確認
     if (newRoleId === 0 && currentUser.roleId !== 0) {
       throw new Error(
         "代表のみが他のメンバーを代表に昇格させることができます。",
       )
+    } else if (newRoleId === 1 && currentUser.roleId !== 0) {
+      throw new Error("代表のみが副代表に昇格させることができます。")
+    } else if (newRoleId === 3 && currentUser.roleId === 3) {
+      throw new Error("一般メンバーの役職に昇格させることはできません。")
+    }
+
+    // 5. 対象メンバーが退会申請中か確認
+    const withdrawalRequest = await checkExistingMembershipRequest(
+      targetMemberId,
+      circleId,
+      "withdrawal",
+    )
+
+    if (withdrawalRequest) {
+      return {
+        success: false,
+        message: "このメンバーは退会申請中のため、役職を変更できません。",
+      }
     }
 
     // 6. 他人を代表に昇格させる場合、現在の代表は副代表に降格

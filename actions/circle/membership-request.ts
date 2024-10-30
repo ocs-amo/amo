@@ -20,6 +20,18 @@ export const handleMembershipRequest = async (
   requestType: "join" | "withdrawal",
 ) => {
   try {
+    // 代表が退会申請を送れないようにチェックを追加
+    if (requestType === "withdrawal") {
+      const currentUser = await findActiveMember(userId, circleId)
+      if (currentUser && currentUser.roleId === 0) {
+        return {
+          success: false,
+          message:
+            "代表は退会申請を行えません。別のメンバーに代表権限を譲渡してください。",
+        }
+      }
+    }
+
     const existingRequest = await checkExistingMembershipRequest(
       userId,
       circleId,
