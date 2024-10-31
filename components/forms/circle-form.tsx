@@ -33,6 +33,7 @@ import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { Controller, useForm } from "react-hook-form"
 import { CreateCircle } from "@/actions/circle/create-circle"
+import { removeCircle } from "@/actions/circle/delete-circle"
 import { UpdateCircle } from "@/actions/circle/update-circle"
 import { type getCircleById } from "@/data/circle"
 import { BackCircleSchem, FrontCircleSchem } from "@/schema/circle"
@@ -45,13 +46,22 @@ interface CircleFormProps {
   instructors: AutocompleteItem[]
 }
 
-const DeleteCircleButton: FC<{ circleId: string }> = () => {
+const DeleteCircleButton: FC<{ circleId: string; userId: string }> = ({
+  circleId,
+  userId,
+}) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const router = useRouter()
   const handleDelete = async () => {
     try {
       // 実際の削除処理
-
-      console.log("サークルが削除されました。")
+      const { message, success } = await removeCircle(circleId, userId)
+      if (success) {
+        console.log(message)
+        router.push("/circles")
+      } else {
+        console.error(message)
+      }
       onClose()
       // 必要であれば、削除後のリダイレクトや他のアクションを追加
     } catch (error) {
@@ -95,6 +105,7 @@ export const CircleForm: FC<CircleFormProps> = ({
   mode,
   instructors,
 }) => {
+  const user = circle?.members?.find((member) => member.id === userId)
   const [isLoading, { on: start, off: end }] = useBoolean()
   const [imagePreview, setImagePreview] = useState<string>(
     circle?.imagePath || "",
@@ -428,9 +439,9 @@ export const CircleForm: FC<CircleFormProps> = ({
             </Button>
           </Center>
 
-          {mode === "edit" && circle?.id && (
-            <DeleteCircleButton circleId={circle.id} />
-          )}
+          {mode === "edit" && circle?.id && user?.role.id === 0 ? (
+            <DeleteCircleButton circleId={circle.id} userId={userId || ""} />
+          ) : undefined}
         </VStack>
       </VStack>
     </VStack>
