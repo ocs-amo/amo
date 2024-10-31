@@ -108,7 +108,7 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
 
   return (
     <Tabs index={tabIndex}>
-      <TabList overflowX="auto">
+      <TabList overflowX="auto" overflowY="hidden">
         <Tab flexShrink={0} as={Link} href={`/circles/${circle?.id}/days`}>
           活動日程
         </Tab>
