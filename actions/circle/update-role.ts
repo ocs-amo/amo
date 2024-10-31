@@ -48,8 +48,6 @@ export const changeMemberRole = async ({
       throw new Error(
         "代表のみが他のメンバーを代表に昇格させることができます。",
       )
-    } else if (newRoleId === 1 && currentUser.roleId !== 0) {
-      throw new Error("代表のみが副代表に昇格させることができます。")
     } else if (newRoleId === 2 && currentUser.roleId === 2) {
       throw new Error("一般メンバーの役職に昇格させることはできません。")
     }
