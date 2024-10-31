@@ -1,7 +1,9 @@
 "use server"
 import {
   addMemberToCircle,
+  findActiveMember,
   isUserAdmin,
+  markMemberAsInactive,
   removeMemberFromCircle,
 } from "@/data/circle"
 import {
@@ -18,6 +20,18 @@ export const handleMembershipRequest = async (
   requestType: "join" | "withdrawal",
 ) => {
   try {
+    // 代表が退会申請を送れないようにチェックを追加
+    if (requestType === "withdrawal") {
+      const currentUser = await findActiveMember(userId, circleId)
+      if (currentUser && currentUser.roleId === 0) {
+        return {
+          success: false,
+          message:
+            "代表は退会申請を行えません。別のメンバーに代表権限を譲渡してください。",
+        }
+      }
+    }
+
     const existingRequest = await checkExistingMembershipRequest(
       userId,
       circleId,
@@ -121,7 +135,7 @@ export const handleMembershipRequestAction = async (
 
       // リクエストタイプに応じて入会/退会処理を行う
       if (requestType === "join") {
-        await addMemberToCircle(targetUserId, circleId) // 対象ユーザーをメンバーに追加
+        await addMemberToCircle(targetUserId, circleId, 2) // 対象ユーザーをメンバーに追加
         return {
           success: true,
           message: "入会申請を承認しました。メンバーに追加しました。",
@@ -142,5 +156,49 @@ export const handleMembershipRequestAction = async (
   } catch (error) {
     console.error("申請処理中にエラーが発生しました:", error)
     return { success: false, message: "申請処理中にエラーが発生しました。" }
+  }
+}
+
+interface RemoveMemberParams {
+  circleId: string
+  targetMemberId: string
+  userId: string // 操作するユーザーのID（管理者権限の確認用）
+}
+
+// サーバーアクション：メンバー削除（退会）
+export const removeMember = async ({
+  circleId,
+  targetMemberId,
+  userId,
+}: RemoveMemberParams) => {
+  try {
+    // 1. 操作するユーザーが代表または副代表かどうかを確認
+    const isAdmin = await isUserAdmin(userId, circleId)
+
+    if (!isAdmin) {
+      throw new Error("メンバーを削除する権限がありません。")
+    }
+
+    // 2. 削除対象のメンバーを取得
+    const targetMember = await findActiveMember(targetMemberId, circleId)
+
+    if (!targetMember) {
+      throw new Error("指定されたメンバーが見つかりません。")
+    }
+
+    // 3. 削除（退会）処理を実行 - 論理削除
+    await markMemberAsInactive(targetMember.id)
+
+    return {
+      success: true,
+      message: `メンバー ${targetMemberId} が正常に退会しました。`,
+    }
+  } catch (error) {
+    console.error("メンバー削除エラー:", error)
+    return {
+      success: false,
+      message:
+        error instanceof Error ? error.message : "不明なエラーが発生しました。",
+    }
   }
 }

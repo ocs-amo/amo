@@ -19,6 +19,7 @@ export const circleMembers = () =>
         userId: "user3-uuid",
         circleId: "circle00-uuid",
         joinDate: new Date(),
+        roleId: 2, // 一般ロールID
       },
       // 他のメンバーを追加
     ],
