@@ -109,16 +109,20 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
   return (
     <Tabs index={tabIndex}>
       <TabList overflowX="auto">
-        <Tab as={Link} href={`/circles/${circle?.id}/days`}>
+        <Tab flexShrink={0} as={Link} href={`/circles/${circle?.id}/days`}>
           活動日程
         </Tab>
-        <Tab as={Link} href={`/circles/${circle?.id}/images`}>
+        <Tab flexShrink={0} as={Link} href={`/circles/${circle?.id}/images`}>
           画像
         </Tab>
-        <Tab as={Link} href={`/circles/${circle?.id}/notifications`}>
+        <Tab
+          flexShrink={0}
+          as={Link}
+          href={`/circles/${circle?.id}/notifications`}
+        >
           掲示板
         </Tab>
-        <Tab as={Link} href={`/circles/${circle?.id}/members`}>
+        <Tab flexShrink={0} as={Link} href={`/circles/${circle?.id}/members`}>
           <Indicator
             colorScheme="danger"
             size="sm"
