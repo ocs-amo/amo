@@ -69,6 +69,20 @@ export const isUserAdmin = async (userId: string, circleId: string) => {
   return admin // 管理者であれば true を返す
 }
 
+// サークルを論理削除する関数
+export const deleteCircle = async (circleId: string) => {
+  try {
+    // サークルの削除（論理削除）
+    return await db.circle.update({
+      where: { id: circleId },
+      data: { deletedAt: new Date() }, // 現在の日時を設定
+    })
+  } catch (error) {
+    console.error("サークル削除エラー:", error)
+    return null
+  }
+}
+
 export const addCircle = async (values: BackCircleForm) => {
   try {
     const circle = await db.circle.create({
@@ -93,7 +107,10 @@ export const updateCircle = async (
 ) => {
   try {
     return await db.circle.update({
-      where: { id: circleId },
+      where: {
+        id: circleId,
+        deletedAt: null,
+      },
       data: {
         name: values.name,
         description: values.description,
@@ -295,6 +312,7 @@ export const getCircleById = async (id: string) => {
     const circle = await db.circle.findUnique({
       where: {
         id,
+        deletedAt: null,
       },
       include: {
         CircleMember: {
@@ -353,6 +371,9 @@ export const getCircleById = async (id: string) => {
 export const getCircles = async () => {
   try {
     const circles = await db.circle.findMany({
+      where: {
+        deletedAt: null,
+      },
       include: {
         CircleMember: {
           where: {
@@ -381,6 +402,7 @@ export const getCirclesByUserId = async (userId: string) => {
   try {
     const circles = await db.circle.findMany({
       where: {
+        deletedAt: null,
         CircleMember: {
           some: {
             userId: userId, // 特定のユーザーIDに関連するサークルをフィルタリング
