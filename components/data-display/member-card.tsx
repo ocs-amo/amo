@@ -15,8 +15,15 @@ import {
   MenuItem,
   MenuList,
   Text,
+  useDisclosure,
+  Modal,
+  ModalOverlay,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Button,
 } from "@yamada-ui/react"
-import type { FC } from "react"
+import { useState, type FC } from "react"
 import type { getCircleById } from "@/data/circle"
 
 interface MemberCard {
@@ -43,6 +50,25 @@ export const MemberCard: FC<MemberCard> = ({
   handleRoleChange,
   handleRemoveMember,
 }) => {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const [selectedRole, setSelectedRole] = useState<number | null>(null)
+  const [selectedMemberId, setSelectedMemberId] = useState<string | null>(null)
+
+  // 役割変更モーダルを開く
+  const openConfirmDialog = (memberId: string, roleId: number) => {
+    setSelectedRole(roleId)
+    setSelectedMemberId(memberId)
+    onOpen()
+  }
+
+  // 役割変更を確定
+  const confirmRoleChange = async () => {
+    if (selectedMemberId && selectedRole !== null) {
+      await handleRoleChange(selectedMemberId, selectedRole)
+      onClose()
+    }
+  }
+  
   return (
     <GridItem w="full" rounded="md" as={Card}>
       <CardBody>
@@ -71,19 +97,19 @@ export const MemberCard: FC<MemberCard> = ({
                 {userRole?.id === 0 && (
                   <>
                     <MenuItem
-                      onClick={() => handleRoleChange(member.id, 0)}
+                      onClick={() => openConfirmDialog(member.id, 0)}
                       isDisabled={member.role?.id === 0}
                     >
                       代表
                     </MenuItem>
                     <MenuItem
-                      onClick={() => handleRoleChange(member.id, 1)}
+                      onClick={() => openConfirmDialog(member.id, 1)}
                       isDisabled={member.role?.id === 1}
                     >
                       副代表
                     </MenuItem>
                     <MenuItem
-                      onClick={() => handleRoleChange(member.id, 2)}
+                      onClick={() => openConfirmDialog(member.id, 2)}
                       isDisabled={member.role?.id === 2}
                     >
                       一般
@@ -102,13 +128,13 @@ export const MemberCard: FC<MemberCard> = ({
                 {userRole?.id === 1 && (
                   <>
                     <MenuItem
-                      onClick={() => handleRoleChange(member.id, 1)}
+                      onClick={() => openConfirmDialog(member.id, 1)}
                       isDisabled={member.role?.id === 1}
                     >
                       副代表
                     </MenuItem>
                     <MenuItem
-                      onClick={() => handleRoleChange(member.id, 2)}
+                      onClick={() => openConfirmDialog(member.id, 2)}
                       isDisabled={member.role?.id === 2}
                     >
                       一般
@@ -125,6 +151,22 @@ export const MemberCard: FC<MemberCard> = ({
               </MenuList>
             </Menu>
           ) : undefined}
+
+          {/* 役割変更確認モーダル */}
+          <Modal isOpen={isOpen} onClose={onClose}>
+            <ModalOverlay />
+              <ModalHeader>役割変更の確認</ModalHeader>
+              <ModalBody>
+                本当にこのメンバーの役割を変更しますか？
+              </ModalBody>
+              <ModalFooter>
+                <Button onClick={onClose}>キャンセル</Button>
+                <Button colorScheme="blue" onClick={confirmRoleChange} ml={3}>
+                  確認
+                </Button>
+              </ModalFooter>
+          </Modal>
+
         </HStack>
       </CardBody>
     </GridItem>
