@@ -27,7 +27,7 @@ interface MemberRequestCardProps {
     Awaited<ReturnType<typeof getMembershipRequests>>["data"]
   >[number]
   fetchData: () => Promise<void>
-  handleSnack: (title: string, status: AlertStatus) => string | number
+  handleSnack: (title: string, status: AlertStatus) => void
 }
 
 export const MemberRequestCard: FC<MemberRequestCardProps> = ({
