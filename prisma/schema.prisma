@@ -66,6 +66,7 @@ model Circle {
     CircleInstructor  CircleInstructor[] // New relation for instructors
     CircleTag         CircleTag[]
     MembershipRequest MembershipRequest[]
+    Event             Event[]
 
     @@index([name]) // Optional: Index on circle name for fast lookup
 }
@@ -122,4 +123,40 @@ model Role {
     roleName String // ロール名 (例: 代表、副代表)
 
     members CircleMember[] // 1対多のリレーション (ロールに関連するメンバー)
+}
+
+model Event {
+    id          Int       @id @default(autoincrement())
+    circleId    String // サークルID、外部キーでサークルと関連付ける
+    title       String // イベントの見出し
+    description String // イベント内容
+    activityDay DateTime // 活動日（イベントの日付）
+    location    String // イベント場所
+    startTime   DateTime // 開始時間
+    endTime     DateTime // 終了時間
+    notes       String? // 備考（オプション）
+    createdAt   DateTime  @default(now()) // 作成日
+    updatedAt   DateTime  @updatedAt // 更新日
+    deletedAt   DateTime? // 削除日（論理削除用）
+
+    // 参加者とのリレーション
+    participants EventParticipant[]
+
+    // サークルとのリレーション
+    circle Circle @relation(fields: [circleId], references: [id], onDelete: Cascade)
+
+    @@index([circleId]) // circleIdでインデックスを作成して検索を高速化
+}
+
+model EventParticipant {
+    id        Int       @id @default(autoincrement())
+    eventId   Int // イベントID、外部キー
+    userId    String // ユーザーID
+    joinedAt  DateTime  @default(now()) // 参加日時
+    removedAt DateTime? // 参加辞退日時（オプション）
+
+    // イベントとのリレーション
+    event Event @relation(fields: [eventId], references: [id], onDelete: Cascade)
+
+    @@index([eventId, userId]) // 検索を高速化するための複合インデックス
 }
