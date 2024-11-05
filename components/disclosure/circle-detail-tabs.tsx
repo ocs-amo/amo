@@ -11,8 +11,8 @@ import {
   Tabs,
   useSnacks,
 } from "@yamada-ui/react"
-import { CircleActivitydays } from "../data-display/circle-activitydays"
 import Link from "next/link"
+import { CircleActivitydays } from "../data-display/circle-activitydays"
 import { MemberCard } from "../data-display/member-card"
 import { MemberRequestCard } from "../data-display/member-request-card"
 import {
@@ -140,7 +140,11 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
 
       <TabPanels>
         <TabPanel>
-          <CircleActivitydays />
+          <CircleActivitydays
+            userId={userId}
+            userRole={userRole}
+            isAdmin={isAdmin}
+          />
         </TabPanel>
         <TabPanel>画像</TabPanel>
         <TabPanel>掲示板</TabPanel>
