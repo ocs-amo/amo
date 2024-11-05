@@ -1,7 +1,7 @@
 import { db } from "@/utils/db"
 
 // イベント生成関数
-const createEvent = (
+const createActivity = (
   circleId: string,
   title: string,
   description: string,
@@ -39,10 +39,10 @@ const createEvent = (
 }
 
 // 例：イベントのデータを複数作成
-export const circleEvents = () =>
-  db.event.createMany({
+export const circleActivities = () =>
+  db.activity.createMany({
     data: [
-      createEvent(
+      createActivity(
         "circle00-uuid",
         "ミーティング",
         "定例ミーティングです",
@@ -52,7 +52,7 @@ export const circleEvents = () =>
         18, // 終了時間: 18:00
         "代表は用事のためいません",
       ),
-      createEvent(
+      createActivity(
         "circle00-uuid",
         "勉強会",
         "勉強会",

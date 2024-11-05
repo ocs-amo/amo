@@ -16,13 +16,13 @@ import {
 } from "@yamada-ui/react"
 import "dayjs/locale/ja"
 import { useState } from "react"
-import { fetchEventsByMonth } from "@/actions/circle/fetch-event"
+import { fetchActivitiesByMonth } from "@/actions/circle/fetch-activity"
 
 export const CircleActivitydays: FC = () => {
   const [currentMonth, setCurrentMonth] = useState<Date | undefined>(new Date())
   const { value: activitys, loading } = useAsync(async () => {
     if (!currentMonth) return
-    const { events } = await fetchEventsByMonth(currentMonth)
+    const { events } = await fetchActivitiesByMonth(currentMonth)
     return events
   }, [currentMonth])
 

@@ -1,14 +1,14 @@
 import { db } from "@/utils/db"
 
-export const circleEventParticipants = () =>
-  db.eventParticipant.createMany({
+export const circleActivityParticipants = () =>
+  db.activityParticipant.createMany({
     data: [
       {
-        eventId: 1,
+        activitytId: 1,
         userId: "user1-uuid",
       },
       {
-        eventId: 2,
+        activitytId: 2,
         userId: "user2-uuid",
       },
     ],

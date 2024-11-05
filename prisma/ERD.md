@@ -75,7 +75,7 @@ erDiagram
     }
 
 
-  "Event" {
+  "Activity" {
     Int id "🗝️"
     String title
     String description
@@ -90,7 +90,7 @@ erDiagram
     }
 
 
-  "EventParticipant" {
+  "ActivityParticipant" {
     Int id "🗝️"
     String userId
     DateTime joinedAt
@@ -107,7 +107,7 @@ erDiagram
     "Circle" o{--}o "CircleInstructor" : "CircleInstructor"
     "Circle" o{--}o "CircleTag" : "CircleTag"
     "Circle" o{--}o "MembershipRequest" : "MembershipRequest"
-    "Circle" o{--}o "Event" : "Event"
+    "Circle" o{--}o "Activity" : "Activity"
     "CircleMember" o|--|| "User" : "user"
     "CircleMember" o|--|| "Circle" : "circle"
     "CircleMember" o|--|| "Role" : "role"
@@ -118,7 +118,7 @@ erDiagram
     "CircleInstructor" o|--|| "Circle" : "circle"
     "CircleTag" o|--|| "Circle" : "circle"
     "Role" o{--}o "CircleMember" : "members"
-    "Event" o{--}o "EventParticipant" : "participants"
-    "Event" o|--|| "Circle" : "circle"
-    "EventParticipant" o|--|| "Event" : "event"
+    "Activity" o{--}o "ActivityParticipant" : "participants"
+    "Activity" o|--|| "Circle" : "circle"
+    "ActivityParticipant" o|--|| "Activity" : "Activity"
 ```
