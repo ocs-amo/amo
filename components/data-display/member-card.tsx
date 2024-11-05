@@ -185,7 +185,7 @@ export const MemberCard: FC<MemberCard> = ({
             </ModalBody>
             <ModalFooter>
               <Button onClick={removeDialogDisclosure.onClose}>キャンセル</Button>
-              <Button colorScheme="blue" onClick={() => handleRemoveMember(member.id)}>
+              <Button colorScheme="danger" onClick={() => handleRemoveMember(member.id)}>
                 退会
               </Button>
             </ModalFooter>
