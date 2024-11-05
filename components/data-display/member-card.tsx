@@ -52,36 +52,22 @@ export const MemberCard: FC<MemberCard> = ({
 }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [selectedRole, setSelectedRole] = useState<number | null>(null)
-  const [selectedMemberId, setSelectedMemberId] = useState<string | null>(null)
-  const [selectedMemberName, setSelectedMemberName] = useState<string | null>(
-    null,
-  )
   const [selectedRoleName, setSelectedRoleName] = useState<string | null>(null)
-  const [selectedCurrentRoleName, setSelectedCurrentRoleName] = useState<
-    string | null
-  >(null)
 
   // 権限変更モーダルを開く
-  const openConfirmDialog = (
-    memberId: string,
-    memberName: string,
-    currentRoleName: string,
-    newRoleId: number,
-    newRoleName: string,
-  ) => {
-    setSelectedRole(newRoleId)
-    setSelectedMemberId(memberId)
-    setSelectedMemberName(memberName)
-    setSelectedCurrentRoleName(currentRoleName)
-    setSelectedRoleName(newRoleName)
+  const openConfirmDialog = (newRoleId: number, newRoleName: string) => {
     onOpen()
+    setSelectedRole(newRoleId)
+    setSelectedRoleName(newRoleName)
   }
 
   // 権限変更を確定
   const confirmRoleChange = async () => {
-    if (selectedMemberId && selectedRole !== null) {
-      await handleRoleChange(selectedMemberId, selectedRole)
+    if (userId && selectedRole !== null) {
       onClose()
+      await handleRoleChange(member.id, selectedRole)
+      setSelectedRole(null)
+      setSelectedRoleName("")
     }
   }
 
@@ -113,43 +99,19 @@ export const MemberCard: FC<MemberCard> = ({
                 {userRole?.id === 0 && (
                   <>
                     <MenuItem
-                      onClick={() =>
-                        openConfirmDialog(
-                          member.id,
-                          member.name,
-                          member.role.roleName,
-                          0,
-                          "代表",
-                        )
-                      }
+                      onClick={() => openConfirmDialog(0, "代表")}
                       isDisabled={member.role?.id === 0}
                     >
                       代表
                     </MenuItem>
                     <MenuItem
-                      onClick={() =>
-                        openConfirmDialog(
-                          member.id,
-                          member.name,
-                          member.role.roleName,
-                          1,
-                          "副代表",
-                        )
-                      }
+                      onClick={() => openConfirmDialog(1, "副代表")}
                       isDisabled={member.role?.id === 1}
                     >
                       副代表
                     </MenuItem>
                     <MenuItem
-                      onClick={() =>
-                        openConfirmDialog(
-                          member.id,
-                          member.name,
-                          member.role.roleName,
-                          2,
-                          "一般",
-                        )
-                      }
+                      onClick={() => openConfirmDialog(2, "一般")}
                       isDisabled={member.role?.id === 2}
                     >
                       一般
@@ -168,29 +130,13 @@ export const MemberCard: FC<MemberCard> = ({
                 {userRole?.id === 1 && (
                   <>
                     <MenuItem
-                      onClick={() =>
-                        openConfirmDialog(
-                          member.id,
-                          member.name,
-                          member.role.roleName,
-                          1,
-                          "副代表",
-                        )
-                      }
+                      onClick={() => openConfirmDialog(1, "副代表")}
                       isDisabled={member.role?.id === 1}
                     >
                       副代表
                     </MenuItem>
                     <MenuItem
-                      onClick={() =>
-                        openConfirmDialog(
-                          member.id,
-                          member.name,
-                          member.role.roleName,
-                          2,
-                          "一般",
-                        )
-                      }
+                      onClick={() => openConfirmDialog(2, "一般")}
                       isDisabled={member.role?.id === 2}
                     >
                       一般
@@ -213,12 +159,12 @@ export const MemberCard: FC<MemberCard> = ({
             <ModalOverlay />
             <ModalHeader>権限変更の確認</ModalHeader>
             <ModalBody>
-              {selectedMemberName} さんの役割を「{selectedCurrentRoleName}
-              」から「{selectedRoleName}」に変更しますか？
+              {member.name} さんの役割を「{member.role.roleName}」から「
+              {selectedRoleName}」に変更しますか？
             </ModalBody>
             <ModalFooter>
               <Button onClick={onClose}>キャンセル</Button>
-              <Button colorScheme="blue" onClick={confirmRoleChange} ml={3}>
+              <Button colorScheme="blue" onClick={confirmRoleChange}>
                 確認
               </Button>
             </ModalFooter>
