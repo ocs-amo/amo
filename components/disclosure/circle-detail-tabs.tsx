@@ -193,7 +193,11 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
       </TabList>
       <TabPanels>
         <TabPanel>
-          <CircleActivitydays />
+          <CircleActivitydays
+            userId={userId}
+            userRole={userRole}
+            isAdmin={isAdmin}
+          />
         </TabPanel>
         <TabPanel>画像</TabPanel>
 
