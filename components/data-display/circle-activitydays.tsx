@@ -1,82 +1,84 @@
 "use client"
 import { MonthPicker } from "@yamada-ui/calendar"
-import { PlusIcon } from "@yamada-ui/lucide"
+import { EllipsisIcon, PlusIcon } from "@yamada-ui/lucide"
 import type { FC } from "@yamada-ui/react"
 import {
   Card,
   CardBody,
+  Center,
   GridItem,
   HStack,
   IconButton,
+  Loading,
   Text,
+  useAsync,
   VStack,
 } from "@yamada-ui/react"
-import { HiOutlineDotsCircleHorizontal } from "react-icons/hi"
 import "dayjs/locale/ja"
-
-const activitys = [
-  {
-    date: "7",
-    title: "活動日",
-    class: "402",
-    start: "16:00",
-    end: "18:00",
-  },
-  {
-    date: "8",
-    title: "ミーティング",
-    class: "402",
-    start: "16:00",
-    end: "18:00",
-  },
-  {
-    date: "12",
-    title: "活動日",
-    class: "402",
-    start: "16:00",
-    end: "18:00",
-  },
-  {
-    date: "14",
-    title: "ミーティング",
-    class: "402",
-    start: "16:00",
-    end: "18:00",
-  },
-] //活動日、タイトル、教室番号、開始時間、終了時間
+import { useState } from "react"
+import { fetchEventsByMonth } from "@/actions/circle/fetch-event"
 
 export const CircleActivitydays: FC = () => {
+  const [currentMonth, setCurrentMonth] = useState<Date | undefined>(new Date())
+  const { value: activitys, loading } = useAsync(async () => {
+    if (!currentMonth) return
+    const { events } = await fetchEventsByMonth(currentMonth)
+    return events
+  }, [currentMonth])
+
+  const displayTime = (date: Date) =>
+    `${date.getHours()}:${zeroPadding(date.getMinutes())}`
+  const zeroPadding = (min: number) => (10 > min ? `0${min}` : min)
+
   return (
     <VStack>
       <HStack justifyContent="space-between">
-        <MonthPicker w="md" locale="ja" />
+        <MonthPicker
+          w="md"
+          locale="ja"
+          defaultValue={currentMonth}
+          onChange={setCurrentMonth}
+        />
         <IconButton icon={<PlusIcon />} />
       </HStack>
       <VStack>
-        {activitys.map((row) => (
-          <GridItem key={row.date}>
-            <Card variant="outline">
-              <CardBody>
-                <HStack justifyContent="space-between" w="full">
-                  <HStack>
-                    <Card variant="outline" padding="10px">
-                      {row.date}
-                    </Card>
-                    <Text>{row.title}</Text>
-                  </HStack>
+        {loading ? (
+          <Center w="full" h="full">
+            <Loading fontSize="xl" />
+          </Center>
+        ) : activitys && activitys.length > 0 ? (
+          activitys?.map((activity) => (
+            <GridItem key={activity.id}>
+              <Card variant="outline">
+                <CardBody>
+                  <HStack justifyContent="space-between" w="full">
+                    <HStack>
+                      <Card variant="outline" padding="sm" w="10" as={Center}>
+                        {activity.activityDay.getDate()}
+                      </Card>
+                      <Text>{activity.title}</Text>
+                    </HStack>
 
-                  <HStack>
-                    <Text>{row.class}教室</Text>
-                    <Text>
-                      {row.start}～{row.end}
-                    </Text>
-                    <IconButton icon={<HiOutlineDotsCircleHorizontal />} />
+                    <HStack>
+                      <Text>{activity.location}教室</Text>
+                      <Text>
+                        {displayTime(activity.startTime)}～
+                        {displayTime(activity.endTime)}
+                      </Text>
+                      <IconButton
+                        icon={<EllipsisIcon />}
+                        variant="ghost"
+                        isRounded
+                      />
+                    </HStack>
                   </HStack>
-                </HStack>
-              </CardBody>
-            </Card>
-          </GridItem>
-        ))}
+                </CardBody>
+              </Card>
+            </GridItem>
+          ))
+        ) : (
+          <Text>活動がありません</Text>
+        )}
       </VStack>
     </VStack>
   )
