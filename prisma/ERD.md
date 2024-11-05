@@ -36,6 +36,7 @@ erDiagram
     String location
     DateTime createdAt
     DateTime updatedAt
+    DateTime deletedAt "❓"
     String imagePath "❓"
     String activityDay "❓"
     }
@@ -45,6 +46,15 @@ erDiagram
     Int id "🗝️"
     DateTime joinDate
     DateTime leaveDate "❓"
+    }
+
+
+  "MembershipRequest" {
+    String id "🗝️"
+    String requestType
+    String status
+    DateTime requestDate
+    DateTime resolvedDate "❓"
     }
 
 
@@ -67,13 +77,19 @@ erDiagram
     "User" o{--}o "Account" : "accounts"
     "User" o{--}o "CircleMember" : "CircleMember"
     "User" o{--}o "CircleInstructor" : "CircleInstructor"
+    "User" o{--}o "MembershipRequest" : "MembershipRequests"
+    "User" o{--}o "MembershipRequest" : "ProcessedRequests"
     "Account" o|--|| "User" : "user"
     "Circle" o{--}o "CircleMember" : "CircleMember"
     "Circle" o{--}o "CircleInstructor" : "CircleInstructor"
     "Circle" o{--}o "CircleTag" : "CircleTag"
+    "Circle" o{--}o "MembershipRequest" : "MembershipRequest"
     "CircleMember" o|--|| "User" : "user"
     "CircleMember" o|--|| "Circle" : "circle"
-    "CircleMember" o|--|o "Role" : "role"
+    "CircleMember" o|--|| "Role" : "role"
+    "MembershipRequest" o|--|| "User" : "user"
+    "MembershipRequest" o|--|| "Circle" : "circle"
+    "MembershipRequest" o|--|o "User" : "admin"
     "CircleInstructor" o|--|| "User" : "user"
     "CircleInstructor" o|--|| "Circle" : "circle"
     "CircleTag" o|--|| "Circle" : "circle"

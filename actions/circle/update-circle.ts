@@ -24,7 +24,10 @@ export const UpdateCircle = async (
   const members = await getMemberByCircleId(circleId)
 
   // 管理者権限の確認
-  const isAdmin = members?.some((member) => member.id === userId && member.role)
+  const isAdmin = members?.some(
+    (member) => member.id === userId && [0, 1].includes(member.role.id),
+  )
+
   if (!isAdmin) {
     return { error: "権限がありません。" }
   }

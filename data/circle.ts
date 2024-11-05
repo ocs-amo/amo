@@ -2,6 +2,87 @@
 import type { BackCircleForm } from "@/schema/circle"
 import { db } from "@/utils/db"
 
+// メンバーを退会（論理削除）させる関数
+export const markMemberAsInactive = async (memberId: number) => {
+  return await db.circleMember.update({
+    where: { id: memberId },
+    data: { leaveDate: new Date() }, // leaveDateに現在の日付を設定
+  })
+}
+
+// 共通化されたメンバーの検索関数
+export const findActiveMember = async (userId: string, circleId: string) => {
+  return db.circleMember.findFirst({
+    where: {
+      userId,
+      circleId,
+      leaveDate: null, // leaveDateがnullなら退会していないメンバー
+    },
+  })
+}
+
+// メンバーの入会処理
+export const addMemberToCircle = async (
+  userId: string,
+  circleId: string,
+  roleId: number,
+) => {
+  return await db.circleMember.create({
+    data: {
+      userId,
+      circleId,
+      roleId,
+      // joinDate: new Date(), // 入会日を現在の日付に設定
+    },
+  })
+}
+
+// メンバーの退会処理（論理削除）
+export const removeMemberFromCircle = async (
+  userId: string,
+  circleId: string,
+) => {
+  return await db.circleMember.updateMany({
+    where: {
+      userId,
+      circleId,
+      leaveDate: null, // 現在退会していないメンバーのみが対象
+    },
+    data: {
+      leaveDate: new Date(), // 退会日を現在の日付に設定
+    },
+  })
+}
+
+export const isUserAdmin = async (userId: string, circleId: string) => {
+  const admin = await db.circleMember.findFirst({
+    where: {
+      circleId,
+      userId,
+      leaveDate: null,
+      roleId: {
+        in: [0, 1], // 代表または副代表であれば管理者とみなす
+      },
+    },
+  })
+
+  return admin // 管理者であれば true を返す
+}
+
+// サークルを論理削除する関数
+export const deleteCircle = async (circleId: string) => {
+  try {
+    // サークルの削除（論理削除）
+    return await db.circle.update({
+      where: { id: circleId },
+      data: { deletedAt: new Date() }, // 現在の日時を設定
+    })
+  } catch (error) {
+    console.error("サークル削除エラー:", error)
+    return null
+  }
+}
+
 export const addCircle = async (values: BackCircleForm) => {
   try {
     const circle = await db.circle.create({
@@ -26,7 +107,10 @@ export const updateCircle = async (
 ) => {
   try {
     return await db.circle.update({
-      where: { id: circleId },
+      where: {
+        id: circleId,
+        deletedAt: null,
+      },
       data: {
         name: values.name,
         description: values.description,
@@ -199,6 +283,7 @@ export const getMemberByCircleId = async (circleId: string) => {
     const members = await db.circleMember.findMany({
       where: {
         circleId: circleId, // 特定のサークルIDに関連するメンバーをフィルタリング
+        leaveDate: null, // 退会日が設定されていない（退会していない）メンバーのみ取得
       },
       include: {
         user: true, // 関連するユーザー情報を含める
@@ -227,9 +312,13 @@ export const getCircleById = async (id: string) => {
     const circle = await db.circle.findUnique({
       where: {
         id,
+        deletedAt: null,
       },
       include: {
         CircleMember: {
+          where: {
+            leaveDate: null, // 退会日が設定されていないメンバーのみ取得
+          },
           include: {
             user: true, // 関連するユーザー情報を含める
             role: true,
@@ -241,15 +330,15 @@ export const getCircleById = async (id: string) => {
           },
         },
         CircleTag: true,
-        _count: {
-          select: { CircleMember: true }, // メンバーの数をカウント
-        },
       },
     })
 
+    // メンバー数を手動でカウント
+    const memberCount = circle?.CircleMember.length || 0
+
     return {
       ...circle,
-      memberCount: circle?._count.CircleMember,
+      memberCount, // 退会していないメンバーのみカウント
       members: circle?.CircleMember.map((member) => ({
         id: member.user.id,
         name: member.user.name,
@@ -282,9 +371,14 @@ export const getCircleById = async (id: string) => {
 export const getCircles = async () => {
   try {
     const circles = await db.circle.findMany({
+      where: {
+        deletedAt: null,
+      },
       include: {
-        _count: {
-          select: { CircleMember: true }, // メンバー数をカウント
+        CircleMember: {
+          where: {
+            leaveDate: null, // 退会日が設定されていないメンバーのみを取得
+          },
         },
       },
     })
@@ -296,7 +390,7 @@ export const getCircles = async () => {
       location: circle.location,
       imagePath: circle.imagePath,
       activityDay: circle.activityDay,
-      memberCount: circle._count.CircleMember, // メンバー合計
+      memberCount: circle.CircleMember.length, // 退会していないメンバーのみカウント
     }))
   } catch (error) {
     console.error("getCircles: ", error)
@@ -308,15 +402,19 @@ export const getCirclesByUserId = async (userId: string) => {
   try {
     const circles = await db.circle.findMany({
       where: {
+        deletedAt: null,
         CircleMember: {
           some: {
             userId: userId, // 特定のユーザーIDに関連するサークルをフィルタリング
+            leaveDate: null, // 退会していない場合のみ取得
           },
         },
       },
       include: {
-        _count: {
-          select: { CircleMember: true }, // メンバー数をカウント
+        CircleMember: {
+          where: {
+            leaveDate: null, // 退会日が設定されていないメンバーのみ取得
+          },
         },
       },
     })
@@ -328,7 +426,7 @@ export const getCirclesByUserId = async (userId: string) => {
       location: circle.location,
       imagePath: circle.imagePath,
       activityDay: circle.activityDay,
-      memberCount: circle._count.CircleMember, // メンバー合計
+      memberCount: circle.CircleMember.length, // 退会していないメンバーのみをカウント
     }))
   } catch (error) {
     console.error("getCirclesByUserId: ", error)

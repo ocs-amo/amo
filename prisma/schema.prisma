@@ -8,8 +8,8 @@ datasource db {
 }
 
 generator erd {
-  provider = "prisma-erd-generator"
-  output = "./ERD.md"
+    provider = "prisma-erd-generator"
+    output   = "./ERD.md"
 }
 
 model User {
@@ -24,9 +24,11 @@ model User {
     profileText    String? // Optional: Markdown profile text
     instructorFlag Boolean  @default(false) // Indicates if the user is an instructor
 
-    accounts         Account[] // One-to-many relationship with Account (for OAuth)
-    CircleMember     CircleMember[]
-    CircleInstructor CircleInstructor[] // New relation for instructors
+    accounts           Account[] // One-to-many relationship with Account (for OAuth)
+    CircleMember       CircleMember[]
+    CircleInstructor   CircleInstructor[] // New relation for instructors
+    MembershipRequests MembershipRequest[] // ユーザーが送信したメンバーシップリクエスト
+    ProcessedRequests  MembershipRequest[] @relation("ProcessedBy") // 管理者として処理したリクエスト
 
     @@index([email]) // Optional: Index on email
 }
@@ -51,17 +53,19 @@ model Account {
 }
 
 model Circle {
-    id               String             @id @default(uuid()) // Primary key, UUID形式
-    name             String // Circle name
-    description      String // Circle description
-    location         String // Activity location
-    createdAt        DateTime           @default(now()) // Creation timestamp
-    updatedAt        DateTime           @updatedAt // Updated timestamp
-    imagePath        String? // Optional: Circle image URL or base64 string
-    activityDay      String? // 活動日
-    CircleMember     CircleMember[]
-    CircleInstructor CircleInstructor[] // New relation for instructors
-    CircleTag CircleTag[]
+    id                String              @id @default(uuid()) // Primary key, UUID形式
+    name              String // Circle name
+    description       String // Circle description
+    location          String // Activity location
+    createdAt         DateTime            @default(now()) // Creation timestamp
+    updatedAt         DateTime            @updatedAt // Updated timestamp
+    deletedAt         DateTime? // Optional: Deletion timestamp for soft deletes
+    imagePath         String? // Optional: Circle image URL or base64 string
+    activityDay       String? // 活動日
+    CircleMember      CircleMember[]
+    CircleInstructor  CircleInstructor[] // New relation for instructors
+    CircleTag         CircleTag[]
+    MembershipRequest MembershipRequest[]
 
     @@index([name]) // Optional: Index on circle name for fast lookup
 }
@@ -72,11 +76,26 @@ model CircleMember {
     circleId  String // 外部キー (Circle テーブルへの参照)
     joinDate  DateTime  @default(now()) // 加入日
     leaveDate DateTime? // 退会日 (論理削除用)
-    roleId    Int? // 外部キー (Role テーブルへの参照)
+    roleId    Int // 外部キー (Role テーブルへの参照)
 
     user   User   @relation(fields: [userId], references: [id])
     circle Circle @relation(fields: [circleId], references: [id])
-    role   Role?   @relation(fields: [roleId], references: [id])
+    role   Role   @relation(fields: [roleId], references: [id])
+}
+
+model MembershipRequest {
+    id           String    @id @default(uuid()) // プライマリキー
+    circleId     String // Circle テーブルへの外部キー
+    userId       String // User テーブルへの外部キー
+    requestType  String // 'join'（入会申請）または 'withdrawal'（退会申請）
+    status       String // 'pending'（保留中）, 'approved'（承認済み）, 'rejected'（拒否済み）
+    requestDate  DateTime  @default(now()) // 申請日
+    resolvedDate DateTime? // 承認/拒否された日
+    processedBy  String? // 処理した管理者のuserId（nullの場合はまだ未処理）
+
+    user   User   @relation(fields: [userId], references: [id]) // User テーブルとのリレーション
+    circle Circle @relation(fields: [circleId], references: [id]) // Circle テーブルとのリレーション
+    admin  User?  @relation("ProcessedBy", fields: [processedBy], references: [id]) // 管理者ユーザーとのリレーション（null可）
 }
 
 model CircleInstructor {
@@ -89,13 +108,13 @@ model CircleInstructor {
 }
 
 model CircleTag {
-  id       String  @id @default(uuid()) // Primary key
-  tagName  String  // タグ名
-  circleId String  // 外部キー (Circle テーブルへの参照)
+    id       String @id @default(uuid()) // Primary key
+    tagName  String // タグ名
+    circleId String // 外部キー (Circle テーブルへの参照)
 
-  circle Circle @relation(fields: [circleId], references: [id]) // サークルとのリレーション
+    circle Circle @relation(fields: [circleId], references: [id]) // サークルとのリレーション
 
-  @@index([circleId]) // Optional: Index on circleId for fast lookup
+    @@index([circleId]) // Optional: Index on circleId for fast lookup
 }
 
 model Role {
