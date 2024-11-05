@@ -3,6 +3,7 @@ import { MonthPicker } from "@yamada-ui/calendar"
 import { EllipsisIcon, PlusIcon } from "@yamada-ui/lucide"
 import type { FC } from "@yamada-ui/react"
 import {
+  Button,
   Card,
   CardBody,
   Center,
@@ -10,6 +11,10 @@ import {
   HStack,
   IconButton,
   Loading,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
   Text,
   useAsync,
   VStack,
@@ -18,7 +23,21 @@ import "dayjs/locale/ja"
 import { useState } from "react"
 import { fetchActivitiesByMonth } from "@/actions/circle/fetch-activity"
 
-export const CircleActivitydays: FC = () => {
+interface CircleActivitydays {
+  isAdmin?: boolean
+  userRole:
+    | {
+        id: number
+        roleName: string
+      }
+    | undefined
+  userId: string
+}
+
+export const CircleActivitydays: FC<CircleActivitydays> = ({
+  userRole,
+  isAdmin,
+}) => {
   const [currentMonth, setCurrentMonth] = useState<Date | undefined>(new Date())
   const { value: activitys, loading } = useAsync(async () => {
     if (!currentMonth) return
@@ -65,11 +84,24 @@ export const CircleActivitydays: FC = () => {
                         {displayTime(activity.startTime)}～
                         {displayTime(activity.endTime)}
                       </Text>
-                      <IconButton
-                        icon={<EllipsisIcon />}
-                        variant="ghost"
-                        isRounded
-                      />
+                      {isAdmin &&
+                      userRole?.id !== undefined &&
+                      [0, 1].includes(userRole.id) ? (
+                        <Menu>
+                          <MenuButton
+                            as={IconButton}
+                            icon={<EllipsisIcon fontSize="2xl" />}
+                            variant="ghost"
+                            isRounded
+                          />
+                          <MenuList>
+                            <MenuItem>編集</MenuItem>
+                            <MenuItem color="red">削除</MenuItem>
+                          </MenuList>
+                        </Menu>
+                      ) : (
+                        <Button>参加</Button>
+                      )}
                     </HStack>
                   </HStack>
                 </CardBody>
