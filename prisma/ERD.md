@@ -79,8 +79,8 @@ erDiagram
     Int id "🗝️"
     String title
     String description "❓"
-    DateTime activityDay
     String location
+    DateTime activityDay
     DateTime startTime
     DateTime endTime "❓"
     String notes "❓"
@@ -102,6 +102,7 @@ erDiagram
     "User" o{--}o "CircleInstructor" : "CircleInstructor"
     "User" o{--}o "MembershipRequest" : "MembershipRequests"
     "User" o{--}o "MembershipRequest" : "ProcessedRequests"
+    "User" o{--}o "Activity" : "createdActivities"
     "Account" o|--|| "User" : "user"
     "Circle" o{--}o "CircleMember" : "CircleMember"
     "Circle" o{--}o "CircleInstructor" : "CircleInstructor"
@@ -120,5 +121,6 @@ erDiagram
     "Role" o{--}o "CircleMember" : "members"
     "Activity" o{--}o "ActivityParticipant" : "participants"
     "Activity" o|--|| "Circle" : "circle"
+    "Activity" o|--|| "User" : "creator"
     "ActivityParticipant" o|--|| "Activity" : "Activity"
 ```

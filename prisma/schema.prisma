@@ -29,6 +29,7 @@ model User {
     CircleInstructor   CircleInstructor[] // New relation for instructors
     MembershipRequests MembershipRequest[] // ユーザーが送信したメンバーシップリクエスト
     ProcessedRequests  MembershipRequest[] @relation("ProcessedBy") // 管理者として処理したリクエスト
+    createdActivities  Activity[]          @relation("UserCreatedActivities")
 
     @@index([email]) // Optional: Index on email
 }
@@ -66,7 +67,7 @@ model Circle {
     CircleInstructor  CircleInstructor[] // New relation for instructors
     CircleTag         CircleTag[]
     MembershipRequest MembershipRequest[]
-    Activity             Activity[]
+    Activity          Activity[]
 
     @@index([name]) // Optional: Index on circle name for fast lookup
 }
@@ -127,17 +128,18 @@ model Role {
 
 model Activity {
     id          Int       @id @default(autoincrement())
-    circleId    String // サークルID、外部キーでサークルと関連付ける
-    title       String // イベントの見出し
-    description String? // イベント内容（オプショナルに設定）
-    activityDay DateTime // 活動日（イベントの日付）
-    location    String // イベント場所
-    startTime   DateTime // 開始時間
-    endTime     DateTime? // 終了時間（オプショナル）
-    notes       String? // 備考（オプション）
-    createdAt   DateTime  @default(now()) // 作成日
-    updatedAt   DateTime  @updatedAt // 更新日
-    deletedAt   DateTime? // 削除日（論理削除用）
+    circleId    String
+    title       String
+    description String?
+    location    String
+    createdBy   String // Userモデルのidを参照する外部キーとして設定
+    activityDay DateTime
+    startTime   DateTime
+    endTime     DateTime?
+    notes       String?
+    createdAt   DateTime  @default(now())
+    updatedAt   DateTime  @updatedAt
+    deletedAt   DateTime?
 
     // 参加者とのリレーション
     participants ActivityParticipant[]
@@ -145,15 +147,18 @@ model Activity {
     // サークルとのリレーション
     circle Circle @relation(fields: [circleId], references: [id], onDelete: Cascade)
 
-    @@index([circleId]) // circleIdでインデックスを作成して検索を高速化
+    // 作成者とのリレーション
+    creator User @relation(fields: [createdBy], references: [id], onDelete: Cascade, name: "UserCreatedActivities") // `Cascade`に変更
+
+    @@index([circleId])
 }
 
 model ActivityParticipant {
-    id        Int       @id @default(autoincrement())
-    activitytId   Int // イベントID、外部キー
-    userId    String // ユーザーID
-    joinedAt  DateTime  @default(now()) // 参加日時
-    removedAt DateTime? // 参加辞退日時（オプション）
+    id          Int       @id @default(autoincrement())
+    activitytId Int // イベントID、外部キー
+    userId      String // ユーザーID
+    joinedAt    DateTime  @default(now()) // 参加日時
+    removedAt   DateTime? // 参加辞退日時（オプション）
 
     // イベントとのリレーション
     Activity Activity @relation(fields: [activitytId], references: [id], onDelete: Cascade)

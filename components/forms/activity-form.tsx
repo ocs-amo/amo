@@ -10,14 +10,19 @@ import {
   Heading,
   Input,
   Label,
+  Snacks,
   Spacer,
   Textarea,
+  useBoolean,
+  useSnacks,
   VStack,
 } from "@yamada-ui/react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { Controller, useForm } from "react-hook-form"
+import { addActivityAction } from "@/actions/circle/add-activity"
 import type { getCircleById } from "@/data/circle"
-import type { ActivityFormType} from "@/schema/activity";
+import type { ActivityFormType } from "@/schema/activity"
 import { ActivitySchema } from "@/schema/activity"
 
 interface ActivityFormProps {
@@ -26,7 +31,11 @@ interface ActivityFormProps {
   circle?: Awaited<ReturnType<typeof getCircleById>>
 }
 
-export const ActivityForm: FC<ActivityFormProps> = ({ circleId, circle }) => {
+export const ActivityForm: FC<ActivityFormProps> = ({
+  circleId,
+  circle,
+  userId,
+}) => {
   const {
     register,
     handleSubmit,
@@ -44,9 +53,24 @@ export const ActivityForm: FC<ActivityFormProps> = ({ circleId, circle }) => {
       notes: "",
     },
   })
-  const onSubmit = async (values: ActivityFormType) => {
-    console.log(values)
+  const { snack, snacks } = useSnacks()
+  const [isLoading, { on: start, off: end }] = useBoolean()
+  const router = useRouter()
+  const onSubmit = async (data: ActivityFormType) => {
+    start()
+    const result = await addActivityAction(data, circleId, userId)
+    if (result.success) {
+      router.push(`/circles/${circleId}/activities`)
+    } else {
+      alert(result.error || "活動日の登録に失敗しました。")
+      snack({
+        title: result.error || "活動日の登録に失敗しました。",
+        status: "error",
+      })
+    }
+    end()
   }
+
   return (
     <VStack
       w="full"
@@ -246,11 +270,14 @@ export const ActivityForm: FC<ActivityFormProps> = ({ circleId, circle }) => {
             )}
           </VStack>
         </FormControl>
+        <Snacks snacks={snacks} />
         <Center gap="md" justifyContent="end">
           <Button as={Link} href={`/circles/${circleId || ""}/activities`}>
             キャンセル
           </Button>
-          <Button type="submit">追加</Button>
+          <Button type="submit" isLoading={isLoading}>
+            追加
+          </Button>
         </Center>
       </VStack>
     </VStack>
