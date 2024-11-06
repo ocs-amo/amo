@@ -7,10 +7,10 @@ import {
 } from "@/data/circle"
 import { getUserById } from "@/data/user"
 import type { BackCircleForm } from "@/schema/circle"
-import { BackCircleSchem } from "@/schema/circle"
+import { BackCircleSchema } from "@/schema/circle"
 
 export const CreateCircle = async (values: BackCircleForm, userId: string) => {
-  const { success, error } = BackCircleSchem.safeParse(values)
+  const { success, error } = BackCircleSchema.safeParse(values)
 
   if (!success && error) {
     return { error }
