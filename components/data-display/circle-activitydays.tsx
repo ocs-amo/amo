@@ -27,6 +27,7 @@ import type { getCircleById } from "@/data/circle"
 
 interface CircleActivitydays {
   isAdmin?: boolean
+  isMember?: boolean
   userRole:
     | {
         id: number
@@ -40,6 +41,7 @@ interface CircleActivitydays {
 export const CircleActivitydays: FC<CircleActivitydays> = ({
   userRole,
   isAdmin,
+  isMember,
   circle,
 }) => {
   const [currentMonth, setCurrentMonth] = useState<Date | undefined>(new Date())
@@ -62,11 +64,13 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
           defaultValue={currentMonth}
           onChange={setCurrentMonth}
         />
-        <IconButton
-          as={Link}
-          href={`/circles/${circle?.id}/activities/new`}
-          icon={<PlusIcon />}
-        />
+        {isMember ? (
+          <IconButton
+            as={Link}
+            href={`/circles/${circle?.id}/activities/new`}
+            icon={<PlusIcon />}
+          />
+        ) : undefined}
       </HStack>
       <VStack>
         {loading ? (

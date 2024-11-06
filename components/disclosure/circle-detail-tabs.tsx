@@ -28,6 +28,7 @@ interface CircleDetailTabsProps {
   tabKey?: string
   userId: string
   isAdmin?: boolean
+  isMember?: boolean
   fetchData: () => Promise<void>
 }
 
@@ -52,6 +53,7 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
   membershipRequests,
   userId,
   isAdmin,
+  isMember,
   fetchData,
 }) => {
   const userRole = circle?.members?.find((member) => member.id === userId)?.role
@@ -148,6 +150,7 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
             userId={userId}
             userRole={userRole}
             isAdmin={isAdmin}
+            isMember={isMember}
             circle={circle}
           />
         </TabPanel>
