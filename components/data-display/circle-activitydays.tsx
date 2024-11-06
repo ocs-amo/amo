@@ -20,8 +20,10 @@ import {
   VStack,
 } from "@yamada-ui/react"
 import "dayjs/locale/ja"
+import Link from "next/link"
 import { useState } from "react"
 import { fetchActivitiesByMonth } from "@/actions/circle/fetch-activity"
+import type { getCircleById } from "@/data/circle"
 
 interface CircleActivitydays {
   isAdmin?: boolean
@@ -32,11 +34,13 @@ interface CircleActivitydays {
       }
     | undefined
   userId: string
+  circle: Awaited<ReturnType<typeof getCircleById>>
 }
 
 export const CircleActivitydays: FC<CircleActivitydays> = ({
   userRole,
   isAdmin,
+  circle,
 }) => {
   const [currentMonth, setCurrentMonth] = useState<Date | undefined>(new Date())
   const { value: activitys, loading } = useAsync(async () => {
@@ -58,7 +62,11 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
           defaultValue={currentMonth}
           onChange={setCurrentMonth}
         />
-        <IconButton icon={<PlusIcon />} />
+        <IconButton
+          as={Link}
+          href={`/circles/${circle?.id}/activities/new`}
+          icon={<PlusIcon />}
+        />
       </HStack>
       <VStack>
         {loading ? (
@@ -79,7 +87,7 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
                     </HStack>
 
                     <HStack>
-                      <Text>{activity.location}教室</Text>
+                      <Text>{activity.location}</Text>
                       <Text>
                         {displayTime(activity.startTime)}～
                         {displayTime(activity.endTime)}
