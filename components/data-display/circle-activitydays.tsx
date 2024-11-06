@@ -20,11 +20,14 @@ import {
   VStack,
 } from "@yamada-ui/react"
 import "dayjs/locale/ja"
+import Link from "next/link"
 import { useState } from "react"
 import { fetchActivitiesByMonth } from "@/actions/circle/fetch-activity"
+import type { getCircleById } from "@/data/circle"
 
 interface CircleActivitydays {
   isAdmin?: boolean
+  isMember?: boolean
   userRole:
     | {
         id: number
@@ -32,11 +35,14 @@ interface CircleActivitydays {
       }
     | undefined
   userId: string
+  circle: Awaited<ReturnType<typeof getCircleById>>
 }
 
 export const CircleActivitydays: FC<CircleActivitydays> = ({
-  userRole,
+  userId,
   isAdmin,
+  isMember,
+  circle,
 }) => {
   const [currentMonth, setCurrentMonth] = useState<Date | undefined>(new Date())
   const { value: activitys, loading } = useAsync(async () => {
@@ -58,7 +64,13 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
           defaultValue={currentMonth}
           onChange={setCurrentMonth}
         />
-        <IconButton icon={<PlusIcon />} />
+        {isMember ? (
+          <IconButton
+            as={Link}
+            href={`/circles/${circle?.id}/activities/new`}
+            icon={<PlusIcon />}
+          />
+        ) : undefined}
       </HStack>
       <VStack>
         {loading ? (
@@ -79,14 +91,15 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
                     </HStack>
 
                     <HStack>
-                      <Text>{activity.location}教室</Text>
+                      <Text>{activity.location}</Text>
                       <Text>
-                        {displayTime(activity.startTime)}～
-                        {displayTime(activity.endTime)}
+                        {displayTime(activity.startTime)}
+                        {activity.endTime
+                          ? `～${displayTime(activity.endTime)}`
+                          : undefined}
                       </Text>
-                      {isAdmin &&
-                      userRole?.id !== undefined &&
-                      [0, 1].includes(userRole.id) ? (
+                      <Text>{activity.participants.length}人</Text>
+                      {isMember ? (
                         <Menu>
                           <MenuButton
                             as={IconButton}
@@ -96,9 +109,25 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
                           />
                           <MenuList>
                             <MenuItem>編集</MenuItem>
-                            <MenuItem color="red">削除</MenuItem>
+                            <MenuItem color="red" isDisabled={!isAdmin}>
+                              削除
+                            </MenuItem>
+                            {
+                              /* 参加者かどうか */
+                              activity.participants.some(
+                                (participant) => participant.userId === userId,
+                              ) ? (
+                                <MenuItem>参加をキャンセル</MenuItem>
+                              ) : (
+                                <MenuItem>参加</MenuItem>
+                              )
+                            }
                           </MenuList>
                         </Menu>
+                      ) : activity.participants.some(
+                          (participant) => participant.userId === userId,
+                        ) ? (
+                        <Button>参加をキャンセル</Button>
                       ) : (
                         <Button>参加</Button>
                       )}

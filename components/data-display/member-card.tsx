@@ -50,8 +50,16 @@ export const MemberCard: FC<MemberCard> = ({
   handleRoleChange,
   handleRemoveMember,
 }) => {
-  const { isOpen: isRoleOpen, onOpen: onRoleOpen, onClose: onRoleClose } = useDisclosure()
-  const { isOpen: isRemoveOpen, onOpen: onRemoveOpen, onClose: onRemoveClose } = useDisclosure()
+  const {
+    isOpen: isRoleOpen,
+    onOpen: onRoleOpen,
+    onClose: onRoleClose,
+  } = useDisclosure()
+  const {
+    isOpen: isRemoveOpen,
+    onOpen: onRemoveOpen,
+    onClose: onRemoveClose,
+  } = useDisclosure()
   const [selectedRole, setSelectedRole] = useState<number | null>(null)
   const [selectedRoleName, setSelectedRoleName] = useState<string | null>(null)
 
@@ -74,8 +82,8 @@ export const MemberCard: FC<MemberCard> = ({
 
   // 退会確認モーダルを開く
   const openRemoveDialog = () => {
-    onRemoveOpen();
-  };
+    onRemoveOpen()
+  }
 
   // 退会確認を確定
   const confirmRemoveChange = async () => {
@@ -131,10 +139,7 @@ export const MemberCard: FC<MemberCard> = ({
                       一般
                     </MenuItem>
                     <MenuDivider />
-                    <MenuItem
-                      color="red"
-                      onClick={() => openRemoveDialog()}
-                    >
+                    <MenuItem color="red" onClick={() => openRemoveDialog()}>
                       退会
                     </MenuItem>
                   </>
@@ -156,10 +161,7 @@ export const MemberCard: FC<MemberCard> = ({
                       一般
                     </MenuItem>
                     <MenuDivider />
-                    <MenuItem
-                      color="red"
-                      onClick={() => openRemoveDialog()}
-                    >
+                    <MenuItem color="red" onClick={() => openRemoveDialog()}>
                       退会
                     </MenuItem>
                   </>
@@ -188,9 +190,7 @@ export const MemberCard: FC<MemberCard> = ({
           <Modal isOpen={isRemoveOpen} onClose={onRemoveClose}>
             <ModalOverlay />
             <ModalHeader>サークルの退会確認</ModalHeader>
-            <ModalBody>
-              本当に {member.name} さんを退会させますか？
-            </ModalBody>
+            <ModalBody>本当に {member.name} さんを退会させますか？</ModalBody>
             <ModalFooter>
               <Button onClick={onRemoveClose}>キャンセル</Button>
               <Button colorScheme="danger" onClick={confirmRemoveChange}>

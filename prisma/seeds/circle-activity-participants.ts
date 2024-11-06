@@ -4,11 +4,11 @@ export const circleActivityParticipants = () =>
   db.activityParticipant.createMany({
     data: [
       {
-        activitytId: 1,
+        activityId: 1,
         userId: "user1-uuid",
       },
       {
-        activitytId: 2,
+        activityId: 2,
         userId: "user2-uuid",
       },
     ],
