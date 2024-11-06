@@ -21,20 +21,27 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { Controller, useForm } from "react-hook-form"
 import { addActivityAction } from "@/actions/circle/add-activity"
-import type { getCircleById } from "@/data/circle"
+import { editActivity } from "@/actions/circle/edit-activity"
+import type { getCircleById } from "@/actions/circle/fetch-circle"
+import type { getActivityById } from "@/data/activity"
 import type { ActivityFormType } from "@/schema/activity"
 import { ActivitySchema } from "@/schema/activity"
+import { zeroPadding } from "@/utils/format"
 
 interface ActivityFormProps {
   userId: string
   circleId: string
   circle?: Awaited<ReturnType<typeof getCircleById>>
+  activity?: Awaited<ReturnType<typeof getActivityById>>
+  mode: "create" | "edit"
 }
 
 export const ActivityForm: FC<ActivityFormProps> = ({
   circleId,
   circle,
   userId,
+  activity,
+  mode,
 }) => {
   const {
     register,
@@ -44,28 +51,50 @@ export const ActivityForm: FC<ActivityFormProps> = ({
   } = useForm<ActivityFormType>({
     resolver: zodResolver(ActivitySchema),
     defaultValues: {
-      title: "",
-      description: "",
-      location: "",
-      date: undefined,
-      startTime: "",
-      endTime: "",
-      notes: "",
+      title: activity?.title || "",
+      description: activity?.description || "",
+      location: activity?.location || "",
+      date: activity?.activityDay,
+      startTime: activity?.startTime
+        ? `${activity.startTime.getHours()}:${zeroPadding(activity.startTime.getMinutes())}`
+        : "",
+      endTime: activity?.endTime
+        ? `${activity.endTime.getHours()}:${zeroPadding(activity.endTime.getMinutes())}`
+        : "",
+      notes: activity?.notes || "",
     },
   })
+
   const { snack, snacks } = useSnacks()
   const [isLoading, { on: start, off: end }] = useBoolean()
   const router = useRouter()
   const onSubmit = async (data: ActivityFormType) => {
     start()
-    const result = await addActivityAction(data, circleId, userId)
-    if (result.success) {
-      router.push(`/circles/${circleId}/activities`)
-    } else {
-      snack({
-        title: result.error || "活動日の登録に失敗しました。",
-        status: "error",
-      })
+    if (mode === "create") {
+      const result = await addActivityAction(data, circleId, userId)
+      if (result.success) {
+        router.push(`/circles/${circleId}/activities`)
+      } else {
+        snack({
+          title: result.error || "活動日の登録に失敗しました。",
+          status: "error",
+        })
+      }
+    } else if (mode === "edit") {
+      const result = await editActivity(
+        data,
+        circleId,
+        userId,
+        activity?.id || 0,
+      )
+      if (result.success) {
+        router.push(`/circles/${circleId}/activities`)
+      } else {
+        snack({
+          title: result.error || "活動日の更新に失敗しました。",
+          status: "error",
+        })
+      }
     }
     end()
   }
@@ -275,7 +304,7 @@ export const ActivityForm: FC<ActivityFormProps> = ({
             キャンセル
           </Button>
           <Button type="submit" isLoading={isLoading}>
-            追加
+            {mode === "create" ? "追加" : "更新"}
           </Button>
         </Center>
       </VStack>

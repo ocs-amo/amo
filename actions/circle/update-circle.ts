@@ -1,11 +1,12 @@
 "use server"
+import { getUserById } from "../user/user"
+import { auth } from "@/auth"
 import {
   getMemberByCircleId,
   updateInstructors,
   updateTags,
   updateCircle,
 } from "@/data/circle"
-import { getUserById } from "@/data/user"
 import type { BackCircleForm } from "@/schema/circle"
 import { BackCircleSchema } from "@/schema/circle"
 
@@ -14,6 +15,16 @@ export const UpdateCircle = async (
   circleId: string,
   userId: string,
 ) => {
+  // 認証情報を取得
+  const session = await auth()
+
+  // 認証されたユーザーIDとリクエストのuserIdが一致しているか確認
+  if (!session?.user || session.user.id !== userId) {
+    return {
+      success: false,
+      message: "権限がありません。",
+    }
+  }
   // バリデーションの実行
   const { success, error } = BackCircleSchema.safeParse(values)
   if (!success && error) {
