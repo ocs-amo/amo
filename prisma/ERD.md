@@ -78,11 +78,11 @@ erDiagram
   "Activity" {
     Int id "🗝️"
     String title
-    String description
+    String description "❓"
     DateTime activityDay
     String location
     DateTime startTime
-    DateTime endTime
+    DateTime endTime "❓"
     String notes "❓"
     DateTime createdAt
     DateTime updatedAt

@@ -93,8 +93,10 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
                     <HStack>
                       <Text>{activity.location}</Text>
                       <Text>
-                        {displayTime(activity.startTime)}～
-                        {displayTime(activity.endTime)}
+                        {displayTime(activity.startTime)}
+                        {activity.endTime
+                          ? `～${displayTime(activity.endTime)}`
+                          : undefined}
                       </Text>
                       {isAdmin &&
                       userRole?.id !== undefined &&
