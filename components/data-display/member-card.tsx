@@ -179,9 +179,9 @@ export const MemberCard: FC<MemberCard> = ({
           {/* 退会確認モーダル */}
           <Modal isOpen={removeDialogDisclosure.isOpen} onClose={removeDialogDisclosure.onClose}>
             <ModalOverlay />
-            <ModalHeader>退会の確認</ModalHeader>
+            <ModalHeader>サークルの退会確認</ModalHeader>
             <ModalBody>
-              {member.name} さんを本当に退会させますか？
+              本当に {member.name} さんを退会させますか？
             </ModalBody>
             <ModalFooter>
               <Button onClick={removeDialogDisclosure.onClose}>キャンセル</Button>
