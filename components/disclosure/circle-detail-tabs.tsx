@@ -21,6 +21,7 @@ import {
 } from "@/actions/circle/membership-request"
 import { changeMemberRole } from "@/actions/circle/update-role"
 import type { getCircleById } from "@/data/circle"
+import { useEffect } from "react"
 
 interface CircleDetailTabsProps {
   circle: Awaited<ReturnType<typeof getCircleById>>
@@ -54,6 +55,9 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
   isAdmin,
   fetchData,
 }) => {
+  useEffect(() => {
+    document.title = tabKey + " - " + circle?.name;
+  },[]);
   const userRole = circle?.members?.find((member) => member.id === userId)?.role
   const tabIndex = handlingTab(tabKey || "")
   const { data } = membershipRequests
