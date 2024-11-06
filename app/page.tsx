@@ -23,6 +23,12 @@ import { auth } from "@/auth"
 import { CircleCard } from "@/components/data-display/circle-card"
 import { getCirclesByUserId } from "@/data/circle"
 import { getUserById } from "@/data/user"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "amo - ホーム",
+  description: "amo - ホーム",
+}
 
 const notificationMockData = [
   {

@@ -14,11 +14,14 @@ import {
   VStack,
 } from "@yamada-ui/react"
 import Link from "next/link"
-import { useRef } from "react"
+import { useEffect, useRef } from "react"
 import { CircleCard } from "@/components/data-display/circle-card"
 import { getCircles } from "@/data/circle"
 
 const CirclesPage = () => {
+  useEffect(() => {
+    document.title = "amo - サークル一覧";
+  },[]);
   const { value } = useAsync(async () => {
     return await getCircles()
   }, [])
