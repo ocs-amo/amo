@@ -45,7 +45,6 @@
     "@octokit/request-error": "^6.1.5",
     "@octokit/rest": "^21.0.2",
     "@prisma/client": "^5.22.0",
-    "@types/date-fns": "^2.6.3",
     "@types/eslint__js": "^8.42.3",
     "@types/node": "^20.17.6",
     "@types/react": "^18.3.12",
