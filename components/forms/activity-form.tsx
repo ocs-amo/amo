@@ -62,7 +62,6 @@ export const ActivityForm: FC<ActivityFormProps> = ({
     if (result.success) {
       router.push(`/circles/${circleId}/activities`)
     } else {
-      alert(result.error || "活動日の登録に失敗しました。")
       snack({
         title: result.error || "活動日の登録に失敗しました。",
         status: "error",
