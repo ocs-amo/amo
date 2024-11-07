@@ -77,6 +77,16 @@ export const MemberCard: FC<MemberCard> = ({
     onRemoveOpen();
   };
 
+  // 退会確認を確定
+  const confirmRemoveChange = async () => {
+    if (userId !== null) {
+      onRemoveClose()
+      await handleRemoveMember(member.id)
+      setSelectedRole(null)
+      setSelectedRoleName("")
+    }
+  }
+
   return (
     <GridItem w="full" rounded="md" as={Card}>
       <CardBody>
@@ -185,7 +195,7 @@ export const MemberCard: FC<MemberCard> = ({
             </ModalBody>
             <ModalFooter>
               <Button onClick={onRemoveClose}>キャンセル</Button>
-              <Button colorScheme="danger" onClick={() => handleRemoveMember(member.id)}>
+              <Button colorScheme="danger" onClick={confirmRemoveChange}>
                 退会
               </Button>
             </ModalFooter>
