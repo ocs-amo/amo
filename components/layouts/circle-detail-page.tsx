@@ -99,6 +99,7 @@ export const CircleDetailPage: FC<{
           membershipRequests={requests}
           userId={userId}
           isAdmin={isAdmin}
+          isMember={isMember}
           fetchData={fetchData}
         />
       </VStack>

@@ -10,6 +10,7 @@ const createActivity = (
   startHour: number, // 開始時間の時刻（24時間制）
   endHour: number, // 終了時間の時刻（24時間制）
   notes: string = "", // 任意の備考
+  createdBy: string,
 ) => {
   // 現在の日付を取得
   const now = new Date()
@@ -35,6 +36,7 @@ const createActivity = (
     endTime,
     location,
     notes,
+    createdBy,
   }
 }
 
@@ -51,6 +53,7 @@ export const circleActivities = () =>
         15, // 開始時間: 15:00
         18, // 終了時間: 18:00
         "代表は用事のためいません",
+        "user1-uuid",
       ),
       createActivity(
         "circle00-uuid",
@@ -59,7 +62,9 @@ export const circleActivities = () =>
         "404教室",
         5, // 今日から5日後
         14, // 開始時間: 14:00
-        17, // 終了時間: 17:00
+        17, // 終了時間: 17:00,
+        "",
+        "user1-uuid",
       ),
     ],
   })

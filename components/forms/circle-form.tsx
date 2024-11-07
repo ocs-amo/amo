@@ -36,7 +36,7 @@ import { CreateCircle } from "@/actions/circle/create-circle"
 import { removeCircle } from "@/actions/circle/delete-circle"
 import { UpdateCircle } from "@/actions/circle/update-circle"
 import { type getCircleById } from "@/data/circle"
-import { BackCircleSchem, FrontCircleSchem } from "@/schema/circle"
+import { BackCircleSchema, FrontCircleSchema } from "@/schema/circle"
 import type { FrontCircleForm } from "@/schema/circle"
 
 interface CircleFormProps {
@@ -119,7 +119,7 @@ export const CircleForm: FC<CircleFormProps> = ({
     control,
     formState: { errors },
   } = useForm<FrontCircleForm>({
-    resolver: zodResolver(FrontCircleSchem),
+    resolver: zodResolver(FrontCircleSchema),
     defaultValues: {
       name: circle?.name,
       description: circle?.description,
@@ -138,7 +138,7 @@ export const CircleForm: FC<CircleFormProps> = ({
       success,
       error,
       data: parseData,
-    } = BackCircleSchem.safeParse(values)
+    } = BackCircleSchema.safeParse(values)
 
     if (!success) {
       // エラーメッセージを表示
