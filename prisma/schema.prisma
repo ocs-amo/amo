@@ -24,12 +24,13 @@ model User {
     profileText    String? // Optional: Markdown profile text
     instructorFlag Boolean  @default(false) // Indicates if the user is an instructor
 
-    accounts           Account[] // One-to-many relationship with Account (for OAuth)
-    CircleMember       CircleMember[]
-    CircleInstructor   CircleInstructor[] // New relation for instructors
-    MembershipRequests MembershipRequest[] // ユーザーが送信したメンバーシップリクエスト
-    ProcessedRequests  MembershipRequest[] @relation("ProcessedBy") // 管理者として処理したリクエスト
-    createdActivities  Activity[]          @relation("UserCreatedActivities")
+    accounts            Account[] // One-to-many relationship with Account (for OAuth)
+    CircleMember        CircleMember[]
+    CircleInstructor    CircleInstructor[] // New relation for instructors
+    MembershipRequests  MembershipRequest[] // ユーザーが送信したメンバーシップリクエスト
+    ProcessedRequests   MembershipRequest[]   @relation("ProcessedBy") // 管理者として処理したリクエスト
+    createdActivities   Activity[]            @relation("UserCreatedActivities")
+    ActivityParticipant ActivityParticipant[]
 
     @@index([email]) // Optional: Index on email
 }
@@ -155,13 +156,15 @@ model Activity {
 
 model ActivityParticipant {
     id          Int       @id @default(autoincrement())
-    activitytId Int // イベントID、外部キー
+    activityId Int // イベントID、外部キー
     userId      String // ユーザーID
     joinedAt    DateTime  @default(now()) // 参加日時
     removedAt   DateTime? // 参加辞退日時（オプション）
 
     // イベントとのリレーション
-    Activity Activity @relation(fields: [activitytId], references: [id], onDelete: Cascade)
+    Activity Activity @relation(fields: [activityId], references: [id], onDelete: Cascade)
+    // ユーザーとのリレーション
+    user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-    @@index([activitytId, userId]) // 検索を高速化するための複合インデックス
+    @@index([activityId, userId]) // 検索を高速化するための複合インデックス
 }

@@ -39,7 +39,7 @@ interface CircleActivitydays {
 }
 
 export const CircleActivitydays: FC<CircleActivitydays> = ({
-  userRole,
+  userId,
   isAdmin,
   isMember,
   circle,
@@ -98,9 +98,8 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
                           ? `～${displayTime(activity.endTime)}`
                           : undefined}
                       </Text>
-                      {isAdmin &&
-                      userRole?.id !== undefined &&
-                      [0, 1].includes(userRole.id) ? (
+                      <Text>{activity.participants.length}人</Text>
+                      {isMember ? (
                         <Menu>
                           <MenuButton
                             as={IconButton}
@@ -110,9 +109,25 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
                           />
                           <MenuList>
                             <MenuItem>編集</MenuItem>
-                            <MenuItem color="red">削除</MenuItem>
+                            <MenuItem color="red" isDisabled={!isAdmin}>
+                              削除
+                            </MenuItem>
+                            {
+                              /* 参加者かどうか */
+                              activity.participants.some(
+                                (participant) => participant.userId === userId,
+                              ) ? (
+                                <MenuItem>参加をキャンセル</MenuItem>
+                              ) : (
+                                <MenuItem>参加</MenuItem>
+                              )
+                            }
                           </MenuList>
                         </Menu>
+                      ) : activity.participants.some(
+                          (participant) => participant.userId === userId,
+                        ) ? (
+                        <Button>参加をキャンセル</Button>
                       ) : (
                         <Button>参加</Button>
                       )}
