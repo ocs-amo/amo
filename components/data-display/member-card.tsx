@@ -50,8 +50,8 @@ export const MemberCard: FC<MemberCard> = ({
   handleRoleChange,
   handleRemoveMember,
 }) => {
-  const roleDialogDisclosure = useDisclosure();
-  const removeDialogDisclosure = useDisclosure();
+  const { isOpen: isRoleOpen, onOpen: onRoleOpen, onClose: onRoleClose } = useDisclosure()
+  const { isOpen: isRemoveOpen, onOpen: onRemoveOpen, onClose: onRemoveClose } = useDisclosure()
   const [selectedRole, setSelectedRole] = useState<number | null>(null)
   const [selectedRoleName, setSelectedRoleName] = useState<string | null>(null)
 
