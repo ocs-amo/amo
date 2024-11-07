@@ -47,7 +47,10 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
   const [currentMonth, setCurrentMonth] = useState<Date | undefined>(new Date())
   const { value: activitys, loading } = useAsync(async () => {
     if (!currentMonth) return
-    const { events } = await fetchActivitiesByMonth(currentMonth)
+    const { events } = await fetchActivitiesByMonth(
+      currentMonth,
+      circle?.id || "",
+    )
     return events
   }, [currentMonth])
 
