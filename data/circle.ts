@@ -323,6 +323,16 @@ export const getCircleById = async (id: string) => {
             user: true, // 関連するユーザー情報を含める
             role: true,
           },
+          orderBy: [
+            {
+              roleId: "asc",
+            },
+            {
+              user: {
+                name: "asc",
+              },
+            },
+          ],
         },
         CircleInstructor: {
           include: {

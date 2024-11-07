@@ -103,8 +103,8 @@ importers:
         specifier: ^1.7.0
         version: 1.7.0(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@yamada-ui/react':
-        specifier: ^1.5.4
-        version: 1.5.4(@emotion/is-prop-valid@1.3.1)(@emotion/react@11.11.0(@types/react@18.3.10)(react@18.3.1))(@emotion/styled@11.11.0(@emotion/react@11.11.0(@types/react@18.3.10)(react@18.3.1))(@types/react@18.3.10)(react@18.3.1))(@types/react@18.3.10)(framer-motion@11.3.24(@emotion/is-prop-valid@1.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^1.6.2
+        version: 1.6.2(@emotion/is-prop-valid@1.3.1)(@emotion/react@11.11.0(@types/react@18.3.10)(react@18.3.1))(@emotion/styled@11.11.0(@emotion/react@11.11.0(@types/react@18.3.10)(react@18.3.1))(@types/react@18.3.10)(react@18.3.1))(@types/react@18.3.10)(framer-motion@11.3.24(@emotion/is-prop-valid@1.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       eslint:
         specifier: ^9.9.1
         version: 9.11.1(jiti@1.21.6)
@@ -1225,38 +1225,33 @@ packages:
     peerDependencies:
       '@eslint/config-array': '>=0.16.0'
 
-  '@yamada-ui/accordion@2.0.11':
-    resolution: {integrity: sha512-bOl+ojH7nDcBHz5/MyE2ePVTpy86a/BRKaWDTj2btYT58L7x7QiAt/hTiFbhkvBy7cO1/GtfXZLyZp8xVBNnNQ==}
+  '@yamada-ui/accordion@2.0.14':
+    resolution: {integrity: sha512-rzXkatRQi5kFyRIkJj79RteSqUQ+b7foktvDu+XTW++wUB8jYYCtqZyXJdJcU0n60Z4ou6Lael2+5g4kPFIOUA==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/alert@1.0.42':
-    resolution: {integrity: sha512-6G/ohOrfuC61ESjOqQKDR9PNDrdWM53gk74kZFZx9epwc7WRkxXNnlToNNHJSadiPzHCyUisPR/xzrF4QHe5ew==}
+  '@yamada-ui/alert@1.1.2':
+    resolution: {integrity: sha512-96nwCXt4h9EVmI7YEKcvKSVQfmw3dEvqO3nryKvihYSkS5OitnIt180NBIzEg8FAhIy8re96WMz9dB4DVegDsg==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/autocomplete@1.6.0':
-    resolution: {integrity: sha512-XoD3iEM0ILgL3OhV9RHU7HxJ+q/vtcAfLb3A3uneBdkF6LdB3taF4HnuJq6s+pbfc7LvAqZTzqkNDLgvZZWicw==}
+  '@yamada-ui/autocomplete@1.6.3':
+    resolution: {integrity: sha512-T7xXKcsIgy7qEeAEEbwRRsjL1iH7s/dsCGeWz5eOH4qiVmPVvquKFXGR/Bi3K2HHr+GsjeWcfHVj1vvmVB6V3A==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/avatar@1.2.10':
-    resolution: {integrity: sha512-iA/NMSlQMgolLtsk/6GSHXfenMGnTnLl5k9Eacq1eL5LJW+Ik7WPIT5n9GPB36j//ixt6aiK2w5zgtKMeDakDA==}
+  '@yamada-ui/avatar@1.2.13':
+    resolution: {integrity: sha512-iy3qhvw5Dot+jUho3w3hhyGwtMKMaJmow1j5k8CMjH6HpmOVaBhjrtC1RBpVod3gDpM8ZweLsu1LgxGRrNWHSg==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/badge@1.0.39':
-    resolution: {integrity: sha512-Z02O5l0Iv4SPh9z0rZgtLCCBkCGR0e22CyE7hjFOSrNHbj10n83cCaOoXHgq+6vq6EWiNNFpOzU3dhauZvYPTA==}
+  '@yamada-ui/badge@1.0.41':
+    resolution: {integrity: sha512-66BN5VJPaXSfN6HqoB/GRUiEOrLmSzSAPkreqB2Y4/xfk6TuqEBUgOHfrvCY1jrWTiBLHcPbCa4aWrjQ7A7e9g==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/breadcrumb@1.3.13':
-    resolution: {integrity: sha512-vzX45LblxPzSlPObAAFy0HaIxCjvoRxiyPtAI1Y5V4S6qlXLN10VD80IvrG6a4u9+Az404pIwogHd+1C2FcV4A==}
-    peerDependencies:
-      react: '>=18'
-
-  '@yamada-ui/button@1.0.44':
-    resolution: {integrity: sha512-w6HZ1CnSMmDHR63aLZu9HnBpYe+WhP6nt3uozQ5b1mV1GM5KBsmQ/CCcpTYB1Pe46NgPXN2ckHYPtiQmwNGPxg==}
+  '@yamada-ui/breadcrumb@1.3.16':
+    resolution: {integrity: sha512-QExGFuFvhhu7MC3jF3R5q5Paz+48kgLjFxH/y6RppwaXFE7GN+tHJ3RgNcAloZDBU5uGEuFfKsQw0Wn81TMS6g==}
     peerDependencies:
       react: '>=18'
 
@@ -1265,23 +1260,23 @@ packages:
     peerDependencies:
       react: '>=18'
 
+  '@yamada-ui/button@1.0.48':
+    resolution: {integrity: sha512-2D2UEjqw4S6NYbD1FquU6rPA+7t4EQ6GFBxSGu5Zqo/v+41IvKT6O432GnDge9rsplUvf8kNCIHMpCmo+gksJA==}
+    peerDependencies:
+      react: '>=18'
+
   '@yamada-ui/calendar@1.8.5':
     resolution: {integrity: sha512-n41E+JXwWMXDR3a1ZlI3z6MOqK6+KVCU1l+5p4QLMx3zjXD16pxJ9ArumlB1pMQpK2+M2Dxslw0W0ygIxVLmcQ==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/card@1.0.41':
-    resolution: {integrity: sha512-Pq7zIkiizmdKjVykdFAMY+tJOPZJxuhccfFPO/pWTtgq7bzz3iaFptE8PyPZFvvraAmn2XzcM/NFSGHQtBf44w==}
+  '@yamada-ui/card@1.0.43':
+    resolution: {integrity: sha512-AgzaQvFE8Lp4LRbNvPIBDsN0+Su1I+ewg8VNZIOi4I5U7I/5dSSUJDq2CxhLjl68cX0nugGXtXBuwa9EDdIkRg==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/checkbox@1.1.10':
-    resolution: {integrity: sha512-5N2OeIKm6GEd2SncyVDdW7Q5oiMsPXzDqY1cQOQcfLF/6nSM5JiBIrlpev0y8Ijgtr5z3TnG18ySS/NdDg/Vog==}
-    peerDependencies:
-      react: '>=18'
-
-  '@yamada-ui/close-button@1.0.42':
-    resolution: {integrity: sha512-hMuMcBsDyF9Jvd/Tu2nJEwcPlIMfM8nKe6ShgD3Ki2ApxrJ3SQSjWWmQO5nVsW5aaBhVgBKJVr0rTbypfC+04Q==}
+  '@yamada-ui/checkbox@1.1.12':
+    resolution: {integrity: sha512-uil8I2FvxZlmygzWgFSiKeFQY4yyOXZWQ2gxWDb07f2dVp8Du6IMzlf/x+e1dBKH7oGPDf7+a5USPKtq4NaC5A==}
     peerDependencies:
       react: '>=18'
 
@@ -1290,8 +1285,8 @@ packages:
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/color-picker@1.4.4':
-    resolution: {integrity: sha512-y5epNcpRw+cnxRiMPd00AXLRkD8V0KCGnMeAtC6bnxVvXeVDXsrlib94FKckL9i6uxEuYd/QLtMRanaWqd0Usw==}
+  '@yamada-ui/color-picker@1.4.8':
+    resolution: {integrity: sha512-a6x72ph6/Y9pPGqbd+KfgkDtsInHEF78Aqbj8wuBpVCQayEkm2yLnQwY9fhbrkQC7wakL8oWctDzOtidWJ+6WQ==}
     peerDependencies:
       react: '>=18'
 
@@ -1305,28 +1300,23 @@ packages:
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/editable@1.0.45':
-    resolution: {integrity: sha512-dKFjE4tvgNTopQ0eh/JG+vVykekHWVlNQV4VDOsIfh+tKBf+iFF5g7JWedVhZPofXWTJc/b8PMA9HucVqOKYHQ==}
+  '@yamada-ui/editable@1.0.47':
+    resolution: {integrity: sha512-ECY81+SRt5/Re91rP6zeGgcLfUQ10PH03GOnp6h0sBktMd62Pio/HecqYZpCwPUySET6/8DwG3mPzzJBFtd92g==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/file-button@1.1.7':
-    resolution: {integrity: sha512-GYOTKnja6nRVqTiTQ1KxRCPJFrxMSlfzcx4DMxoRih2vNxjX6JoXPvsPb+gBf3Pb6/4jdygAqJmdt1C9fwLi/A==}
+  '@yamada-ui/file-button@1.1.11':
+    resolution: {integrity: sha512-3hYxWJtWQhWtZkaEQqMYZVG+3zPU2gSvqT8KZsUkGyClX4jZIQVdNvprNtaxsa9g2hmq48ntE3uzZPb9TOCD/A==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/file-input@1.0.44':
-    resolution: {integrity: sha512-yv1/KolilSo3v/NbQUiiNj4FA8SfZLXjK5cnZ2W6hZ4lQHpqtyXQDZ722VXSGgTopakJkFQ2hct74rvp1+cHqQ==}
+  '@yamada-ui/file-input@1.0.46':
+    resolution: {integrity: sha512-l2n6t4a9xe71++9MBE2wRWZSGsAA37/dVOPMiwcmLCMSO95lJujl/GX7cJ/cSidYxtAIBh+zqrwcqcOSzwUiSg==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/focus-lock@1.0.23':
-    resolution: {integrity: sha512-lpKfFHlaxDNcpyyfy1UsiVlkA7+UsE5aVmYluyWF8WTrmuGbSvyF8WbEjUxudABb9ic++ATjrc28LoNmzk3nNA==}
-    peerDependencies:
-      react: '>=18'
-
-  '@yamada-ui/form-control@2.1.4':
-    resolution: {integrity: sha512-xQ9/K6sY2qfsueBJQFcnuzWkccyEq1jJV/yyNwsjUAWvj1skL7IbOVBrW8brn1bJOwOa9978IFMSmnM7e3wY5g==}
+  '@yamada-ui/focus-lock@1.0.24':
+    resolution: {integrity: sha512-8qtoOiDmsaHnLzmVWf0C9RLguxJXFWwaRkoXH7ZhRnU5+vNatTNg8iJdd3ATQ6Tq6E86r1Np/apTuwU9wpwOhA==}
     peerDependencies:
       react: '>=18'
 
@@ -1335,8 +1325,8 @@ packages:
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/highlight@1.0.39':
-    resolution: {integrity: sha512-V5uVSXXtBnitENtwItrkUUCKlVhvvZdbNLJYzqJFUAJPqQfJeN6bNrLPJxWV3VN9SNGFjvrxvil7KeDMmJSpBQ==}
+  '@yamada-ui/highlight@1.0.41':
+    resolution: {integrity: sha512-JkAzhY8sl4gJAd1MehGzSwWPhUWXUsoNqAEiRruT+KmIm4v16DWecA8lRmsivXj9vlLgcl1+WynJY9Nr0J77cg==}
     peerDependencies:
       react: '>=18'
 
@@ -1350,48 +1340,43 @@ packages:
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/image@1.3.0':
-    resolution: {integrity: sha512-x5WasmzxoxLdp8pCXy+kYBWSuGjHyryX5fs/TmlVNjx5kpTOlIvJpzIYFZGhc1OgVJ85LH6giIzbo959AtS/wQ==}
+  '@yamada-ui/image@1.3.2':
+    resolution: {integrity: sha512-cteuO+tnxeTQMnazs2aPW3Avm6EryV1OH4+fSAkxr4DH3NUqC06m0DS/NWGsRjUFp0yUIRyyuxxM4Kqw6fnjSA==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/indicator@1.1.39':
-    resolution: {integrity: sha512-xyjweQYsLddPtbKbIbI18lgV0wC5quD7qCikfC4uuUOJYG6b9lJtBHjQqo9IFeQyHNkJ1I+GLWI4Jsp4E3N8Kg==}
+  '@yamada-ui/indicator@1.1.41':
+    resolution: {integrity: sha512-90973PvfUkXzD6E8NmokWE2lORkD/63JgFGes1w4ObUGMxThCggsJCIFTN2rOqZ5q9SEiCreaHrnBnsR8PshvA==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/infinite-scroll-area@1.2.8':
-    resolution: {integrity: sha512-biM16ZVrbkED25+mE+oSeDtKgFt5aH9T7lflc8rB4NI5hnkWc7bqTInAblUCJw5JUc28Yxmf2vq9zpaE7Mc3+g==}
+  '@yamada-ui/infinite-scroll-area@1.2.10':
+    resolution: {integrity: sha512-zku/vwcEgpwAbDR5vCYpHToefLVWSSoy6Wk3Zlfr0mDmRddUEm8FN1T3Jo+2mz/SD4buf7ILrYCAynBYHS9tTg==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/input@1.0.44':
-    resolution: {integrity: sha512-oe9a+7NwJdHX9WcFD9OW8vnN0Rc74boSQbIbCvwFgRDnGVI54cPJrtTmjQN4mcgt8Ie4jcYKy9dG1K1HTMFtzg==}
+  '@yamada-ui/input@1.0.46':
+    resolution: {integrity: sha512-OyB5ohcdhwWxzV6j9Jo5ARA7Ao9ziSNwYm1RCDnD1UXDRHfWbG8gDFcMFdjkRY8XVR2h7MdIwObES/pKuan8xQ==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/kbd@1.0.39':
-    resolution: {integrity: sha512-6R2KplMFr1tztw+LCo1b/5YweXLL+Q2KKaVwca6UKrJlqK6jqTSa97eTSKUnO/dqKQX8LwomHW5NvON2lxt42g==}
+  '@yamada-ui/kbd@1.0.41':
+    resolution: {integrity: sha512-6vdqkzsvj+HhScWsWGdOSJp5ysX38Ob/ofhswSVt3rq+oE58eh1t7giam5HNCZnkO2pIzdNK0/LQ1kA90pAblA==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/layouts@1.1.37':
-    resolution: {integrity: sha512-EK0bL7WA70d9igup7Ma3t1h1wzAEyGegmrWBYe0jS2Ul2RuvQkpOW/JrqNn42gKpwpWpSEKxsZ9lo2xQOy5Jlw==}
+  '@yamada-ui/layouts@1.2.0':
+    resolution: {integrity: sha512-Rq1Vtd81ueAlXx5Kr57yIjxWedvxE+0aMyCy9VP4KTmPa0VvKM8TzlHYtcp97mCLjavXfgJkfUtD3wf2Qd+S5Q==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/link@1.0.39':
-    resolution: {integrity: sha512-0JZAbOxAa1gpY9GVd860DXUiwmCefnFnPl8T3UxJ88M0VZbji8WHYYQx4oeQZBxo3go/JH0Prk60Zsokcz4hGw==}
+  '@yamada-ui/link@1.0.41':
+    resolution: {integrity: sha512-ECQEPuUhljtrVj9KjvrPjsF0dPgjTHx8LcQ2FkE1aX5q/69BCgdqGjEoUEZcq/nOxh9kDKI0R6avQJF55WmNhA==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/list@1.0.41':
-    resolution: {integrity: sha512-Vit0mOsDm9xwUjCZiDZEurqmbKFK/2uq4DIYwC2dH4Cz7CuyCOfewnU6jnuyWZn2iXtikFjYgzpnWkbNq96a8A==}
-    peerDependencies:
-      react: '>=18'
-
-  '@yamada-ui/loading@1.1.18':
-    resolution: {integrity: sha512-UagaTAJ08CaYpueuRkzD02DtuPoThK6ZcDt0lKwg6pJyPPEkpmzIjvnW6rj+gbnhtXAFZoxjkxGUacBBkCl31g==}
+  '@yamada-ui/list@1.0.44':
+    resolution: {integrity: sha512-yQxLsgJuNEE+0JKrnPJuQpnhHRUYecJfnI1rRwMsIp7ar5EBdAIt1zmKMsH1IggS478Zyh8Sgcb+UTDh8VCKRw==}
     peerDependencies:
       react: '>=18'
 
@@ -1400,23 +1385,28 @@ packages:
     peerDependencies:
       react: '>=18'
 
+  '@yamada-ui/loading@1.1.22':
+    resolution: {integrity: sha512-eVnuzQYCM8mwB4VM6t/y3sCeqGcbA3W9FmleYS8En3IRKZwibVlzsVTO9ilzGmozn1kNQ6RSIXDEfelDzR6qxw==}
+    peerDependencies:
+      react: '>=18'
+
   '@yamada-ui/lucide@1.7.0':
     resolution: {integrity: sha512-Q0LE/aZqw7lEJW21p+KpeorEakrT6k5OZB/9lY0CcS8aGoS4IgM5ey2x4+UMCrMnJd9JPVpgw7Dz72FyLnX+pQ==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/menu@1.3.15':
-    resolution: {integrity: sha512-qVxMezaq0e/PAAFbZ/rSTfAS3VwcDEaZpJ2MZOenBqcw+R0JPjOVec7JuUct3n1PxoKCK0wsUtPfIquMF3cCTg==}
+  '@yamada-ui/lucide@1.7.3':
+    resolution: {integrity: sha512-9Ja2YWV7g+1WYss1sBNVJ45dqlyvNKNYTc0iGMiQaVZm2aKjXYlNVWajy8sR/hoy666kOlNl3vAT6i6/8ev4eA==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/modal@1.3.12':
-    resolution: {integrity: sha512-43EVhC1Gi4zFqT7kXXZhrOTQJ0PrnC0Q+iXEKXupyVDLnhCnWv+3L0yLL7skoCOVUcwTnvbhAvNimXxTIwqxsA==}
+  '@yamada-ui/menu@1.3.18':
+    resolution: {integrity: sha512-Vxm8svaW6eyaARKfuYCj5OvAMga9H0+IDcxA4qSY9nzH1LVpgbla69T0xnauck7rN3wKRLIeidWVKyI5A7VKBQ==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/motion@2.2.4':
-    resolution: {integrity: sha512-TGt+ytY7rmueURr/AulN60cIYiSB5KjDWoyODbSRWJl0iJopfovUwHO0DcJJR8lwbj39vmDIkj89wtqx3JywLg==}
+  '@yamada-ui/modal@1.4.3':
+    resolution: {integrity: sha512-ntdnPGVRxhO/i9OYoaVgJrMGh8LC8FxWhsqZyhCXVGcjgt/iByc1LDVnp5SIX1JJxPvA6LxX3kksXEQtrKrd1Q==}
     peerDependencies:
       react: '>=18'
 
@@ -1425,38 +1415,33 @@ packages:
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/native-select@1.0.46':
-    resolution: {integrity: sha512-J8EEr1o6+Z/u229REmddojlXvzCkiAps0U+cRsTg4qh0Kp06CdA22Vu0ILlkP0hC21G6C3CJJPEkHkhussrOkQ==}
+  '@yamada-ui/native-select@1.0.49':
+    resolution: {integrity: sha512-Tyv6VmvW9/rDhFM5y12DXwIp9ehoNGQ/TF5M8avFQRn+GvInMwwLZGZThHzYNDbk9My39uIK0jgqfLifVzzFjg==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/native-table@1.0.41':
-    resolution: {integrity: sha512-ILq9t3wlq7dE4qDogtjQ2aGrGuj6gCeNBlDhKq7XRy5hmQM/uX7JorxDjEEho603UbIkOYsnQCbC1yZfxoCqIw==}
+  '@yamada-ui/native-table@1.0.43':
+    resolution: {integrity: sha512-vjm5uaYdRCluWNI6+q1bQENtvbCsLTJvHHIp8UzfygeqIF/cFzwhpElcTIEV6VOM3elEQ/V8Aryt/nxofF322A==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/notice@1.1.5':
-    resolution: {integrity: sha512-VSOcVHxI2l9H3nA/DJKBPXUloyNINnlNLRqPkgq3Zzc+kxI9u31/mC9RNmDFrkkavtCC8XYOI0rulXoB/Fb2bw==}
+  '@yamada-ui/notice@1.1.9':
+    resolution: {integrity: sha512-UoY0dgUfpZGYPaKbCq/BLjvc11CYaW8RCEXltg3qsK4Ohzo+BjY+7CFqkpSoWwW1jdR6Pc2oi6fs6jhHyylUqg==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/number-input@1.1.16':
-    resolution: {integrity: sha512-bmQGT35fmvUrHqishM4kxDcMpiNNQ5fDT+KLlzOHa2Snu0wZB5lNnoMbBm2UbBUFNQ+SUXf+Suohm+f+PaL4rA==}
+  '@yamada-ui/number-input@1.1.19':
+    resolution: {integrity: sha512-XBFaS6hIBFhEFjRLIqgupqJFEzU9u3M+XC7z4pTmBW7J9/tnYtwUijduoOzGV7UE0WLTrPeOu4H7ryF1QAmJ9w==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/pagination@1.0.42':
-    resolution: {integrity: sha512-VjbKk2GUMPdP+qUuc8u1x4SMmC3Wha3VYKncwjYHLsGGQEiiH4XsNntPSBnfMlCxx4RJn7wnlRgwtchSbbvzlA==}
+  '@yamada-ui/pagination@1.1.2':
+    resolution: {integrity: sha512-ipKwj/S/UaCvBp3J7+wTJhSeKMAvVT7msWRZi/mnAvFjd3JUaVo6tLpeijtoQ9k7A1Z9k6KcHIvfkVxkL7geXA==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/pin-input@1.0.43':
-    resolution: {integrity: sha512-PZJnLHPhcL3nVyel0sypQs/OXBpFr/uXAgXlachptOugiEJscCg2boIVF7n3f8jRqvrE4/3lz1wIs6jlXZtAyA==}
-    peerDependencies:
-      react: '>=18'
-
-  '@yamada-ui/popover@1.3.4':
-    resolution: {integrity: sha512-U2h3bIwZkZZx2aHqw99FeTRRWyXuaVlydYGx4mAaOfq9k+77poLkZw8gZTEn53/WoOiO96B/tqdJAMDk0ekY6A==}
+  '@yamada-ui/pin-input@1.1.1':
+    resolution: {integrity: sha512-dlszm1NJg9uovMXss/nGxGoaG+q5TzfcUmhc8UKFCf8cp/J0lKfJp8ndGL1nHWOdiCK6L6FQGerpyK2wcZjvgg==}
     peerDependencies:
       react: '>=18'
 
@@ -1477,31 +1462,31 @@ packages:
       react: '>=18'
       react-dom: '>=18'
 
-  '@yamada-ui/progress@1.1.4':
-    resolution: {integrity: sha512-WyZ6MJubFZc2JB0i/0RuED9FXzdHLYaIa4zi1QR+dJ31hpkJQuHBTVPhEW4mieepKGsBSbRh/s204rvArOP9Hw==}
+  '@yamada-ui/progress@1.1.6':
+    resolution: {integrity: sha512-c2BN2SNkzcLvPlBO058gYLYNJqCzVikj69lpCLKTVdoOgRlbkZtvgT3oNxfzLQdjK/k0ugscNK68k1Uxfix7RQ==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/providers@1.2.9':
-    resolution: {integrity: sha512-cH8ReXLH4WaQVpSBasRjmKYwLPxm8GWvAm/qO6bq91sivhAQHXS/swleD1fslw2cXRrubnvv15kpSUZAsfCg+Q==}
+  '@yamada-ui/providers@1.2.13':
+    resolution: {integrity: sha512-+W6FzlLipJjY5JaEwSUn9NQ/hjlwvBFuZcjljY1IGVNXmiM8mETk1W6lkSoNv0xI1GGxt2vv61qAKr91Zx1bFw==}
     peerDependencies:
       '@emotion/react': ^11.0.0
       '@emotion/styled': ^11.0.0
       react: '>=18'
       react-dom: '>=18'
 
-  '@yamada-ui/radio@1.2.10':
-    resolution: {integrity: sha512-OKN/8bfTh/PiNhhImMoU/6TvScubOVvh/BDpDp9XnovBUH9Z9mRLKAQjAZtLqhym5HF9B5RiHqMiz8083l3iLA==}
+  '@yamada-ui/radio@1.2.12':
+    resolution: {integrity: sha512-eN3PlY8Q1IZbUX3X4j0jaABLu1fmIH9xeQwac3dO58STeI7J7QliWQf0+8pA5XSI+mmRh8A4ynvacflZUoTVPg==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/rating@1.0.43':
-    resolution: {integrity: sha512-u2cHkvNM09cYhn3o9bQDcex9YpiJL/dAuKEgTayJSZhjyUDnE8PTm/XOxy30sgx3glj/q0jIobdtwyZAll+YIw==}
+  '@yamada-ui/rating@1.1.3':
+    resolution: {integrity: sha512-ge8iv3N9FUSaa5JEgNFpYiz/QlkOeTDmOe/ZoxBFFL8n8ffFhgWUbCHoYXpeU7MmIoCDmRkcAoRw7tvCJyaRcw==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/react@1.5.4':
-    resolution: {integrity: sha512-i0zmMfTMaWuCc7XNXK2Pnl3NbWAqFq2YE3+I9JKeTmmM0IjBO1nVxrPwRNmujK/aamCY8P21CuIE5VugGSRqLA==}
+  '@yamada-ui/react@1.6.2':
+    resolution: {integrity: sha512-LEKfD1uK9H/YT4aFWKPrklclI6HDQmf57+w9Hht39bv6aFU1tqYzomopEeoSFGWC4C0Di+Gx4pQiyp+NJ2Vjtw==}
     peerDependencies:
       '@emotion/react': '>=11'
       '@emotion/styled': '>=11'
@@ -1509,18 +1494,13 @@ packages:
       react: '>=18'
       react-dom: '>=18'
 
-  '@yamada-ui/reorder@2.0.12':
-    resolution: {integrity: sha512-NvgVIIEA+k2b8biqJh96Vst+ZchPeoCH6kp8lxWe+cTW/K7SVUJF3nHKeaYFCWGJVILlPlzpFJnu3QEKbiwagw==}
+  '@yamada-ui/reorder@2.0.15':
+    resolution: {integrity: sha512-bePkVrBL4IxA8R5PVeA4eq4XIMMOFZKeHG4e6AsL0gRuo96cm+FOLyZTmUWrg1Qx9Yl+WrzoU2srCv5b891Q8g==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/resizable@1.1.14':
-    resolution: {integrity: sha512-CJs9anwrd/nRUleopwAhOFF3towIk6CYnC4cJRUJShQs2bl80hiy1I/Zx8ZQr6LcTU8QDIq7iu97X5mOULqnNw==}
-    peerDependencies:
-      react: '>=18'
-
-  '@yamada-ui/ripple@1.0.40':
-    resolution: {integrity: sha512-FDNPcDGvp+ssau9leMxlTud2iDIThWeHwooZxkLabYfkjH9UrwDM96TQcYnM5AFW0xju/lk8i+/In5irM7KcEQ==}
+  '@yamada-ui/resizable@1.1.17':
+    resolution: {integrity: sha512-er8AECgMuibpRd0qrF/AcZaYJ8elG37ELdyi9Iwtavm3XflvSUKHckeWoCpfkvbtcDNQurNa+1YHP7xhoo0zJQ==}
     peerDependencies:
       react: '>=18'
 
@@ -1529,84 +1509,79 @@ packages:
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/scroll-area@1.0.40':
-    resolution: {integrity: sha512-CR/yiX7BbqvBVPrBSlD8+9r1q9h6rVI8wGUe/EYSbSDUThtdL29w0Tr6ITnSRHr7SLdDOh5ZnhNdNaGrJFOrbQ==}
+  '@yamada-ui/scroll-area@1.0.42':
+    resolution: {integrity: sha512-OAL6BJi6eIuB0RMXXNVtEHjOkpfbIuXEIxquuBX6BodK3/OWfjH/4Zg2X95gRSzuPjAQnYCsssZhCmRv3fVfBQ==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/segmented-control@1.0.42':
-    resolution: {integrity: sha512-gZ/me/nvFoc7kZyRdgU51EQtw0xJ/5AdPqunwCG++QIwWjb7r2zdYZLWZxDMCc7YRKQs9PAWSTOEbQB58z8JIw==}
+  '@yamada-ui/segmented-control@1.1.0':
+    resolution: {integrity: sha512-nRoITiDFihWRLy+jkS2QuUq08Knchm7P+hUIYyfK1CbeUu/qflWi5LE0iFYnK3kUlEijg3D6F1g/fp2rSe6CyQ==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/select@1.7.0':
-    resolution: {integrity: sha512-2F3LBjf3zRa7x/77T0/GHvruxftr+0JxBmHSx1gSeB5RrPeqDd0eEVFOQoqTngk/hzio0ChbrUMs1yrUUD40bQ==}
+  '@yamada-ui/select@1.8.0':
+    resolution: {integrity: sha512-YWL6AI75wHoxxSWtDj2zVWosSomfw1CIOgajujgIHSSq2rhbcwOo/17Y1flErircslalMQj0bTIRU1pesKRqUw==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/skeleton@1.1.7':
-    resolution: {integrity: sha512-b2lkZTqoP4CrxezAbrfHQEo7UJWxXWRNMufJ69EmA/W2NWUEnEYkH3AtxxdnpsqkX6yjrhpVBG2Z6XUhNq925Q==}
+  '@yamada-ui/skeleton@1.1.9':
+    resolution: {integrity: sha512-zC0SuCDNgoaXK7dHWUQ4WgaWvt8gJxMpSJ9GTNrEhR9Z7zDd/T5T2MagdwIv/VzB/ara8/cyXsrCI1a8ICLW3w==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/slider@1.2.7':
-    resolution: {integrity: sha512-97pOkfoQaVgATF+jxQ4KIgIO200H4kb7xV725ztAswTkz2dD8zRhurzRbSPgozRunhcN1bPw8Y2taXXVxogL2w==}
+  '@yamada-ui/slider@1.2.9':
+    resolution: {integrity: sha512-l+JBRIeWV0NbWKQ+5rtVgoe8U0TTshVVvqNTU9dPoYM+6Yu7bx9fZO2K4kBAYIR5M1+gY2SVdjRgRX6+0Cm5lg==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/snacks@1.1.5':
-    resolution: {integrity: sha512-FwLTmUSztzHPj6Y8djxnD1e6pcs4dGGwukFXkb5fgK38eARJZitlZ+E6vsZlvzjuqkCq0iwZ3XbaS9qAaf+HFA==}
+  '@yamada-ui/snacks@1.1.9':
+    resolution: {integrity: sha512-xQj+Ak2/DpXY0hAqevxuri+w6hArVYJJm1rk+hS+haA/yY5NYjx8zhkAnhiZrhebrXOsCqE7XRdkSk4xhN0eVA==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/stat@1.0.39':
-    resolution: {integrity: sha512-WFyULapn40C/Dnh4ZjW/7iJX5ty5BRT2Uuqdn7tLnP4GcMxJeO9YVtx4aPG52i9ptocN03F8KSAW0k6MWRhMIA==}
+  '@yamada-ui/stat@1.0.42':
+    resolution: {integrity: sha512-eh68dfM5BkvhEyJB9kfKOQe94FQbJM1zkuUh/2aNKe4TMuN01NF0VT3wEoEbLm9QGvhSVmct/EH8EXNThLNQcQ==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/stepper@1.0.42':
-    resolution: {integrity: sha512-Om1BFj8mfQALHGQe8vzFB3d8cH3PdXo27ZALkhrVIpBhFAl/R7cT/U0Ncwx+goF6iQu/12HY+Y3SKWlWwyzgfg==}
+  '@yamada-ui/stepper@1.0.45':
+    resolution: {integrity: sha512-qb68ZHhVI86YtA3H5AMHYLdI0PuoEuQoqwyvWuov69XZkJgjnPYdZ+GRdE6HBY6r3Xl1PCp30ShfKBe6qQfvhQ==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/switch@1.1.11':
-    resolution: {integrity: sha512-Ba8yia9QXUW5QQ5cUpcxKi96q1dh3uwzy6BNnkky0bVicGcDuSzLyCCk6qDCBdMLcAEke2cK1nYcVexsud3Drw==}
+  '@yamada-ui/switch@1.1.13':
+    resolution: {integrity: sha512-GTgY9xzNV/zKEvH5mRxpzh8tp66MKeJhNUr6amMfu+TTdtb3xvP+Zq6aeEGPSHvA5opM8OWNFCKuSbtS4Hs+zA==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/tabs@1.0.41':
-    resolution: {integrity: sha512-qq7HBZjlsqCfImKMYbUK/C3NGm3wrVoXQGdJ/ULSBKyXIKLl4SaKCYHKRdIXiEYlBSkXDsx0FcOySiVBvSElRA==}
+  '@yamada-ui/tabs@1.0.44':
+    resolution: {integrity: sha512-8/Z+rsmG1mwgZYNm80YiuHo0VZLM0ye5AvUGa2gINx8x9rsmEXQ0MNu1fGbCzBdXUt6QNKncJ6iul+kes5BQgA==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/tag@1.0.42':
-    resolution: {integrity: sha512-GYQQTpgtVhSEx8eSUuOPl6IEofBQrQTgstqlRod73+cpmrPS0yMLaObdzEDHxqwtTcmryrQgvvo6JKW1iOQxAg==}
+  '@yamada-ui/tag@1.1.2':
+    resolution: {integrity: sha512-axyR5hFIvObc40LXhHB5H+6eIJ76dq/GrX/sO/O4dv8V28/87Ox1T+efy9aHVYZDzdpDQ5no001BtkD1I0vBAQ==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/textarea@1.1.31':
-    resolution: {integrity: sha512-+Z4E7tcs9S5584DoCl6Sm+3GL1lhPB0OSwnmQdy9xBeorLiWjEdLdAcIkZpEIJM85VBZeepK9HmUR3wLjRcFOQ==}
+  '@yamada-ui/textarea@1.1.33':
+    resolution: {integrity: sha512-ggMFjjjs1mVS9SAAD4ZAHEeG10gLeqmADVYpkwFM4Glz70gT5PT6I3HUqkdd+V04rIIIDUGgW2ZynTR5MDxGqA==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/theme-tools@1.1.5':
-    resolution: {integrity: sha512-9rrg4X6I80Ca8E2nvs15cX0hlOBlpNfANIkXvyNqxIcestSJdw6HrSnR6MmjJX6JpL8h3LLtP4k6dGtJnWgXDQ==}
+  '@yamada-ui/theme-tools@1.1.9':
+    resolution: {integrity: sha512-5wqZAlX8yYPizEsMmXIEDcGI727giFGrt+rTpZ1gw0ZlRv/E5rwVJn0k99UaoN/lUJELvB6rdlAFct97jYKZTw==}
 
-  '@yamada-ui/theme@1.18.3':
-    resolution: {integrity: sha512-YPH1/6zQCvFcjSqVakN7aRwgJTB7olfVOOl5Xi6dHl1cIRqCOdUHgKA1wLcYQ9T+95euneFtrtWG2gaGusLIqQ==}
+  '@yamada-ui/theme@1.19.2':
+    resolution: {integrity: sha512-xUWZi6S01mpmFjotZYa7/USe2peF78ZRt5eVjutiOuiKjU2k73sRtxKxQLKidn/brmVQhctdqPlqDL8P0bm4Cg==}
 
-  '@yamada-ui/toggle@1.0.23':
-    resolution: {integrity: sha512-3Ggv56K9pecr6IigeAdhTm7ToXh5tJuXcAFk+G1rPH9K9gU82ngnzaCgWJ1TMkeE3i6WFg7gPTPNBThH1TRtBA==}
+  '@yamada-ui/toggle@1.0.26':
+    resolution: {integrity: sha512-T62kWIuIgvaZso77RDNaWhQbj2Ce+7EKlzmAlOJ8T3n2itMICWaL4wVE4ZPhPu9ZeXYLGLkH95uw9+vdU3+3qw==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/tooltip@1.1.13':
-    resolution: {integrity: sha512-QqOpCPKr6nlH9vBtiO3hpNSpi5nzFWV7ZqfatgN5HOPviNhOjvPEBQJ3vKZztLSE/Emfx/uptqhJGeiT38LIyg==}
-    peerDependencies:
-      react: '>=18'
-
-  '@yamada-ui/transitions@1.1.7':
-    resolution: {integrity: sha512-y/72BOnlVBUudB9MSO4XFCj8RnSzFqTlj2A6aYWIJd7OWWIzuVao/8DoqPO+rA8a5R4U5Wx5VttwOySka7+RNQ==}
+  '@yamada-ui/tooltip@1.1.15':
+    resolution: {integrity: sha512-1y7kyBLRSNRMo3G8hNZs3HfeGnnT/pN6v63IfuguuS7/2JUbctXMVzh4alM16zGkl1iFBJDP145aYhaZbAJyzQ==}
     peerDependencies:
       react: '>=18'
 
@@ -1615,13 +1590,8 @@ packages:
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/typography@1.0.39':
-    resolution: {integrity: sha512-OvD1mqaR7Om07E7k+wiU5ohSR7sVQ66we1/VT3vOzq1ep9h+EK5ey/l7hrwCl/nkRNgpAETsJNa06woWL2f+vw==}
-    peerDependencies:
-      react: '>=18'
-
-  '@yamada-ui/use-animation@1.0.39':
-    resolution: {integrity: sha512-atqQEUzAXGo9lnDWijeL+fWfq5azOCTHtm82E9lCQj+1ppgmMudCmOrGYHgPmp8jZ0DyuSG8mVr86Sa+22OI9w==}
+  '@yamada-ui/typography@1.1.0':
+    resolution: {integrity: sha512-Cq0gwbQfqrhAMzMFHrgZfXxM47jTY24hRDmfdQs1Yu9wKuuXdr2VUmUSvNGdAOtczoydsJr3e+j7tlvTD/qPEg==}
     peerDependencies:
       react: '>=18'
 
@@ -1630,13 +1600,13 @@ packages:
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/use-boolean@1.0.3':
-    resolution: {integrity: sha512-uDiQB0dH3cmBZK3IYVzzfiT8+Rx6qgi/lgUrmt9QaezNb41UfX9SyLXeEdKI34XqWD8e7/MtBoxTPGB4XTMXPw==}
+  '@yamada-ui/use-async-callback@1.0.3':
+    resolution: {integrity: sha512-lGhDfUvVvaT1uVipVKYg9lqnPG/wKKduHlrNcsOPU3Vmz+Q4uqMgQD28KQJoPBSGg/mHO3KfGiEz2/lgSat/JQ==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/use-breakpoint@1.4.10':
-    resolution: {integrity: sha512-Ddbr1BEINu5VS7WaxvoOELMtISNuf6sHDDfcaS3//jUb3Y4IgdGPqFthiRifa7VJGw1kD4UegGshi7XQ9WQVDg==}
+  '@yamada-ui/use-boolean@1.0.3':
+    resolution: {integrity: sha512-uDiQB0dH3cmBZK3IYVzzfiT8+Rx6qgi/lgUrmt9QaezNb41UfX9SyLXeEdKI34XqWD8e7/MtBoxTPGB4XTMXPw==}
     peerDependencies:
       react: '>=18'
 
@@ -1645,23 +1615,13 @@ packages:
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/use-clickable@1.2.10':
-    resolution: {integrity: sha512-59Ddo31kwyr/vyPc0bW8voZx40n0SuMGi+aq5CtqqJlbq3e2AMQtplRiKcrtkL5Z/hHezCqPoaa8RgjVdG/UUQ==}
-    peerDependencies:
-      react: '>=18'
-
   '@yamada-ui/use-clickable@1.2.12':
     resolution: {integrity: sha512-2CbBNqGcD5fZP5LPEWY5NRhER/xC5//K1DwKv5WUAFiiDWWrTtieSlbX6HM9h0cJFYxVH37R15e9Md+3yjIQ6g==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/use-clipboard@1.0.23':
-    resolution: {integrity: sha512-gvosJ3W0hPn674Rz5bwj73o9/9r9b+SKfEMVxGq/l1KVH/d6DSnePNBUxkENn6A05GctB+BIdyCFyNZjWJhYOQ==}
-    peerDependencies:
-      react: '>=18'
-
-  '@yamada-ui/use-controllable-state@1.0.22':
-    resolution: {integrity: sha512-dxYiCXGC2QLDOMKshFBE1/7LhktrQRvQ3exSvoAFo51tGTg24ojTJ3VBLu7zv3Gf+845uFnEsi6fRWULQXtV1A==}
+  '@yamada-ui/use-clipboard@1.0.24':
+    resolution: {integrity: sha512-SNyRut3L6MUJMsaEjpVpEo9RJytx8kBVpdqEWl1qmDw9y9lxnc4GVicYT66fYHr9G075w/V/AXBOyu2s203tlQ==}
     peerDependencies:
       react: '>=18'
 
@@ -1670,18 +1630,13 @@ packages:
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/use-counter@1.0.23':
-    resolution: {integrity: sha512-s20I62HStSp15H3fjhRzKN2OrSUAHQBQ+Ndz8GXe0cI6vKlOIP724q99wKeC0wyVlSFMx/H8tMnR6pAnCtrCgQ==}
+  '@yamada-ui/use-counter@1.0.24':
+    resolution: {integrity: sha512-cU6QaUX3FNPT6lSsbNWLhdMdDRphP7lTj1/AxIWsc3ZbeBWw/Z3AAZJ2f/0P7LUIUFpl5pK6CDkQ8j3u9LNhvQ==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/use-descendant@1.0.23':
-    resolution: {integrity: sha512-xwv1Zs8e5lEinA2DwYeGpDK7zqyBIhDV/UgYZkDwOUAyF4aP9mYS6BgbcR7hc0L4d5fVmZj74R1tajCuLREYpw==}
-    peerDependencies:
-      react: '>=18'
-
-  '@yamada-ui/use-disclosure@1.0.22':
-    resolution: {integrity: sha512-q1Id7AnEBd6AFpb3k6NHLE7KV7P33U4BjErfSWpn9YKWjx5KTLL4b/TMUCRQtiO6zMfYk589loh3TzWzYn4GzA==}
+  '@yamada-ui/use-descendant@1.0.25':
+    resolution: {integrity: sha512-WYl8D/il2cWH6UX9Z1BcqqSP0nVvZDAqkGTKLmc4WioKVqxLwUK3WPI0fq3w8S/V+9wZA0CSIdduwoNJ4AsG9Q==}
     peerDependencies:
       react: '>=18'
 
@@ -1690,28 +1645,18 @@ packages:
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/use-event-listener@1.0.22':
-    resolution: {integrity: sha512-dik4tNenZK9Eq2N4kQoa3gLzTKmtJUiXD3X+15IoDAHp/K3wLRH+r25IdeI8pRh7VV641m3+X7frnPA/FnBHdQ==}
-    peerDependencies:
-      react: '>=18'
-
   '@yamada-ui/use-event-listener@1.0.23':
     resolution: {integrity: sha512-hX0OuLWFNgx4VQW3NvNszAvaHVONDeOOgEafmgK7OcqvL47RXF37FmckPHMlVUZ0CoXysPuOtJgW83EKfN8FWA==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/use-eye-dropper@1.0.20':
-    resolution: {integrity: sha512-EJxZ/qSxRLVAbQ2LtErxRZLmJT7KfZ3fbgKX/OJD82F9gEyJaqwwFY/Esyy7tpaeaT0KpAenSEfgB0YpTHtNaA==}
+  '@yamada-ui/use-eye-dropper@1.0.21':
+    resolution: {integrity: sha512-SFxuk9QNbyMA6VQlXBDMBLzvrZVAQnKq+LMzQ8iRHLJxoIVCVNMV4/UtB61IqCvoS3A4JkDmP4w7O/hw0+29FQ==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/use-focus-visible@1.1.9':
-    resolution: {integrity: sha512-xxloXy9SUAuamFx4h8ykb2SH8u+7xWA189tBQZnOs3uJPHBVJ38FdMdvCw30NrYGEkg1//ZmvVhdLMAy2YiUIw==}
-    peerDependencies:
-      react: '>=18'
-
-  '@yamada-ui/use-focus@1.0.23':
-    resolution: {integrity: sha512-Nbfz+P9amBO4/q2Arkrj0Pk97foiSurYfDmW5gSi9GD0NE2t7tJBy/0lWwnhB9GxXc255oboU0uz64bO29K7HQ==}
+  '@yamada-ui/use-focus-visible@1.1.10':
+    resolution: {integrity: sha512-SY93nMfU/iThSXSSM0jlpkWP+yDWJHmj+NLxeKzdAsTe26QnCk/65vP9NioDpqVwYxEDT6sYfazDcAHfap1wuQ==}
     peerDependencies:
       react: '>=18'
 
@@ -1720,23 +1665,23 @@ packages:
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/use-hover@1.0.23':
-    resolution: {integrity: sha512-OZN6helQbN7FdD4erai2aQhTQOcTEd8xB6jhmzuJ3rvmfbBk2snbUgGf3XRe+aHP2XhLr2XZ/ifkRrrFcw4MxQ==}
+  '@yamada-ui/use-hover@1.0.24':
+    resolution: {integrity: sha512-bzHfq62pC3Qq3WQ/ZNB9Yb+hdojzqTjCcxtIirv2HclK6XNf+cn02FIVXCP6W5JdGpBIKzZuWFxbFYXNMRdaKw==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/use-idle@1.0.23':
-    resolution: {integrity: sha512-yMw5ipzOCeD/ELx3lC0cpyhzq8i4v18MJhScsx4XTbmCFOPrBYlPbXlFfX+F0A+L3u+MhqV95rIVO4g+WdXFvQ==}
+  '@yamada-ui/use-idle@1.0.24':
+    resolution: {integrity: sha512-jum/GKyugqcsznv2NRXHuj3c5V69hqO4klb9kJFd1ijfZYkLzxqIAhSULMPGPFwpdugukh5toBUVV7a3u03OQQ==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/use-infinite-scroll@1.1.6':
-    resolution: {integrity: sha512-BfPoOIvO8u6yLOlV8ePnhjiR85BrukVapXkac/PnfwPPqnRdkwEbH44MHn++ZzY1VxC1PHzSQLfHvcwZtoVYCg==}
+  '@yamada-ui/use-infinite-scroll@1.1.7':
+    resolution: {integrity: sha512-5gbtvA3KZtYo3Ngek9SH3Tz5+vdd/8Ox79FzCWh7GAO0nUTk/pXDU8tcGY8PIKXkXrDEKfezwAdjZEr4690cIw==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/use-interval@1.0.22':
-    resolution: {integrity: sha512-qOeo1hEP8cCM6gArnHdPL8ZX8ZFM/HQPtrLCw2Kdgg0dxvN6x3G1JQq/yEMIBt+4aZH71LmNHr3yBm3hyomBiQ==}
+  '@yamada-ui/use-interval@1.0.23':
+    resolution: {integrity: sha512-vFDyqDDYw/nXxFlV7K1wAfHplbfMry7WkQC8QowgqoXq7gHwhhCvqaHh6TCEr0VyaGyiEfbGEFNzWP8zAZa2mw==}
     peerDependencies:
       react: '>=18'
 
@@ -1745,23 +1690,18 @@ packages:
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/use-local-storage@1.0.23':
-    resolution: {integrity: sha512-E+KoOh9zNSELaUDeXTwZkdgYncQAlMlcUsRGfELGVHUz4yak8E+6eaQ9hX1s82q3NQdEc7iz4xxC+wBrxJRw+g==}
+  '@yamada-ui/use-local-storage@1.0.24':
+    resolution: {integrity: sha512-F3VPrXZ3bDd9j/0xiJ1aK6Wo383eN8Z2pPnA212WYm9iqtWAhlvaOxqT2KJ8LVg/+mmugL3lcFlz/XuKbQrhbA==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/use-media-query@1.0.49':
-    resolution: {integrity: sha512-w6arjWURO1Kpcm5uLygAEPHT2c1t+vv27t/v+qdCr03lXlfNAuvYgQrSshok8mvMYbBCU7QE5PrXcYMZNEavIw==}
+  '@yamada-ui/use-media-query@1.0.53':
+    resolution: {integrity: sha512-o8bmldF6foLxSsCeNPY+yy8j0a1aTV8ifrZazbEKU3klfnZ3U/bvYW6Yo32JJwro5lk9555HV2m74obIGr8ycg==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/use-os@1.0.23':
-    resolution: {integrity: sha512-hD0uC6/QDdAGQ6mr5ePPi0UjvVdhN+Cv7n8s61AfY1OBtQxDVtSdm0aAn6D8cU7p27VDcZrC1GhQ3DkT1Xf4pw==}
-    peerDependencies:
-      react: '>=18'
-
-  '@yamada-ui/use-outside-click@1.0.22':
-    resolution: {integrity: sha512-TgKQQ2r2fuag9Mo+/DoCjlFGT/5y3w/SjY8XI71NH6rgPmKvEVk40h70LWj1ya2bomMd6FAKiObhtgwMuGiOaQ==}
+  '@yamada-ui/use-os@1.0.24':
+    resolution: {integrity: sha512-a6TQrrlHiKD6bU1l0LT3M90gAA71eko8UVv1HMEpiiIL7taOAOWxoe05ACh3Iel3rN3BxGNAKmVJ5mVAGSs95w==}
     peerDependencies:
       react: '>=18'
 
@@ -1770,13 +1710,8 @@ packages:
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/use-pan-event@1.0.24':
-    resolution: {integrity: sha512-81t6vaRAy7JgntdkfsXvuU+70En3YbAxRf6wcTH/elqPDMBvi3E36MEbHVhppnmzVi2QmD7Nxwz28jed7dwgmA==}
-    peerDependencies:
-      react: '>=18'
-
-  '@yamada-ui/use-popper@1.0.39':
-    resolution: {integrity: sha512-H+LC4xNnUqh1ctM5YaX8dMHNcCdH6inYycf5N9+GvESqntyIQxYD+vQXXLFzHf1I6ZbmdOzcA6/5Q6HSVehIdg==}
+  '@yamada-ui/use-pan-event@1.0.25':
+    resolution: {integrity: sha512-+Feou34RX+Xg/C369EObHUkozQ0WWpZU+ovZfwMbfYhC5QjC4+vPfLO2Zn0BEGrb/KcpmATVZ6B808tBF6RlQg==}
     peerDependencies:
       react: '>=18'
 
@@ -1785,23 +1720,23 @@ packages:
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/use-previous@1.0.22':
-    resolution: {integrity: sha512-N4Q4EaD817Qwv0UzXhoYwCrLWaOczBg5BKVnAjjs4LW7TBswcf67llAtJJlIgBQk/3sP+5GhDf5rWQavRP719w==}
+  '@yamada-ui/use-previous@1.0.23':
+    resolution: {integrity: sha512-ZZkxgxj4uIQ5e9LkUGjSJulPQptMZkLJ4tduKx4TrOr+SWD0/QZ9DylhYQ+GINM4264yRFmM1JslVcAcjm108w==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/use-resize-observer@1.0.22':
-    resolution: {integrity: sha512-sjXR3z9WVVeq8fJ74TaoADddwFRsQB1tvxfURa0kIsZ9y7BFnpg72V0Yk97g0li9v9pplYMFABkTUGVvhFiKbQ==}
+  '@yamada-ui/use-processing@1.0.0':
+    resolution: {integrity: sha512-4qu4ya06qK/Q8/XKG1C68bqnN/3tgs7uDlE+9eDhD79cEnqCflvfpqIDe2GDc54p6b4SNueRdRaNv83LhYxEhg==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/use-size@1.0.22':
-    resolution: {integrity: sha512-cpW9eZP5+hsPyIaogJi/fZQHmpiB+xEASrnffsyoRIHc65tbCmSR6yWmRfpSyi+0/30eVQd9+G8XDW7L4Od4ug==}
+  '@yamada-ui/use-resize-observer@1.0.23':
+    resolution: {integrity: sha512-ijBPMT9C0VvuGRG/qaN0jQ2f2zVV1zbrKYSnPcOH8T0EFjMdSn6E6GEpIEbYOlY1bi/2IbWNqurC46wa+0GdiQ==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/use-timeout@1.0.22':
-    resolution: {integrity: sha512-SIWCWd0qSpRmPWTTquU2ZehiLlSot7DmIPjLWphvs4VL0nANKsa2nV/Ry1tHZhBGOh01aJfXJD75FzAEb5aWew==}
+  '@yamada-ui/use-size@1.0.23':
+    resolution: {integrity: sha512-jVRZ9J9r6/72E2lDPj29fYJQPcHXE/lkIGZ6lCA6jr0o4g1kZSPScGWajyyev31BPUQZ8YSEaJ0zrbAx6/ORHA==}
     peerDependencies:
       react: '>=18'
 
@@ -1820,18 +1755,13 @@ packages:
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/use-value@1.1.27':
-    resolution: {integrity: sha512-6rypCPq2FaNoi3d7eM4Z6cFtgaxsNFYRVGxxHt7IG/E8u95lfjEPGJKtO7m9x5DEIstf92p0nTBhVDCuqTER1w==}
-    peerDependencies:
-      react: '>=18'
-
   '@yamada-ui/use-value@1.1.29':
     resolution: {integrity: sha512-on4cvuwsMtJE7HtdPy4A1U/xFzbQN25okBG0r6zrqA4sbLEZ9UkSsfFQnqvNjR3M7Ru9MKc6g2lpE66JKdVbug==}
     peerDependencies:
       react: '>=18'
 
-  '@yamada-ui/use-window-event@1.0.23':
-    resolution: {integrity: sha512-foOyto/jI6z6GPqyaCQ0Eme5nQKUHhgABHSRK6RZDUlFPGIzEL0zzRnR4RHLo8GCNGv0Ckud3t4Z62D39xyNzQ==}
+  '@yamada-ui/use-window-event@1.0.24':
+    resolution: {integrity: sha512-jQzWC8UNbOXHqS+IvLHs8UsPGOAhvdaxR21lR76syTRdRHkVTMTxSduyTQg6QfxzhDkeKaO2CY2VNG/epu8YvQ==}
     peerDependencies:
       react: '>=18'
 
@@ -1842,11 +1772,6 @@ packages:
 
   '@yamada-ui/utils@1.5.4':
     resolution: {integrity: sha512-2FCoOQqgR9olZAifusVNkeD/wNx/u6gzqHUQ3ylLhvOVsgwYqoX0UxyWu3Vbvyk66bBqL4POYXLWTHGYXhfLWA==}
-    peerDependencies:
-      react: '>=18'
-
-  '@yamada-ui/visually-hidden@1.0.13':
-    resolution: {integrity: sha512-VzI4fn41KD56gDhMevMJ2ZXPxIgjnUdvQIHPhQsht4xlIT/mNNE1segFlTXM1SAEyVA9VYVddHiEH41PvMt/xw==}
     peerDependencies:
       react: '>=18'
 
@@ -5515,15 +5440,15 @@ snapshots:
       '@eslint/config-array': 0.17.1
       '@nodelib/fs.walk': 2.0.0
 
-  '@yamada-ui/accordion@2.0.11(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/accordion@2.0.14(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/icon': 1.1.8(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/motion': 2.2.4(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/transitions': 1.1.7(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/use-controllable-state': 1.0.22(react@18.3.1)
-      '@yamada-ui/use-descendant': 1.0.23(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/icon': 1.1.11(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/motion': 2.2.6(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/transitions': 1.1.9(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-controllable-state': 1.0.23(react@18.3.1)
+      '@yamada-ui/use-descendant': 1.0.25(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
     transitivePeerDependencies:
       - '@emotion/is-prop-valid'
@@ -5531,12 +5456,12 @@ snapshots:
       - react-dom
       - supports-color
 
-  '@yamada-ui/alert@1.0.42(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/alert@1.1.2(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/icon': 1.1.8(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/loading': 1.1.18(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/loading': 1.1.22(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/lucide': 1.7.3(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
     transitivePeerDependencies:
       - '@emotion/is-prop-valid'
@@ -5544,20 +5469,20 @@ snapshots:
       - react-dom
       - supports-color
 
-  '@yamada-ui/autocomplete@1.6.0(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/autocomplete@1.6.3(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/form-control': 2.1.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/icon': 1.1.8(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/motion': 2.2.4(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/popover': 1.3.4(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/portal': 1.0.23(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/use-clickable': 1.2.10(react@18.3.1)
-      '@yamada-ui/use-controllable-state': 1.0.22(react@18.3.1)
-      '@yamada-ui/use-descendant': 1.0.23(react@18.3.1)
-      '@yamada-ui/use-disclosure': 1.0.22(react@18.3.1)
-      '@yamada-ui/use-outside-click': 1.0.22(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/form-control': 2.1.6(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/icon': 1.1.11(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/motion': 2.2.6(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/popover': 1.4.1(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/portal': 1.0.24(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-clickable': 1.2.12(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-controllable-state': 1.0.23(react@18.3.1)
+      '@yamada-ui/use-descendant': 1.0.25(react@18.3.1)
+      '@yamada-ui/use-disclosure': 1.1.0(react@18.3.1)
+      '@yamada-ui/use-outside-click': 1.0.23(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
     transitivePeerDependencies:
       - '@emotion/is-prop-valid'
@@ -5565,50 +5490,37 @@ snapshots:
       - react-dom
       - supports-color
 
-  '@yamada-ui/avatar@1.2.10(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/avatar@1.2.13(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/icon': 1.1.8(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/image': 1.3.0(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/use-animation': 1.0.39(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/icon': 1.1.11(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/image': 1.3.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-animation': 1.0.41(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
       - supports-color
 
-  '@yamada-ui/badge@1.0.39(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/badge@1.0.41(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
       - supports-color
 
-  '@yamada-ui/breadcrumb@1.3.13(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/breadcrumb@1.3.16(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/icon': 1.1.8(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/use-value': 1.1.27(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/icon': 1.1.11(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-value': 1.1.29(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
     transitivePeerDependencies:
-      - '@types/react'
-      - react-dom
-      - supports-color
-
-  '@yamada-ui/button@1.0.44(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/loading': 1.1.18(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/ripple': 1.0.40(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
-      react: 18.3.1
-    transitivePeerDependencies:
-      - '@emotion/is-prop-valid'
       - '@types/react'
       - react-dom
       - supports-color
@@ -5617,6 +5529,19 @@ snapshots:
     dependencies:
       '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@yamada-ui/loading': 1.1.21(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/ripple': 1.0.42(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
+      react: 18.3.1
+    transitivePeerDependencies:
+      - '@emotion/is-prop-valid'
+      - '@types/react'
+      - react-dom
+      - supports-color
+
+  '@yamada-ui/button@1.0.48(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/loading': 1.1.22(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@yamada-ui/ripple': 1.0.42(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
@@ -5647,38 +5572,25 @@ snapshots:
       - react-dom
       - supports-color
 
-  '@yamada-ui/card@1.0.41(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/card@1.0.43(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
       - supports-color
 
-  '@yamada-ui/checkbox@1.1.10(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/checkbox@1.1.12(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/form-control': 2.1.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/layouts': 1.1.37(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/motion': 2.2.4(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/use-controllable-state': 1.0.22(react@18.3.1)
-      '@yamada-ui/use-focus-visible': 1.1.9(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
-      react: 18.3.1
-    transitivePeerDependencies:
-      - '@emotion/is-prop-valid'
-      - '@types/react'
-      - react-dom
-      - supports-color
-
-  '@yamada-ui/close-button@1.0.42(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/icon': 1.1.8(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/ripple': 1.0.40(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/form-control': 2.1.6(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/layouts': 1.2.0(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/motion': 2.2.6(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-controllable-state': 1.0.23(react@18.3.1)
+      '@yamada-ui/use-focus-visible': 1.1.10(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
     transitivePeerDependencies:
       - '@emotion/is-prop-valid'
@@ -5699,23 +5611,23 @@ snapshots:
       - react-dom
       - supports-color
 
-  '@yamada-ui/color-picker@1.4.4(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/color-picker@1.4.8(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@yamada-ui/button': 1.0.44(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/form-control': 2.1.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/icon': 1.1.8(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/input': 1.0.44(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/popover': 1.3.4(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/portal': 1.0.23(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/use-controllable-state': 1.0.22(react@18.3.1)
-      '@yamada-ui/use-disclosure': 1.0.22(react@18.3.1)
-      '@yamada-ui/use-eye-dropper': 1.0.20(react@18.3.1)
+      '@yamada-ui/button': 1.0.48(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/form-control': 2.1.6(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/icon': 1.1.11(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/input': 1.0.46(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/popover': 1.4.1(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/portal': 1.0.24(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-controllable-state': 1.0.23(react@18.3.1)
+      '@yamada-ui/use-disclosure': 1.1.0(react@18.3.1)
+      '@yamada-ui/use-eye-dropper': 1.0.21(react@18.3.1)
       '@yamada-ui/use-latest-ref': 1.0.3(react@18.3.1)
-      '@yamada-ui/use-outside-click': 1.0.22(react@18.3.1)
-      '@yamada-ui/use-pan-event': 1.0.24(react@18.3.1)
-      '@yamada-ui/use-size': 1.0.22(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/use-outside-click': 1.0.23(react@18.3.1)
+      '@yamada-ui/use-pan-event': 1.0.25(react@18.3.1)
+      '@yamada-ui/use-size': 1.0.23(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
     transitivePeerDependencies:
       - '@emotion/is-prop-valid'
@@ -5755,25 +5667,25 @@ snapshots:
       - react-dom
       - supports-color
 
-  '@yamada-ui/editable@1.0.45(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/editable@1.0.47(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/form-control': 2.1.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/use-controllable-state': 1.0.22(react@18.3.1)
-      '@yamada-ui/use-focus': 1.0.23(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/form-control': 2.1.6(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-controllable-state': 1.0.23(react@18.3.1)
+      '@yamada-ui/use-focus': 1.0.24(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
       - supports-color
 
-  '@yamada-ui/file-button@1.1.7(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/file-button@1.1.11(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@yamada-ui/button': 1.0.44(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/form-control': 2.1.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/button': 1.0.48(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/form-control': 2.1.6(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
     transitivePeerDependencies:
       - '@emotion/is-prop-valid'
@@ -5781,36 +5693,26 @@ snapshots:
       - react-dom
       - supports-color
 
-  '@yamada-ui/file-input@1.0.44(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/file-input@1.0.46(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/form-control': 2.1.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/use-controllable-state': 1.0.22(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/form-control': 2.1.6(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-clickable': 1.2.12(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-controllable-state': 1.0.23(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
       - supports-color
 
-  '@yamada-ui/focus-lock@1.0.23(@types/react@18.3.10)(react@18.3.1)':
+  '@yamada-ui/focus-lock@1.0.24(@types/react@18.3.10)(react@18.3.1)':
     dependencies:
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
       react-focus-lock: 2.13.2(@types/react@18.3.10)(react@18.3.1)
     transitivePeerDependencies:
       - '@types/react'
-
-  '@yamada-ui/form-control@2.1.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
-      '@yamada-ui/visually-hidden': 1.0.13(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-    transitivePeerDependencies:
-      - '@types/react'
-      - react-dom
-      - supports-color
 
   '@yamada-ui/form-control@2.1.6(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
@@ -5823,11 +5725,11 @@ snapshots:
       - react-dom
       - supports-color
 
-  '@yamada-ui/highlight@1.0.39(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/highlight@1.0.41(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/typography': 1.0.39(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/typography': 1.1.0(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
     transitivePeerDependencies:
       - '@types/react'
@@ -5856,101 +5758,101 @@ snapshots:
       - react-dom
       - supports-color
 
-  '@yamada-ui/image@1.3.0(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/image@1.3.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
       - supports-color
 
-  '@yamada-ui/indicator@1.1.39(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/indicator@1.1.41(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/use-animation': 1.0.39(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/use-value': 1.1.27(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-animation': 1.0.41(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-value': 1.1.29(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
       - supports-color
 
-  '@yamada-ui/infinite-scroll-area@1.2.8(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/infinite-scroll-area@1.2.10(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/use-infinite-scroll': 1.1.6(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-infinite-scroll': 1.1.7(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
       - supports-color
 
-  '@yamada-ui/input@1.0.44(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/input@1.0.46(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/file-input': 1.0.44(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/form-control': 2.1.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/use-token': 1.1.27(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/file-input': 1.0.46(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/form-control': 2.1.6(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-token': 1.1.29(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
       - supports-color
 
-  '@yamada-ui/kbd@1.0.39(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/kbd@1.0.41(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
       - supports-color
 
-  '@yamada-ui/layouts@1.1.37(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/layouts@1.2.0(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
       - supports-color
 
-  '@yamada-ui/link@1.0.39(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/link@1.0.41(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
       - supports-color
 
-  '@yamada-ui/list@1.0.41(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/list@1.0.44(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/icon': 1.1.8(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/icon': 1.1.11(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
       - supports-color
 
-  '@yamada-ui/loading@1.1.18(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/loading@1.1.21(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/icon': 1.1.8(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/motion': 2.2.4(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/portal': 1.0.23(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/use-timeout': 1.0.22(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/icon': 1.1.11(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/motion': 2.2.6(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/portal': 1.0.24(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-timeout': 1.0.23(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
       react-remove-scroll: 2.6.0(@types/react@18.3.10)(react@18.3.1)
     transitivePeerDependencies:
@@ -5959,7 +5861,7 @@ snapshots:
       - react-dom
       - supports-color
 
-  '@yamada-ui/loading@1.1.21(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/loading@1.1.22(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@yamada-ui/icon': 1.1.11(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -5987,18 +5889,30 @@ snapshots:
       - react-dom
       - supports-color
 
-  '@yamada-ui/menu@1.3.15(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/lucide@1.7.3(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/icon': 1.1.8(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/motion': 2.2.4(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/popover': 1.3.4(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/transitions': 1.1.7(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/use-clickable': 1.2.10(react@18.3.1)
-      '@yamada-ui/use-controllable-state': 1.0.22(react@18.3.1)
-      '@yamada-ui/use-descendant': 1.0.23(react@18.3.1)
-      '@yamada-ui/use-disclosure': 1.0.22(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/icon': 1.1.11(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
+      lucide-react: 0.451.0(react@18.3.1)
+      react: 18.3.1
+    transitivePeerDependencies:
+      - '@types/react'
+      - react-dom
+      - supports-color
+
+  '@yamada-ui/menu@1.3.18(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/icon': 1.1.11(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/motion': 2.2.6(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/popover': 1.4.1(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/transitions': 1.1.9(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-clickable': 1.2.12(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-controllable-state': 1.0.23(react@18.3.1)
+      '@yamada-ui/use-descendant': 1.0.25(react@18.3.1)
+      '@yamada-ui/use-disclosure': 1.1.0(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
     transitivePeerDependencies:
       - '@emotion/is-prop-valid'
@@ -6006,31 +5920,19 @@ snapshots:
       - react-dom
       - supports-color
 
-  '@yamada-ui/modal@1.3.12(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/modal@1.4.3(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@yamada-ui/button': 1.0.44(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/close-button': 1.0.42(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/focus-lock': 1.0.23(@types/react@18.3.10)(react@18.3.1)
-      '@yamada-ui/motion': 2.2.4(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/portal': 1.0.23(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/transitions': 1.1.7(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/use-value': 1.1.27(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/button': 1.0.48(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/close-button': 1.0.45(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/focus-lock': 1.0.24(@types/react@18.3.10)(react@18.3.1)
+      '@yamada-ui/motion': 2.2.6(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/portal': 1.0.24(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/transitions': 1.1.9(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-value': 1.1.29(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
       react-remove-scroll: 2.6.0(@types/react@18.3.10)(react@18.3.1)
-    transitivePeerDependencies:
-      - '@emotion/is-prop-valid'
-      - '@types/react'
-      - react-dom
-      - supports-color
-
-  '@yamada-ui/motion@2.2.4(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
-      framer-motion: 11.3.24(@emotion/is-prop-valid@1.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
     transitivePeerDependencies:
       - '@emotion/is-prop-valid'
       - '@types/react'
@@ -6049,37 +5951,37 @@ snapshots:
       - react-dom
       - supports-color
 
-  '@yamada-ui/native-select@1.0.46(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/native-select@1.0.49(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/form-control': 2.1.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/icon': 1.1.8(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/form-control': 2.1.6(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/icon': 1.1.11(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
       - supports-color
 
-  '@yamada-ui/native-table@1.0.41(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/native-table@1.0.43(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
       - supports-color
 
-  '@yamada-ui/notice@1.1.5(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/notice@1.1.9(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@yamada-ui/alert': 1.0.42(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/close-button': 1.0.42(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/motion': 2.2.4(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/portal': 1.0.23(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/use-timeout': 1.0.22(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/alert': 1.1.2(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/close-button': 1.0.45(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/motion': 2.2.6(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/portal': 1.0.24(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-timeout': 1.0.23(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
     transitivePeerDependencies:
       - '@emotion/is-prop-valid'
@@ -6087,29 +5989,29 @@ snapshots:
       - react-dom
       - supports-color
 
-  '@yamada-ui/number-input@1.1.16(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/number-input@1.1.19(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/form-control': 2.1.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/icon': 1.1.8(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/use-counter': 1.0.23(react@18.3.1)
-      '@yamada-ui/use-event-listener': 1.0.22(react@18.3.1)
-      '@yamada-ui/use-interval': 1.0.22(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/form-control': 2.1.6(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/icon': 1.1.11(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-counter': 1.0.24(react@18.3.1)
+      '@yamada-ui/use-event-listener': 1.0.23(react@18.3.1)
+      '@yamada-ui/use-interval': 1.0.23(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
       - supports-color
 
-  '@yamada-ui/pagination@1.0.42(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/pagination@1.1.2(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/icon': 1.1.8(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/ripple': 1.0.40(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/use-controllable-state': 1.0.22(react@18.3.1)
-      '@yamada-ui/use-value': 1.1.27(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/icon': 1.1.11(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/ripple': 1.0.42(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-controllable-state': 1.0.23(react@18.3.1)
+      '@yamada-ui/use-value': 1.1.29(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
     transitivePeerDependencies:
       - '@emotion/is-prop-valid'
@@ -6117,33 +6019,15 @@ snapshots:
       - react-dom
       - supports-color
 
-  '@yamada-ui/pin-input@1.0.43(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/pin-input@1.1.1(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/form-control': 2.1.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/use-controllable-state': 1.0.22(react@18.3.1)
-      '@yamada-ui/use-descendant': 1.0.23(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/form-control': 2.1.6(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-controllable-state': 1.0.23(react@18.3.1)
+      '@yamada-ui/use-descendant': 1.0.25(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
     transitivePeerDependencies:
-      - '@types/react'
-      - react-dom
-      - supports-color
-
-  '@yamada-ui/popover@1.3.4(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@yamada-ui/close-button': 1.0.42(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/motion': 2.2.4(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/transitions': 1.1.7(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/use-animation': 1.0.39(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/use-disclosure': 1.0.22(react@18.3.1)
-      '@yamada-ui/use-focus': 1.0.23(react@18.3.1)
-      '@yamada-ui/use-popper': 1.0.39(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
-      react: 18.3.1
-    transitivePeerDependencies:
-      - '@emotion/is-prop-valid'
       - '@types/react'
       - react-dom
       - supports-color
@@ -6178,29 +6062,29 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@yamada-ui/progress@1.1.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/progress@1.1.6(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/use-animation': 1.0.39(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/use-token': 1.1.27(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/use-value': 1.1.27(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-animation': 1.0.41(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-token': 1.1.29(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-value': 1.1.29(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
       - supports-color
 
-  '@yamada-ui/providers@1.2.9(@emotion/is-prop-valid@1.3.1)(@emotion/react@11.11.0(@types/react@18.3.10)(react@18.3.1))(@emotion/styled@11.11.0(@emotion/react@11.11.0(@types/react@18.3.10)(react@18.3.1))(@types/react@18.3.10)(react@18.3.1))(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/providers@1.2.13(@emotion/is-prop-valid@1.3.1)(@emotion/react@11.11.0(@types/react@18.3.10)(react@18.3.1))(@emotion/styled@11.11.0(@emotion/react@11.11.0(@types/react@18.3.10)(react@18.3.1))(@types/react@18.3.10)(react@18.3.1))(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@emotion/react': 11.11.0(@types/react@18.3.10)(react@18.3.1)
       '@emotion/styled': 11.11.0(@emotion/react@11.11.0(@types/react@18.3.10)(react@18.3.1))(@types/react@18.3.10)(react@18.3.1)
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/loading': 1.1.18(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/motion': 2.2.4(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/notice': 1.1.5(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/theme': 1.18.3(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/loading': 1.1.22(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/motion': 2.2.6(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/notice': 1.1.9(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/theme': 1.19.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
     transitivePeerDependencies:
@@ -6208,29 +6092,29 @@ snapshots:
       - '@types/react'
       - supports-color
 
-  '@yamada-ui/radio@1.2.10(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/radio@1.2.12(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/form-control': 2.1.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/layouts': 1.1.37(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/use-controllable-state': 1.0.22(react@18.3.1)
-      '@yamada-ui/use-focus-visible': 1.1.9(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/form-control': 2.1.6(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/layouts': 1.2.0(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-controllable-state': 1.0.23(react@18.3.1)
+      '@yamada-ui/use-focus-visible': 1.1.10(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
       - supports-color
 
-  '@yamada-ui/rating@1.0.43(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/rating@1.1.3(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/form-control': 2.1.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/icon': 1.1.8(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/motion': 2.2.4(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/use-controllable-state': 1.0.22(react@18.3.1)
-      '@yamada-ui/use-focus-visible': 1.1.9(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/form-control': 2.1.6(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/icon': 1.1.11(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/motion': 2.2.6(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-controllable-state': 1.0.23(react@18.3.1)
+      '@yamada-ui/use-focus-visible': 1.1.10(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
     transitivePeerDependencies:
       - '@emotion/is-prop-valid'
@@ -6238,107 +6122,109 @@ snapshots:
       - react-dom
       - supports-color
 
-  '@yamada-ui/react@1.5.4(@emotion/is-prop-valid@1.3.1)(@emotion/react@11.11.0(@types/react@18.3.10)(react@18.3.1))(@emotion/styled@11.11.0(@emotion/react@11.11.0(@types/react@18.3.10)(react@18.3.1))(@types/react@18.3.10)(react@18.3.1))(@types/react@18.3.10)(framer-motion@11.3.24(@emotion/is-prop-valid@1.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/react@1.6.2(@emotion/is-prop-valid@1.3.1)(@emotion/react@11.11.0(@types/react@18.3.10)(react@18.3.1))(@emotion/styled@11.11.0(@emotion/react@11.11.0(@types/react@18.3.10)(react@18.3.1))(@types/react@18.3.10)(react@18.3.1))(@types/react@18.3.10)(framer-motion@11.3.24(@emotion/is-prop-valid@1.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@emotion/react': 11.11.0(@types/react@18.3.10)(react@18.3.1)
       '@emotion/styled': 11.11.0(@emotion/react@11.11.0(@types/react@18.3.10)(react@18.3.1))(@types/react@18.3.10)(react@18.3.1)
-      '@yamada-ui/accordion': 2.0.11(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/alert': 1.0.42(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/autocomplete': 1.6.0(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/avatar': 1.2.10(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/badge': 1.0.39(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/breadcrumb': 1.3.13(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/button': 1.0.44(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/card': 1.0.41(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/checkbox': 1.1.10(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/close-button': 1.0.42(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/color-picker': 1.4.4(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/editable': 1.0.45(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/file-button': 1.1.7(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/file-input': 1.0.44(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/focus-lock': 1.0.23(@types/react@18.3.10)(react@18.3.1)
-      '@yamada-ui/form-control': 2.1.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/highlight': 1.0.39(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/icon': 1.1.8(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/image': 1.3.0(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/indicator': 1.1.39(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/infinite-scroll-area': 1.2.8(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/input': 1.0.44(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/kbd': 1.0.39(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/layouts': 1.1.37(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/link': 1.0.39(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/list': 1.0.41(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/loading': 1.1.18(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/menu': 1.3.15(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/modal': 1.3.12(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/motion': 2.2.4(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/native-select': 1.0.46(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/native-table': 1.0.41(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/notice': 1.1.5(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/number-input': 1.1.16(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/pagination': 1.0.42(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/pin-input': 1.0.43(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/popover': 1.3.4(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/portal': 1.0.23(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/progress': 1.1.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/providers': 1.2.9(@emotion/is-prop-valid@1.3.1)(@emotion/react@11.11.0(@types/react@18.3.10)(react@18.3.1))(@emotion/styled@11.11.0(@emotion/react@11.11.0(@types/react@18.3.10)(react@18.3.1))(@types/react@18.3.10)(react@18.3.1))(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/radio': 1.2.10(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/rating': 1.0.43(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/reorder': 2.0.12(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/resizable': 1.1.14(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/ripple': 1.0.40(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/scroll-area': 1.0.40(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/segmented-control': 1.0.42(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/select': 1.7.0(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/skeleton': 1.1.7(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/slider': 1.2.7(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/snacks': 1.1.5(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/stat': 1.0.39(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/stepper': 1.0.42(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/switch': 1.1.11(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/tabs': 1.0.41(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/tag': 1.0.42(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/textarea': 1.1.31(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/theme': 1.18.3(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/theme-tools': 1.1.5(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/toggle': 1.0.23(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/tooltip': 1.1.13(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/transitions': 1.1.7(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/typography': 1.0.39(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/use-animation': 1.0.39(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/accordion': 2.0.14(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/alert': 1.1.2(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/autocomplete': 1.6.3(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/avatar': 1.2.13(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/badge': 1.0.41(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/breadcrumb': 1.3.16(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/button': 1.0.48(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/card': 1.0.43(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/checkbox': 1.1.12(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/close-button': 1.0.45(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/color-picker': 1.4.8(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/editable': 1.0.47(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/file-button': 1.1.11(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/file-input': 1.0.46(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/focus-lock': 1.0.24(@types/react@18.3.10)(react@18.3.1)
+      '@yamada-ui/form-control': 2.1.6(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/highlight': 1.0.41(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/icon': 1.1.11(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/image': 1.3.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/indicator': 1.1.41(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/infinite-scroll-area': 1.2.10(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/input': 1.0.46(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/kbd': 1.0.41(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/layouts': 1.2.0(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/link': 1.0.41(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/list': 1.0.44(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/loading': 1.1.22(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/menu': 1.3.18(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/modal': 1.4.3(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/motion': 2.2.6(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/native-select': 1.0.49(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/native-table': 1.0.43(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/notice': 1.1.9(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/number-input': 1.1.19(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/pagination': 1.1.2(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/pin-input': 1.1.1(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/popover': 1.4.1(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/portal': 1.0.24(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/progress': 1.1.6(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/providers': 1.2.13(@emotion/is-prop-valid@1.3.1)(@emotion/react@11.11.0(@types/react@18.3.10)(react@18.3.1))(@emotion/styled@11.11.0(@emotion/react@11.11.0(@types/react@18.3.10)(react@18.3.1))(@types/react@18.3.10)(react@18.3.1))(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/radio': 1.2.12(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/rating': 1.1.3(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/reorder': 2.0.15(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/resizable': 1.1.17(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/ripple': 1.0.42(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/scroll-area': 1.0.42(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/segmented-control': 1.1.0(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/select': 1.8.0(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/skeleton': 1.1.9(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/slider': 1.2.9(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/snacks': 1.1.9(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/stat': 1.0.42(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/stepper': 1.0.45(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/switch': 1.1.13(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/tabs': 1.0.44(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/tag': 1.1.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/textarea': 1.1.33(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/theme': 1.19.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/theme-tools': 1.1.9(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/toggle': 1.0.26(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/tooltip': 1.1.15(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/transitions': 1.1.9(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/typography': 1.1.0(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-animation': 1.0.41(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-async-callback': 1.0.3(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@yamada-ui/use-boolean': 1.0.3(react@18.3.1)
-      '@yamada-ui/use-breakpoint': 1.4.10(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/use-clickable': 1.2.10(react@18.3.1)
-      '@yamada-ui/use-clipboard': 1.0.23(react@18.3.1)
-      '@yamada-ui/use-controllable-state': 1.0.22(react@18.3.1)
-      '@yamada-ui/use-counter': 1.0.23(react@18.3.1)
-      '@yamada-ui/use-descendant': 1.0.23(react@18.3.1)
-      '@yamada-ui/use-disclosure': 1.0.22(react@18.3.1)
-      '@yamada-ui/use-event-listener': 1.0.22(react@18.3.1)
-      '@yamada-ui/use-eye-dropper': 1.0.20(react@18.3.1)
-      '@yamada-ui/use-focus': 1.0.23(react@18.3.1)
-      '@yamada-ui/use-focus-visible': 1.1.9(react@18.3.1)
-      '@yamada-ui/use-hover': 1.0.23(react@18.3.1)
-      '@yamada-ui/use-idle': 1.0.23(react@18.3.1)
-      '@yamada-ui/use-infinite-scroll': 1.1.6(react@18.3.1)
-      '@yamada-ui/use-interval': 1.0.22(react@18.3.1)
+      '@yamada-ui/use-breakpoint': 1.4.12(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-clickable': 1.2.12(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-clipboard': 1.0.24(react@18.3.1)
+      '@yamada-ui/use-controllable-state': 1.0.23(react@18.3.1)
+      '@yamada-ui/use-counter': 1.0.24(react@18.3.1)
+      '@yamada-ui/use-descendant': 1.0.25(react@18.3.1)
+      '@yamada-ui/use-disclosure': 1.1.0(react@18.3.1)
+      '@yamada-ui/use-event-listener': 1.0.23(react@18.3.1)
+      '@yamada-ui/use-eye-dropper': 1.0.21(react@18.3.1)
+      '@yamada-ui/use-focus': 1.0.24(react@18.3.1)
+      '@yamada-ui/use-focus-visible': 1.1.10(react@18.3.1)
+      '@yamada-ui/use-hover': 1.0.24(react@18.3.1)
+      '@yamada-ui/use-idle': 1.0.24(react@18.3.1)
+      '@yamada-ui/use-infinite-scroll': 1.1.7(react@18.3.1)
+      '@yamada-ui/use-interval': 1.0.23(react@18.3.1)
       '@yamada-ui/use-latest-ref': 1.0.3(react@18.3.1)
-      '@yamada-ui/use-local-storage': 1.0.23(react@18.3.1)
-      '@yamada-ui/use-media-query': 1.0.49(@emotion/is-prop-valid@1.3.1)(@emotion/react@11.11.0(@types/react@18.3.10)(react@18.3.1))(@emotion/styled@11.11.0(@emotion/react@11.11.0(@types/react@18.3.10)(react@18.3.1))(@types/react@18.3.10)(react@18.3.1))(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/use-os': 1.0.23(react@18.3.1)
-      '@yamada-ui/use-outside-click': 1.0.22(react@18.3.1)
-      '@yamada-ui/use-pan-event': 1.0.24(react@18.3.1)
-      '@yamada-ui/use-popper': 1.0.39(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/use-previous': 1.0.22(react@18.3.1)
-      '@yamada-ui/use-resize-observer': 1.0.22(react@18.3.1)
-      '@yamada-ui/use-size': 1.0.22(react@18.3.1)
-      '@yamada-ui/use-timeout': 1.0.22(react@18.3.1)
-      '@yamada-ui/use-token': 1.1.27(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/use-value': 1.1.27(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/use-window-event': 1.0.23(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
-      '@yamada-ui/visually-hidden': 1.0.13(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-local-storage': 1.0.24(react@18.3.1)
+      '@yamada-ui/use-media-query': 1.0.53(@emotion/is-prop-valid@1.3.1)(@emotion/react@11.11.0(@types/react@18.3.10)(react@18.3.1))(@emotion/styled@11.11.0(@emotion/react@11.11.0(@types/react@18.3.10)(react@18.3.1))(@types/react@18.3.10)(react@18.3.1))(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-os': 1.0.24(react@18.3.1)
+      '@yamada-ui/use-outside-click': 1.0.23(react@18.3.1)
+      '@yamada-ui/use-pan-event': 1.0.25(react@18.3.1)
+      '@yamada-ui/use-popper': 1.0.41(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-previous': 1.0.23(react@18.3.1)
+      '@yamada-ui/use-processing': 1.0.0(react@18.3.1)
+      '@yamada-ui/use-resize-observer': 1.0.23(react@18.3.1)
+      '@yamada-ui/use-size': 1.0.23(react@18.3.1)
+      '@yamada-ui/use-timeout': 1.0.23(react@18.3.1)
+      '@yamada-ui/use-token': 1.1.29(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-value': 1.1.29(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-window-event': 1.0.24(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
+      '@yamada-ui/visually-hidden': 1.0.15(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       framer-motion: 11.3.24(@emotion/is-prop-valid@1.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
@@ -6347,12 +6233,12 @@ snapshots:
       - '@types/react'
       - supports-color
 
-  '@yamada-ui/reorder@2.0.12(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/reorder@2.0.15(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/icon': 1.1.8(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/motion': 2.2.4(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/icon': 1.1.11(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/motion': 2.2.6(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
     transitivePeerDependencies:
       - '@emotion/is-prop-valid'
@@ -6360,26 +6246,14 @@ snapshots:
       - react-dom
       - supports-color
 
-  '@yamada-ui/resizable@1.1.14(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/resizable@1.1.17(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/icon': 1.1.8(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/icon': 1.1.11(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
       react-resizable-panels: 2.1.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
     transitivePeerDependencies:
-      - '@types/react'
-      - react-dom
-      - supports-color
-
-  '@yamada-ui/ripple@1.0.40(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/motion': 2.2.4(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
-      react: 18.3.1
-    transitivePeerDependencies:
-      - '@emotion/is-prop-valid'
       - '@types/react'
       - react-dom
       - supports-color
@@ -6396,45 +6270,24 @@ snapshots:
       - react-dom
       - supports-color
 
-  '@yamada-ui/scroll-area@1.0.40(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/scroll-area@1.0.42(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
       - supports-color
 
-  '@yamada-ui/segmented-control@1.0.42(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/segmented-control@1.1.0(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/motion': 2.2.4(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/use-controllable-state': 1.0.22(react@18.3.1)
-      '@yamada-ui/use-descendant': 1.0.23(react@18.3.1)
-      '@yamada-ui/use-focus-visible': 1.1.9(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
-      react: 18.3.1
-    transitivePeerDependencies:
-      - '@emotion/is-prop-valid'
-      - '@types/react'
-      - react-dom
-      - supports-color
-
-  '@yamada-ui/select@1.7.0(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/form-control': 2.1.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/icon': 1.1.8(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/motion': 2.2.4(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/popover': 1.3.4(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/portal': 1.0.23(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/use-clickable': 1.2.10(react@18.3.1)
-      '@yamada-ui/use-controllable-state': 1.0.22(react@18.3.1)
-      '@yamada-ui/use-descendant': 1.0.23(react@18.3.1)
-      '@yamada-ui/use-disclosure': 1.0.22(react@18.3.1)
-      '@yamada-ui/use-outside-click': 1.0.22(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/motion': 2.2.6(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-controllable-state': 1.0.23(react@18.3.1)
+      '@yamada-ui/use-descendant': 1.0.25(react@18.3.1)
+      '@yamada-ui/use-focus-visible': 1.1.10(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
     transitivePeerDependencies:
       - '@emotion/is-prop-valid'
@@ -6442,78 +6295,63 @@ snapshots:
       - react-dom
       - supports-color
 
-  '@yamada-ui/skeleton@1.1.7(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/select@1.8.0(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/use-animation': 1.0.39(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/use-previous': 1.0.22(react@18.3.1)
-      '@yamada-ui/use-value': 1.1.27(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/form-control': 2.1.6(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/icon': 1.1.11(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/motion': 2.2.6(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/popover': 1.4.1(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/portal': 1.0.24(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-clickable': 1.2.12(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-controllable-state': 1.0.23(react@18.3.1)
+      '@yamada-ui/use-descendant': 1.0.25(react@18.3.1)
+      '@yamada-ui/use-disclosure': 1.1.0(react@18.3.1)
+      '@yamada-ui/use-outside-click': 1.0.23(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
+      react: 18.3.1
+    transitivePeerDependencies:
+      - '@emotion/is-prop-valid'
+      - '@types/react'
+      - react-dom
+      - supports-color
+
+  '@yamada-ui/skeleton@1.1.9(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-animation': 1.0.41(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-previous': 1.0.23(react@18.3.1)
+      '@yamada-ui/use-value': 1.1.29(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
       - supports-color
 
-  '@yamada-ui/slider@1.2.7(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/slider@1.2.9(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/form-control': 2.1.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/use-controllable-state': 1.0.22(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/form-control': 2.1.6(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-controllable-state': 1.0.23(react@18.3.1)
       '@yamada-ui/use-latest-ref': 1.0.3(react@18.3.1)
-      '@yamada-ui/use-pan-event': 1.0.24(react@18.3.1)
-      '@yamada-ui/use-size': 1.0.22(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/use-pan-event': 1.0.25(react@18.3.1)
+      '@yamada-ui/use-size': 1.0.23(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
       - supports-color
 
-  '@yamada-ui/snacks@1.1.5(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/snacks@1.1.9(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@yamada-ui/alert': 1.0.42(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/close-button': 1.0.42(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/motion': 2.2.4(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/use-timeout': 1.0.22(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
-      react: 18.3.1
-    transitivePeerDependencies:
-      - '@emotion/is-prop-valid'
-      - '@types/react'
-      - react-dom
-      - supports-color
-
-  '@yamada-ui/stat@1.0.39(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/icon': 1.1.8(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
-      react: 18.3.1
-    transitivePeerDependencies:
-      - '@types/react'
-      - react-dom
-      - supports-color
-
-  '@yamada-ui/stepper@1.0.42(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/icon': 1.1.8(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/use-descendant': 1.0.23(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
-      react: 18.3.1
-    transitivePeerDependencies:
-      - '@types/react'
-      - react-dom
-      - supports-color
-
-  '@yamada-ui/switch@1.1.11(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@yamada-ui/checkbox': 1.1.10(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/motion': 2.2.4(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/alert': 1.1.2(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/close-button': 1.0.45(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/motion': 2.2.6(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-timeout': 1.0.23(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
     transitivePeerDependencies:
       - '@emotion/is-prop-valid'
@@ -6521,15 +6359,35 @@ snapshots:
       - react-dom
       - supports-color
 
-  '@yamada-ui/tabs@1.0.41(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/stat@1.0.42(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/ripple': 1.0.40(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/use-clickable': 1.2.10(react@18.3.1)
-      '@yamada-ui/use-controllable-state': 1.0.22(react@18.3.1)
-      '@yamada-ui/use-descendant': 1.0.23(react@18.3.1)
-      '@yamada-ui/use-disclosure': 1.0.22(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/icon': 1.1.11(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
+      react: 18.3.1
+    transitivePeerDependencies:
+      - '@types/react'
+      - react-dom
+      - supports-color
+
+  '@yamada-ui/stepper@1.0.45(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/icon': 1.1.11(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-descendant': 1.0.25(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
+      react: 18.3.1
+    transitivePeerDependencies:
+      - '@types/react'
+      - react-dom
+      - supports-color
+
+  '@yamada-ui/switch@1.1.13(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@yamada-ui/checkbox': 1.1.12(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/motion': 2.2.6(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
     transitivePeerDependencies:
       - '@emotion/is-prop-valid'
@@ -6537,56 +6395,72 @@ snapshots:
       - react-dom
       - supports-color
 
-  '@yamada-ui/tag@1.0.42(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/tabs@1.0.44(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/icon': 1.1.8(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/use-clickable': 1.2.10(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/ripple': 1.0.42(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-clickable': 1.2.12(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-controllable-state': 1.0.23(react@18.3.1)
+      '@yamada-ui/use-descendant': 1.0.25(react@18.3.1)
+      '@yamada-ui/use-disclosure': 1.1.0(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
+      react: 18.3.1
+    transitivePeerDependencies:
+      - '@emotion/is-prop-valid'
+      - '@types/react'
+      - react-dom
+      - supports-color
+
+  '@yamada-ui/tag@1.1.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/icon': 1.1.11(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-clickable': 1.2.12(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
       - supports-color
 
-  '@yamada-ui/textarea@1.1.31(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/textarea@1.1.33(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/form-control': 2.1.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/form-control': 2.1.6(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
       - supports-color
 
-  '@yamada-ui/theme-tools@1.1.5(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/theme-tools@1.1.9(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/theme': 1.18.3(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/theme': 1.19.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
     transitivePeerDependencies:
       - '@types/react'
       - react
       - react-dom
       - supports-color
 
-  '@yamada-ui/theme@1.18.3(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/theme@1.19.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
     transitivePeerDependencies:
       - '@types/react'
       - react
       - react-dom
       - supports-color
 
-  '@yamada-ui/toggle@1.0.23(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/toggle@1.0.26(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/ripple': 1.0.40(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/use-controllable-state': 1.0.22(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/ripple': 1.0.42(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-controllable-state': 1.0.23(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
     transitivePeerDependencies:
       - '@emotion/is-prop-valid'
@@ -6594,30 +6468,17 @@ snapshots:
       - react-dom
       - supports-color
 
-  '@yamada-ui/tooltip@1.1.13(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/tooltip@1.1.15(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/motion': 2.2.4(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/portal': 1.0.23(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/transitions': 1.1.7(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/use-disclosure': 1.0.22(react@18.3.1)
-      '@yamada-ui/use-event-listener': 1.0.22(react@18.3.1)
-      '@yamada-ui/use-outside-click': 1.0.22(react@18.3.1)
-      '@yamada-ui/use-popper': 1.0.39(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
-      react: 18.3.1
-    transitivePeerDependencies:
-      - '@emotion/is-prop-valid'
-      - '@types/react'
-      - react-dom
-      - supports-color
-
-  '@yamada-ui/transitions@1.1.7(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/motion': 2.2.4(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/use-value': 1.1.27(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/motion': 2.2.6(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/portal': 1.0.24(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/transitions': 1.1.9(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-disclosure': 1.1.0(react@18.3.1)
+      '@yamada-ui/use-event-listener': 1.0.23(react@18.3.1)
+      '@yamada-ui/use-outside-click': 1.0.23(react@18.3.1)
+      '@yamada-ui/use-popper': 1.0.41(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
     transitivePeerDependencies:
       - '@emotion/is-prop-valid'
@@ -6639,23 +6500,10 @@ snapshots:
       - react-dom
       - supports-color
 
-  '@yamada-ui/typography@1.0.39(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/typography@1.1.0(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
-      react: 18.3.1
-    transitivePeerDependencies:
-      - '@types/react'
-      - react-dom
-      - supports-color
-
-  '@yamada-ui/use-animation@1.0.39(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/use-boolean': 1.0.3(react@18.3.1)
-      '@yamada-ui/use-event-listener': 1.0.22(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
-      csstype: 3.1.3
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
     transitivePeerDependencies:
       - '@types/react'
@@ -6675,19 +6523,22 @@ snapshots:
       - react-dom
       - supports-color
 
-  '@yamada-ui/use-boolean@1.0.3(react@18.3.1)':
+  '@yamada-ui/use-async-callback@1.0.3(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      react: 18.3.1
-
-  '@yamada-ui/use-breakpoint@1.4.10(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/loading': 1.1.22(@emotion/is-prop-valid@1.3.1)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/use-processing': 1.0.0(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
     transitivePeerDependencies:
+      - '@emotion/is-prop-valid'
       - '@types/react'
       - react-dom
       - supports-color
+
+  '@yamada-ui/use-boolean@1.0.3(react@18.3.1)':
+    dependencies:
+      react: 18.3.1
 
   '@yamada-ui/use-breakpoint@1.4.12(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
@@ -6698,12 +6549,6 @@ snapshots:
       - '@types/react'
       - react-dom
       - supports-color
-
-  '@yamada-ui/use-clickable@1.2.10(react@18.3.1)':
-    dependencies:
-      '@yamada-ui/use-event-listener': 1.0.22(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
-      react: 18.3.1
 
   '@yamada-ui/use-clickable@1.2.12(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
@@ -6716,15 +6561,10 @@ snapshots:
       - react-dom
       - supports-color
 
-  '@yamada-ui/use-clipboard@1.0.23(react@18.3.1)':
+  '@yamada-ui/use-clipboard@1.0.24(react@18.3.1)':
     dependencies:
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       copy-to-clipboard: 3.3.3
-      react: 18.3.1
-
-  '@yamada-ui/use-controllable-state@1.0.22(react@18.3.1)':
-    dependencies:
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
       react: 18.3.1
 
   '@yamada-ui/use-controllable-state@1.0.23(react@18.3.1)':
@@ -6732,19 +6572,14 @@ snapshots:
       '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
 
-  '@yamada-ui/use-counter@1.0.23(react@18.3.1)':
+  '@yamada-ui/use-counter@1.0.24(react@18.3.1)':
     dependencies:
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
 
-  '@yamada-ui/use-descendant@1.0.23(react@18.3.1)':
+  '@yamada-ui/use-descendant@1.0.25(react@18.3.1)':
     dependencies:
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
-      react: 18.3.1
-
-  '@yamada-ui/use-disclosure@1.0.22(react@18.3.1)':
-    dependencies:
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
 
   '@yamada-ui/use-disclosure@1.1.0(react@18.3.1)':
@@ -6752,30 +6587,19 @@ snapshots:
       '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
 
-  '@yamada-ui/use-event-listener@1.0.22(react@18.3.1)':
-    dependencies:
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
-      react: 18.3.1
-
   '@yamada-ui/use-event-listener@1.0.23(react@18.3.1)':
     dependencies:
       '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
 
-  '@yamada-ui/use-eye-dropper@1.0.20(react@18.3.1)':
+  '@yamada-ui/use-eye-dropper@1.0.21(react@18.3.1)':
     dependencies:
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
 
-  '@yamada-ui/use-focus-visible@1.1.9(react@18.3.1)':
+  '@yamada-ui/use-focus-visible@1.1.10(react@18.3.1)':
     dependencies:
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
-      react: 18.3.1
-
-  '@yamada-ui/use-focus@1.0.23(react@18.3.1)':
-    dependencies:
-      '@yamada-ui/use-event-listener': 1.0.22(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
 
   '@yamada-ui/use-focus@1.0.24(react@18.3.1)':
@@ -6784,41 +6608,41 @@ snapshots:
       '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
 
-  '@yamada-ui/use-hover@1.0.23(react@18.3.1)':
+  '@yamada-ui/use-hover@1.0.24(react@18.3.1)':
     dependencies:
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
 
-  '@yamada-ui/use-idle@1.0.23(react@18.3.1)':
+  '@yamada-ui/use-idle@1.0.24(react@18.3.1)':
     dependencies:
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
 
-  '@yamada-ui/use-infinite-scroll@1.1.6(react@18.3.1)':
+  '@yamada-ui/use-infinite-scroll@1.1.7(react@18.3.1)':
     dependencies:
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
 
-  '@yamada-ui/use-interval@1.0.22(react@18.3.1)':
+  '@yamada-ui/use-interval@1.0.23(react@18.3.1)':
     dependencies:
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
 
   '@yamada-ui/use-latest-ref@1.0.3(react@18.3.1)':
     dependencies:
       react: 18.3.1
 
-  '@yamada-ui/use-local-storage@1.0.23(react@18.3.1)':
+  '@yamada-ui/use-local-storage@1.0.24(react@18.3.1)':
     dependencies:
-      '@yamada-ui/use-window-event': 1.0.23(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/use-window-event': 1.0.24(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
 
-  '@yamada-ui/use-media-query@1.0.49(@emotion/is-prop-valid@1.3.1)(@emotion/react@11.11.0(@types/react@18.3.10)(react@18.3.1))(@emotion/styled@11.11.0(@emotion/react@11.11.0(@types/react@18.3.10)(react@18.3.1))(@types/react@18.3.10)(react@18.3.1))(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yamada-ui/use-media-query@1.0.53(@emotion/is-prop-valid@1.3.1)(@emotion/react@11.11.0(@types/react@18.3.10)(react@18.3.1))(@emotion/styled@11.11.0(@emotion/react@11.11.0(@types/react@18.3.10)(react@18.3.1))(@types/react@18.3.10)(react@18.3.1))(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/providers': 1.2.9(@emotion/is-prop-valid@1.3.1)(@emotion/react@11.11.0(@types/react@18.3.10)(react@18.3.1))(@emotion/styled@11.11.0(@emotion/react@11.11.0(@types/react@18.3.10)(react@18.3.1))(@types/react@18.3.10)(react@18.3.1))(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/providers': 1.2.13(@emotion/is-prop-valid@1.3.1)(@emotion/react@11.11.0(@types/react@18.3.10)(react@18.3.1))(@emotion/styled@11.11.0(@emotion/react@11.11.0(@types/react@18.3.10)(react@18.3.1))(@types/react@18.3.10)(react@18.3.1))(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
     transitivePeerDependencies:
       - '@emotion/is-prop-valid'
@@ -6828,14 +6652,9 @@ snapshots:
       - react-dom
       - supports-color
 
-  '@yamada-ui/use-os@1.0.23(react@18.3.1)':
+  '@yamada-ui/use-os@1.0.24(react@18.3.1)':
     dependencies:
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
-      react: 18.3.1
-
-  '@yamada-ui/use-outside-click@1.0.22(react@18.3.1)':
-    dependencies:
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
 
   '@yamada-ui/use-outside-click@1.0.23(react@18.3.1)':
@@ -6843,24 +6662,12 @@ snapshots:
       '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
 
-  '@yamada-ui/use-pan-event@1.0.24(react@18.3.1)':
+  '@yamada-ui/use-pan-event@1.0.25(react@18.3.1)':
     dependencies:
       '@yamada-ui/use-latest-ref': 1.0.3(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       framesync: 6.1.2
       react: 18.3.1
-
-  '@yamada-ui/use-popper@1.0.39(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@popperjs/core': 2.11.8
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/use-value': 1.1.27(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
-      react: 18.3.1
-    transitivePeerDependencies:
-      - '@types/react'
-      - react-dom
-      - supports-color
 
   '@yamada-ui/use-popper@1.0.41(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
@@ -6874,24 +6681,25 @@ snapshots:
       - react-dom
       - supports-color
 
-  '@yamada-ui/use-previous@1.0.22(react@18.3.1)':
+  '@yamada-ui/use-previous@1.0.23(react@18.3.1)':
     dependencies:
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
 
-  '@yamada-ui/use-resize-observer@1.0.22(react@18.3.1)':
+  '@yamada-ui/use-processing@1.0.0(react@18.3.1)':
     dependencies:
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/use-boolean': 1.0.3(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
 
-  '@yamada-ui/use-size@1.0.22(react@18.3.1)':
+  '@yamada-ui/use-resize-observer@1.0.23(react@18.3.1)':
     dependencies:
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
 
-  '@yamada-ui/use-timeout@1.0.22(react@18.3.1)':
+  '@yamada-ui/use-size@1.0.23(react@18.3.1)':
     dependencies:
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
 
   '@yamada-ui/use-timeout@1.0.23(react@18.3.1)':
@@ -6919,17 +6727,6 @@ snapshots:
       - react-dom
       - supports-color
 
-  '@yamada-ui/use-value@1.1.27(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/use-breakpoint': 1.4.10(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
-      react: 18.3.1
-    transitivePeerDependencies:
-      - '@types/react'
-      - react-dom
-      - supports-color
-
   '@yamada-ui/use-value@1.1.29(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@yamada-ui/core': 1.15.4(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -6941,9 +6738,9 @@ snapshots:
       - react-dom
       - supports-color
 
-  '@yamada-ui/use-window-event@1.0.23(react@18.3.1)':
+  '@yamada-ui/use-window-event@1.0.24(react@18.3.1)':
     dependencies:
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
+      '@yamada-ui/utils': 1.5.4(react@18.3.1)
       react: 18.3.1
 
   '@yamada-ui/utils@1.5.3(react@18.3.1)':
@@ -6955,16 +6752,6 @@ snapshots:
     dependencies:
       color2k: 2.0.3
       react: 18.3.1
-
-  '@yamada-ui/visually-hidden@1.0.13(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@yamada-ui/core': 1.15.2(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@yamada-ui/utils': 1.5.3(react@18.3.1)
-      react: 18.3.1
-    transitivePeerDependencies:
-      - '@types/react'
-      - react-dom
-      - supports-color
 
   '@yamada-ui/visually-hidden@1.0.15(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:

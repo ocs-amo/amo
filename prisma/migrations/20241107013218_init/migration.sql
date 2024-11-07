@@ -103,11 +103,12 @@ CREATE TABLE "Activity" (
     "id" SERIAL NOT NULL,
     "circleId" TEXT NOT NULL,
     "title" TEXT NOT NULL,
-    "description" TEXT NOT NULL,
-    "activityDay" TIMESTAMP(3) NOT NULL,
+    "description" TEXT,
     "location" TEXT NOT NULL,
+    "createdBy" TEXT NOT NULL,
+    "activityDay" TIMESTAMP(3) NOT NULL,
     "startTime" TIMESTAMP(3) NOT NULL,
-    "endTime" TIMESTAMP(3) NOT NULL,
+    "endTime" TIMESTAMP(3),
     "notes" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -119,7 +120,7 @@ CREATE TABLE "Activity" (
 -- CreateTable
 CREATE TABLE "ActivityParticipant" (
     "id" SERIAL NOT NULL,
-    "activitytId" INTEGER NOT NULL,
+    "activityId" INTEGER NOT NULL,
     "userId" TEXT NOT NULL,
     "joinedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "removedAt" TIMESTAMP(3),
@@ -149,7 +150,7 @@ CREATE INDEX "CircleTag_circleId_idx" ON "CircleTag"("circleId");
 CREATE INDEX "Activity_circleId_idx" ON "Activity"("circleId");
 
 -- CreateIndex
-CREATE INDEX "ActivityParticipant_activitytId_userId_idx" ON "ActivityParticipant"("activitytId", "userId");
+CREATE INDEX "ActivityParticipant_activityId_userId_idx" ON "ActivityParticipant"("activityId", "userId");
 
 -- AddForeignKey
 ALTER TABLE "Account" ADD CONSTRAINT "Account_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -185,4 +186,10 @@ ALTER TABLE "CircleTag" ADD CONSTRAINT "CircleTag_circleId_fkey" FOREIGN KEY ("c
 ALTER TABLE "Activity" ADD CONSTRAINT "Activity_circleId_fkey" FOREIGN KEY ("circleId") REFERENCES "Circle"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "ActivityParticipant" ADD CONSTRAINT "ActivityParticipant_activitytId_fkey" FOREIGN KEY ("activitytId") REFERENCES "Activity"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "Activity" ADD CONSTRAINT "Activity_createdBy_fkey" FOREIGN KEY ("createdBy") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "ActivityParticipant" ADD CONSTRAINT "ActivityParticipant_activityId_fkey" FOREIGN KEY ("activityId") REFERENCES "Activity"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "ActivityParticipant" ADD CONSTRAINT "ActivityParticipant_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;

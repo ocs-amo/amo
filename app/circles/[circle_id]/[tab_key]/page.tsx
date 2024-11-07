@@ -11,7 +11,7 @@ interface Props {
 }
 
 // 固定されたタブキーのリスト
-const list = ["days", "images", "notifications", "members"]
+const list = ["activities", "images", "notifications", "members"]
 
 export const dynamicParams = false
 

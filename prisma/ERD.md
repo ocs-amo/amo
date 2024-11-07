@@ -78,11 +78,11 @@ erDiagram
   "Activity" {
     Int id "🗝️"
     String title
-    String description
-    DateTime activityDay
+    String description "❓"
     String location
+    DateTime activityDay
     DateTime startTime
-    DateTime endTime
+    DateTime endTime "❓"
     String notes "❓"
     DateTime createdAt
     DateTime updatedAt
@@ -92,7 +92,6 @@ erDiagram
 
   "ActivityParticipant" {
     Int id "🗝️"
-    String userId
     DateTime joinedAt
     DateTime removedAt "❓"
     }
@@ -102,6 +101,8 @@ erDiagram
     "User" o{--}o "CircleInstructor" : "CircleInstructor"
     "User" o{--}o "MembershipRequest" : "MembershipRequests"
     "User" o{--}o "MembershipRequest" : "ProcessedRequests"
+    "User" o{--}o "Activity" : "createdActivities"
+    "User" o{--}o "ActivityParticipant" : "ActivityParticipant"
     "Account" o|--|| "User" : "user"
     "Circle" o{--}o "CircleMember" : "CircleMember"
     "Circle" o{--}o "CircleInstructor" : "CircleInstructor"
@@ -120,5 +121,7 @@ erDiagram
     "Role" o{--}o "CircleMember" : "members"
     "Activity" o{--}o "ActivityParticipant" : "participants"
     "Activity" o|--|| "Circle" : "circle"
+    "Activity" o|--|| "User" : "creator"
     "ActivityParticipant" o|--|| "Activity" : "Activity"
+    "ActivityParticipant" o|--|| "User" : "user"
 ```

@@ -7,7 +7,7 @@ import {
 } from "@/data/circle"
 import { getUserById } from "@/data/user"
 import type { BackCircleForm } from "@/schema/circle"
-import { BackCircleSchem } from "@/schema/circle"
+import { BackCircleSchema } from "@/schema/circle"
 
 export const UpdateCircle = async (
   values: BackCircleForm,
@@ -15,7 +15,7 @@ export const UpdateCircle = async (
   userId: string,
 ) => {
   // バリデーションの実行
-  const { success, error } = BackCircleSchem.safeParse(values)
+  const { success, error } = BackCircleSchema.safeParse(values)
   if (!success && error) {
     return { error }
   }

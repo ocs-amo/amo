@@ -10,7 +10,7 @@ export default middleware((req) => {
 
   console.log("auth", reqUrl.pathname)
 
-  if (!req.auth && reqUrl?.pathname === "/") {
+  if (!req.auth && reqUrl?.pathname !== "/signin") {
     return NextResponse.redirect(new URL("/signin", req.url))
   } else if (req.auth && reqUrl?.pathname === "/signin") {
     return NextResponse.redirect(new URL("/", req.url))

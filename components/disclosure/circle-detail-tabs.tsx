@@ -41,12 +41,13 @@ interface CircleDetailTabsProps {
   tabKey?: string
   userId: string
   isAdmin?: boolean
+  isMember?: boolean
   fetchData: () => Promise<void>
 }
 
 const handlingTab = (key: string) => {
   switch (key) {
-    case "days":
+    case "activities":
       return 0
     case "images":
       return 1
@@ -105,6 +106,7 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
   membershipRequests,
   userId,
   isAdmin,
+  isMember,
   fetchData,
 }) => {
   const [selectedOptions, setSelectedOptions] = useState<string[]>([])
@@ -165,7 +167,11 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
   return (
     <Tabs index={tabIndex}>
       <TabList overflowX="auto" overflowY="hidden">
-        <Tab flexShrink={0} as={Link} href={`/circles/${circle?.id}/days`}>
+        <Tab
+          flexShrink={0}
+          as={Link}
+          href={`/circles/${circle?.id}/activities`}
+        >
           活動日程
         </Tab>
         <Tab flexShrink={0} as={Link} href={`/circles/${circle?.id}/images`}>
@@ -197,6 +203,8 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
             userId={userId}
             userRole={userRole}
             isAdmin={isAdmin}
+            isMember={isMember}
+            circle={circle}
           />
         </TabPanel>
         <TabPanel>画像</TabPanel>
