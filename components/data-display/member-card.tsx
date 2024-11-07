@@ -82,8 +82,6 @@ export const MemberCard: FC<MemberCard> = ({
     if (userId !== null) {
       onRemoveClose()
       await handleRemoveMember(member.id)
-      setSelectedRole(null)
-      setSelectedRoleName("")
     }
   }
 
