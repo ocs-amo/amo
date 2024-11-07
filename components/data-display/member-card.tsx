@@ -50,14 +50,14 @@ export const MemberCard: FC<MemberCard> = ({
   handleRoleChange,
   handleRemoveMember,
 }) => {
-  const roleDialogDisclosure = useDisclosure();
-  const removeDialogDisclosure = useDisclosure();
+  const { isOpen: isRoleOpen, onOpen: onRoleOpen, onClose: onRoleClose } = useDisclosure()
+  const { isOpen: isRemoveOpen, onOpen: onRemoveOpen, onClose: onRemoveClose } = useDisclosure()
   const [selectedRole, setSelectedRole] = useState<number | null>(null)
   const [selectedRoleName, setSelectedRoleName] = useState<string | null>(null)
 
   // 権限変更モーダルを開く
   const openRoleDialog = (newRoleId: number, newRoleName: string) => {
-    roleDialogDisclosure.onOpen()
+    onRoleOpen()
     setSelectedRole(newRoleId)
     setSelectedRoleName(newRoleName)
   }
@@ -65,7 +65,7 @@ export const MemberCard: FC<MemberCard> = ({
   // 権限変更を確定
   const confirmRoleChange = async () => {
     if (userId && selectedRole !== null) {
-      roleDialogDisclosure.onClose()
+      onRoleClose()
       await handleRoleChange(member.id, selectedRole)
       setSelectedRole(null)
       setSelectedRoleName("")
@@ -74,7 +74,7 @@ export const MemberCard: FC<MemberCard> = ({
 
   // 退会確認モーダルを開く
   const openRemoveDialog = () => {
-    removeDialogDisclosure.onOpen();
+    onRemoveOpen();
   };
 
   return (
@@ -161,7 +161,7 @@ export const MemberCard: FC<MemberCard> = ({
           ) : undefined}
 
           {/* 権限変更確認モーダル */}
-          <Modal isOpen={roleDialogDisclosure.isOpen} onClose={roleDialogDisclosure.onClose}>
+          <Modal isOpen={isRoleOpen} onClose={onRoleClose}>
             <ModalOverlay />
             <ModalHeader>権限変更の確認</ModalHeader>
             <ModalBody>
@@ -169,7 +169,7 @@ export const MemberCard: FC<MemberCard> = ({
               {selectedRoleName}」に変更しますか？
             </ModalBody>
             <ModalFooter>
-              <Button onClick={roleDialogDisclosure.onClose}>キャンセル</Button>
+              <Button onClick={onRoleClose}>キャンセル</Button>
               <Button colorScheme="blue" onClick={confirmRoleChange}>
                 変更
               </Button>
@@ -177,14 +177,14 @@ export const MemberCard: FC<MemberCard> = ({
           </Modal>
 
           {/* 退会確認モーダル */}
-          <Modal isOpen={removeDialogDisclosure.isOpen} onClose={removeDialogDisclosure.onClose}>
+          <Modal isOpen={isRemoveOpen} onClose={onRemoveClose}>
             <ModalOverlay />
             <ModalHeader>サークルの退会確認</ModalHeader>
             <ModalBody>
               本当に {member.name} さんを退会させますか？
             </ModalBody>
             <ModalFooter>
-              <Button onClick={removeDialogDisclosure.onClose}>キャンセル</Button>
+              <Button onClick={onRemoveClose}>キャンセル</Button>
               <Button colorScheme="danger" onClick={() => handleRemoveMember(member.id)}>
                 退会
               </Button>
