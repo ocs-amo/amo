@@ -1,16 +1,8 @@
 "use server"
-import { auth } from "@/auth"
 import { db } from "@/utils/db"
 
 export const getCircleById = async (id: string) => {
   try {
-    // 認証情報を取得
-    const session = await auth()
-
-    // 認証されたユーザーIDとリクエストのuserIdが一致しているか確認
-    if (!session?.user) {
-      throw new Error("権限がありません。")
-    }
     const circle = await db.circle.findUnique({
       where: {
         id,
@@ -82,13 +74,6 @@ export const getCircleById = async (id: string) => {
 
 export const getCircles = async () => {
   try {
-    // 認証情報を取得
-    const session = await auth()
-
-    // 認証されたユーザーIDとリクエストのuserIdが一致しているか確認
-    if (!session?.user) {
-      throw new Error("権限がありません。")
-    }
     const circles = await db.circle.findMany({
       where: {
         deletedAt: null,
@@ -119,13 +104,6 @@ export const getCircles = async () => {
 
 export const getCirclesByUserId = async (userId: string) => {
   try {
-    // 認証情報を取得
-    const session = await auth()
-
-    // 認証されたユーザーIDとリクエストのuserIdが一致しているか確認
-    if (!session?.user) {
-      throw new Error("権限がありません。")
-    }
     const circles = await db.circle.findMany({
       where: {
         deletedAt: null,
