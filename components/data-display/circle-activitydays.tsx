@@ -77,7 +77,6 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
       userId,
       circle?.id || "",
     )
-    console.log(success, action, error)
 
     snack.closeAll()
     if (success) {
