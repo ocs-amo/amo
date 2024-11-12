@@ -19,6 +19,7 @@ export const getActivitiesByMonth = async (
         gte: startDate,
         lte: endDate,
       },
+      deletedAt: null,
     },
     include: {
       participants: {
@@ -116,4 +117,13 @@ export const updateActivityParticipation = async (
     })
     return { action: "joined" } // 新規参加完了
   }
+}
+
+export const deleteActivity = async (activityId: number) => {
+  return await db.activity.update({
+    where: { id: activityId },
+    data: {
+      deletedAt: new Date(),
+    },
+  })
 }
