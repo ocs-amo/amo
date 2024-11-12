@@ -1,9 +1,9 @@
 "use server"
 
+import { getUserById } from "../user/user"
 import { auth } from "@/auth"
 import { createActivity } from "@/data/activity"
 import { getMemberByCircleId } from "@/data/circle"
-import { getUserById } from "@/data/user"
 import type { ActivityFormType } from "@/schema/activity"
 
 export const addActivityAction = async (

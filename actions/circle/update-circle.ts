@@ -1,4 +1,5 @@
 "use server"
+import { getUserById } from "../user/user"
 import { auth } from "@/auth"
 import {
   getMemberByCircleId,
@@ -6,7 +7,6 @@ import {
   updateTags,
   updateCircle,
 } from "@/data/circle"
-import { getUserById } from "@/data/user"
 import type { BackCircleForm } from "@/schema/circle"
 import { BackCircleSchema } from "@/schema/circle"
 

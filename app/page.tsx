@@ -20,9 +20,9 @@ import {
 } from "@yamada-ui/react"
 import Link from "next/link"
 import { getCirclesByUserId } from "@/actions/circle/fetch-circle"
+import { getUserById } from "@/actions/user/user"
 import { auth } from "@/auth"
 import { CircleCard } from "@/components/data-display/circle-card"
-import { getUserById } from "@/data/user"
 
 const notificationMockData = [
   {
