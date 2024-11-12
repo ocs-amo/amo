@@ -80,6 +80,7 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
       userId,
     )
 
+    snack.closeAll()
     if (success) {
       snack({
         title: "削除しました。",
