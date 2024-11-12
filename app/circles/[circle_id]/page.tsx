@@ -28,6 +28,7 @@ export const dynamicParams = false
 
 export const generateStaticParams = async () => {
   const circles = await getCircles()
+  console.log(circles)
 
   if (!circles) {
     return []

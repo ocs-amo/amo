@@ -9,6 +9,10 @@ export const getActivityById = async (activityId: number) => {
   })
 }
 
+export const getActivities = async () => {
+  return await db.activity.findMany()
+}
+
 // 指定された月のイベントを取得する関数
 export const getActivitiesByMonth = async (
   year: number,
