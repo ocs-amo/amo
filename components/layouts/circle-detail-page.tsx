@@ -12,8 +12,8 @@ import {
 import { useState } from "react"
 import { CircleDetailTabs } from "../disclosure/circle-detail-tabs"
 import { CircleMembershipButton } from "../forms/circle-membership-button"
+import { getCircleById } from "@/actions/circle/fetch-circle"
 import { getMembershipRequests } from "@/actions/circle/membership-request"
-import { getCircleById } from "@/data/circle"
 
 export const CircleDetailPage: FC<{
   circle: Awaited<ReturnType<typeof getCircleById>>

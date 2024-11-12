@@ -1,7 +1,7 @@
 import { Center } from "@yamada-ui/react"
+import { getCircleById } from "@/actions/circle/fetch-circle"
 import { auth } from "@/auth"
 import { ActivityForm } from "@/components/forms/activity-form"
-import { getCircleById } from "@/data/circle"
 
 interface Props {
   params: { circle_id?: string }

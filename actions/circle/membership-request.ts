@@ -1,4 +1,5 @@
 "use server"
+import { auth } from "@/auth"
 import {
   addMemberToCircle,
   findActiveMember,
@@ -20,6 +21,16 @@ export const handleMembershipRequest = async (
   requestType: "join" | "withdrawal",
 ) => {
   try {
+    // 認証情報を取得
+    const session = await auth()
+
+    // 認証されたユーザーIDとリクエストのuserIdが一致しているか確認
+    if (!session?.user || session.user.id !== userId) {
+      return {
+        success: false,
+        message: "権限がありません。",
+      }
+    }
     // 代表が退会申請を送れないようにチェックを追加
     if (requestType === "withdrawal") {
       const currentUser = await findActiveMember(userId, circleId)
@@ -57,6 +68,13 @@ export const checkPendingRequest = async (
   requestType: "join" | "withdrawal",
 ) => {
   try {
+    // 認証情報を取得
+    const session = await auth()
+
+    // 認証されたユーザーIDとリクエストのuserIdが一致しているか確認
+    if (!session?.user || session.user.id !== userId) {
+      return false
+    }
     // 既存の保留中のリクエストがあるか確認
     const existingRequest = await checkExistingMembershipRequest(
       userId,
@@ -78,6 +96,16 @@ export const getMembershipRequests = async (
   circleId: string,
 ) => {
   try {
+    // 認証情報を取得
+    const session = await auth()
+
+    // 認証されたユーザーIDとリクエストのuserIdが一致しているか確認
+    if (!session?.user || session.user.id !== userId) {
+      return {
+        success: false,
+        message: "権限がありません。",
+      }
+    }
     // ユーザーがサークルの管理者かどうかを確認
     const isAdmin = await isUserAdmin(userId, circleId)
 
@@ -118,6 +146,16 @@ export const handleMembershipRequestAction = async (
   action: "approve" | "reject",
 ) => {
   try {
+    // 認証情報を取得
+    const session = await auth()
+
+    // 認証されたユーザーIDとリクエストのuserIdが一致しているか確認
+    if (!session?.user || session.user.id !== adminUserId) {
+      return {
+        success: false,
+        message: "権限がありません。",
+      }
+    }
     // ユーザーがサークルの管理者かどうかを確認
     const isAdmin = await isUserAdmin(adminUserId, circleId)
 
@@ -172,6 +210,13 @@ export const removeMember = async ({
   userId,
 }: RemoveMemberParams) => {
   try {
+    // 認証情報を取得
+    const session = await auth()
+
+    // 認証されたユーザーIDとリクエストのuserIdが一致しているか確認
+    if (!session?.user || session.user.id !== userId) {
+      throw new Error("権限がありません。")
+    }
     // 1. 操作するユーザーが代表または副代表かどうかを確認
     const isAdmin = await isUserAdmin(userId, circleId)
 

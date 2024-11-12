@@ -26,8 +26,8 @@ import "dayjs/locale/ja"
 import Link from "next/link"
 import { useState } from "react"
 import { fetchActivitiesByMonth } from "@/actions/circle/fetch-activity"
+import type { getCircleById } from "@/actions/circle/fetch-circle"
 import { toggleActivityParticipation } from "@/actions/circle/toggle-activity"
-import type { getCircleById } from "@/data/circle"
 
 interface CircleActivitydays {
   isAdmin?: boolean
