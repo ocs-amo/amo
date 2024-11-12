@@ -1,4 +1,5 @@
 "use server"
+import { auth } from "@/auth"
 import {
   addCircle,
   addInitialMember,
@@ -10,6 +11,16 @@ import type { BackCircleForm } from "@/schema/circle"
 import { BackCircleSchema } from "@/schema/circle"
 
 export const CreateCircle = async (values: BackCircleForm, userId: string) => {
+  // 認証情報を取得
+  const session = await auth()
+
+  // 認証されたユーザーIDとリクエストのuserIdが一致しているか確認
+  if (!session?.user || session.user.id !== userId) {
+    return {
+      error: "権限がありません。",
+    }
+  }
+
   const { success, error } = BackCircleSchema.safeParse(values)
 
   if (!success && error) {

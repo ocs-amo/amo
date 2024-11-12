@@ -1,4 +1,5 @@
 "use server"
+import { auth } from "@/auth"
 import { findActiveMember, isUserAdmin } from "@/data/circle"
 import { checkExistingMembershipRequest } from "@/data/membership"
 import { demoteCurrentAdmin, updateMemberRole } from "@/data/role"
@@ -18,6 +19,13 @@ export const changeMemberRole = async ({
   newRoleId,
 }: ChangeRoleParams) => {
   try {
+    // 認証情報を取得
+    const session = await auth()
+
+    // 認証されたユーザーIDとリクエストのuserIdが一致しているか確認
+    if (!session?.user || session.user.id !== userId) {
+      throw new Error("権限がありません。")
+    }
     // 1. 現在のユーザーの権限を確認
     const currentUser = await isUserAdmin(userId, circleId)
 

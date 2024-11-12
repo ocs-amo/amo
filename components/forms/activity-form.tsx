@@ -21,7 +21,7 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { Controller, useForm } from "react-hook-form"
 import { addActivityAction } from "@/actions/circle/add-activity"
-import type { getCircleById } from "@/data/circle"
+import type { getCircleById } from "@/actions/circle/fetch-circle"
 import type { ActivityFormType } from "@/schema/activity"
 import { ActivitySchema } from "@/schema/activity"
 
