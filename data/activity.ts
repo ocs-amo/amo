@@ -25,6 +25,9 @@ export const getActivitiesByMonth = async (
         include: {
           user: true, // `ActivityParticipant`がユーザー情報を持つ場合、参加者のユーザー情報も取得
         },
+        where: {
+          removedAt: null,
+        },
       },
     },
     orderBy: {
@@ -78,4 +81,39 @@ export const createActivity = async (
 
     return newActivity
   })
+}
+
+// アクティビティへの参加・キャンセルのトグル処理
+export const updateActivityParticipation = async (
+  activityId: number,
+  userId: string,
+) => {
+  // 現在参加中のレコードを確認（removedAtがnullのもののみ）
+  const existingParticipant = await db.activityParticipant.findFirst({
+    where: {
+      activityId,
+      userId,
+      removedAt: null,
+    },
+  })
+
+  if (existingParticipant) {
+    // 参加中のレコードが存在する場合、キャンセル（removedAtに日付をセット）
+    await db.activityParticipant.update({
+      where: { id: existingParticipant.id },
+      data: { removedAt: new Date() },
+    })
+    return { action: "canceled" } // キャンセル完了
+  } else {
+    // 参加中のレコードがない場合、新しい参加レコードを作成
+    await db.activityParticipant.create({
+      data: {
+        activityId,
+        userId,
+        joinedAt: new Date(),
+        removedAt: null, // 新規参加時はremovedAtはnull
+      },
+    })
+    return { action: "joined" } // 新規参加完了
+  }
 }
