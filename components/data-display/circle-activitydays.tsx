@@ -75,7 +75,6 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
     const { success, action, error } = await toggleActivityParticipation(
       activityId,
       userId,
-      circle?.id || "",
     )
 
     snack.closeAll()
