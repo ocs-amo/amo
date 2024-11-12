@@ -1,6 +1,14 @@
 import type { ActivityFormType } from "@/schema/activity"
 import { db } from "@/utils/db"
 
+export const getActivityById = async (activityId: number) => {
+  return await db.activity.findFirst({
+    where: {
+      id: activityId,
+    },
+  })
+}
+
 // 指定された月のイベントを取得する関数
 export const getActivitiesByMonth = async (
   year: number,
@@ -19,6 +27,7 @@ export const getActivitiesByMonth = async (
         gte: startDate,
         lte: endDate,
       },
+      deletedAt: null,
     },
     include: {
       participants: {
@@ -83,6 +92,28 @@ export const createActivity = async (
   })
 }
 
+export const updateActivity = async (
+  data: ActivityFormType,
+  activityId: number,
+) => {
+  return await db.activity.update({
+    where: { id: activityId },
+    data: {
+      title: data.title,
+      description: data.description,
+      location: data.location,
+      activityDay: data.date,
+      startTime: new Date(
+        `${data.date.toISOString().split("T")[0]}T${data.startTime}`,
+      ),
+      endTime: data.endTime
+        ? new Date(`${data.date.toISOString().split("T")[0]}T${data.endTime}`)
+        : null,
+      notes: data.notes,
+    },
+  })
+}
+
 // アクティビティへの参加・キャンセルのトグル処理
 export const updateActivityParticipation = async (
   activityId: number,
@@ -116,4 +147,13 @@ export const updateActivityParticipation = async (
     })
     return { action: "joined" } // 新規参加完了
   }
+}
+
+export const deleteActivity = async (activityId: number) => {
+  return await db.activity.update({
+    where: { id: activityId },
+    data: {
+      deletedAt: new Date(),
+    },
+  })
 }
