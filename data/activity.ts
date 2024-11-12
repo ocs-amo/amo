@@ -25,6 +25,9 @@ export const getActivitiesByMonth = async (
         include: {
           user: true, // `ActivityParticipant`がユーザー情報を持つ場合、参加者のユーザー情報も取得
         },
+        where: {
+          removedAt: null,
+        },
       },
     },
     orderBy: {
