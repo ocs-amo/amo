@@ -29,6 +29,7 @@ import { fetchActivitiesByMonth } from "@/actions/circle/fetch-activity"
 import type { getCircleById } from "@/actions/circle/fetch-circle"
 import { removeActivityAction } from "@/actions/circle/remove-activity"
 import { toggleActivityParticipation } from "@/actions/circle/toggle-activity"
+import { zeroPadding } from "@/utils/format"
 
 interface CircleActivitydays {
   isAdmin?: boolean
@@ -70,7 +71,6 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
 
   const displayTime = (date: Date) =>
     `${date.getHours()}:${zeroPadding(date.getMinutes())}`
-  const zeroPadding = (min: number) => (10 > min ? `0${min}` : min)
 
   const handleDelete = async (activityId: number) => {
     if (!isAdmin) return
@@ -163,7 +163,12 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
                             isRounded
                           />
                           <MenuList>
-                            <MenuItem>編集</MenuItem>
+                            <MenuItem
+                              as={Link}
+                              href={`/circles/${circle?.id}/activities/${activity.id}/edit`}
+                            >
+                              編集
+                            </MenuItem>
                             <MenuItem
                               color="red"
                               isDisabled={!isAdmin}
