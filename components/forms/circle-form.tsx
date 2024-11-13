@@ -80,7 +80,10 @@ const DeleteCircleButton: FC<{ circleId: string; userId: string }> = ({
       </Center>
 
       {/* 削除確認モーダル  */}
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal
+        isOpen={isOpen}
+        onClose={isDone ? () => router.push("/circles") : onClose}
+      >
         <ModalOverlay />
         {isDone ? (
           <>
