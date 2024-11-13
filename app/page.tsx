@@ -18,18 +18,17 @@ import {
   Text,
   VStack,
 } from "@yamada-ui/react"
+import type { Metadata } from "next"
 import Link from "next/link"
 import { getCirclesByUserId } from "@/actions/circle/fetch-circle"
 import { getUserById } from "@/actions/user/user"
 import { auth } from "@/auth"
 import { CircleCard } from "@/components/data-display/circle-card"
-import { Metadata } from "next"
 
 export const metadata: Metadata = {
   title: "ホーム - CIRCLIA",
   description: "ホーム - CIRCLIA",
 }
-
 
 const notificationMockData = [
   {

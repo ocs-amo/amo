@@ -42,8 +42,8 @@ const AmoLogo = () => (
 
 const LoginPage = () => {
   useEffect(() => {
-    document.title = "サインイン - CIRCLIA";
-  },[]);
+    document.title = "サインイン - CIRCLIA"
+  }, [])
   const [isLoading, { on: start, off: end }] = useBoolean()
   const [error, setError] = useState("")
   const {

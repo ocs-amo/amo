@@ -9,7 +9,7 @@ import {
   Text,
   VStack,
 } from "@yamada-ui/react"
-import { Metadata } from "next"
+import type { Metadata } from "next"
 
 export const metadata: Metadata = {
   title: "通知 - CIRCLIA",

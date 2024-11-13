@@ -24,7 +24,7 @@ import {
   useSnacks,
 } from "@yamada-ui/react"
 import Link from "next/link"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { CircleActivitydays } from "../data-display/circle-activitydays"
 import { MemberCard } from "../data-display/member-card"
 import { MemberRequestCard } from "../data-display/member-request-card"
@@ -34,7 +34,6 @@ import {
   type getMembershipRequests,
 } from "@/actions/circle/membership-request"
 import { changeMemberRole } from "@/actions/circle/update-role"
-import { useEffect } from "react"
 import type { getActivityById } from "@/data/activity"
 
 interface CircleDetailTabsProps {
@@ -117,21 +116,21 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
   const userRole = circle?.members?.find((member) => member.id === userId)?.role
   const tabIndex = handlingTab(tabKey || "")
   useEffect(() => {
-   switch (tabIndex) {
-    case 0:
-      document.title = "活動日程 - " + circle?.name;
-      break
-    case 1:
-      document.title = "画像 - " + circle?.name;
-      break
-    case 2:
-      document.title = "掲示板 - " + circle?.name;
-      break
-    case 3:
-      document.title = "メンバー一覧 - " + circle?.name;
-      break
-   }
-  },[]);
+    switch (tabIndex) {
+      case 0:
+        document.title = "活動日程 - " + circle?.name
+        break
+      case 1:
+        document.title = "画像 - " + circle?.name
+        break
+      case 2:
+        document.title = "掲示板 - " + circle?.name
+        break
+      case 3:
+        document.title = "メンバー一覧 - " + circle?.name
+        break
+    }
+  }, [])
   const { data } = membershipRequests
   const { snack, snacks } = useSnacks()
   const handleSnack = (title: string, status: AlertStatus) => {
@@ -284,9 +283,7 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
                         )}
                         <Text fontWeight="bold">{item.title}</Text>
                       </HStack>
-                      <VStack
-                        align="end"
-                      >
+                      <VStack align="end">
                         <Text fontSize="sm" color="gray.500">
                           {item.date} {item.time}
                         </Text>
