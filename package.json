@@ -21,6 +21,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@yamada-ui/calendar": "^1.8.6",
     "@yamada-ui/use-disclosure": "^1.1.0",
     "next": "14.2.10",
     "next-auth": "5.0.0-beta.22",
