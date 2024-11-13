@@ -14,13 +14,15 @@ import { CircleDetailTabs } from "../disclosure/circle-detail-tabs"
 import { CircleMembershipButton } from "../forms/circle-membership-button"
 import { getCircleById } from "@/actions/circle/fetch-circle"
 import { getMembershipRequests } from "@/actions/circle/membership-request"
+import type { getActivityById } from "@/data/activity"
 
 export const CircleDetailPage: FC<{
   circle: Awaited<ReturnType<typeof getCircleById>>
   membershipRequests: Awaited<ReturnType<typeof getMembershipRequests>>
   tabKey?: string
   userId: string
-}> = ({ userId, circle, tabKey, membershipRequests }) => {
+  currentActivity?: Awaited<ReturnType<typeof getActivityById>>
+}> = ({ userId, circle, tabKey, membershipRequests, currentActivity }) => {
   const [circleData, setCircleData] =
     useState<Awaited<ReturnType<typeof getCircleById>>>(circle)
   const [requests, setRequests] =
@@ -100,6 +102,7 @@ export const CircleDetailPage: FC<{
           userId={userId}
           isAdmin={isAdmin}
           isMember={isMember}
+          currentActivity={currentActivity}
           fetchData={fetchData}
         />
       </VStack>
