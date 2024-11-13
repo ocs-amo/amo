@@ -2,16 +2,16 @@
 
 import { getUserById } from "../user/user"
 import { auth } from "@/auth"
-import { createActivity } from "@/data/activity"
+import { updateActivity } from "@/data/activity"
 import { getMemberByCircleId } from "@/data/circle"
 import type { ActivityFormType } from "@/schema/activity"
 
-export const addActivityAction = async (
+export const editActivity = async (
   data: ActivityFormType,
   circleId: string,
   userId: string,
+  activityId: number,
 ) => {
-  // 認証情報を取得
   const session = await auth()
 
   // 認証されたユーザーIDとリクエストのuserIdが一致しているか確認
@@ -32,9 +32,10 @@ export const addActivityAction = async (
   if (!user) {
     return { success: false, error: "ユーザーが存在しません。" }
   }
+
   try {
     // Prismaのロジックを呼び出し
-    const newActivity = await createActivity(data, circleId, user.id)
+    const newActivity = await updateActivity(data, activityId)
     return { success: true, activity: newActivity }
   } catch (error) {
     console.error("活動日作成エラー:", error)

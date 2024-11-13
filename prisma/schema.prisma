@@ -155,11 +155,11 @@ model Activity {
 }
 
 model ActivityParticipant {
-    id          Int       @id @default(autoincrement())
+    id         Int       @id @default(autoincrement())
     activityId Int // イベントID、外部キー
-    userId      String // ユーザーID
-    joinedAt    DateTime  @default(now()) // 参加日時
-    removedAt   DateTime? // 参加辞退日時（オプション）
+    userId     String // ユーザーID
+    joinedAt   DateTime  @default(now()) // 参加日時
+    removedAt  DateTime? // 参加辞退日時（オプション）
 
     // イベントとのリレーション
     Activity Activity @relation(fields: [activityId], references: [id], onDelete: Cascade)

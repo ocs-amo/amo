@@ -15,15 +15,21 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
+  Snacks,
   Text,
-  useAsync,
+  useBoolean,
+  useSafeLayoutEffect,
+  useSnacks,
   VStack,
 } from "@yamada-ui/react"
 import "dayjs/locale/ja"
 import Link from "next/link"
 import { useState } from "react"
 import { fetchActivitiesByMonth } from "@/actions/circle/fetch-activity"
-import type { getCircleById } from "@/data/circle"
+import type { getCircleById } from "@/actions/circle/fetch-circle"
+import { removeActivityAction } from "@/actions/circle/remove-activity"
+import { toggleActivityParticipation } from "@/actions/circle/toggle-activity"
+import { zeroPadding } from "@/utils/format"
 
 interface CircleActivitydays {
   isAdmin?: boolean
@@ -45,18 +51,68 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
   circle,
 }) => {
   const [currentMonth, setCurrentMonth] = useState<Date | undefined>(new Date())
-  const { value: activitys, loading } = useAsync(async () => {
+  const [loading, { off: loadingOff }] = useBoolean(true)
+  const fetchActivities = async () => {
     if (!currentMonth) return
-    const { events } = await fetchActivitiesByMonth(currentMonth)
-    return events
+    const { events } = await fetchActivitiesByMonth(
+      currentMonth,
+      circle?.id || "",
+    )
+    loadingOff()
+    setActivitys(events)
+  }
+  const [activitys, setActivitys] = useState<
+    Awaited<ReturnType<typeof fetchActivitiesByMonth>>["events"]
+  >([])
+  useSafeLayoutEffect(() => {
+    fetchActivities()
   }, [currentMonth])
+  const { snack, snacks } = useSnacks()
 
   const displayTime = (date: Date) =>
     `${date.getHours()}:${zeroPadding(date.getMinutes())}`
-  const zeroPadding = (min: number) => (10 > min ? `0${min}` : min)
+
+  const handleDelete = async (activityId: number) => {
+    if (!isAdmin) return
+    const { success, error } = await removeActivityAction(
+      activityId,
+      circle?.id || "",
+      userId,
+    )
+
+    snack.closeAll()
+    if (success) {
+      snack({
+        title: "削除しました。",
+        status: "success",
+      })
+      fetchActivities()
+    } else {
+      snack({ title: error || "エラー", status: "error" })
+    }
+  }
+
+  const handleParticipation = async (activityId: number) => {
+    const { success, action, error } = await toggleActivityParticipation(
+      activityId,
+      userId,
+    )
+
+    snack.closeAll()
+    if (success) {
+      snack({
+        title: action === "joined" ? "参加しました。" : "キャンセルしました。",
+        status: "success",
+      })
+      fetchActivities()
+    } else {
+      snack({ title: error || "エラー", status: "error" })
+    }
+  }
 
   return (
     <VStack>
+      <Snacks snacks={snacks} />
       <HStack justifyContent="space-between">
         <MonthPicker
           w="md"
@@ -108,8 +164,17 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
                             isRounded
                           />
                           <MenuList>
-                            <MenuItem>編集</MenuItem>
-                            <MenuItem color="red" isDisabled={!isAdmin}>
+                            <MenuItem
+                              as={Link}
+                              href={`/circles/${circle?.id}/activities/${activity.id}/edit`}
+                            >
+                              編集
+                            </MenuItem>
+                            <MenuItem
+                              color="red"
+                              isDisabled={!isAdmin}
+                              onClick={() => handleDelete(activity.id)}
+                            >
                               削除
                             </MenuItem>
                             {
@@ -117,9 +182,21 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
                               activity.participants.some(
                                 (participant) => participant.userId === userId,
                               ) ? (
-                                <MenuItem>参加をキャンセル</MenuItem>
+                                <MenuItem
+                                  onClick={() =>
+                                    handleParticipation(activity.id)
+                                  }
+                                >
+                                  参加をキャンセル
+                                </MenuItem>
                               ) : (
-                                <MenuItem>参加</MenuItem>
+                                <MenuItem
+                                  onClick={() =>
+                                    handleParticipation(activity.id)
+                                  }
+                                >
+                                  参加
+                                </MenuItem>
                               )
                             }
                           </MenuList>
@@ -127,9 +204,17 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
                       ) : activity.participants.some(
                           (participant) => participant.userId === userId,
                         ) ? (
-                        <Button>参加をキャンセル</Button>
+                        <Button
+                          onClick={() => handleParticipation(activity.id)}
+                        >
+                          参加をキャンセル
+                        </Button>
                       ) : (
-                        <Button>参加</Button>
+                        <Button
+                          onClick={() => handleParticipation(activity.id)}
+                        >
+                          参加
+                        </Button>
                       )}
                     </HStack>
                   </HStack>

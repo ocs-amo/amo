@@ -28,12 +28,12 @@ import { useState } from "react"
 import { CircleActivitydays } from "../data-display/circle-activitydays"
 import { MemberCard } from "../data-display/member-card"
 import { MemberRequestCard } from "../data-display/member-request-card"
+import type { getCircleById } from "@/actions/circle/fetch-circle"
 import {
   removeMember,
   type getMembershipRequests,
 } from "@/actions/circle/membership-request"
 import { changeMemberRole } from "@/actions/circle/update-role"
-import type { getCircleById } from "@/data/circle"
 
 interface CircleDetailTabsProps {
   circle: Awaited<ReturnType<typeof getCircleById>>

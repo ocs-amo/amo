@@ -2,9 +2,13 @@ import { Center } from "@yamada-ui/react"
 import { getCircleById, getCircles } from "@/actions/circle/fetch-circle"
 import { auth } from "@/auth"
 import { ActivityForm } from "@/components/forms/activity-form"
+import { getActivities, getActivityById } from "@/data/activity"
 
 interface Props {
-  params: { circle_id?: string }
+  params: {
+    circle_id?: string
+    activity_id?: string
+  }
 }
 
 export const generateMetadata = async ({ params }: Props) => {
@@ -26,27 +30,38 @@ export const generateMetadata = async ({ params }: Props) => {
 
 export const generateStaticParams = async () => {
   const circles = await getCircles()
-  if (!circles) {
+  const activities = await getActivities()
+  if (!circles || !activities) {
     return []
   }
-  return circles.map((circle) => ({ circle_id: circle.id }))
+  return circles.flatMap((circle) =>
+    activities.map((activity) => ({
+      circle_id: circle.id,
+      activity_id: activity.id.toString(),
+    })),
+  )
 }
 
 export const dynamicParams = false
 
 const Page = async ({ params }: Props) => {
-  const { circle_id: circleId } = params
+  const { circle_id: circleId, activity_id } = params
+  const activityId = !isNaN(parseInt(activity_id || ""))
+    ? parseInt(activity_id || "")
+    : 0
   const session = await auth()
   const circle = await getCircleById(circleId || "")
   const isMember = circle?.members?.some(
     (member) => member.id === session?.user?.id,
   )
+  const activity = await getActivityById(activityId)
   return isMember ? (
     <ActivityForm
       circleId={circleId || ""}
       userId={session?.user?.id || ""}
       circle={circle}
-      mode="create"
+      activity={activity}
+      mode="edit"
     />
   ) : (
     <Center w="full" h="full">
