@@ -254,24 +254,23 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
               })
               .map((item) => (
                 <GridItem key={item.id} w="full" rounded="md" as={Card}>
-                  <CardBody position="relative">
-                    <HStack gap="4" align="center">
-                      <Avatar src={item.icon} />
-                      {item.isImportant && (
-                        <Badge colorScheme="red">重要</Badge>
-                      )}
-                      <Text fontWeight="bold">{item.title}</Text>
+                  <CardBody>
+                    <HStack w="full" gap="4" justifyContent="space-around">
+                      <HStack w="full">
+                        <Avatar src={item.icon} />
+                        {item.isImportant && (
+                          <Badge colorScheme="red">重要</Badge>
+                        )}
+                        <Text fontWeight="bold">{item.title}</Text>
+                      </HStack>
+                      <VStack
+                        align="end"
+                      >
+                        <Text fontSize="sm" color="gray.500">
+                          {item.date} {item.time}
+                        </Text>
+                      </VStack>
                     </HStack>
-                    <VStack
-                      position="absolute"
-                      bottom="4px"
-                      right="4px"
-                      align="end"
-                    >
-                      <Text fontSize="sm" color="gray.500">
-                        {item.date} {item.time}
-                      </Text>
-                    </VStack>
                   </CardBody>
                 </GridItem>
               ))}
