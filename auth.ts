@@ -13,6 +13,15 @@ const config: NextAuthConfig = {
     signIn: "/signin",
   },
   callbacks: {
+    async signIn({ user, account, profile }) {
+      if (account?.provider === "microsoft-entra-id" && profile?.email) {
+        delete profile.email_verified
+        // emailから「@」の前の部分を抽出
+        const studentNumber = profile.email.split("@")[0]
+        user.studentNumber = studentNumber
+      }
+      return true
+    },
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id

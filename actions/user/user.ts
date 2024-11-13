@@ -15,7 +15,7 @@ export const getUserById = async (id: string) => {
         studentNumber: true,
         updatedAt: true,
         createdAt: true,
-        iconImagePath: true,
+        image: true,
         accounts: true,
       },
     })

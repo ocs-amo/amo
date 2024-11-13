@@ -6,17 +6,19 @@ erDiagram
     String studentNumber
     String name
     String email
-    String password
+    String password "❓"
     DateTime createdAt
     DateTime updatedAt
-    String iconImagePath "❓"
+    String image "❓"
     String profileText "❓"
     Boolean instructorFlag
+    Boolean emailVerified "❓"
     }
 
 
   "Account" {
     String id "🗝️"
+    String type
     String provider
     String providerAccountId
     String refresh_token "❓"
