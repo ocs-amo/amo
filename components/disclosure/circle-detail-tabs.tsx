@@ -21,6 +21,7 @@ import {
   type getMembershipRequests,
 } from "@/actions/circle/membership-request"
 import { changeMemberRole } from "@/actions/circle/update-role"
+import type { getActivityById } from "@/data/activity"
 
 interface CircleDetailTabsProps {
   circle: Awaited<ReturnType<typeof getCircleById>>
@@ -29,6 +30,7 @@ interface CircleDetailTabsProps {
   userId: string
   isAdmin?: boolean
   isMember?: boolean
+  currentActivity?: Awaited<ReturnType<typeof getActivityById>>
   fetchData: () => Promise<void>
 }
 
@@ -54,6 +56,7 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
   userId,
   isAdmin,
   isMember,
+  currentActivity,
   fetchData,
 }) => {
   const userRole = circle?.members?.find((member) => member.id === userId)?.role
@@ -151,6 +154,7 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
             userRole={userRole}
             isAdmin={isAdmin}
             isMember={isMember}
+            currentActivity={currentActivity}
             circle={circle}
           />
         </TabPanel>
