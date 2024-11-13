@@ -195,7 +195,7 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
                   alignItems={{ md: "start" }}
                 >
                   <Text>備考:</Text>
-                  <Text>{currentActivity.notes}</Text>
+                  <Text as="pre">{currentActivity.notes}</Text>
                 </HStack>
               </VStack>
             </CardBody>
