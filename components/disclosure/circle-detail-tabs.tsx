@@ -25,7 +25,7 @@ import {
   useSafeLayoutEffect,
 } from "@yamada-ui/react"
 import Link from "next/link"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { CircleActivitydays } from "../data-display/circle-activitydays"
 import { MemberCard } from "../data-display/member-card"
 import { MemberRequestCard } from "../data-display/member-request-card"
