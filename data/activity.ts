@@ -2,16 +2,36 @@ import type { ActivityFormType } from "@/schema/activity"
 import { db } from "@/utils/db"
 
 export const getActivityById = async (activityId: number) => {
-  return await db.activity.findFirst({
-    where: {
-      id: activityId,
-    },
-  })
+  try {
+    return await db.activity.findFirst({
+      where: {
+        id: activityId,
+      },
+      include: {
+        participants: {
+          include: {
+            user: true, // `ActivityParticipant`がユーザー情報を持つ場合、参加者のユーザー情報も取得
+          },
+          where: {
+            removedAt: null,
+          },
+        },
+      },
+    })
+  } catch (error) {
+    console.error("getActivityById Error: ", error)
+
+    return null
+  }
 }
 
 export const getActivities = async () => {
   try {
-    return await db.activity.findMany()
+    return await db.activity.findMany({
+      where: {
+        deletedAt: null,
+      },
+    })
   } catch (error) {
     console.error("getActivities: ", error)
     return null
