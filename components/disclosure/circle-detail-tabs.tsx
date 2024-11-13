@@ -22,6 +22,7 @@ import {
   Text,
   VStack,
   useSnacks,
+  useSafeLayoutEffect,
 } from "@yamada-ui/react"
 import Link from "next/link"
 import { useState, useEffect } from "react"
@@ -115,7 +116,7 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
   const [selectedOptions, setSelectedOptions] = useState<string[]>([])
   const userRole = circle?.members?.find((member) => member.id === userId)?.role
   const tabIndex = handlingTab(tabKey || "")
-  useEffect(() => {
+  useSafeLayoutEffect(() => {
     switch (tabIndex) {
       case 0:
         document.title = "活動日程 - " + circle?.name
