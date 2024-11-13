@@ -30,6 +30,7 @@ const config: NextAuthConfig = {
   debug: true,
   basePath: "/api/auth",
   secret: process.env.NEXTAUTH_SECRET,
+  trustHost: true,
   ...authConfig,
 }
 
