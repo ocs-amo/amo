@@ -20,7 +20,7 @@ import { CircleCard } from "@/components/data-display/circle-card"
 
 const CirclesPage = () => {
   useEffect(() => {
-    document.title = "amo - サークル一覧";
+    document.title = "サークル一覧 - CIRCLIA";
   },[]);
   const { value } = useAsync(async () => {
     return await getCircles()

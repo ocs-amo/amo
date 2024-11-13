@@ -26,8 +26,8 @@ import { CircleCard } from "@/components/data-display/circle-card"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "amo - ホーム",
-  description: "amo - ホーム",
+  title: "ホーム - CIRCLIA",
+  description: "ホーム - CIRCLIA",
 }
 
 

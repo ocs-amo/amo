@@ -20,8 +20,8 @@ export const generateMetadata = async ({ params }: Props) => {
   }
 
   return {
-    title: circle.name,
-    description: circle.description,
+    title: "活動日程 - " + circle.name,
+    description: "活動日程 - " + circle.description,
   }
 }
 export const dynamicParams = false

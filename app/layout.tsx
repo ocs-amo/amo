@@ -6,8 +6,8 @@ import { AppLayout } from "@/components/layouts/app-layout"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "amo",
-  description: "amo",
+  title: "CIRCLIA",
+  description: "CIRCLIA",
 }
 
 export default function RootLayout({

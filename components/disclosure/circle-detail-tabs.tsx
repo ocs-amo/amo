@@ -57,11 +57,29 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
   isMember,
   fetchData,
 }) => {
-  useEffect(() => {
-    document.title = tabKey + " - " + circle?.name;
-  },[]);
   const userRole = circle?.members?.find((member) => member.id === userId)?.role
   const tabIndex = handlingTab(tabKey || "")
+  useEffect(() => {
+    /*if(tabKey == undefined){
+      document.title = "activities - " + circle?.name;
+    } else {
+      document.title = tabKey + " - " + circle?.name;
+    }*/
+   switch (tabIndex) {
+    case 0:
+      document.title = "活動日程 - " + circle?.name;
+      break
+    case 1:
+      document.title = "画像 - " + circle?.name;
+      break
+    case 2:
+      document.title = "掲示板 - " + circle?.name;
+      break
+    case 3:
+      document.title = "メンバー一覧 - " + circle?.name;
+      break
+   }
+  },[]);
   const { data } = membershipRequests
   const { snack, snacks } = useSnacks()
   const handleSnack = (title: string, status: AlertStatus) => {
