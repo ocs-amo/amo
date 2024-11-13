@@ -1,6 +1,6 @@
 "use client"
- 
-import { useState } from "react"
+
+import { Calendar } from "@yamada-ui/calendar"
 import {
   VStack,
   Container,
@@ -12,8 +12,8 @@ import {
   Button,
   Text,
 } from "@yamada-ui/react"
-import { Calendar } from "@yamada-ui/calendar"
- 
+import { useState } from "react"
+
 type Event = {
   year: number
   month: number
@@ -22,20 +22,69 @@ type Event = {
   location: string
   time: string
 }
- 
+
 const CalendarPage = () => {
   const [activeTab, setActiveTab] = useState("allCircles")
- 
+
   const events: Event[] = [
-    { year: 2024, month: 5, day: 7, name: "プログラミングサークル", location: "402教室", time: "16:00〜18:00" },
-    { year: 2024, month: 5, day: 7, name: "料理サークル", location: "701教室", time: "16:00〜18:00" },
-    { year: 2024, month: 5, day: 7, name: "読書サークル", location: "会議室", time: "16:00〜18:00" },
-    { year: 2024, month: 11, day: 7, name: "読書サークル", location: "会議室", time: "16:00〜18:00" },
-    { year: 2024, month: 11, day: 7, name: "プログラミングサークル", location: "会議室", time: "16:00〜18:00" },
-    { year: 2024, month: 11, day: 7, name: "aaaaaaaaaaaaaaaサークル", location: "会議室", time: "16:00〜18:00" },
-    { year: 2024, month: 11, day: 14, name: "プログラミングサークル", location: "会議室", time: "16:00〜18:00" },
+    {
+      year: 2024,
+      month: 5,
+      day: 7,
+      name: "プログラミングサークル",
+      location: "402教室",
+      time: "16:00〜18:00",
+    },
+    {
+      year: 2024,
+      month: 5,
+      day: 7,
+      name: "料理サークル",
+      location: "701教室",
+      time: "16:00〜18:00",
+    },
+    {
+      year: 2024,
+      month: 5,
+      day: 7,
+      name: "読書サークル",
+      location: "会議室",
+      time: "16:00〜18:00",
+    },
+    {
+      year: 2024,
+      month: 11,
+      day: 7,
+      name: "読書サークル",
+      location: "会議室",
+      time: "16:00〜18:00",
+    },
+    {
+      year: 2024,
+      month: 11,
+      day: 7,
+      name: "プログラミングサークル",
+      location: "会議室",
+      time: "16:00〜18:00",
+    },
+    {
+      year: 2024,
+      month: 11,
+      day: 7,
+      name: "aaaaaaaaaaaaaaaサークル",
+      location: "会議室",
+      time: "16:00〜18:00",
+    },
+    {
+      year: 2024,
+      month: 11,
+      day: 14,
+      name: "プログラミングサークル",
+      location: "会議室",
+      time: "16:00〜18:00",
+    },
   ]
- 
+
   return (
     <Container maxW="container.md" p={4}>
       <Heading mb={4}>カレンダー</Heading>
@@ -57,7 +106,7 @@ const CalendarPage = () => {
           すべてのサークル
         </Button>
       </HStack>
- 
+
       <Calendar
         dateFormat="YYYY年 M月"
         locale="ja"
@@ -74,10 +123,7 @@ const CalendarPage = () => {
           td: {
             border: "1px solid",
             borderColor: "border",
-            width: "12vw",
-            height: "12vh",
-            minWidth: "80px",
-            minHeight: "80px",
+            height: "135px",
             overflow: "hidden",
             whiteSpace: "nowrap",
             textAlign: "center",
@@ -85,39 +131,28 @@ const CalendarPage = () => {
           },
         }}
         dayProps={{
-          h: "auto",
+          h: "full",
+          rounded: "none",
           p: 0,
-          _selected: {
-            border: "2px solid #007BFF",
-            boxShadow: "0 0 4px rgba(0, 123, 255, 0.6)",
-            borderRadius: "md",
-          },
+          _active: {},
           component: ({ date, isSelected }) => {
             const dayEvents = events.filter(
               (event) =>
                 event.year === date.getFullYear() &&
                 event.month === date.getMonth() + 1 &&
-                event.day === date.getDate()
+                event.day === date.getDate(),
             )
- 
+
             // 表示するイベントのリストと、省略されるイベント数
             const displayedEvents = dayEvents.slice(0, 2)
             const hiddenEventCount = dayEvents.length - displayedEvents.length
- 
+
             return (
-              <VStack
-                alignItems="center"
-                w="100%"
-                h="100%"
-                overflow="hidden"
-                border={isSelected ? "2px solid #007BFF" : "none"}
-                boxShadow={isSelected ? "0 0 4px rgba(0, 123, 255, 0.6)" : "none"}
-                rounded="md"
-              >
+              <VStack alignItems="center" w="100%" h="100%" overflow="hidden">
                 <Center w="100%" py={1}>
                   {date.getDate()}
                 </Center>
- 
+
                 <List w="full" px={2} overflow="hidden">
                   {displayedEvents.map((event, index) => (
                     <ListItem
@@ -141,7 +176,12 @@ const CalendarPage = () => {
                     </ListItem>
                   ))}
                   {hiddenEventCount > 0 && (
-                    <Text fontSize="xs" color="gray.500" textAlign="right" mt={1}>
+                    <Text
+                      fontSize="xs"
+                      color={isSelected ? "white" : "gray.500"}
+                      textAlign="right"
+                      mt={1}
+                    >
                       ...他{hiddenEventCount}件
                     </Text>
                   )}
@@ -154,5 +194,5 @@ const CalendarPage = () => {
     </Container>
   )
 }
- 
+
 export default CalendarPage
