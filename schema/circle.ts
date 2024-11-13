@@ -1,7 +1,7 @@
 import { z } from "zod"
 
 // 共通の基本スキーマ（バックエンドでも使用）
-export const CircleSchem = z.object({
+export const CircleSchema = z.object({
   name: z.string().trim().min(1, { message: "サークル名は必須です。" }), // サークル名は必須
   description: z.string().trim().min(1, { message: "説明は必須です。" }), // 説明は必須
   instructors: z
@@ -12,7 +12,7 @@ export const CircleSchem = z.object({
 })
 
 // フロントエンド用のスキーマ
-export const FrontCircleSchem = CircleSchem.extend({
+export const FrontCircleSchema = CircleSchema.extend({
   tags: z
     .string() // カンマ区切りの文字列を受け取る
     .transform((value) =>
@@ -49,11 +49,11 @@ export const FrontCircleSchem = CircleSchem.extend({
 })
 
 // バックエンド用のスキーマ
-export const BackCircleSchem = CircleSchem.extend({
+export const BackCircleSchema = CircleSchema.extend({
   tags: z.array(z.string()), // バックエンドでは既に配列として受け取る
   imagePath: z.string().optional().nullable(), // 画像データはbase64の文字列として受け取る
 })
 
-export type CircleForm = z.infer<typeof CircleSchem>
-export type FrontCircleForm = z.infer<typeof FrontCircleSchem>
-export type BackCircleForm = z.infer<typeof BackCircleSchem>
+export type CircleForm = z.infer<typeof CircleSchema>
+export type FrontCircleForm = z.infer<typeof FrontCircleSchema>
+export type BackCircleForm = z.infer<typeof BackCircleSchema>

@@ -1,7 +1,7 @@
+import { Center } from "@yamada-ui/react"
 import { getCircleById, getCircles } from "@/actions/circle/fetch-circle"
-import { getMembershipRequests } from "@/actions/circle/membership-request"
 import { auth } from "@/auth"
-import { CircleDetailPage } from "@/components/layouts/circle-detail-page"
+import { ActivityForm } from "@/components/forms/activity-form"
 
 interface Props {
   params: { circle_id?: string }
@@ -9,7 +9,6 @@ interface Props {
 
 export const generateMetadata = async ({ params }: Props) => {
   const { circle_id } = params
-
   const circle = await getCircleById(circle_id || "")
 
   if (!circle) {
@@ -24,34 +23,35 @@ export const generateMetadata = async ({ params }: Props) => {
     description: circle.description,
   }
 }
-export const dynamicParams = false
 
 export const generateStaticParams = async () => {
   const circles = await getCircles()
-
   if (!circles) {
     return []
   }
-
   return circles.map((circle) => ({ circle_id: circle.id }))
 }
 
-const Page = async ({ params }: Props) => {
-  const { circle_id } = params
-  const session = await auth()
-  const userId = session?.user?.id || ""
-  const circle = await getCircleById(circle_id || "")
-  const membershipRequests = await getMembershipRequests(
-    userId,
-    circle_id || "",
-  )
+export const dynamicParams = false
 
-  return (
-    <CircleDetailPage
+const Page = async ({ params }: Props) => {
+  const { circle_id: circleId } = params
+  const session = await auth()
+  const circle = await getCircleById(circleId || "")
+  const isMember = circle?.members?.some(
+    (member) => member.id === session?.user?.id,
+  )
+  return isMember ? (
+    <ActivityForm
+      circleId={circleId || ""}
+      userId={session?.user?.id || ""}
       circle={circle}
-      userId={userId}
-      membershipRequests={membershipRequests}
+      mode="create"
     />
+  ) : (
+    <Center w="full" h="full">
+      権限がありません
+    </Center>
   )
 }
 

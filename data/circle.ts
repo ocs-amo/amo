@@ -1,6 +1,86 @@
-"use server"
 import type { BackCircleForm } from "@/schema/circle"
 import { db } from "@/utils/db"
+
+// メンバーを退会（論理削除）させる関数
+export const markMemberAsInactive = async (memberId: number) => {
+  return await db.circleMember.update({
+    where: { id: memberId },
+    data: { leaveDate: new Date() }, // leaveDateに現在の日付を設定
+  })
+}
+
+// 共通化されたメンバーの検索関数
+export const findActiveMember = async (userId: string, circleId: string) => {
+  return db.circleMember.findFirst({
+    where: {
+      userId,
+      circleId,
+      leaveDate: null, // leaveDateがnullなら退会していないメンバー
+    },
+  })
+}
+
+// メンバーの入会処理
+export const addMemberToCircle = async (
+  userId: string,
+  circleId: string,
+  roleId: number,
+) => {
+  return await db.circleMember.create({
+    data: {
+      userId,
+      circleId,
+      roleId,
+      // joinDate: new Date(), // 入会日を現在の日付に設定
+    },
+  })
+}
+
+// メンバーの退会処理（論理削除）
+export const removeMemberFromCircle = async (
+  userId: string,
+  circleId: string,
+) => {
+  return await db.circleMember.updateMany({
+    where: {
+      userId,
+      circleId,
+      leaveDate: null, // 現在退会していないメンバーのみが対象
+    },
+    data: {
+      leaveDate: new Date(), // 退会日を現在の日付に設定
+    },
+  })
+}
+
+export const isUserAdmin = async (userId: string, circleId: string) => {
+  const admin = await db.circleMember.findFirst({
+    where: {
+      circleId,
+      userId,
+      leaveDate: null,
+      roleId: {
+        in: [0, 1], // 代表または副代表であれば管理者とみなす
+      },
+    },
+  })
+
+  return admin // 管理者であれば true を返す
+}
+
+// サークルを論理削除する関数
+export const deleteCircle = async (circleId: string) => {
+  try {
+    // サークルの削除（論理削除）
+    return await db.circle.update({
+      where: { id: circleId },
+      data: { deletedAt: new Date() }, // 現在の日時を設定
+    })
+  } catch (error) {
+    console.error("サークル削除エラー:", error)
+    return null
+  }
+}
 
 export const addCircle = async (values: BackCircleForm) => {
   try {
@@ -26,7 +106,10 @@ export const updateCircle = async (
 ) => {
   try {
     return await db.circle.update({
-      where: { id: circleId },
+      where: {
+        id: circleId,
+        deletedAt: null,
+      },
       data: {
         name: values.name,
         description: values.description,
@@ -199,6 +282,7 @@ export const getMemberByCircleId = async (circleId: string) => {
     const members = await db.circleMember.findMany({
       where: {
         circleId: circleId, // 特定のサークルIDに関連するメンバーをフィルタリング
+        leaveDate: null, // 退会日が設定されていない（退会していない）メンバーのみ取得
       },
       include: {
         user: true, // 関連するユーザー情報を含める
@@ -218,120 +302,6 @@ export const getMemberByCircleId = async (circleId: string) => {
     }))
   } catch (error) {
     console.error("getMemberByCircleId: ", error)
-    return null
-  }
-}
-
-export const getCircleById = async (id: string) => {
-  try {
-    const circle = await db.circle.findUnique({
-      where: {
-        id,
-      },
-      include: {
-        CircleMember: {
-          include: {
-            user: true, // 関連するユーザー情報を含める
-            role: true,
-          },
-        },
-        CircleInstructor: {
-          include: {
-            user: true, // 関連するユーザー情報を含める
-          },
-        },
-        CircleTag: true,
-        _count: {
-          select: { CircleMember: true }, // メンバーの数をカウント
-        },
-      },
-    })
-
-    return {
-      ...circle,
-      memberCount: circle?._count.CircleMember,
-      members: circle?.CircleMember.map((member) => ({
-        id: member.user.id,
-        name: member.user.name,
-        email: member.user.email,
-        iconImagePath: member.user.iconImagePath,
-        studentNumber: member.user.studentNumber,
-        profileText: member.user.profileText,
-        joinDate: member.joinDate,
-        role: member.role,
-      })),
-      instructors: circle?.CircleInstructor.map((instructor) => ({
-        id: instructor.user.id,
-        name: instructor.user.name,
-        email: instructor.user.email,
-        iconImagePath: instructor.user.iconImagePath,
-        studentNumber: instructor.user.studentNumber,
-        profileText: instructor.user.profileText,
-      })),
-      tags: circle?.CircleTag.map((tag) => ({
-        id: tag.id,
-        tagName: tag.tagName,
-      })),
-    }
-  } catch (error) {
-    console.error("getCircleById: ", error)
-    return null
-  }
-}
-
-export const getCircles = async () => {
-  try {
-    const circles = await db.circle.findMany({
-      include: {
-        _count: {
-          select: { CircleMember: true }, // メンバー数をカウント
-        },
-      },
-    })
-
-    return circles.map((circle) => ({
-      id: circle.id,
-      name: circle.name,
-      description: circle.description,
-      location: circle.location,
-      imagePath: circle.imagePath,
-      activityDay: circle.activityDay,
-      memberCount: circle._count.CircleMember, // メンバー合計
-    }))
-  } catch (error) {
-    console.error("getCircles: ", error)
-    return null
-  }
-}
-
-export const getCirclesByUserId = async (userId: string) => {
-  try {
-    const circles = await db.circle.findMany({
-      where: {
-        CircleMember: {
-          some: {
-            userId: userId, // 特定のユーザーIDに関連するサークルをフィルタリング
-          },
-        },
-      },
-      include: {
-        _count: {
-          select: { CircleMember: true }, // メンバー数をカウント
-        },
-      },
-    })
-
-    return circles.map((circle) => ({
-      id: circle.id,
-      name: circle.name,
-      description: circle.description,
-      location: circle.location,
-      imagePath: circle.imagePath,
-      activityDay: circle.activityDay,
-      memberCount: circle._count.CircleMember, // メンバー合計
-    }))
-  } catch (error) {
-    console.error("getCirclesByUserId: ", error)
     return null
   }
 }

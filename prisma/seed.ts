@@ -1,4 +1,6 @@
 import { circle } from "./seeds/circle"
+import { circleActivities } from "./seeds/circle-activities"
+import { circleActivityParticipants } from "./seeds/circle-activity-participants"
 import { circleInstructors } from "./seeds/circle-instructors"
 import { circleMemberRole } from "./seeds/circle-member-role"
 import { circleMembers } from "./seeds/circle-members"
@@ -14,6 +16,8 @@ async function main() {
     circleMembers(),
     circleInstructors(),
     circleTags(),
+    circleActivities(),
+    circleActivityParticipants(),
   ])
 
   console.log("Transaction result:", result) // 結果を確認

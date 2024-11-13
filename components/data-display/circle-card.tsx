@@ -41,7 +41,7 @@ export const CircleCard = memo(
                 {data.name}
               </LinkOverlay>
             </Heading>
-            <Text>人数：{data.memberCount}</Text>
+            <Text>人数：{data.memberCount}人</Text>
             <Text>活動日：{data.activityDay}</Text>
           </Box>
         </LinkBox>

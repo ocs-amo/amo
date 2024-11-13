@@ -1,33 +1,40 @@
 "use client"
-import type { FC } from "@yamada-ui/react"
+import type { AlertStatus, FC } from "@yamada-ui/react"
 import {
-  Avatar,
-  Badge,
-  Card,
-  CardBody,
-  Center,
-  GridItem,
-  HStack,
+  Indicator,
   SimpleGrid,
+  Snacks,
   Tab,
   TabList,
   TabPanel,
   TabPanels,
   Tabs,
-  Text,
+  useSnacks,
 } from "@yamada-ui/react"
-import { useRouter } from "next/navigation"
-import { useState } from "react"
-import type { getCircleById } from "@/data/circle"
+import Link from "next/link"
+import { CircleActivitydays } from "../data-display/circle-activitydays"
+import { MemberCard } from "../data-display/member-card"
+import { MemberRequestCard } from "../data-display/member-request-card"
+import type { getCircleById } from "@/actions/circle/fetch-circle"
+import {
+  removeMember,
+  type getMembershipRequests,
+} from "@/actions/circle/membership-request"
+import { changeMemberRole } from "@/actions/circle/update-role"
 
 interface CircleDetailTabsProps {
   circle: Awaited<ReturnType<typeof getCircleById>>
+  membershipRequests: Awaited<ReturnType<typeof getMembershipRequests>>
   tabKey?: string
+  userId: string
+  isAdmin?: boolean
+  isMember?: boolean
+  fetchData: () => Promise<void>
 }
 
 const handlingTab = (key: string) => {
   switch (key) {
-    case "days":
+    case "activities":
       return 0
     case "images":
       return 1
@@ -35,7 +42,6 @@ const handlingTab = (key: string) => {
       return 2
     case "members":
       return 3
-
     default:
       return 0
   }
@@ -44,59 +50,135 @@ const handlingTab = (key: string) => {
 export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
   circle,
   tabKey,
+  membershipRequests,
+  userId,
+  isAdmin,
+  isMember,
+  fetchData,
 }) => {
-  const [tabIndex, setTabIndex] = useState(handlingTab(tabKey || ""))
-  const router = useRouter()
-  const handleChange = (index: number) => {
-    setTabIndex(index)
-    switch (index) {
-      case 0:
-        router.push(`/circles/${circle?.id}/days`)
-        break
-      case 1:
-        router.push(`/circles/${circle?.id}/images`)
-        break
-      case 2:
-        router.push(`/circles/${circle?.id}/notifications`)
-        break
-      case 3:
-        router.push(`/circles/${circle?.id}/members`)
-        break
-
-      default:
-        break
+  const userRole = circle?.members?.find((member) => member.id === userId)?.role
+  const tabIndex = handlingTab(tabKey || "")
+  const { data } = membershipRequests
+  const { snack, snacks } = useSnacks()
+  const handleSnack = (title: string, status: AlertStatus) => {
+    snack.closeAll()
+    snack({ title, status })
+  }
+  const handleRoleChange = async (
+    targetMemberId: string,
+    newRoleId: number,
+  ) => {
+    try {
+      const { message, success } = await changeMemberRole({
+        userId, // 現在のユーザーID
+        circleId: circle?.id || "", // サークルID
+        targetMemberId, // 変更対象のメンバーID
+        newRoleId, // 新しい役職ID
+      })
+      if (success) {
+        handleSnack(message, "success")
+        await fetchData() // データを再フェッチ
+      } else {
+        handleSnack(message, "error")
+      }
+    } catch (error) {
+      handleSnack(
+        error instanceof Error ? error.message : "エラーが発生しました。",
+        "error",
+      )
     }
   }
+
+  const handleRemoveMember = async (targetMemberId: string) => {
+    try {
+      const { message, success } = await removeMember({
+        circleId: circle?.id || "",
+        targetMemberId,
+        userId,
+      })
+      if (success) {
+        handleSnack(message, "success")
+        await fetchData() // データを再フェッチ
+      } else {
+        handleSnack(message, "error")
+      }
+    } catch (error) {
+      handleSnack(
+        error instanceof Error ? error.message : "エラーが発生しました。",
+        "error",
+      )
+    }
+  }
+
   return (
-    <Tabs index={tabIndex} onChange={handleChange}>
-      <TabList>
-        <Tab>活動日程</Tab>
-        <Tab>画像</Tab>
-        <Tab>掲示板</Tab>
-        <Tab>メンバー一覧</Tab>
+    <Tabs index={tabIndex}>
+      <TabList overflowX="auto" overflowY="hidden">
+        <Tab
+          flexShrink={0}
+          as={Link}
+          href={`/circles/${circle?.id}/activities`}
+        >
+          活動日程
+        </Tab>
+        <Tab flexShrink={0} as={Link} href={`/circles/${circle?.id}/images`}>
+          画像
+        </Tab>
+        <Tab
+          flexShrink={0}
+          as={Link}
+          href={`/circles/${circle?.id}/notifications`}
+        >
+          掲示板
+        </Tab>
+        <Tab flexShrink={0} as={Link} href={`/circles/${circle?.id}/members`}>
+          <Indicator
+            colorScheme="danger"
+            size="sm"
+            placement="right"
+            offset={-1.5}
+            label={data?.length}
+            isDisabled={!data?.length || !isAdmin}
+          >
+            メンバー一覧
+          </Indicator>
+        </Tab>
       </TabList>
 
       <TabPanels>
-        <TabPanel>活動日程</TabPanel>
+        <TabPanel>
+          <CircleActivitydays
+            userId={userId}
+            userRole={userRole}
+            isAdmin={isAdmin}
+            isMember={isMember}
+            circle={circle}
+          />
+        </TabPanel>
         <TabPanel>画像</TabPanel>
         <TabPanel>掲示板</TabPanel>
         <TabPanel>
+          <Snacks snacks={snacks} />
           <SimpleGrid w="full" columns={{ base: 2, md: 1 }} gap="md">
+            {data?.map((member) => (
+              <MemberRequestCard
+                key={member.id}
+                member={member}
+                userId={userId}
+                circleId={circle?.id || ""}
+                fetchData={fetchData}
+                handleSnack={handleSnack}
+              />
+            ))}
             {circle?.members?.map((member) => (
-              <GridItem key={member.id} w="full" rounded="md" as={Card}>
-                <CardBody>
-                  <HStack as={Center}>
-                    <Avatar src={member.iconImagePath || ""} />
-                    {member.role ? (
-                      <Badge>{member.role.roleName}</Badge>
-                    ) : (
-                      <Badge visibility="hidden">一般</Badge>
-                    )}
-                    <Text>{member.name}</Text>
-                    <Text>{member.studentNumber}</Text>
-                  </HStack>
-                </CardBody>
-              </GridItem>
+              <MemberCard
+                key={member.id}
+                member={member}
+                isAdmin={isAdmin}
+                userId={userId}
+                userRole={userRole}
+                handleRoleChange={handleRoleChange}
+                handleRemoveMember={handleRemoveMember}
+              />
             ))}
           </SimpleGrid>
         </TabPanel>

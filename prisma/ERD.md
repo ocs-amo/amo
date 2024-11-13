@@ -36,6 +36,7 @@ erDiagram
     String location
     DateTime createdAt
     DateTime updatedAt
+    DateTime deletedAt "❓"
     String imagePath "❓"
     String activityDay "❓"
     }
@@ -45,6 +46,15 @@ erDiagram
     Int id "🗝️"
     DateTime joinDate
     DateTime leaveDate "❓"
+    }
+
+
+  "MembershipRequest" {
+    String id "🗝️"
+    String requestType
+    String status
+    DateTime requestDate
+    DateTime resolvedDate "❓"
     }
 
 
@@ -64,18 +74,54 @@ erDiagram
     String roleName
     }
 
+
+  "Activity" {
+    Int id "🗝️"
+    String title
+    String description "❓"
+    String location
+    DateTime activityDay
+    DateTime startTime
+    DateTime endTime "❓"
+    String notes "❓"
+    DateTime createdAt
+    DateTime updatedAt
+    DateTime deletedAt "❓"
+    }
+
+
+  "ActivityParticipant" {
+    Int id "🗝️"
+    DateTime joinedAt
+    DateTime removedAt "❓"
+    }
+
     "User" o{--}o "Account" : "accounts"
     "User" o{--}o "CircleMember" : "CircleMember"
     "User" o{--}o "CircleInstructor" : "CircleInstructor"
+    "User" o{--}o "MembershipRequest" : "MembershipRequests"
+    "User" o{--}o "MembershipRequest" : "ProcessedRequests"
+    "User" o{--}o "Activity" : "createdActivities"
+    "User" o{--}o "ActivityParticipant" : "ActivityParticipant"
     "Account" o|--|| "User" : "user"
     "Circle" o{--}o "CircleMember" : "CircleMember"
     "Circle" o{--}o "CircleInstructor" : "CircleInstructor"
     "Circle" o{--}o "CircleTag" : "CircleTag"
+    "Circle" o{--}o "MembershipRequest" : "MembershipRequest"
+    "Circle" o{--}o "Activity" : "Activity"
     "CircleMember" o|--|| "User" : "user"
     "CircleMember" o|--|| "Circle" : "circle"
-    "CircleMember" o|--|o "Role" : "role"
+    "CircleMember" o|--|| "Role" : "role"
+    "MembershipRequest" o|--|| "User" : "user"
+    "MembershipRequest" o|--|| "Circle" : "circle"
+    "MembershipRequest" o|--|o "User" : "admin"
     "CircleInstructor" o|--|| "User" : "user"
     "CircleInstructor" o|--|| "Circle" : "circle"
     "CircleTag" o|--|| "Circle" : "circle"
     "Role" o{--}o "CircleMember" : "members"
+    "Activity" o{--}o "ActivityParticipant" : "participants"
+    "Activity" o|--|| "Circle" : "circle"
+    "Activity" o|--|| "User" : "creator"
+    "ActivityParticipant" o|--|| "Activity" : "Activity"
+    "ActivityParticipant" o|--|| "User" : "user"
 ```

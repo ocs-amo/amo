@@ -1,6 +1,7 @@
+import { getCircleById, getCircles } from "@/actions/circle/fetch-circle"
+import { getMembershipRequests } from "@/actions/circle/membership-request"
 import { auth } from "@/auth"
 import { CircleDetailPage } from "@/components/layouts/circle-detail-page"
-import { getCircleById, getCircles } from "@/data/circle"
 
 interface Props {
   params: {
@@ -10,7 +11,7 @@ interface Props {
 }
 
 // 固定されたタブキーのリスト
-const list = ["days", "images", "notifications", "members"]
+const list = ["activities", "images", "notifications", "members"]
 
 export const dynamicParams = false
 
@@ -33,13 +34,19 @@ export const generateStaticParams = async () => {
 const Page = async ({ params }: Props) => {
   const { circle_id, tab_key } = params
   const session = await auth()
+  const userId = session?.user?.id || ""
   const circle = await getCircleById(circle_id || "")
+  const membershipRequests = await getMembershipRequests(
+    userId,
+    circle_id || "",
+  )
 
   return (
     <CircleDetailPage
       circle={circle}
+      userId={userId}
+      membershipRequests={membershipRequests}
       tabKey={tab_key}
-      userId={session?.user?.id || ""}
     />
   )
 }
