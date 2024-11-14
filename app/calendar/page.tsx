@@ -24,7 +24,7 @@ type Event = {
   time: string
 }
 
-export const generateMetadata = () => demo("", "カレンダー")
+//export const generateMetadata = () => demo("", "カレンダー")
 
 const CalendarPage = () => {
   const [activeTab, setActiveTab] = useState("allCircles")

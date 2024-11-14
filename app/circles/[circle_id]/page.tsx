@@ -9,7 +9,7 @@ interface Props {
 }
 
 export const generateMetadata = ({ params }: Props) =>
-  demo(params.circle_id || "", "")
+  demo(params.circle_id || "", "activities")
 
 export const dynamicParams = false
 

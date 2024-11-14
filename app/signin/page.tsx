@@ -19,7 +19,7 @@ import { demo } from "@/components/tab/tab-title"
 import type { SigninForm } from "@/schema/auth"
 import { SigninSchema } from "@/schema/auth"
 
-export const generateMetadata = () => demo("", "サインイン")
+//export const generateMetadata = () => demo("", "サインイン")
 
 const AmoLogo = () => (
   <svg
