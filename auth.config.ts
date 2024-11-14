@@ -1,5 +1,6 @@
 import type { NextAuthConfig } from "next-auth"
 import Credentials from "next-auth/providers/credentials"
+import MicrosoftEntraID from "next-auth/providers/microsoft-entra-id"
 import { getUserByEmail } from "./data/user"
 import { SigninSchema } from "./schema/auth"
 import { comparePassword } from "./utils/password"
@@ -25,7 +26,10 @@ export default {
           return null
         }
 
-        const isValidPassword = comparePassword(data.password, user.password)
+        const isValidPassword = comparePassword(
+          data.password,
+          user?.password || "",
+        )
 
         if (!isValidPassword) {
           return null
@@ -33,6 +37,11 @@ export default {
 
         return user
       },
+    }),
+    MicrosoftEntraID({
+      clientId: process.env.AUTH_MICROSOFT_ENTRA_ID_ID,
+      clientSecret: process.env.AUTH_MICROSOFT_ENTRA_ID_SECRET,
+      issuer: process.env.AUTH_MICROSOFT_ENTRA_ID_ISSUER,
     }),
   ],
 } satisfies NextAuthConfig
