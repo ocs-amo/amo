@@ -23,7 +23,9 @@ import {
   Text,
   VStack,
 } from "@yamada-ui/react"
+import Link from "next/link"
 import { useState } from "react"
+import type { getCircleById } from "@/actions/circle/fetch-circle"
 
 const dummyData = [
   {
@@ -67,9 +69,10 @@ const dummyData = [
 
 interface CircleThreadsProps {
   isMember?: boolean
+  circle: Awaited<ReturnType<typeof getCircleById>>
 }
 
-export const CircleThreads: FC<CircleThreadsProps> = ({ isMember }) => {
+export const CircleThreads: FC<CircleThreadsProps> = ({ isMember, circle }) => {
   const [selectedOptions, setSelectedOptions] = useState<string[]>([])
   return (
     <VStack gap="md">
@@ -98,7 +101,11 @@ export const CircleThreads: FC<CircleThreadsProps> = ({ isMember }) => {
               <MenuItem icon={<BellPlusIcon fontSize="2xl" />}>
                 お知らせ
               </MenuItem>
-              <MenuItem icon={<MessageCircleMoreIcon fontSize="2xl" />}>
+              <MenuItem
+                icon={<MessageCircleMoreIcon fontSize="2xl" />}
+                as={Link}
+                href={`/circles/${circle?.id}/thread/create`}
+              >
                 スレッド
               </MenuItem>
             </MenuList>
