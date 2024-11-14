@@ -68,7 +68,7 @@ export const AppLayout: FC<{ children?: ReactNode }> = ({ children }) => {
             alignItems="center"
             as={Link}
             variant="ghost"
-            href="/"
+            href="/calendar"
             icon={<CalendarDaysIcon fontSize="2xl" />}
             title="カレンダー"
           />
