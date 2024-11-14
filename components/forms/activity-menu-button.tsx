@@ -14,12 +14,11 @@ import {
   ModalFooter,
   Text,
   useDisclosure,
-
 } from "@yamada-ui/react"
 import Link from "next/link"
 import type { getCircleById } from "@/actions/circle/fetch-circle"
 import type { getActivityById } from "@/data/activity"
- 
+
 interface ActivityMenuButtonProps {
   isMember: boolean
   isAdmin: boolean
@@ -29,7 +28,7 @@ interface ActivityMenuButtonProps {
   handleDelete: (activityId: number) => Promise<void>
   handleParticipation: (activityId: number) => Promise<void>
 }
- 
+
 export const ActivityMenuButton: FC<ActivityMenuButtonProps> = ({
   isMember,
   isAdmin,
@@ -40,75 +39,69 @@ export const ActivityMenuButton: FC<ActivityMenuButtonProps> = ({
   handleParticipation,
 }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
- 
+
   const onDeleteConfirm = async () => {
     await handleDelete(activity.id)
     onClose()
   }
- 
+
   return isMember ? (
-<>
-<Menu>
-<MenuButton
+    <>
+      <Menu>
+        <MenuButton
           as={IconButton}
           icon={<EllipsisIcon fontSize="2xl" />}
           variant="ghost"
           isRounded
         />
-<MenuList>
-<MenuItem
+        <MenuList>
+          <MenuItem
             as={Link}
             href={`/circles/${circle?.id}/activities/${activity.id}/edit`}
->
+          >
             編集
-</MenuItem>
-<MenuItem
-            color="red"
-            isDisabled={!isAdmin}
-            onClick={onOpen}
->
+          </MenuItem>
+          <MenuItem color="red" isDisabled={!isAdmin} onClick={onOpen}>
             削除
-</MenuItem>
- 
+          </MenuItem>
+
           {activity.participants.some(
             (participant) => participant.userId === userId,
           ) ? (
-<MenuItem onClick={() => handleParticipation(activity.id)}>
+            <MenuItem onClick={() => handleParticipation(activity.id)}>
               参加をキャンセル
-</MenuItem>
+            </MenuItem>
           ) : (
-<MenuItem onClick={() => handleParticipation(activity.id)}>
+            <MenuItem onClick={() => handleParticipation(activity.id)}>
               参加
-</MenuItem>
+            </MenuItem>
           )}
-</MenuList>
-</Menu>
- 
-<Modal isOpen={isOpen} onClose={onClose}>
-<ModalOverlay />
-<ModalHeader>活動の削除確認</ModalHeader>
-<ModalBody>
-<Text>
-            本当にこの活動を削除しますか？この操作は元に戻せません。
-</Text>
-</ModalBody>
-<ModalFooter>
-<Button variant="ghost" onClick={onClose}>
+        </MenuList>
+      </Menu>
+
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalHeader>活動の削除確認</ModalHeader>
+        <ModalBody>
+          <Text>本当にこの活動を削除しますか？この操作は元に戻せません。</Text>
+        </ModalBody>
+        <ModalFooter>
+          <Button variant="ghost" onClick={onClose}>
             いいえ
-</Button>
-<Button colorScheme="red" onClick={onDeleteConfirm} ml={3}>
+          </Button>
+          <Button colorScheme="red" onClick={onDeleteConfirm}>
             削除
-</Button>
-</ModalFooter>
-</Modal>
-</>
+          </Button>
+        </ModalFooter>
+      </Modal>
+    </>
   ) : activity.participants.some(
       (participant) => participant.userId === userId,
     ) ? (
-<Button onClick={() => handleParticipation(activity.id)}>
+    <Button onClick={() => handleParticipation(activity.id)}>
       参加をキャンセル
-</Button>
+    </Button>
   ) : (
-<Button onClick={() => handleParticipation(activity.id)}>参加</Button>
+    <Button onClick={() => handleParticipation(activity.id)}>参加</Button>
   )
 }
