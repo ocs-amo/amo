@@ -1,4 +1,10 @@
 import { Center, Text } from "@yamada-ui/react"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Not Found - CIRCLIA",
+  description: "Not Found - CIRCLIA",
+}
 
 const NotFound = () => {
   return (

@@ -12,7 +12,7 @@ import {
   Button,
   Text,
 } from "@yamada-ui/react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 type Event = {
   year: number
@@ -24,7 +24,10 @@ type Event = {
 }
 
 const CalendarPage = () => {
-  const [activeTab, setActiveTab] = useState("allCircles")
+  useEffect(() => {
+    document.title = "カレンダー - CIRCLIA"
+  }, [])
+  const [activeTab, setActiveTab] = useState("allCircles")  
 
   const events: Event[] = [
     {
