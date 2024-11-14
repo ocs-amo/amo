@@ -43,6 +43,7 @@ export const generateStaticParams = async () => {
 }
 
 export const dynamicParams = false
+export const dynamic = "force-dynamic"
 
 // ダイナミックルートのページコンポーネント
 const Page = async ({ params }: Props) => {

@@ -18,6 +18,7 @@ export const generateMetadata = ({ params }: Props) =>
 const list = ["activities", "images", "notifications", "members"]
 
 export const dynamicParams = false
+export const dynamic = "force-dynamic"
 
 // generateStaticParams 関数
 export const generateStaticParams = async () => {

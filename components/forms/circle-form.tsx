@@ -182,25 +182,29 @@ export const CircleForm: FC<CircleFormProps> = ({
     try {
       if (mode === "create") {
         // サークル作成処理
-        const circle = await CreateCircle(parseData, userId)
+        const { success, error, result } = await CreateCircle(parseData, userId)
 
         // サークル作成が成功した場合
-        if (circle) {
-          router.push(`/circles/${circle.circleId}`)
-        } else {
-          // サークル作成に失敗した場合の処理
-          console.error("サークルの作成に失敗しました。")
-        }
-      } else if (mode === "edit") {
-        // 編集
-        const result = await UpdateCircle(parseData, circle?.id || "", userId)
-
-        // サークル作成が成功した場合
-        if (result) {
+        if (success) {
           router.push(`/circles/${result?.circleId}`)
         } else {
           // サークル作成に失敗した場合の処理
-          console.error("サークルの作成に失敗しました。")
+          console.error("サークルの作成に失敗しました。", error)
+        }
+      } else if (mode === "edit") {
+        // 編集
+        const { success, error, result } = await UpdateCircle(
+          parseData,
+          circle?.id || "",
+          userId,
+        )
+
+        // サークル更新が成功した場合
+        if (success) {
+          router.push(`/circles/${result?.circleId}`)
+        } else {
+          // サークル更新に失敗した場合の処理
+          console.error("サークルの更新に失敗しました。", error)
         }
       }
     } catch (error) {

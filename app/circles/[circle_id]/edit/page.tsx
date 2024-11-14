@@ -14,6 +14,7 @@ export const generateMetadata = ({ params }: Props) =>
   demo(params.circle_id || "", "編集")
 
 export const dynamicParams = false
+export const dynamic = "force-dynamic"
 
 export const generateStaticParams = async () => {
   const circles = await getCircles()
