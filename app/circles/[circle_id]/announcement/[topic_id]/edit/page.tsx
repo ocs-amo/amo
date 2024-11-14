@@ -2,8 +2,8 @@ import { Center } from "@yamada-ui/react"
 import { getCircleById, getCircles } from "@/actions/circle/fetch-circle"
 import { auth } from "@/auth"
 import { AnnouncementForm } from "@/components/forms/announcement-form"
-import { getAnnouncementById, getAnnouncements } from "@/data/announcement"
 import { demo } from "@/components/tab/tab-title"
+import { getAnnouncementById, getAnnouncements } from "@/data/announcement"
 
 interface Props {
   params: {

@@ -23,7 +23,6 @@ import { getCirclesByUserId } from "@/actions/circle/fetch-circle"
 import { getUserById } from "@/actions/user/user"
 import { auth } from "@/auth"
 import { CircleCard } from "@/components/data-display/circle-card"
-import { demo } from "@/components/tab/tab-title"
 
 export const metadata = {
   title: "ホーム - CIRCLIA",

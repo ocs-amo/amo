@@ -5,27 +5,27 @@ erDiagram
             thread thread
 announcement announcement
         }
-    
+
   "User" {
     String id "🗝️"
-    String studentNumber 
-    String name 
-    String email 
+    String studentNumber
+    String name
+    String email
     String password "❓"
-    DateTime createdAt 
-    DateTime updatedAt 
+    DateTime createdAt
+    DateTime updatedAt
     String image "❓"
     String profileText "❓"
-    Boolean instructorFlag 
+    Boolean instructorFlag
     Boolean emailVerified "❓"
     }
-  
+
 
   "Account" {
     String id "🗝️"
-    String type 
-    String provider 
-    String providerAccountId 
+    String type
+    String provider
+    String providerAccountId
     String refresh_token "❓"
     String access_token "❓"
     Int expires_at "❓"
@@ -34,96 +34,96 @@ announcement announcement
     String id_token "❓"
     String session_state "❓"
     }
-  
+
 
   "Circle" {
     String id "🗝️"
-    String name 
-    String description 
-    String location 
-    DateTime createdAt 
-    DateTime updatedAt 
+    String name
+    String description
+    String location
+    DateTime createdAt
+    DateTime updatedAt
     DateTime deletedAt "❓"
     String imagePath "❓"
     String activityDay "❓"
     }
-  
+
 
   "CircleMember" {
     Int id "🗝️"
-    DateTime joinDate 
+    DateTime joinDate
     DateTime leaveDate "❓"
     }
-  
+
 
   "MembershipRequest" {
     String id "🗝️"
-    String requestType 
-    String status 
-    DateTime requestDate 
+    String requestType
+    String status
+    DateTime requestDate
     DateTime resolvedDate "❓"
     }
-  
+
 
   "CircleInstructor" {
     Int id "🗝️"
     }
-  
+
 
   "CircleTag" {
     String id "🗝️"
-    String tagName 
+    String tagName
     }
-  
+
 
   "Role" {
     Int id "🗝️"
-    String roleName 
+    String roleName
     }
-  
+
 
   "Activity" {
     Int id "🗝️"
-    String title 
+    String title
     String description "❓"
-    String location 
-    DateTime activityDay 
-    DateTime startTime 
+    String location
+    DateTime activityDay
+    DateTime startTime
     DateTime endTime "❓"
     String notes "❓"
-    DateTime createdAt 
-    DateTime updatedAt 
+    DateTime createdAt
+    DateTime updatedAt
     DateTime deletedAt "❓"
     }
-  
+
 
   "ActivityParticipant" {
     Int id "🗝️"
-    DateTime joinedAt 
+    DateTime joinedAt
     DateTime removedAt "❓"
     }
-  
+
 
   "Topic" {
     String id "🗝️"
-    String circleId 
-    TopicType type 
-    String title 
+    String circleId
+    TopicType type
+    String title
     String content "❓"
-    Boolean isImportant 
-    DateTime createdAt 
-    DateTime updatedAt 
+    Boolean isImportant
+    DateTime createdAt
+    DateTime updatedAt
     DateTime deletedAt "❓"
     }
-  
+
 
   "Comment" {
     String id "🗝️"
-    String content 
-    DateTime createdAt 
+    String content
+    DateTime createdAt
     DateTime deletedAt "❓"
     }
-  
+
     "User" o{--}o "Account" : "accounts"
     "User" o{--}o "CircleMember" : "CircleMember"
     "User" o{--}o "CircleInstructor" : "CircleInstructor"

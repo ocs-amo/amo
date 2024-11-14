@@ -19,7 +19,7 @@ import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { signin } from "@/actions/auth/signin"
 import { SigninSchema } from "@/schema/auth"
-import type { SigninForm} from "@/schema/auth";
+import type { SigninForm } from "@/schema/auth"
 
 const AmoLogo = () => (
   <svg
