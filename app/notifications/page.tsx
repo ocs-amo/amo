@@ -9,9 +9,10 @@ import {
   Text,
   VStack,
 } from "@yamada-ui/react"
-import { demo } from "@/components/tab/tab-title"
 
-export const generateMetadata = () => demo("", "通知")
+export const metadata = {
+  title: "通知 - CIRCLIA",
+}
 
 const notificationMockData = [
   {

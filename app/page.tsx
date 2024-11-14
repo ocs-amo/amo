@@ -25,7 +25,9 @@ import { auth } from "@/auth"
 import { CircleCard } from "@/components/data-display/circle-card"
 import { demo } from "@/components/tab/tab-title"
 
-export const generateMetadata = () => demo("", "ホーム")
+export const metadata = {
+  title: "ホーム - CIRCLIA",
+}
 
 const notificationMockData = [
   {
