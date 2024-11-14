@@ -12,6 +12,7 @@ import {
   VStack,
 } from "@yamada-ui/react"
 import { useEffect, useState } from "react"
+import { signIn } from "next-auth/react"
 import { useForm } from "react-hook-form"
 import { signin } from "@/actions/auth/signin"
 import type { SigninForm } from "@/schema/auth"
@@ -94,7 +95,7 @@ const LoginPage = () => {
           />
         </FormControl>
         {error ? <Text color="danger">{error}</Text> : undefined}
-        <Center>
+        <Center as={VStack}>
           <Button
             type="submit"
             colorScheme="primary"
@@ -112,6 +113,12 @@ const LoginPage = () => {
             transition="all 0.3s ease"
           >
             サインイン
+          </Button>
+          <Button
+            colorScheme="purple"
+            onClick={() => signIn("microsoft-entra-id")}
+          >
+            Microsoftアカウントでサインイン
           </Button>
         </Center>
       </VStack>

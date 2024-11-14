@@ -106,7 +106,7 @@ export const MemberRequestCard: FC<MemberRequestCardProps> = ({
           flexWrap="wrap"
         >
           <HStack flexWrap="wrap">
-            <Avatar src={member.iconImagePath || ""} />
+            <Avatar src={member.image || ""} />
             {member.requestType === "join" ? (
               <Badge colorScheme="success">入会</Badge>
             ) : (

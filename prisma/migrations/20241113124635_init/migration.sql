@@ -4,12 +4,13 @@ CREATE TABLE "User" (
     "studentNumber" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
-    "password" TEXT NOT NULL,
+    "password" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
-    "iconImagePath" TEXT,
+    "image" TEXT,
     "profileText" TEXT,
     "instructorFlag" BOOLEAN NOT NULL DEFAULT false,
+    "emailVerified" BOOLEAN DEFAULT false,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
@@ -18,6 +19,7 @@ CREATE TABLE "User" (
 CREATE TABLE "Account" (
     "id" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
+    "type" TEXT NOT NULL,
     "provider" TEXT NOT NULL,
     "providerAccountId" TEXT NOT NULL,
     "refresh_token" TEXT,
