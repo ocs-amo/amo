@@ -1,6 +1,11 @@
 ```mermaid
 erDiagram
 
+        TopicType {
+            thread thread
+notice notice
+        }
+
   "User" {
     String id "🗝️"
     String studentNumber
@@ -98,6 +103,29 @@ erDiagram
     DateTime removedAt "❓"
     }
 
+
+  "Topic" {
+    String id "🗝️"
+    String circleId
+    TopicType type
+    String title
+    String content "❓"
+    Boolean isImportant
+    DateTime createdAt
+    DateTime updatedAt
+    DateTime deletedAt "❓"
+    String createdBy
+    }
+
+
+  "Comment" {
+    String id "🗝️"
+    String content
+    DateTime createdAt
+    String createdBy
+    DateTime deletedAt "❓"
+    }
+
     "User" o{--}o "Account" : "accounts"
     "User" o{--}o "CircleMember" : "CircleMember"
     "User" o{--}o "CircleInstructor" : "CircleInstructor"
@@ -126,4 +154,7 @@ erDiagram
     "Activity" o|--|| "User" : "creator"
     "ActivityParticipant" o|--|| "Activity" : "Activity"
     "ActivityParticipant" o|--|| "User" : "user"
+    "Topic" o|--|| "TopicType" : "enum:type"
+    "Topic" o{--}o "Comment" : "comments"
+    "Comment" o|--|| "Topic" : "topic"
 ```

@@ -170,3 +170,39 @@ model ActivityParticipant {
 
     @@index([activityId, userId]) // 検索を高速化するための複合インデックス
 }
+
+model Topic {
+    id          String    @id @default(uuid())
+    circleId    String // サークルID
+    type        TopicType // 種類（スレッド or お知らせ）
+    title       String
+    content     String?
+    isImportant Boolean   @default(false) // 重要フラグ
+    createdAt   DateTime  @default(now())
+    updatedAt   DateTime  @updatedAt
+    deletedAt   DateTime? // 論理削除用カラム
+    createdBy   String // 作成者ID（ユーザーIDなど）
+
+    // 関連
+    comments Comment[] @relation("TopicComments")
+
+    @@index([circleId]) // circleIdでインデックスを作成
+}
+
+model Comment {
+    id        String    @id @default(uuid())
+    topicId   String // TopicsテーブルのID
+    content   String
+    createdAt DateTime  @default(now())
+    createdBy String // 作成者ID（ユーザーIDなど）
+    deletedAt DateTime? // 論理削除用カラム
+
+    // リレーション
+    topic Topic @relation(fields: [topicId], references: [id], name: "TopicComments")
+}
+
+// Enum for topic types
+enum TopicType {
+    thread // スレッド
+    notice // お知らせ
+}
