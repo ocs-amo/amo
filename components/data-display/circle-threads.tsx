@@ -65,10 +65,14 @@ const dummyData = [
   },
 ]
 
-export const CircleThreads: FC = () => {
+interface CircleThreadsProps {
+  isMember?: boolean
+}
+
+export const CircleThreads: FC<CircleThreadsProps> = ({ isMember }) => {
   const [selectedOptions, setSelectedOptions] = useState<string[]>([])
   return (
-    <>
+    <VStack gap="md">
       <HStack>
         <MultiSelect
           placeholder="項目を選択"
@@ -82,21 +86,24 @@ export const CircleThreads: FC = () => {
           <Option value="お知らせ">お知らせ</Option>
           <Option value="重要">重要</Option>
         </MultiSelect>
+        {isMember ? (
+          <Menu>
+            <MenuButton
+              as={IconButton}
+              icon={<PlusIcon fontSize="2xl" />}
+              variant="outline"
+            />
 
-        <Menu>
-          <MenuButton
-            as={IconButton}
-            icon={<PlusIcon fontSize="2xl" />}
-            variant="outline"
-          />
-
-          <MenuList>
-            <MenuItem icon={<BellPlusIcon fontSize="2xl" />}>お知らせ</MenuItem>
-            <MenuItem icon={<MessageCircleMoreIcon fontSize="2xl" />}>
-              スレッド
-            </MenuItem>
-          </MenuList>
-        </Menu>
+            <MenuList>
+              <MenuItem icon={<BellPlusIcon fontSize="2xl" />}>
+                お知らせ
+              </MenuItem>
+              <MenuItem icon={<MessageCircleMoreIcon fontSize="2xl" />}>
+                スレッド
+              </MenuItem>
+            </MenuList>
+          </Menu>
+        ) : undefined}
       </HStack>
       <SimpleGrid w="full" columns={1} gap="md">
         {dummyData
@@ -147,6 +154,6 @@ export const CircleThreads: FC = () => {
             </GridItem>
           ))}
       </SimpleGrid>
-    </>
+    </VStack>
   )
 }

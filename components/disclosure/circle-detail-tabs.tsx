@@ -90,7 +90,7 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
         <TabPanel>画像</TabPanel>
 
         <TabPanel>
-          <CircleThreads />
+          <CircleThreads isMember={isMember} />
         </TabPanel>
 
         <TabPanel>
