@@ -10,12 +10,20 @@ export const markMemberAsInactive = async (memberId: number) => {
 }
 
 // 共通化されたメンバーの検索関数
-export const findActiveMember = async (userId: string, circleId: string) => {
+export const findActiveMember = async (userId: string, circleId: string,) => {
   return db.circleMember.findFirst({
     where: {
       userId,
       circleId,
       leaveDate: null, // leaveDateがnullなら退会していないメンバー
+    },
+    include: {
+      user: {
+        select: {
+          id: true,
+          name: true, // ユーザー名を取得
+        },
+      },
     },
   })
 }
