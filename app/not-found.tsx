@@ -1,3 +1,4 @@
+import { demo } from "@/components/tab/tab-title"
 import { Center, Text } from "@yamada-ui/react"
 
 export const generateMetadata = () => demo("", "Not Found")
