@@ -2,8 +2,16 @@ import { z } from "zod"
 
 // 共通の基本スキーマ（バックエンドでも使用）
 export const CircleSchema = z.object({
-  name: z.string().trim().min(1, { message: "サークル名は必須です。" }), // サークル名は必須
-  description: z.string().trim().min(1, { message: "説明は必須です。" }), // 説明は必須
+  name: z
+    .string()
+    .trim()
+    .min(1, { message: "サークル名は必須です。" })
+    .max(30, { message: "30文字以下にしてください。" }), // サークル名は必須
+  description: z
+    .string()
+    .trim()
+    .min(1, { message: "説明は必須です。" })
+    .max(100, { message: "100文字以下にしてください。" }), // 説明は必須
   instructors: z
     .array(z.string())
     .nonempty("講師を少なくとも一人選択してください"), // 講師は文字列配列
