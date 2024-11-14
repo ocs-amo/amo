@@ -103,9 +103,7 @@ const DeleteCircleButton: FC<{ circleId: string; userId: string }> = ({
               </Center>
             </ModalBody>
             <ModalFooter>
-              <Button onClick={() => router.push("/circles")} ml={3}>
-                閉じる
-              </Button>
+              <Button onClick={() => router.push("/circles")}>閉じる</Button>
             </ModalFooter>
           </>
         ) : (
@@ -120,7 +118,7 @@ const DeleteCircleButton: FC<{ circleId: string; userId: string }> = ({
               <Button variant="ghost" onClick={onClose}>
                 いいえ
               </Button>
-              <Button colorScheme="red" onClick={handleDelete} ml={3}>
+              <Button colorScheme="red" onClick={handleDelete}>
                 削除
               </Button>
             </ModalFooter>
