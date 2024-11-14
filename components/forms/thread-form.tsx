@@ -28,7 +28,7 @@ export const ThreadForm: FC<ThreadFormProps> = ({ circleId, mode }) => {
       p="md"
     >
       <VStack p="md" maxW="5xl" m="auto" gap="lg" flexGrow={1}>
-        <Heading>タイトル</Heading>
+        <Heading>スレッド</Heading>
         <FormControl
           display="flex"
           flexDirection={{ base: "row", md: "column" }}
