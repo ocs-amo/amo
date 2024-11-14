@@ -103,7 +103,7 @@ export const MemberCard: FC<MemberCard> = ({
           justifyContent="space-between"
         >
           <HStack flexWrap="wrap">
-            <Avatar src={member.iconImagePath || ""} />
+            <Avatar src={member.image || ""} />
             <Badge>{member.role.roleName}</Badge>
             <Text>{member.name}</Text>
             <Text>{member.studentNumber}</Text>

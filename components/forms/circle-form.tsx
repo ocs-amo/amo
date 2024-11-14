@@ -1,5 +1,6 @@
 "use client"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { Player } from "@lottiefiles/react-lottie-player"
 import { CameraIcon, TrashIcon } from "@yamada-ui/lucide"
 import type { AutocompleteItem, FC } from "@yamada-ui/react"
 import {
@@ -36,6 +37,7 @@ import { CreateCircle } from "@/actions/circle/create-circle"
 import { removeCircle } from "@/actions/circle/delete-circle"
 import type { getCircleById } from "@/actions/circle/fetch-circle"
 import { UpdateCircle } from "@/actions/circle/update-circle"
+import RocketAnimation from "@/public/lottie/rocket.json"
 import { BackCircleSchema, FrontCircleSchema } from "@/schema/circle"
 import type { FrontCircleForm } from "@/schema/circle"
 
@@ -51,18 +53,18 @@ const DeleteCircleButton: FC<{ circleId: string; userId: string }> = ({
   userId,
 }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const [isDone, { on: doneOn, off: doneOff }] = useBoolean()
   const router = useRouter()
   const handleDelete = async () => {
     try {
+      doneOff()
       // 実際の削除処理
       const { message, success } = await removeCircle(circleId, userId)
       if (success) {
-        console.log(message)
-        router.push("/circles")
+        doneOn()
       } else {
         console.error(message)
       }
-      onClose()
       // 必要であれば、削除後のリダイレクトや他のアクションを追加
     } catch (error) {
       console.error("削除中にエラーが発生しました:", error)
@@ -78,22 +80,52 @@ const DeleteCircleButton: FC<{ circleId: string; userId: string }> = ({
       </Center>
 
       {/* 削除確認モーダル  */}
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal
+        isOpen={isOpen}
+        onClose={isDone ? () => router.push("/circles") : onClose}
+      >
         <ModalOverlay />
-        <ModalHeader>サークルの削除確認</ModalHeader>
-        <ModalBody>
-          <Text>
-            本当にこのサークルを削除しますか？この操作は元に戻せません。
-          </Text>
-        </ModalBody>
-        <ModalFooter>
-          <Button variant="ghost" onClick={onClose}>
-            いいえ
-          </Button>
-          <Button colorScheme="red" onClick={handleDelete} ml={3}>
-            削除
-          </Button>
-        </ModalFooter>
+        {isDone ? (
+          <>
+            <ModalHeader>削除しました</ModalHeader>
+            <ModalBody>
+              <Center w="full">
+                <Player
+                  autoplay
+                  loop
+                  src={RocketAnimation}
+                  style={{
+                    height: "250px",
+                    width: "250px",
+                    pointerEvents: "none",
+                  }}
+                />
+              </Center>
+            </ModalBody>
+            <ModalFooter>
+              <Button onClick={() => router.push("/circles")} ml={3}>
+                閉じる
+              </Button>
+            </ModalFooter>
+          </>
+        ) : (
+          <>
+            <ModalHeader>サークルの削除確認</ModalHeader>
+            <ModalBody>
+              <Text>
+                本当にこのサークルを削除しますか？この操作は元に戻せません。
+              </Text>
+            </ModalBody>
+            <ModalFooter>
+              <Button variant="ghost" onClick={onClose}>
+                いいえ
+              </Button>
+              <Button colorScheme="red" onClick={handleDelete} ml={3}>
+                削除
+              </Button>
+            </ModalFooter>
+          </>
+        )}
       </Modal>
     </>
   )

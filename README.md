@@ -13,7 +13,14 @@ pnpm i # Windowsの場合はnpx pnpm i
 NEXTAUTH_SECRET="" #「openssl rand -base64 32」を実行した結果を貼り付ける
 
 DATABASE_URL="postgresql://johndoe:postgres@localhost:54320/mydb?schema=public"
+
+AUTH_MICROSOFT_ENTRA_ID_ID=""
+AUTH_MICROSOFT_ENTRA_ID_SECRET=""
+AUTH_MICROSOFT_ENTRA_ID_ISSUER=""
 ```
+
+`AUTH_MICROSOFT_ENTRA_ID_ID`・`AUTH_MICROSOFT_ENTRA_ID_SECRET`・`AUTH_MICROSOFT_ENTRA_ID_ISSUER`は[ここ](https://entra.microsoft.com/)から作成
+手順は[ここ](https://authjs.dev/getting-started/providers/microsoft-entra-id)
 
 2. コンテナ（データベース）の起動とマイグレーション
 

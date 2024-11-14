@@ -38,6 +38,7 @@
     "@eslint/config-inspector": "^0.5.6",
     "@eslint/js": "^9.14.0",
     "@hookform/resolvers": "^3.9.1",
+    "@lottiefiles/react-lottie-player": "^3.5.4",
     "@mermaid-js/mermaid-cli": "^11.4.0",
     "@microsoft/eslint-formatter-sarif": "^3.1.0",
     "@next-auth/prisma-adapter": "^1.0.7",
