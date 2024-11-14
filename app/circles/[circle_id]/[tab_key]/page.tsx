@@ -10,6 +10,41 @@ interface Props {
   }
 }
 
+const handlingTab = (key: string) => {
+  switch (key) {
+    case "activities":
+      return "活動日程"
+    case "images":
+      return "画像"
+    case "notifications":
+      return "掲示板"
+    case "members":
+      return "メンバー一覧"
+    default:
+      return "活動日程"
+  }
+}
+
+export const generateMetadata = async ({ params }: Props) => {
+  const { circle_id } = params
+  const { tab_key } = params
+
+  const circle = await getCircleById(circle_id || "")
+  const tab = await handlingTab(tab_key || "")
+
+  if (!circle) {
+    return {
+      title: "サークルが見つかりません。",
+      description: "サークルが見つかりません。",
+    }
+  }
+
+  return {
+    title: tab + " - " + circle.name,
+    description: tab + " - " + circle.description,
+  }
+}
+
 // 固定されたタブキーのリスト
 const list = ["activities", "images", "notifications", "members"]
 
