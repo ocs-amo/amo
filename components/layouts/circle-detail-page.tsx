@@ -15,6 +15,8 @@ import { CircleMembershipButton } from "../forms/circle-membership-button"
 import { getCircleById } from "@/actions/circle/fetch-circle"
 import { getMembershipRequests } from "@/actions/circle/membership-request"
 import type { getActivityById } from "@/data/activity"
+import type { getAnnouncementById } from "@/data/announcement"
+import type { getThreadById } from "@/data/thread"
 
 export const CircleDetailPage: FC<{
   circle: Awaited<ReturnType<typeof getCircleById>>
@@ -22,7 +24,17 @@ export const CircleDetailPage: FC<{
   tabKey?: string
   userId: string
   currentActivity?: Awaited<ReturnType<typeof getActivityById>>
-}> = ({ userId, circle, tabKey, membershipRequests, currentActivity }) => {
+  currentThread?: Awaited<ReturnType<typeof getThreadById>>
+  currentAnnouncement?: Awaited<ReturnType<typeof getAnnouncementById>>
+}> = ({
+  userId,
+  circle,
+  tabKey,
+  membershipRequests,
+  currentActivity,
+  currentThread,
+  currentAnnouncement,
+}) => {
   const [circleData, setCircleData] =
     useState<Awaited<ReturnType<typeof getCircleById>>>(circle)
   const [requests, setRequests] =
@@ -103,6 +115,8 @@ export const CircleDetailPage: FC<{
           isAdmin={isAdmin}
           isMember={isMember}
           currentActivity={currentActivity}
+          currentThread={currentThread}
+          currentAnnouncement={currentAnnouncement}
           fetchData={fetchData}
         />
       </VStack>
