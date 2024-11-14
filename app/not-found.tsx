@@ -1,10 +1,6 @@
 import { Center, Text } from "@yamada-ui/react"
-import type { Metadata } from "next"
 
-export const metadata: Metadata = {
-  title: "Not Found - CIRCLIA",
-  description: "Not Found - CIRCLIA",
-}
+export const generateMetadata = () => demo("", "Not Found")
 
 const NotFound = () => {
   return (

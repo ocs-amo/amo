@@ -2,27 +2,14 @@ import { Center } from "@yamada-ui/react"
 import { getCircleById, getCircles } from "@/actions/circle/fetch-circle"
 import { auth } from "@/auth"
 import { ActivityForm } from "@/components/forms/activity-form"
+import { demo } from "@/components/tab/tab-title"
 
 interface Props {
   params: { circle_id?: string }
 }
 
-export const generateMetadata = async ({ params }: Props) => {
-  const { circle_id } = params
-  const circle = await getCircleById(circle_id || "")
-
-  if (!circle) {
-    return {
-      title: "サークルが見つかりません。",
-      description: "サークルが見つかりません。",
-    }
-  }
-
-  return {
-    title: circle.name,
-    description: circle.description,
-  }
-}
+export const generateMetadata = ({ params }: Props) =>
+  demo(params.circle_id || "", "新規活動日程")
 
 export const generateStaticParams = async () => {
   const circles = await getCircles()

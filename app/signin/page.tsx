@@ -12,11 +12,14 @@ import {
   VStack,
 } from "@yamada-ui/react"
 import { signIn } from "next-auth/react"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { signin } from "@/actions/auth/signin"
+import { demo } from "@/components/tab/tab-title"
 import type { SigninForm } from "@/schema/auth"
 import { SigninSchema } from "@/schema/auth"
+
+export const generateMetadata = () => demo("", "サインイン")
 
 const AmoLogo = () => (
   <svg
@@ -42,9 +45,6 @@ const AmoLogo = () => (
 )
 
 const LoginPage = () => {
-  useEffect(() => {
-    document.title = "サインイン - CIRCLIA"
-  }, [])
   const [isLoading, { on: start, off: end }] = useBoolean()
   const [error, setError] = useState("")
   const {

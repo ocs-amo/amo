@@ -2,28 +2,15 @@ import { getCircleById, getCircles } from "@/actions/circle/fetch-circle"
 import { getMembershipRequests } from "@/actions/circle/membership-request"
 import { auth } from "@/auth"
 import { CircleDetailPage } from "@/components/layouts/circle-detail-page"
+import { demo } from "@/components/tab/tab-title"
 
 interface Props {
   params: { circle_id?: string }
 }
 
-export const generateMetadata = async ({ params }: Props) => {
-  const { circle_id } = params
+export const generateMetadata = ({ params }: Props) =>
+  demo(params.circle_id || "", "")
 
-  const circle = await getCircleById(circle_id || "")
-
-  if (!circle) {
-    return {
-      title: "サークルが見つかりません。",
-      description: "サークルが見つかりません。",
-    }
-  }
-
-  return {
-    title: "活動日程 - " + circle.name,
-    description: "活動日程 - " + circle.description,
-  }
-}
 export const dynamicParams = false
 
 export const generateStaticParams = async () => {

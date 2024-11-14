@@ -12,7 +12,8 @@ import {
   Button,
   Text,
 } from "@yamada-ui/react"
-import { useEffect, useState } from "react"
+import { useState } from "react"
+import { demo } from "@/components/tab/tab-title"
 
 type Event = {
   year: number
@@ -23,10 +24,9 @@ type Event = {
   time: string
 }
 
+export const generateMetadata = () => demo("", "カレンダー")
+
 const CalendarPage = () => {
-  useEffect(() => {
-    document.title = "カレンダー - CIRCLIA"
-  }, [])
   const [activeTab, setActiveTab] = useState("allCircles")
 
   const events: Event[] = [

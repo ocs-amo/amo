@@ -2,6 +2,7 @@ import { Center } from "@yamada-ui/react"
 import { getCircleById, getCircles } from "@/actions/circle/fetch-circle"
 import { auth } from "@/auth"
 import { ActivityForm } from "@/components/forms/activity-form"
+import { demo } from "@/components/tab/tab-title"
 import { getActivities, getActivityById } from "@/data/activity"
 
 interface Props {
@@ -10,8 +11,10 @@ interface Props {
     activity_id?: string
   }
 }
+export const generateMetadata = ({ params }: Props) =>
+  demo(params.circle_id || "", "活動日程編集")
 
-export const generateMetadata = async ({ params }: Props) => {
+/*export const generateMetadata = async ({ params }: Props) => {
   const { circle_id } = params
   const circle = await getCircleById(circle_id || "")
 
@@ -26,7 +29,7 @@ export const generateMetadata = async ({ params }: Props) => {
     title: circle.name,
     description: circle.description,
   }
-}
+}*/
 
 export const generateStaticParams = async () => {
   const circles = await getCircles()

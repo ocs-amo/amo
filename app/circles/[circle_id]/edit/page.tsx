@@ -3,25 +3,16 @@ import { Center } from "@yamada-ui/react"
 import { getCircleById, getCircles } from "@/actions/circle/fetch-circle"
 import { auth } from "@/auth"
 import { CircleForm } from "@/components/forms/circle-form"
+import { demo } from "@/components/tab/tab-title"
 import { getInstructors } from "@/data/circle"
+
 interface Props {
   params: { circle_id?: string }
 }
-export const generateMetadata = async ({ params }: Props) => {
-  const { circle_id } = params
-  const circle = await getCircleById(circle_id || "")
-  if (!circle) {
-    return {
-      title: "サークルが見つかりません。",
-      description: "サークルが見つかりません。",
-    }
-  }
 
-  return {
-    title: "編集 - " + circle.name,
-    description: "編集 - " + circle.description,
-  }
-}
+export const generateMetadata = ({ params }: Props) =>
+  demo(params.circle_id || "", "編集")
+
 export const dynamicParams = false
 
 export const generateStaticParams = async () => {
