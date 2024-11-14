@@ -1,3 +1,8 @@
+import {
+  BellPlusIcon,
+  MessageCircleMoreIcon,
+  PlusIcon,
+} from "@yamada-ui/lucide"
 import type { FC } from "@yamada-ui/react"
 import {
   Avatar,
@@ -6,6 +11,11 @@ import {
   CardBody,
   GridItem,
   HStack,
+  IconButton,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
   MultiSelect,
   Option,
   SimpleGrid,
@@ -59,18 +69,35 @@ export const CircleThreads: FC = () => {
   const [selectedOptions, setSelectedOptions] = useState<string[]>([])
   return (
     <>
-      <MultiSelect
-        placeholder="項目を選択"
-        component={({ label, onRemove }) => (
-          <Tag onClose={onRemove}>{label}</Tag>
-        )}
-        onChange={setSelectedOptions}
-        value={selectedOptions}
-      >
-        <Option value="スレッド">スレッド</Option>
-        <Option value="お知らせ">お知らせ</Option>
-        <Option value="重要">重要</Option>
-      </MultiSelect>
+      <HStack>
+        <MultiSelect
+          placeholder="項目を選択"
+          component={({ label, onRemove }) => (
+            <Tag onClose={onRemove}>{label}</Tag>
+          )}
+          onChange={setSelectedOptions}
+          value={selectedOptions}
+        >
+          <Option value="スレッド">スレッド</Option>
+          <Option value="お知らせ">お知らせ</Option>
+          <Option value="重要">重要</Option>
+        </MultiSelect>
+
+        <Menu>
+          <MenuButton
+            as={IconButton}
+            icon={<PlusIcon fontSize="2xl" />}
+            variant="outline"
+          />
+
+          <MenuList>
+            <MenuItem icon={<BellPlusIcon fontSize="2xl" />}>お知らせ</MenuItem>
+            <MenuItem icon={<MessageCircleMoreIcon fontSize="2xl" />}>
+              スレッド
+            </MenuItem>
+          </MenuList>
+        </Menu>
+      </HStack>
       <SimpleGrid w="full" columns={1} gap="md">
         {dummyData
           .filter((item) => {
