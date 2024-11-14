@@ -3,6 +3,7 @@ import { getCircleById, getCircles } from "@/actions/circle/fetch-circle"
 import { auth } from "@/auth"
 import { AnnouncementForm } from "@/components/forms/announcement-form"
 import { getAnnouncementById, getAnnouncements } from "@/data/announcement"
+import { demo } from "@/components/tab/tab-title"
 
 interface Props {
   params: {
@@ -11,22 +12,8 @@ interface Props {
   }
 }
 
-export const generateMetadata = async ({ params }: Props) => {
-  const { circle_id } = params
-  const circle = await getCircleById(circle_id || "")
-
-  if (!circle) {
-    return {
-      title: "サークルが見つかりません。",
-      description: "サークルが見つかりません。",
-    }
-  }
-
-  return {
-    title: circle.name,
-    description: circle.description,
-  }
-}
+export const generateMetadata = ({ params }: Props) =>
+  demo(params.circle_id || "", "お知らせ編集")
 
 export const generateStaticParams = async () => {
   const circles = await getCircles()

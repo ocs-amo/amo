@@ -2,6 +2,7 @@ import { getCircleById, getCircles } from "@/actions/circle/fetch-circle"
 import { getMembershipRequests } from "@/actions/circle/membership-request"
 import { auth } from "@/auth"
 import { CircleDetailPage } from "@/components/layouts/circle-detail-page"
+import { demo } from "@/components/tab/tab-title"
 import { getThreadById, getThreads } from "@/data/thread"
 
 interface Props {
@@ -11,22 +12,8 @@ interface Props {
   }
 }
 
-export const generateMetadata = async ({ params }: Props) => {
-  const { circle_id } = params
-  const circle = await getCircleById(circle_id || "")
-
-  if (!circle) {
-    return {
-      title: "サークルが見つかりません。",
-      description: "サークルが見つかりません。",
-    }
-  }
-
-  return {
-    title: circle.name,
-    description: circle.description,
-  }
-}
+export const generateMetadata = ({ params }: Props) =>
+  demo(params.circle_id || "", "スレッド")
 
 export const generateStaticParams = async () => {
   const circles = await getCircles()
