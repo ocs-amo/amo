@@ -27,7 +27,7 @@ const CalendarPage = () => {
   useEffect(() => {
     document.title = "カレンダー - CIRCLIA"
   }, [])
-  const [activeTab, setActiveTab] = useState("allCircles")  
+  const [activeTab, setActiveTab] = useState("allCircles")
 
   const events: Event[] = [
     {
