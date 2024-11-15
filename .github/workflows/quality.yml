@@ -106,6 +106,21 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    services:
+      db:
+        image: postgres:13
+        env:
+          POSTGRES_DB: testdb
+          POSTGRES_USER: testuser
+          POSTGRES_PASSWORD: testpass
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U testuser"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -125,6 +140,14 @@ jobs:
         run: |
           node --version
           pnpm install
+
+      - name: Set up Database
+        env:
+          DATABASE_URL: postgres://testuser:testpass@localhost:5432/testdb
+        run: |
+          pnpm migrate
+          pnpm generate
+          pnpm seed
 
       - name: Run Build
         run: pnpm generate && pnpm run build
