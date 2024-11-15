@@ -157,7 +157,11 @@ export const CircleThreads: FC<CircleThreadsProps> = ({ isMember, circle }) => {
                       />
 
                       <MenuList>
-                        <MenuItem icon={<PenIcon fontSize="2xl" />}>
+                        <MenuItem
+                          icon={<PenIcon fontSize="2xl" />}
+                          as={Link}
+                          href={`/circles/${circle?.id}/${topic.type}/${topic.id}/edit`}
+                        >
                           編集
                         </MenuItem>
                         <MenuItem

@@ -20,7 +20,8 @@ import {
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
-import { submitThread } from "@/actions/circle/thread"
+import { submitThread, submitThreadUpdate } from "@/actions/circle/thread"
+import type { getThreadById } from "@/data/thread"
 import { ThreadFormSchema } from "@/schema/topic"
 import type { ThreadFormInput } from "@/schema/topic"
 
@@ -28,9 +29,15 @@ interface ThreadFormProps {
   mode: "create" | "edit"
   userId: string
   circleId: string
+  thread?: Awaited<ReturnType<typeof getThreadById>>
 }
 
-export const ThreadForm: FC<ThreadFormProps> = ({ circleId, mode, userId }) => {
+export const ThreadForm: FC<ThreadFormProps> = ({
+  circleId,
+  mode,
+  userId,
+  thread,
+}) => {
   const [isLoading, { on: start, off: end }] = useBoolean()
   const {
     register,
@@ -38,6 +45,10 @@ export const ThreadForm: FC<ThreadFormProps> = ({ circleId, mode, userId }) => {
     formState: { errors },
   } = useForm<ThreadFormInput>({
     resolver: zodResolver(ThreadFormSchema),
+    defaultValues: {
+      title: thread?.title,
+      content: thread?.content || undefined,
+    },
   })
   const router = useRouter()
   const { snack, snacks } = useSnacks()
@@ -45,12 +56,26 @@ export const ThreadForm: FC<ThreadFormProps> = ({ circleId, mode, userId }) => {
   const onSubmit = async (data: ThreadFormInput) => {
     start()
     try {
-      const result = await submitThread(data, userId, circleId)
-      if (result.success) {
-        // スレッド作成が成功した場合、通知ページにリダイレクト
-        router.push(`/circles/${circleId}/notifications`)
-      } else {
-        snack({ title: `エラー: ${result.error}`, status: "error" })
+      if (mode === "create") {
+        const result = await submitThread(data, userId, circleId)
+        if (result.success) {
+          // スレッド作成が成功した場合、通知ページにリダイレクト
+          router.push(`/circles/${circleId}/notifications`)
+        } else {
+          snack({ title: `エラー: ${result.error}`, status: "error" })
+        }
+      } else if (mode === "edit") {
+        const result = await submitThreadUpdate(
+          data,
+          thread?.id || "",
+          circleId,
+        )
+        if (result.success) {
+          // スレッド作成が成功した場合、通知ページにリダイレクト
+          router.push(`/circles/${circleId}/notifications`)
+        } else {
+          snack({ title: `エラー: ${result.error}`, status: "error" })
+        }
       }
     } catch (error) {
       console.error("スレッド作成エラー:", error)
