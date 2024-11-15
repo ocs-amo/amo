@@ -44,40 +44,52 @@ export const createAnnouncement = async (
   })
 }
 
-export const getThreadById = async (topicId: string) =>
-  db.topic.findFirst({
-    where: {
-      id: topicId,
-      type: "thread",
-      deletedAt: null,
-    },
-    include: {
-      user: {
-        select: {
-          id: true,
-          name: true,
-          image: true,
+export const getThreadById = async (topicId: string) => {
+  try {
+    return db.topic.findFirst({
+      where: {
+        id: topicId,
+        type: "thread",
+        deletedAt: null,
+      },
+      include: {
+        user: {
+          select: {
+            id: true,
+            name: true,
+            image: true,
+          },
         },
       },
-    },
-  })
+    })
+  } catch (error) {
+    console.error("getThreadById Error: ", error)
+    return null
+  }
+}
 
-export const getThreads = async () =>
-  db.topic.findMany({
-    where: {
-      type: "thread",
-      deletedAt: null,
-    },
-    include: {
-      user: {
-        select: {
-          id: true,
-          name: true,
-          image: true,
+export const getThreads = async () => {
+  try {
+    return db.topic.findMany({
+      where: {
+        type: "thread",
+        deletedAt: null,
+      },
+      include: {
+        user: {
+          select: {
+            id: true,
+            name: true,
+            image: true,
+          },
         },
       },
-    },
-  })
+    })
+  } catch (error) {
+    console.error("getThreads Error: ", error)
+    return null
+  }
+}
 
 export const getTopics = async () =>
   db.topic.findMany({
