@@ -150,4 +150,4 @@ jobs:
           pnpm seed
 
       - name: Run Build
-        run: pnpm generate && pnpm run build
+        run: pnpm run build
