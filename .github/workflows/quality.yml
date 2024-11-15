@@ -150,4 +150,6 @@ jobs:
           pnpm seed
 
       - name: Run Build
+        env:
+          DATABASE_URL: postgres://testuser:testpass@localhost:5432/testdb
         run: pnpm run build
