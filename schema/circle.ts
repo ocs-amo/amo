@@ -15,8 +15,14 @@ export const CircleSchema = z.object({
   instructors: z
     .array(z.string())
     .nonempty("講師を少なくとも一人選択してください"), // 講師は文字列配列
-  location: z.string().min(1, { message: "活動場所は必須です。" }), // 活動場所は必須
-  activityDay: z.string().min(1, { message: "活動日は必須です。" }), // 活動日は必須
+  location: z
+    .string()
+    .min(1, { message: "活動場所は必須です。" })
+    .max(20, { message: "20文字以下にしてください。" }), // 活動場所は必須
+  activityDay: z
+    .string()
+    .min(1, { message: "活動日は必須です。" })
+    .max(10, { message: "10文字以下にしてください。" }), // 活動日は必須
 })
 
 // フロントエンド用のスキーマ
