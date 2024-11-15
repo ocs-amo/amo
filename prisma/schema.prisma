@@ -32,6 +32,8 @@ model User {
     ProcessedRequests   MembershipRequest[]   @relation("ProcessedBy") // 管理者として処理したリクエスト
     createdActivities   Activity[]            @relation("UserCreatedActivities")
     ActivityParticipant ActivityParticipant[]
+    topics              Topic[] // User created Topics
+    comments            Comment[] // User created Comments
 
     @@index([email]) // Optional: Index on email
 }
@@ -181,10 +183,11 @@ model Topic {
     createdAt   DateTime  @default(now())
     updatedAt   DateTime  @updatedAt
     deletedAt   DateTime? // 論理削除用カラム
-    createdBy   String // 作成者ID（ユーザーIDなど）
+    userId      String // 作成者のユーザーID
 
-    // 関連
+    // リレーション
     comments Comment[] @relation("TopicComments")
+    user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
     @@index([circleId]) // circleIdでインデックスを作成
 }
@@ -194,11 +197,12 @@ model Comment {
     topicId   String // TopicsテーブルのID
     content   String
     createdAt DateTime  @default(now())
-    createdBy String // 作成者ID（ユーザーIDなど）
     deletedAt DateTime? // 論理削除用カラム
+    userId    String // 作成者のユーザーID
 
     // リレーション
     topic Topic @relation(fields: [topicId], references: [id], name: "TopicComments")
+    user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 // Enum for topic types

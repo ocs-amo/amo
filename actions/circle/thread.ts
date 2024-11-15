@@ -2,7 +2,7 @@
 
 import { auth } from "@/auth"
 import { getMemberByCircleId } from "@/data/circle"
-import { createThread } from "@/data/thread"
+import { createThread, getTopics } from "@/data/thread"
 import type { ThreadFormInput } from "@/schema/topic"
 import { ThreadFormSchema } from "@/schema/topic"
 
@@ -43,3 +43,5 @@ export const submitThread = async (
     return { success: false, error: "予期しないエラーが発生しました。" }
   }
 }
+
+export const fetchTopics = getTopics

@@ -10,7 +10,15 @@ export const getActivityById = async (activityId: number) => {
       include: {
         participants: {
           include: {
-            user: true, // `ActivityParticipant`がユーザー情報を持つ場合、参加者のユーザー情報も取得
+            user: {
+              select: {
+                id: true,
+                name: true,
+                image: true,
+                studentNumber: true,
+                email: true,
+              },
+            }, // `ActivityParticipant`がユーザー情報を持つ場合、参加者のユーザー情報も取得
           },
           where: {
             removedAt: null,
@@ -61,7 +69,15 @@ export const getActivitiesByMonth = async (
     include: {
       participants: {
         include: {
-          user: true, // `ActivityParticipant`がユーザー情報を持つ場合、参加者のユーザー情報も取得
+          user: {
+            select: {
+              id: true,
+              name: true,
+              email: true,
+              image: true,
+              studentNumber: true,
+            },
+          }, // `ActivityParticipant`がユーザー情報を持つ場合、参加者のユーザー情報も取得
         },
         where: {
           removedAt: null,

@@ -114,7 +114,6 @@ notice notice
     DateTime createdAt
     DateTime updatedAt
     DateTime deletedAt "❓"
-    String createdBy
     }
 
 
@@ -122,7 +121,6 @@ notice notice
     String id "🗝️"
     String content
     DateTime createdAt
-    String createdBy
     DateTime deletedAt "❓"
     }
 
@@ -133,6 +131,8 @@ notice notice
     "User" o{--}o "MembershipRequest" : "ProcessedRequests"
     "User" o{--}o "Activity" : "createdActivities"
     "User" o{--}o "ActivityParticipant" : "ActivityParticipant"
+    "User" o{--}o "Topic" : "topics"
+    "User" o{--}o "Comment" : "comments"
     "Account" o|--|| "User" : "user"
     "Circle" o{--}o "CircleMember" : "CircleMember"
     "Circle" o{--}o "CircleInstructor" : "CircleInstructor"
@@ -156,5 +156,7 @@ notice notice
     "ActivityParticipant" o|--|| "User" : "user"
     "Topic" o|--|| "TopicType" : "enum:type"
     "Topic" o{--}o "Comment" : "comments"
+    "Topic" o|--|| "User" : "user"
     "Comment" o|--|| "Topic" : "topic"
+    "Comment" o|--|| "User" : "user"
 ```

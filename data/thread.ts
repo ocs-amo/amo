@@ -10,9 +10,25 @@ export const createThread = async (
     data: {
       title: data.title,
       content: data.content,
-      createdBy: userId,
+      userId,
       circleId,
       type: "thread", // スレッドの種類を指定
     },
   })
 }
+
+export const getTopics = async () =>
+  db.topic.findMany({
+    where: {
+      deletedAt: null,
+    },
+    include: {
+      user: {
+        select: {
+          id: true,
+          name: true,
+          image: true,
+        },
+      },
+    },
+  })
