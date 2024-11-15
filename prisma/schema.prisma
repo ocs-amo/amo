@@ -208,5 +208,5 @@ model Comment {
 // Enum for topic types
 enum TopicType {
     thread // スレッド
-    notice // お知らせ
+    announcement // お知らせ
 }

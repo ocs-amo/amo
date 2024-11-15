@@ -3,7 +3,7 @@ erDiagram
 
         TopicType {
             thread thread
-notice notice
+announcement announcement
         }
 
   "User" {

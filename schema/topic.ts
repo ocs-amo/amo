@@ -40,6 +40,7 @@ export const AnnouncementFormSchema = z
       .string()
       .min(1, "お知らせ内容を入力してください")
       .max(5000, "お知らせは5000文字以内で入力してください"),
+    isImportant: z.boolean().optional(),
   })
   .brand<"AnnouncementForm">()
 
