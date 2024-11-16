@@ -122,85 +122,74 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
     <VStack>
       <Snacks snacks={snacks} />
       {currentActivity ? (
-        <>
-          <HStack justifyContent="end">
-            {isMember ? (
-              <IconButton
-                as={Link}
-                href={`/circles/${circle?.id}/activities/new`}
-                icon={<PlusIcon />}
-              />
-            ) : undefined}
-          </HStack>
-          <Card w="full">
-            <CardBody flexDir="row">
-              <HStack>
-                <Card variant="outline" padding="sm" w="10" as={Center}>
-                  {currentActivity.activityDay.getDate()}
-                </Card>
+        <Card w="full">
+          <CardBody flexDir="row">
+            <HStack>
+              <Card variant="outline" padding="sm" w="10" as={Center}>
+                {currentActivity.activityDay.getDate()}
+              </Card>
+            </HStack>
+            <VStack>
+              <HStack justifyContent="space-between">
+                <Text>{currentActivity.title}</Text>
+                <ActivityMenuButton
+                  userId={userId}
+                  isMember={!!isMember}
+                  isAdmin={!!isAdmin}
+                  circle={circle}
+                  activity={currentActivity}
+                  handleParticipation={handleParticipation}
+                  handleDelete={handleDelete}
+                />
               </HStack>
-              <VStack>
-                <HStack justifyContent="space-between">
-                  <Text>{currentActivity.title}</Text>
-                  <ActivityMenuButton
-                    userId={userId}
-                    isMember={!!isMember}
-                    isAdmin={!!isAdmin}
-                    circle={circle}
-                    activity={currentActivity}
-                    handleParticipation={handleParticipation}
-                    handleDelete={handleDelete}
-                  />
+              <HStack
+                flexDir={{ base: "row", md: "column" }}
+                alignItems={{ md: "start" }}
+              >
+                <Text>内容:</Text>
+                <Text as="pre">{currentActivity.description}</Text>
+              </HStack>
+              <HStack
+                flexDir={{ base: "row", md: "column" }}
+                alignItems={{ md: "start" }}
+              >
+                <HStack
+                  flexDir={{ base: "row", md: "column" }}
+                  alignItems={{ md: "start" }}
+                >
+                  <Text>活動時間:</Text>
+                  <Text>
+                    {displayTime(currentActivity.startTime)}
+                    {currentActivity.endTime
+                      ? `～${displayTime(currentActivity.endTime)}`
+                      : undefined}
+                  </Text>
                 </HStack>
                 <HStack
                   flexDir={{ base: "row", md: "column" }}
                   alignItems={{ md: "start" }}
                 >
-                  <Text>内容:</Text>
-                  <Text as="pre">{currentActivity.description}</Text>
+                  <Text>活動場所:</Text>
+                  <Text>{currentActivity.location}</Text>
                 </HStack>
-                <HStack
-                  flexDir={{ base: "row", md: "column" }}
-                  alignItems={{ md: "start" }}
-                >
-                  <HStack
-                    flexDir={{ base: "row", md: "column" }}
-                    alignItems={{ md: "start" }}
-                  >
-                    <Text>活動時間:</Text>
-                    <Text>
-                      {displayTime(currentActivity.startTime)}
-                      {currentActivity.endTime
-                        ? `～${displayTime(currentActivity.endTime)}`
-                        : undefined}
-                    </Text>
-                  </HStack>
-                  <HStack
-                    flexDir={{ base: "row", md: "column" }}
-                    alignItems={{ md: "start" }}
-                  >
-                    <Text>活動場所:</Text>
-                    <Text>{currentActivity.location}</Text>
-                  </HStack>
-                </HStack>
-                <HStack
-                  flexDir={{ base: "row", md: "column" }}
-                  alignItems={{ md: "start" }}
-                >
-                  <Text>参加人数:</Text>
-                  <Text>{currentActivity.participants.length}人</Text>
-                </HStack>
-                <HStack
-                  flexDir={{ base: "row", md: "column" }}
-                  alignItems={{ md: "start" }}
-                >
-                  <Text>備考:</Text>
-                  <Text as="pre">{currentActivity.notes}</Text>
-                </HStack>
-              </VStack>
-            </CardBody>
-          </Card>
-        </>
+              </HStack>
+              <HStack
+                flexDir={{ base: "row", md: "column" }}
+                alignItems={{ md: "start" }}
+              >
+                <Text>参加人数:</Text>
+                <Text>{currentActivity.participants.length}人</Text>
+              </HStack>
+              <HStack
+                flexDir={{ base: "row", md: "column" }}
+                alignItems={{ md: "start" }}
+              >
+                <Text>備考:</Text>
+                <Text as="pre">{currentActivity.notes}</Text>
+              </HStack>
+            </VStack>
+          </CardBody>
+        </Card>
       ) : (
         <>
           <HStack justifyContent="space-between">
