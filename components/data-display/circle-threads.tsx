@@ -173,7 +173,26 @@ export const CircleThreads: FC<CircleThreadsProps> = ({
                 <HStack w="full" gap="4" justifyContent="space-around">
                   <HStack w="full">
                     <Avatar src={topic.user.image || ""} />
-                    {topic.isImportant && <Badge colorScheme="red">重要</Badge>}
+                    <VStack gap="sm" w="auto" alignItems="center">
+                      {topic.isImportant && (
+                        <Badge w="full" textAlign="center" colorScheme="red">
+                          重要
+                        </Badge>
+                      )}
+                      <Badge
+                        w="full"
+                        textAlign="center"
+                        colorScheme={
+                          topic.type === "announcement"
+                            ? "secondary"
+                            : "primary"
+                        }
+                      >
+                        {topic.type === "announcement"
+                          ? "お知らせ"
+                          : "スレッド"}
+                      </Badge>
+                    </VStack>
                     <Text fontWeight="bold">{topic.title}</Text>
                   </HStack>
                   <HStack w="full" justifyContent="end">
