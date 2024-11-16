@@ -18,6 +18,8 @@ import {
   GridItem,
   HStack,
   IconButton,
+  LinkBox,
+  LinkOverlay,
   Loading,
   Menu,
   MenuButton,
@@ -169,7 +171,7 @@ export const CircleThreads: FC<CircleThreadsProps> = ({
         <SimpleGrid w="full" columns={1} gap="md">
           {topics.map((topic) => (
             <GridItem key={topic.id} w="full" rounded="md" as={Card}>
-              <CardBody>
+              <CardBody as={LinkBox}>
                 <HStack w="full" gap="4" justifyContent="space-around">
                   <HStack w="full">
                     <Avatar src={topic.user.image || ""} />
@@ -193,7 +195,13 @@ export const CircleThreads: FC<CircleThreadsProps> = ({
                           : "スレッド"}
                       </Badge>
                     </VStack>
-                    <Text fontWeight="bold">{topic.title}</Text>
+                    <Text
+                      as={LinkOverlay}
+                      href={`/circles/${circle?.id}/${topic.type}/${topic.id}`}
+                      fontWeight="bold"
+                    >
+                      {topic.title}
+                    </Text>
                   </HStack>
                   <HStack w="full" justifyContent="end">
                     <Text fontSize="sm" color="gray.500">

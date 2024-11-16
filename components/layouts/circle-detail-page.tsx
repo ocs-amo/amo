@@ -15,6 +15,7 @@ import { CircleMembershipButton } from "../forms/circle-membership-button"
 import { getCircleById } from "@/actions/circle/fetch-circle"
 import { getMembershipRequests } from "@/actions/circle/membership-request"
 import type { getActivityById } from "@/data/activity"
+import type { getThreadById } from "@/data/thread"
 
 export const CircleDetailPage: FC<{
   circle: Awaited<ReturnType<typeof getCircleById>>
@@ -22,6 +23,7 @@ export const CircleDetailPage: FC<{
   tabKey?: string
   userId: string
   currentActivity?: Awaited<ReturnType<typeof getActivityById>>
+  currentThread?: Awaited<ReturnType<typeof getThreadById>>
 }> = ({ userId, circle, tabKey, membershipRequests, currentActivity }) => {
   const [circleData, setCircleData] =
     useState<Awaited<ReturnType<typeof getCircleById>>>(circle)
