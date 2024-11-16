@@ -21,7 +21,11 @@ import {
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { Controller, useForm } from "react-hook-form"
-import { submitAnnouncement } from "@/actions/circle/announcement"
+import {
+  submitAnnouncement,
+  submitAnnouncementUpdate,
+} from "@/actions/circle/announcement"
+import type { getAnnouncementById } from "@/data/announcement"
 import { AnnouncementFormSchema } from "@/schema/topic"
 import type { AnnouncementFormInput } from "@/schema/topic"
 
@@ -29,12 +33,14 @@ interface AnnouncementFormProps {
   mode: "create" | "edit"
   userId: string
   circleId: string
+  announcement?: Awaited<ReturnType<typeof getAnnouncementById>>
 }
 
 export const AnnouncementForm: FC<AnnouncementFormProps> = ({
   circleId,
   mode,
   userId,
+  announcement,
 }) => {
   const [isLoading, { on: start, off: end }] = useBoolean()
   const {
@@ -44,6 +50,11 @@ export const AnnouncementForm: FC<AnnouncementFormProps> = ({
     formState: { errors },
   } = useForm<AnnouncementFormInput>({
     resolver: zodResolver(AnnouncementFormSchema),
+    defaultValues: {
+      title: announcement?.title,
+      content: announcement?.content || undefined,
+      isImportant: announcement?.isImportant,
+    },
   })
   const router = useRouter()
   const { snack, snacks } = useSnacks()
@@ -52,7 +63,14 @@ export const AnnouncementForm: FC<AnnouncementFormProps> = ({
     start()
 
     try {
-      const result = await submitAnnouncement(data, userId, circleId)
+      const result =
+        mode === "create"
+          ? await submitAnnouncement(data, userId, circleId)
+          : await submitAnnouncementUpdate(
+              data,
+              announcement?.id || "",
+              circleId,
+            )
       if (result.success) {
         // スレッド作成が成功した場合、通知ページにリダイレクト
         router.push(`/circles/${circleId}/notifications`)
@@ -60,7 +78,7 @@ export const AnnouncementForm: FC<AnnouncementFormProps> = ({
         snack({ title: `エラー: ${result.error}`, status: "error" })
       }
     } catch (error) {
-      console.error("スレッド作成エラー:", error)
+      console.error("スレッドエラー:", error)
       snack({ title: `予期しないエラーが発生しました。`, status: "error" })
     } finally {
       end()

@@ -36,6 +36,7 @@ import {
 } from "@yamada-ui/react"
 import Link from "next/link"
 import { useState } from "react"
+import { submitAnnouncementDelete } from "@/actions/circle/announcement"
 import type { getCircleById } from "@/actions/circle/fetch-circle"
 import { fetchTopics, submitThreadDelete } from "@/actions/circle/thread"
 
@@ -88,21 +89,19 @@ export const CircleThreads: FC<CircleThreadsProps> = ({ isMember, circle }) => {
   }
 
   const handleDelete = async (topicId: string, type: TopicType) => {
-    if (type === "thread") {
-      const { success, error } = await submitThreadDelete(
-        topicId,
-        circle?.id || "",
-      )
-      snack.closeAll()
-      if (success) {
-        snack({
-          title: "削除しました。",
-          status: "success",
-        })
-        await fetchData()
-      } else {
-        snack({ title: error || "エラー", status: "error" })
-      }
+    const { success, error } =
+      type === "thread"
+        ? await submitThreadDelete(topicId, circle?.id || "")
+        : await submitAnnouncementDelete(topicId, circle?.id || "")
+    snack.closeAll()
+    if (success) {
+      snack({
+        title: `${type === "thread" ? "スレッド" : "お知らせ"}を削除しました。`,
+        status: "success",
+      })
+      await fetchData()
+    } else {
+      snack({ title: error || "エラー", status: "error" })
     }
   }
 
