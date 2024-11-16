@@ -87,9 +87,10 @@ export const getThreads = async () => {
   }
 }
 
-export const getTopics = async () =>
+export const getTopics = async (circleId: string) =>
   db.topic.findMany({
     where: {
+      circleId,
       deletedAt: null,
     },
     include: {

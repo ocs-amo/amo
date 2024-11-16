@@ -62,7 +62,7 @@ export const CircleThreads: FC<CircleThreadsProps> = ({
 
   const fetchData = async () => {
     loadingOn()
-    const data = await fetchTopics()
+    const data = await fetchTopics(circle?.id || "")
     const filterTopics = data.filter((item) => {
       if (selectedOptions.length === 0) {
         return true
