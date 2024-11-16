@@ -21,7 +21,7 @@ import {
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { Controller, useForm } from "react-hook-form"
-import { submitAnnouncement } from "@/actions/circle/thread"
+import { submitAnnouncement } from "@/actions/circle/announcement"
 import { AnnouncementFormSchema } from "@/schema/topic"
 import type { AnnouncementFormInput } from "@/schema/topic"
 

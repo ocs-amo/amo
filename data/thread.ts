@@ -1,4 +1,4 @@
-import type { AnnouncementFormInput, ThreadFormInput } from "@/schema/topic"
+import type { ThreadFormInput } from "@/schema/topic"
 import { db } from "@/utils/db"
 
 export const deleteThread = async (threadId: string) => {
@@ -36,23 +36,6 @@ export const createThread = async (
       userId,
       circleId,
       type: "thread", // スレッドの種類を指定
-    },
-  })
-}
-
-export const createAnnouncement = async (
-  data: AnnouncementFormInput,
-  userId: string,
-  circleId: string,
-) => {
-  return await db.topic.create({
-    data: {
-      title: data.title,
-      content: data.content,
-      isImportant: data.isImportant,
-      userId,
-      circleId,
-      type: "announcement", // スレッドの種類を指定
     },
   })
 }
