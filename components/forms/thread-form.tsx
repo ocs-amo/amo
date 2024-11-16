@@ -56,26 +56,15 @@ export const ThreadForm: FC<ThreadFormProps> = ({
   const onSubmit = async (data: ThreadFormInput) => {
     start()
     try {
-      if (mode === "create") {
-        const result = await submitThread(data, userId, circleId)
-        if (result.success) {
-          // スレッド作成が成功した場合、通知ページにリダイレクト
-          router.push(`/circles/${circleId}/notifications`)
-        } else {
-          snack({ title: `エラー: ${result.error}`, status: "error" })
-        }
-      } else if (mode === "edit") {
-        const result = await submitThreadUpdate(
-          data,
-          thread?.id || "",
-          circleId,
-        )
-        if (result.success) {
-          // スレッド作成が成功した場合、通知ページにリダイレクト
-          router.push(`/circles/${circleId}/notifications`)
-        } else {
-          snack({ title: `エラー: ${result.error}`, status: "error" })
-        }
+      const result =
+        mode === "create"
+          ? await submitThread(data, userId, circleId)
+          : await submitThreadUpdate(data, thread?.id || "", circleId)
+      if (result.success) {
+        // スレッド作成が成功した場合、通知ページにリダイレクト
+        router.push(`/circles/${circleId}/notifications`)
+      } else {
+        snack({ title: `エラー: ${result.error}`, status: "error" })
       }
     } catch (error) {
       console.error("スレッド作成エラー:", error)
