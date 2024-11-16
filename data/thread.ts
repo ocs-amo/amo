@@ -1,6 +1,19 @@
 import type { AnnouncementFormInput, ThreadFormInput } from "@/schema/topic"
 import { db } from "@/utils/db"
 
+export const deleteThread = async (threadId: string) => {
+  return db.topic.update({
+    where: {
+      id: threadId,
+      type: "thread",
+      deletedAt: null,
+    },
+    data: {
+      deletedAt: new Date(),
+    },
+  })
+}
+
 export const updateThread = async (data: ThreadFormInput, threadId: string) => {
   return await db.topic.update({
     where: { id: threadId },

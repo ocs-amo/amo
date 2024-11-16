@@ -1,4 +1,5 @@
 "use client"
+import type { TopicType } from "@prisma/client"
 import {
   BellPlusIcon,
   EllipsisIcon,
@@ -25,16 +26,18 @@ import {
   MultiSelect,
   Option,
   SimpleGrid,
+  Snacks,
   Tag,
   Text,
   useBoolean,
   useSafeLayoutEffect,
+  useSnacks,
   VStack,
 } from "@yamada-ui/react"
 import Link from "next/link"
 import { useState } from "react"
 import type { getCircleById } from "@/actions/circle/fetch-circle"
-import { fetchTopics } from "@/actions/circle/thread"
+import { fetchTopics, submitThreadDelete } from "@/actions/circle/thread"
 
 interface CircleThreadsProps {
   isMember?: boolean
@@ -47,6 +50,8 @@ export const CircleThreads: FC<CircleThreadsProps> = ({ isMember, circle }) => {
   const [topics, setTopics] = useState<Awaited<ReturnType<typeof fetchTopics>>>(
     [],
   )
+  const { snack, snacks } = useSnacks()
+
   const fetchData = async () => {
     loadingOn()
     const data = await fetchTopics()
@@ -82,6 +87,25 @@ export const CircleThreads: FC<CircleThreadsProps> = ({ isMember, circle }) => {
     loadingOff()
   }
 
+  const handleDelete = async (topicId: string, type: TopicType) => {
+    if (type === "thread") {
+      const { success, error } = await submitThreadDelete(
+        topicId,
+        circle?.id || "",
+      )
+      snack.closeAll()
+      if (success) {
+        snack({
+          title: "削除しました。",
+          status: "success",
+        })
+        await fetchData()
+      } else {
+        snack({ title: error || "エラー", status: "error" })
+      }
+    }
+  }
+
   const parseDate = (date: Date) =>
     `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()} ${date.getHours()}:${date.getMinutes()}`
 
@@ -90,6 +114,7 @@ export const CircleThreads: FC<CircleThreadsProps> = ({ isMember, circle }) => {
   }, [selectedOptions])
   return (
     <VStack gap="md">
+      <Snacks snacks={snacks} />
       <HStack>
         <MultiSelect
           placeholder="項目を選択"
@@ -156,7 +181,6 @@ export const CircleThreads: FC<CircleThreadsProps> = ({ isMember, circle }) => {
                           icon={<EllipsisIcon fontSize="2xl" />}
                           variant="outline"
                         />
-
                         <MenuList>
                           <MenuItem
                             icon={<PenIcon fontSize="2xl" />}
@@ -168,6 +192,7 @@ export const CircleThreads: FC<CircleThreadsProps> = ({ isMember, circle }) => {
                           <MenuItem
                             icon={<TrashIcon fontSize="2xl" color="red" />}
                             color="red"
+                            onClick={() => handleDelete(topic.id, topic.type)}
                           >
                             削除
                           </MenuItem>

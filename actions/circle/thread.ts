@@ -5,6 +5,7 @@ import { getMemberByCircleId, isUserAdmin } from "@/data/circle"
 import {
   createAnnouncement,
   createThread,
+  deleteThread,
   getThreadById,
   getTopics,
   updateThread,
@@ -79,11 +80,37 @@ export const submitThreadUpdate = async (
       }
     }
 
-    // Prismaで新規スレッド作成
+    // Prismaでスレッド更新
     const result = await updateThread(parsedData.data, threadId)
     return { success: true, data: result }
   } catch (error) {
     console.error("スレッドの更新に失敗しました:", error)
+    return { success: false, error: "予期しないエラーが発生しました。" }
+  }
+}
+
+export const submitThreadDelete = async (
+  threadId: string,
+  circleId: string,
+) => {
+  try {
+    // 認証チェック
+    const session = await auth()
+    if (!session || !session.user?.id) {
+      return { success: false, error: "ユーザー認証に失敗しました。" }
+    }
+
+    // 管理者もしくは作成者本人かの確認
+    const isAdmin = await isUserAdmin(session.user.id, circleId)
+    const thread = await getThreadById(threadId)
+    if (!isAdmin || thread?.userId !== session.user.id) {
+      return { success: false, error: "権限がありません。" }
+    }
+
+    const result = await deleteThread(threadId)
+    return { success: true, data: result }
+  } catch (error) {
+    console.error("スレッドの削除に失敗しました:", error)
     return { success: false, error: "予期しないエラーが発生しました。" }
   }
 }
