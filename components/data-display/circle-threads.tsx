@@ -41,11 +41,18 @@ import type { getCircleById } from "@/actions/circle/fetch-circle"
 import { fetchTopics, submitThreadDelete } from "@/actions/circle/thread"
 
 interface CircleThreadsProps {
+  userId: string
+  isAdmin?: boolean
   isMember?: boolean
   circle: Awaited<ReturnType<typeof getCircleById>>
 }
 
-export const CircleThreads: FC<CircleThreadsProps> = ({ isMember, circle }) => {
+export const CircleThreads: FC<CircleThreadsProps> = ({
+  userId,
+  isAdmin,
+  isMember,
+  circle,
+}) => {
   const [loading, { off: loadingOff, on: loadingOn }] = useBoolean(true)
   const [selectedOptions, setSelectedOptions] = useState<string[]>([])
   const [topics, setTopics] = useState<Awaited<ReturnType<typeof fetchTopics>>>(
@@ -173,7 +180,7 @@ export const CircleThreads: FC<CircleThreadsProps> = ({ isMember, circle }) => {
                     <Text fontSize="sm" color="gray.500">
                       {parseDate(topic.createdAt)}
                     </Text>
-                    {isMember ? (
+                    {isAdmin || topic.userId === userId ? (
                       <Menu>
                         <MenuButton
                           as={IconButton}

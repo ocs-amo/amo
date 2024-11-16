@@ -65,7 +65,7 @@ export const submitThreadUpdate = async (
     // 管理者もしくは作成者本人かの確認
     const isAdmin = await isUserAdmin(session.user.id, circleId)
     const thread = await getThreadById(threadId)
-    if (!isAdmin || thread?.userId !== session.user.id) {
+    if (!isAdmin && thread?.userId !== session.user.id) {
       return { success: false, error: "権限がありません。" }
     }
 
@@ -102,7 +102,7 @@ export const submitThreadDelete = async (
     // 管理者もしくは作成者本人かの確認
     const isAdmin = await isUserAdmin(session.user.id, circleId)
     const thread = await getThreadById(threadId)
-    if (!isAdmin || thread?.userId !== session.user.id) {
+    if (!isAdmin && thread?.userId !== session.user.id) {
       return { success: false, error: "権限がありません。" }
     }
 

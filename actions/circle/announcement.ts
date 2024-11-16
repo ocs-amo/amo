@@ -63,7 +63,7 @@ export const submitAnnouncementUpdate = async (
     // 管理者もしくは作成者本人かの確認
     const isAdmin = await isUserAdmin(session.user.id, circleId)
     const announcement = await getAnnouncementById(announcementId)
-    if (!isAdmin || announcement?.userId !== session.user.id) {
+    if (!isAdmin && announcement?.userId !== session.user.id) {
       return { success: false, error: "権限がありません。" }
     }
 
@@ -100,7 +100,7 @@ export const submitAnnouncementDelete = async (
     // 管理者もしくは作成者本人かの確認
     const isAdmin = await isUserAdmin(session.user.id, circleId)
     const announcement = await getAnnouncementById(announcementId)
-    if (!isAdmin || announcement?.userId !== session.user.id) {
+    if (!isAdmin && announcement?.userId !== session.user.id) {
       return { success: false, error: "権限がありません。" }
     }
 

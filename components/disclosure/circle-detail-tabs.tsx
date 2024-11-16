@@ -90,7 +90,12 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
         <TabPanel>画像</TabPanel>
 
         <TabPanel>
-          <CircleThreads isMember={isMember} circle={circle} />
+          <CircleThreads
+            userId={userId}
+            isAdmin={isAdmin}
+            isMember={isMember}
+            circle={circle}
+          />
         </TabPanel>
 
         <TabPanel>
