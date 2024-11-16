@@ -88,11 +88,7 @@ export const CircleThreads: FC<CircleThreadsProps> = ({ isMember, circle }) => {
   useSafeLayoutEffect(() => {
     fetchData()
   }, [selectedOptions])
-  return loading ? (
-    <Center w="full" h="full">
-      <Loading fontSize="xl" />
-    </Center>
-  ) : (
+  return (
     <VStack gap="md">
       <HStack>
         <MultiSelect
@@ -134,51 +130,59 @@ export const CircleThreads: FC<CircleThreadsProps> = ({ isMember, circle }) => {
           </Menu>
         ) : undefined}
       </HStack>
-      <SimpleGrid w="full" columns={1} gap="md">
-        {topics.map((topic) => (
-          <GridItem key={topic.id} w="full" rounded="md" as={Card}>
-            <CardBody>
-              <HStack w="full" gap="4" justifyContent="space-around">
-                <HStack w="full">
-                  <Avatar src={topic.user.image || ""} />
-                  {topic.isImportant && <Badge colorScheme="red">重要</Badge>}
-                  <Text fontWeight="bold">{topic.title}</Text>
-                </HStack>
-                <HStack w="full" justifyContent="end">
-                  <Text fontSize="sm" color="gray.500">
-                    {parseDate(topic.createdAt)}
-                  </Text>
-                  {isMember ? (
-                    <Menu>
-                      <MenuButton
-                        as={IconButton}
-                        icon={<EllipsisIcon fontSize="2xl" />}
-                        variant="outline"
-                      />
+      {loading ? (
+        <Center w="full" h="full">
+          <Loading fontSize="xl" />
+        </Center>
+      ) : topics && topics.length > 0 ? (
+        <SimpleGrid w="full" columns={1} gap="md">
+          {topics.map((topic) => (
+            <GridItem key={topic.id} w="full" rounded="md" as={Card}>
+              <CardBody>
+                <HStack w="full" gap="4" justifyContent="space-around">
+                  <HStack w="full">
+                    <Avatar src={topic.user.image || ""} />
+                    {topic.isImportant && <Badge colorScheme="red">重要</Badge>}
+                    <Text fontWeight="bold">{topic.title}</Text>
+                  </HStack>
+                  <HStack w="full" justifyContent="end">
+                    <Text fontSize="sm" color="gray.500">
+                      {parseDate(topic.createdAt)}
+                    </Text>
+                    {isMember ? (
+                      <Menu>
+                        <MenuButton
+                          as={IconButton}
+                          icon={<EllipsisIcon fontSize="2xl" />}
+                          variant="outline"
+                        />
 
-                      <MenuList>
-                        <MenuItem
-                          icon={<PenIcon fontSize="2xl" />}
-                          as={Link}
-                          href={`/circles/${circle?.id}/${topic.type}/${topic.id}/edit`}
-                        >
-                          編集
-                        </MenuItem>
-                        <MenuItem
-                          icon={<TrashIcon fontSize="2xl" color="red" />}
-                          color="red"
-                        >
-                          削除
-                        </MenuItem>
-                      </MenuList>
-                    </Menu>
-                  ) : undefined}
+                        <MenuList>
+                          <MenuItem
+                            icon={<PenIcon fontSize="2xl" />}
+                            as={Link}
+                            href={`/circles/${circle?.id}/${topic.type}/${topic.id}/edit`}
+                          >
+                            編集
+                          </MenuItem>
+                          <MenuItem
+                            icon={<TrashIcon fontSize="2xl" color="red" />}
+                            color="red"
+                          >
+                            削除
+                          </MenuItem>
+                        </MenuList>
+                      </Menu>
+                    ) : undefined}
+                  </HStack>
                 </HStack>
-              </HStack>
-            </CardBody>
-          </GridItem>
-        ))}
-      </SimpleGrid>
+              </CardBody>
+            </GridItem>
+          ))}
+        </SimpleGrid>
+      ) : (
+        <Text>投稿がありません</Text>
+      )}
     </VStack>
   )
 }
