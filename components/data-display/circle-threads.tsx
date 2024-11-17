@@ -36,14 +36,19 @@ import {
 import Link from "next/link"
 import { useState } from "react"
 import { ThreadMenuButton } from "../forms/thread-menu-button"
+import { AnnouncementCard } from "./announcement-card"
 import { ThreadCard } from "./thread-card"
-import { submitAnnouncementDelete } from "@/actions/circle/announcement"
+import {
+  getAnnouncementByIdAction,
+  submitAnnouncementDelete,
+} from "@/actions/circle/announcement"
 import type { getCircleById } from "@/actions/circle/fetch-circle"
 import {
   fetchTopics,
   getThreadByIdAction,
   submitThreadDelete,
 } from "@/actions/circle/thread"
+import type { getAnnouncementById } from "@/data/announcement"
 import type { getThreadById } from "@/data/thread"
 import { parseDate } from "@/utils/format"
 
@@ -53,6 +58,7 @@ interface CircleThreadsProps {
   isMember?: boolean
   circle: Awaited<ReturnType<typeof getCircleById>>
   currentThread?: Awaited<ReturnType<typeof getThreadById>>
+  currentAnnouncement?: Awaited<ReturnType<typeof getAnnouncementById>>
 }
 
 export const CircleThreads: FC<CircleThreadsProps> = ({
@@ -61,8 +67,10 @@ export const CircleThreads: FC<CircleThreadsProps> = ({
   isMember,
   circle,
   currentThread: thread,
+  currentAnnouncement: announcement,
 }) => {
   const [currentThread, setCurrentThread] = useState(thread)
+  const [currentAnnouncement, setCurrentAnnouncement] = useState(announcement)
   const [loading, { off: loadingOff, on: loadingOn }] = useBoolean(true)
   const [selectedOptions, setSelectedOptions] = useState<string[]>([])
   const [topics, setTopics] = useState<Awaited<ReturnType<typeof fetchTopics>>>(
@@ -102,8 +110,12 @@ export const CircleThreads: FC<CircleThreadsProps> = ({
       return selectedOptions.includes(item.type)
     })
     const newCurrentThread = await getThreadByIdAction(thread?.id || "")
-    setTopics(filterTopics)
     setCurrentThread(newCurrentThread)
+    const newCurrentAnnouncement = await getAnnouncementByIdAction(
+      announcement?.id || "",
+    )
+    setCurrentAnnouncement(newCurrentAnnouncement)
+    setTopics(filterTopics)
     loadingOff()
   }
 
@@ -137,6 +149,14 @@ export const CircleThreads: FC<CircleThreadsProps> = ({
           currentThread={currentThread}
           isAdmin={!!isAdmin}
           fetchData={fetchData}
+          handleDelete={handleDelete}
+        />
+      ) : currentAnnouncement ? (
+        <AnnouncementCard
+          userId={userId}
+          circleId={circle?.id || ""}
+          currentAnnouncement={currentAnnouncement}
+          isAdmin={!!isAdmin}
           handleDelete={handleDelete}
         />
       ) : (

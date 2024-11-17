@@ -111,3 +111,5 @@ export const submitAnnouncementDelete = async (
     return { success: false, error: "予期しないエラーが発生しました。" }
   }
 }
+
+export const getAnnouncementByIdAction = getAnnouncementById

@@ -43,7 +43,7 @@ export const changeMemberRole = async ({
 
     // 3. 対象メンバーの情報を取得
     const targetMember = await findActiveMember(targetMemberId, circleId)
-    
+
     // 対象メンバーが見つからない場合エラー
     if (!targetMember) {
       throw new Error(

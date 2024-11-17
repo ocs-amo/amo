@@ -93,7 +93,7 @@ export const ThreadCard: FC<ThreadCardProps> = ({
                 editLink={`/circles/${circleId}/${currentThread.type}/${currentThread.id}/edit`}
                 handleDelete={() => {
                   handleDelete(currentThread.id, currentThread.type)
-                  router.push(`/circles/${circleId}/${currentThread.type}/`)
+                  router.push(`/circles/${circleId}/notifications/`)
                 }}
               />
             ) : undefined}
