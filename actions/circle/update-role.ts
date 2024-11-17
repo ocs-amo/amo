@@ -43,7 +43,7 @@ export const changeMemberRole = async ({
 
     // 3. 対象メンバーの情報を取得
     const targetMember = await findActiveMember(targetMemberId, circleId)
-
+    
     // 対象メンバーが見つからない場合エラー
     if (!targetMember) {
       throw new Error(
@@ -84,7 +84,7 @@ export const changeMemberRole = async ({
 
     return {
       success: true,
-      message: `メンバー ${targetMemberId} の権限を正常に更新しました。`,
+      message: `メンバー ${targetMember.user.name} さんの権限を正常に更新しました。`,
     }
   } catch (error) {
     console.error("権限変更エラー:", error)
