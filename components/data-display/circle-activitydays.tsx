@@ -157,7 +157,7 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
                   alignItems={{ md: "start" }}
                 >
                   <Text>内容:</Text>
-                  <Text as="pre">{currentActivity.description}</Text>
+                  <Text text-wrap="auto">{currentActivity.description}</Text>
                 </HStack>
                 <HStack
                   flexDir={{ base: "row", md: "column" }}
@@ -195,7 +195,7 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
                   alignItems={{ md: "start" }}
                 >
                   <Text>備考:</Text>
-                  <Text as="pre">{currentActivity.notes}</Text>
+                  <Text text-wrap="auto">{currentActivity.notes}</Text>
                 </HStack>
               </VStack>
             </CardBody>
