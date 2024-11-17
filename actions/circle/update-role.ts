@@ -84,7 +84,7 @@ export const changeMemberRole = async ({
 
     return {
       success: true,
-      message: `メンバー ${targetMember.user.name} の権限を正常に更新しました。`,
+      message: `メンバー ${targetMember.user.name} さんの権限を正常に更新しました。`,
     }
   } catch (error) {
     console.error("権限変更エラー:", error)
