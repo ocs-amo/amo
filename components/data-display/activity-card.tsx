@@ -1,13 +1,6 @@
-import type {
-  FC} from "@yamada-ui/react";
-import {
-  Card,
-  CardBody,
-  Center,
-  HStack,
-  Text,
-  VStack,
-} from "@yamada-ui/react"
+"use client"
+import type { FC } from "@yamada-ui/react"
+import { Card, CardBody, Center, HStack, Text, VStack } from "@yamada-ui/react"
 import { ActivityMenuButton } from "../forms/activity-menu-button"
 import type { getCircleById } from "@/actions/circle/fetch-circle"
 import type { getActivityById } from "@/data/activity"
