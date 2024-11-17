@@ -7,16 +7,9 @@ import {
 } from "@yamada-ui/lucide"
 import type { FC } from "@yamada-ui/react"
 import {
-  Avatar,
-  Badge,
-  Card,
-  CardBody,
   Center,
-  GridItem,
   HStack,
   IconButton,
-  LinkBox,
-  LinkOverlay,
   Loading,
   Menu,
   MenuButton,
@@ -24,7 +17,6 @@ import {
   MenuList,
   MultiSelect,
   Option,
-  SimpleGrid,
   Snacks,
   Tag,
   Text,
@@ -35,9 +27,9 @@ import {
 } from "@yamada-ui/react"
 import Link from "next/link"
 import { useState } from "react"
-import { ThreadMenuButton } from "../forms/thread-menu-button"
 import { AnnouncementCard } from "./announcement-card"
 import { ThreadCard } from "./thread-card"
+import { ThreadItem } from "./thread-item"
 import {
   getAnnouncementByIdAction,
   submitAnnouncementDelete,
@@ -50,7 +42,6 @@ import {
 } from "@/actions/circle/thread"
 import type { getAnnouncementById } from "@/data/announcement"
 import type { getThreadById } from "@/data/thread"
-import { parseDate } from "@/utils/format"
 
 interface CircleThreadsProps {
   userId: string
@@ -205,63 +196,18 @@ export const CircleThreads: FC<CircleThreadsProps> = ({
               <Loading fontSize="xl" />
             </Center>
           ) : topics && topics.length > 0 ? (
-            <SimpleGrid w="full" columns={1} gap="md">
+            <VStack w="full" gap="md">
               {topics.map((topic) => (
-                <GridItem key={topic.id} w="full" rounded="md" as={Card}>
-                  <CardBody as={LinkBox}>
-                    <HStack w="full" gap="4" justifyContent="space-around">
-                      <HStack w="full">
-                        <Avatar src={topic.user.image || ""} />
-                        <VStack gap="sm" w="auto" alignItems="center">
-                          {topic.isImportant && (
-                            <Badge
-                              w="full"
-                              textAlign="center"
-                              colorScheme="red"
-                            >
-                              重要
-                            </Badge>
-                          )}
-                          <Badge
-                            w="full"
-                            textAlign="center"
-                            colorScheme={
-                              topic.type === "announcement"
-                                ? "secondary"
-                                : "primary"
-                            }
-                          >
-                            {topic.type === "announcement"
-                              ? "お知らせ"
-                              : "スレッド"}
-                          </Badge>
-                        </VStack>
-                        <Text
-                          as={LinkOverlay}
-                          href={`/circles/${circle?.id}/${topic.type}/${topic.id}`}
-                          fontWeight="bold"
-                        >
-                          {topic.title}
-                        </Text>
-                      </HStack>
-                      <HStack w="full" justifyContent="end">
-                        <Text fontSize="sm" color="gray.500">
-                          {parseDate(topic.createdAt)}
-                        </Text>
-                        {isAdmin || topic.userId === userId ? (
-                          <ThreadMenuButton
-                            editLink={`/circles/${circle?.id}/${topic.type}/${topic.id}/edit`}
-                            handleDelete={() =>
-                              handleDelete(topic.id, topic.type)
-                            }
-                          />
-                        ) : undefined}
-                      </HStack>
-                    </HStack>
-                  </CardBody>
-                </GridItem>
+                <ThreadItem
+                  key={topic.id}
+                  userId={userId}
+                  isAdmin={!!isAdmin}
+                  circle={circle}
+                  handleDelete={handleDelete}
+                  topic={topic}
+                />
               ))}
-            </SimpleGrid>
+            </VStack>
           ) : (
             <Text>投稿がありません</Text>
           )}
