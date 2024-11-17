@@ -24,7 +24,14 @@ export const CircleDetailPage: FC<{
   userId: string
   currentActivity?: Awaited<ReturnType<typeof getActivityById>>
   currentThread?: Awaited<ReturnType<typeof getThreadById>>
-}> = ({ userId, circle, tabKey, membershipRequests, currentActivity }) => {
+}> = ({
+  userId,
+  circle,
+  tabKey,
+  membershipRequests,
+  currentActivity,
+  currentThread,
+}) => {
   const [circleData, setCircleData] =
     useState<Awaited<ReturnType<typeof getCircleById>>>(circle)
   const [requests, setRequests] =
@@ -105,6 +112,7 @@ export const CircleDetailPage: FC<{
           isAdmin={isAdmin}
           isMember={isMember}
           currentActivity={currentActivity}
+          currentThread={currentThread}
           fetchData={fetchData}
         />
       </VStack>

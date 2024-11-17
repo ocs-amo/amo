@@ -38,15 +38,23 @@ import {
 } from "@yamada-ui/react"
 import Link from "next/link"
 import { useState } from "react"
+import { ThreadCard } from "./thread-card"
 import { submitAnnouncementDelete } from "@/actions/circle/announcement"
 import type { getCircleById } from "@/actions/circle/fetch-circle"
-import { fetchTopics, submitThreadDelete } from "@/actions/circle/thread"
+import {
+  fetchTopics,
+  getThreadByIdAction,
+  submitThreadDelete,
+} from "@/actions/circle/thread"
+import type { getThreadById } from "@/data/thread"
+import { parseDate } from "@/utils/format"
 
 interface CircleThreadsProps {
   userId: string
   isAdmin?: boolean
   isMember?: boolean
   circle: Awaited<ReturnType<typeof getCircleById>>
+  currentThread?: Awaited<ReturnType<typeof getThreadById>>
 }
 
 export const CircleThreads: FC<CircleThreadsProps> = ({
@@ -54,7 +62,9 @@ export const CircleThreads: FC<CircleThreadsProps> = ({
   isAdmin,
   isMember,
   circle,
+  currentThread: thread,
 }) => {
+  const [currentThread, setCurrentThread] = useState(thread)
   const [loading, { off: loadingOff, on: loadingOn }] = useBoolean(true)
   const [selectedOptions, setSelectedOptions] = useState<string[]>([])
   const [topics, setTopics] = useState<Awaited<ReturnType<typeof fetchTopics>>>(
@@ -93,7 +103,9 @@ export const CircleThreads: FC<CircleThreadsProps> = ({
       // "スレッド"or"お知らせ"
       return selectedOptions.includes(item.type)
     })
+    const newCurrentThread = await getThreadByIdAction(thread?.id || "")
     setTopics(filterTopics)
+    setCurrentThread(newCurrentThread)
     loadingOff()
   }
 
@@ -114,132 +126,145 @@ export const CircleThreads: FC<CircleThreadsProps> = ({
     }
   }
 
-  const parseDate = (date: Date) =>
-    `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()} ${date.getHours()}:${date.getMinutes()}`
-
   useSafeLayoutEffect(() => {
     fetchData()
   }, [selectedOptions])
   return (
     <VStack gap="md">
       <Snacks snacks={snacks} />
-      <HStack>
-        <MultiSelect
-          placeholder="項目を選択"
-          component={({ label, onRemove }) => (
-            <Tag onClose={onRemove}>{label}</Tag>
-          )}
-          onChange={setSelectedOptions}
-          value={selectedOptions}
-        >
-          <Option value="thread">スレッド</Option>
-          <Option value="announcement">お知らせ</Option>
-          <Option value="isImportant">重要</Option>
-        </MultiSelect>
-        {isMember ? (
-          <Menu>
-            <MenuButton
-              as={IconButton}
-              icon={<PlusIcon fontSize="2xl" />}
-              variant="outline"
-            />
-
-            <MenuList>
-              <MenuItem
-                icon={<BellPlusIcon fontSize="2xl" />}
-                as={Link}
-                href={`/circles/${circle?.id}/announcement/create`}
-              >
-                お知らせ
-              </MenuItem>
-              <MenuItem
-                icon={<MessageCircleMoreIcon fontSize="2xl" />}
-                as={Link}
-                href={`/circles/${circle?.id}/thread/create`}
-              >
-                スレッド
-              </MenuItem>
-            </MenuList>
-          </Menu>
-        ) : undefined}
-      </HStack>
-      {loading ? (
-        <Center w="full" h="full">
-          <Loading fontSize="xl" />
-        </Center>
-      ) : topics && topics.length > 0 ? (
-        <SimpleGrid w="full" columns={1} gap="md">
-          {topics.map((topic) => (
-            <GridItem key={topic.id} w="full" rounded="md" as={Card}>
-              <CardBody as={LinkBox}>
-                <HStack w="full" gap="4" justifyContent="space-around">
-                  <HStack w="full">
-                    <Avatar src={topic.user.image || ""} />
-                    <VStack gap="sm" w="auto" alignItems="center">
-                      {topic.isImportant && (
-                        <Badge w="full" textAlign="center" colorScheme="red">
-                          重要
-                        </Badge>
-                      )}
-                      <Badge
-                        w="full"
-                        textAlign="center"
-                        colorScheme={
-                          topic.type === "announcement"
-                            ? "secondary"
-                            : "primary"
-                        }
-                      >
-                        {topic.type === "announcement"
-                          ? "お知らせ"
-                          : "スレッド"}
-                      </Badge>
-                    </VStack>
-                    <Text
-                      as={LinkOverlay}
-                      href={`/circles/${circle?.id}/${topic.type}/${topic.id}`}
-                      fontWeight="bold"
-                    >
-                      {topic.title}
-                    </Text>
-                  </HStack>
-                  <HStack w="full" justifyContent="end">
-                    <Text fontSize="sm" color="gray.500">
-                      {parseDate(topic.createdAt)}
-                    </Text>
-                    {isAdmin || topic.userId === userId ? (
-                      <Menu>
-                        <MenuButton
-                          as={IconButton}
-                          icon={<EllipsisIcon fontSize="2xl" />}
-                          variant="outline"
-                        />
-                        <MenuList>
-                          <MenuItem
-                            icon={<PenIcon fontSize="2xl" />}
-                            as={Link}
-                            href={`/circles/${circle?.id}/${topic.type}/${topic.id}/edit`}
-                          >
-                            編集
-                          </MenuItem>
-                          <MenuItem
-                            icon={<TrashIcon fontSize="2xl" color="red" />}
-                            color="red"
-                            onClick={() => handleDelete(topic.id, topic.type)}
-                          >
-                            削除
-                          </MenuItem>
-                        </MenuList>
-                      </Menu>
-                    ) : undefined}
-                  </HStack>
-                </HStack>
-              </CardBody>
-            </GridItem>
-          ))}
-        </SimpleGrid>
+      {currentThread ? (
+        <ThreadCard
+          userId={userId}
+          circleId={circle?.id || ""}
+          currentThread={currentThread}
+          fetchData={fetchData}
+        />
       ) : (
-        <Text>投稿がありません</Text>
+        <>
+          <HStack>
+            <MultiSelect
+              placeholder="項目を選択"
+              component={({ label, onRemove }) => (
+                <Tag onClose={onRemove}>{label}</Tag>
+              )}
+              onChange={setSelectedOptions}
+              value={selectedOptions}
+            >
+              <Option value="thread">スレッド</Option>
+              <Option value="announcement">お知らせ</Option>
+              <Option value="isImportant">重要</Option>
+            </MultiSelect>
+            {isMember ? (
+              <Menu>
+                <MenuButton
+                  as={IconButton}
+                  icon={<PlusIcon fontSize="2xl" />}
+                  variant="outline"
+                />
+                <MenuList>
+                  <MenuItem
+                    icon={<BellPlusIcon fontSize="2xl" />}
+                    as={Link}
+                    href={`/circles/${circle?.id}/announcement/create`}
+                  >
+                    お知らせ
+                  </MenuItem>
+                  <MenuItem
+                    icon={<MessageCircleMoreIcon fontSize="2xl" />}
+                    as={Link}
+                    href={`/circles/${circle?.id}/thread/create`}
+                  >
+                    スレッド
+                  </MenuItem>
+                </MenuList>
+              </Menu>
+            ) : undefined}
+          </HStack>
+          {loading ? (
+            <Center w="full" h="full">
+              <Loading fontSize="xl" />
+            </Center>
+          ) : topics && topics.length > 0 ? (
+            <SimpleGrid w="full" columns={1} gap="md">
+              {topics.map((topic) => (
+                <GridItem key={topic.id} w="full" rounded="md" as={Card}>
+                  <CardBody as={LinkBox}>
+                    <HStack w="full" gap="4" justifyContent="space-around">
+                      <HStack w="full">
+                        <Avatar src={topic.user.image || ""} />
+                        <VStack gap="sm" w="auto" alignItems="center">
+                          {topic.isImportant && (
+                            <Badge
+                              w="full"
+                              textAlign="center"
+                              colorScheme="red"
+                            >
+                              重要
+                            </Badge>
+                          )}
+                          <Badge
+                            w="full"
+                            textAlign="center"
+                            colorScheme={
+                              topic.type === "announcement"
+                                ? "secondary"
+                                : "primary"
+                            }
+                          >
+                            {topic.type === "announcement"
+                              ? "お知らせ"
+                              : "スレッド"}
+                          </Badge>
+                        </VStack>
+                        <Text
+                          as={LinkOverlay}
+                          href={`/circles/${circle?.id}/${topic.type}/${topic.id}`}
+                          fontWeight="bold"
+                        >
+                          {topic.title}
+                        </Text>
+                      </HStack>
+                      <HStack w="full" justifyContent="end">
+                        <Text fontSize="sm" color="gray.500">
+                          {parseDate(topic.createdAt)}
+                        </Text>
+                        {isAdmin || topic.userId === userId ? (
+                          <Menu>
+                            <MenuButton
+                              as={IconButton}
+                              icon={<EllipsisIcon fontSize="2xl" />}
+                              variant="outline"
+                            />
+                            <MenuList>
+                              <MenuItem
+                                icon={<PenIcon fontSize="2xl" />}
+                                as={Link}
+                                href={`/circles/${circle?.id}/${topic.type}/${topic.id}/edit`}
+                              >
+                                編集
+                              </MenuItem>
+                              <MenuItem
+                                icon={<TrashIcon fontSize="2xl" color="red" />}
+                                color="red"
+                                onClick={() =>
+                                  handleDelete(topic.id, topic.type)
+                                }
+                              >
+                                削除
+                              </MenuItem>
+                            </MenuList>
+                          </Menu>
+                        ) : undefined}
+                      </HStack>
+                    </HStack>
+                  </CardBody>
+                </GridItem>
+              ))}
+            </SimpleGrid>
+          ) : (
+            <Text>投稿がありません</Text>
+          )}
+        </>
       )}
     </VStack>
   )

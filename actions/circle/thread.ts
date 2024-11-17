@@ -115,3 +115,5 @@ export const submitThreadDelete = async (
 }
 
 export const fetchTopics = getTopics
+
+export const getThreadByIdAction = getThreadById

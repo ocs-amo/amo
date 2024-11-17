@@ -16,6 +16,7 @@ import { CircleThreads } from "../data-display/circle-threads"
 import type { getCircleById } from "@/actions/circle/fetch-circle"
 import { type getMembershipRequests } from "@/actions/circle/membership-request"
 import type { getActivityById } from "@/data/activity"
+import type { getThreadById } from "@/data/thread"
 import { handlingTab } from "@/utils/format"
 
 interface CircleDetailTabsProps {
@@ -26,6 +27,7 @@ interface CircleDetailTabsProps {
   isAdmin?: boolean
   isMember?: boolean
   currentActivity?: Awaited<ReturnType<typeof getActivityById>>
+  currentThread?: Awaited<ReturnType<typeof getThreadById>>
   fetchData: () => Promise<void>
 }
 
@@ -37,6 +39,7 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
   isAdmin,
   isMember,
   currentActivity,
+  currentThread,
   fetchData,
 }) => {
   const userRole = circle?.members?.find((member) => member.id === userId)?.role
@@ -95,6 +98,7 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
             isAdmin={isAdmin}
             isMember={isMember}
             circle={circle}
+            currentThread={currentThread}
           />
         </TabPanel>
 

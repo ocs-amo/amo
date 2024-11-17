@@ -56,6 +56,22 @@ export const getThreadById = async (topicId: string) => {
             image: true,
           },
         },
+        comments: {
+          select: {
+            id: true,
+            content: true,
+            createdAt: true,
+            topicId: true,
+            userId: true,
+            user: {
+              select: {
+                id: true,
+                name: true,
+                image: true,
+              },
+            },
+          },
+        },
       },
     })
   } catch (error) {
