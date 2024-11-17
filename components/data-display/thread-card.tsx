@@ -1,6 +1,7 @@
 "use client"
 
 import { zodResolver } from "@hookform/resolvers/zod"
+import type { TopicType } from "@prisma/client"
 import { TriangleIcon } from "@yamada-ui/lucide"
 import type { FC } from "@yamada-ui/react"
 import {
@@ -19,7 +20,9 @@ import {
   useSnacks,
   VStack,
 } from "@yamada-ui/react"
+import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
+import { ThreadMenuButton } from "../forms/thread-menu-button"
 import { PostCommentAction } from "@/actions/circle/thread-comment"
 import type { getThreadById } from "@/data/thread"
 import type { CommentFormInput } from "@/schema/topic"
@@ -29,14 +32,19 @@ import { parseDate } from "@/utils/format"
 interface ThreadCardProps {
   userId: string
   circleId: string
+  isAdmin: boolean
   currentThread: NonNullable<Awaited<ReturnType<typeof getThreadById>>>
   fetchData: () => Promise<void>
+  handleDelete: (topicId: string, type: TopicType) => Promise<void>
 }
 
 export const ThreadCard: FC<ThreadCardProps> = ({
   circleId,
   currentThread,
+  isAdmin,
+  userId,
   fetchData,
+  handleDelete,
 }) => {
   const {
     handleSubmit,
@@ -44,6 +52,7 @@ export const ThreadCard: FC<ThreadCardProps> = ({
     reset,
     formState: { errors },
   } = useForm<CommentFormInput>({ resolver: zodResolver(CommentFormSchema) })
+  const router = useRouter()
   const { snack, snacks } = useSnacks()
   const [isSubmitting, { on: start, off: end }] = useBoolean(false)
   const onSubmit = async (data: CommentFormInput) => {
@@ -72,11 +81,22 @@ export const ThreadCard: FC<ThreadCardProps> = ({
             <Avatar src={currentThread.user.image || ""} />
             <VStack gap={0}>
               <Text>{currentThread.title}</Text>
-              <Text fontSize="sm">{currentThread.content}</Text>
+              <Text fontSize="sm" as="pre">
+                {currentThread.content}
+              </Text>
             </VStack>
           </HStack>
           <HStack>
             <Text>{parseDate(currentThread.createdAt)}</Text>
+            {isAdmin || currentThread.userId === userId ? (
+              <ThreadMenuButton
+                editLink={`/circles/${circleId}/${currentThread.type}/${currentThread.id}/edit`}
+                handleDelete={() => {
+                  handleDelete(currentThread.id, currentThread.type)
+                  router.push(`/circles/${circleId}/${currentThread.type}/`)
+                }}
+              />
+            ) : undefined}
           </HStack>
         </CardHeader>
         <CardBody flexGrow={1} minH="sm">

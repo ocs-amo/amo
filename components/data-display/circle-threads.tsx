@@ -2,11 +2,8 @@
 import type { TopicType } from "@prisma/client"
 import {
   BellPlusIcon,
-  EllipsisIcon,
   MessageCircleMoreIcon,
-  PenIcon,
   PlusIcon,
-  TrashIcon,
 } from "@yamada-ui/lucide"
 import type { FC } from "@yamada-ui/react"
 import {
@@ -38,6 +35,7 @@ import {
 } from "@yamada-ui/react"
 import Link from "next/link"
 import { useState } from "react"
+import { ThreadMenuButton } from "../forms/thread-menu-button"
 import { ThreadCard } from "./thread-card"
 import { submitAnnouncementDelete } from "@/actions/circle/announcement"
 import type { getCircleById } from "@/actions/circle/fetch-circle"
@@ -137,7 +135,9 @@ export const CircleThreads: FC<CircleThreadsProps> = ({
           userId={userId}
           circleId={circle?.id || ""}
           currentThread={currentThread}
+          isAdmin={!!isAdmin}
           fetchData={fetchData}
+          handleDelete={handleDelete}
         />
       ) : (
         <>
@@ -229,31 +229,12 @@ export const CircleThreads: FC<CircleThreadsProps> = ({
                           {parseDate(topic.createdAt)}
                         </Text>
                         {isAdmin || topic.userId === userId ? (
-                          <Menu>
-                            <MenuButton
-                              as={IconButton}
-                              icon={<EllipsisIcon fontSize="2xl" />}
-                              variant="outline"
-                            />
-                            <MenuList>
-                              <MenuItem
-                                icon={<PenIcon fontSize="2xl" />}
-                                as={Link}
-                                href={`/circles/${circle?.id}/${topic.type}/${topic.id}/edit`}
-                              >
-                                編集
-                              </MenuItem>
-                              <MenuItem
-                                icon={<TrashIcon fontSize="2xl" color="red" />}
-                                color="red"
-                                onClick={() =>
-                                  handleDelete(topic.id, topic.type)
-                                }
-                              >
-                                削除
-                              </MenuItem>
-                            </MenuList>
-                          </Menu>
+                          <ThreadMenuButton
+                            editLink={`/circles/${circle?.id}/${topic.type}/${topic.id}/edit`}
+                            handleDelete={() =>
+                              handleDelete(topic.id, topic.type)
+                            }
+                          />
                         ) : undefined}
                       </HStack>
                     </HStack>
