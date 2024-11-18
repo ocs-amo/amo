@@ -20,6 +20,7 @@ AUTH_MICROSOFT_ENTRA_ID_ISSUER=""
 ```
 
 `AUTH_MICROSOFT_ENTRA_ID_ID`・`AUTH_MICROSOFT_ENTRA_ID_SECRET`・`AUTH_MICROSOFT_ENTRA_ID_ISSUER`は[ここ](https://entra.microsoft.com/)から作成
+
 手順は[ここ](https://authjs.dev/getting-started/providers/microsoft-entra-id)
 
 2. コンテナ（データベース）の起動とマイグレーション

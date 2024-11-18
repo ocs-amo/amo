@@ -32,6 +32,8 @@ model User {
     ProcessedRequests   MembershipRequest[]   @relation("ProcessedBy") // 管理者として処理したリクエスト
     createdActivities   Activity[]            @relation("UserCreatedActivities")
     ActivityParticipant ActivityParticipant[]
+    topics              Topic[] // User created Topics
+    comments            Comment[] // User created Comments
 
     @@index([email]) // Optional: Index on email
 }
@@ -169,4 +171,42 @@ model ActivityParticipant {
     user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
     @@index([activityId, userId]) // 検索を高速化するための複合インデックス
+}
+
+model Topic {
+    id          String    @id @default(uuid())
+    circleId    String // サークルID
+    type        TopicType // 種類（スレッド or お知らせ）
+    title       String
+    content     String?
+    isImportant Boolean   @default(false) // 重要フラグ
+    createdAt   DateTime  @default(now())
+    updatedAt   DateTime  @updatedAt
+    deletedAt   DateTime? // 論理削除用カラム
+    userId      String // 作成者のユーザーID
+
+    // リレーション
+    comments Comment[] @relation("TopicComments")
+    user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@index([circleId]) // circleIdでインデックスを作成
+}
+
+model Comment {
+    id        String    @id @default(uuid())
+    topicId   String // TopicsテーブルのID
+    content   String
+    createdAt DateTime  @default(now())
+    deletedAt DateTime? // 論理削除用カラム
+    userId    String // 作成者のユーザーID
+
+    // リレーション
+    topic Topic @relation(fields: [topicId], references: [id], name: "TopicComments")
+    user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+// Enum for topic types
+enum TopicType {
+    thread // スレッド
+    announcement // お知らせ
 }

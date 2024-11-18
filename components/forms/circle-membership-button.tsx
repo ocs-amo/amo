@@ -32,7 +32,6 @@ export const CircleMembershipButton: FC<CircleMembershipButtonProps> = ({
     const type = isMember ? "withdrawal" : "join"
     const result = await handleMembershipRequest(userId, circleId, type)
     if (result) {
-      console.log("OK")
       await fetchPendingRequests()
     }
     off()

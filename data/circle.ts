@@ -10,7 +10,7 @@ export const markMemberAsInactive = async (memberId: number) => {
 }
 
 // 共通化されたメンバーの検索関数
-export const findActiveMember = async (userId: string, circleId: string,) => {
+export const findActiveMember = async (userId: string, circleId: string) => {
   return db.circleMember.findFirst({
     where: {
       userId,
