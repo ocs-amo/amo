@@ -62,10 +62,13 @@ export const AnnouncementCard: FC<AnnouncementCardProps> = ({
                 />
               ) : undefined}
             </HStack>
-            <Text as="pre">{currentAnnouncement.content}</Text>
-            <HStack justifyContent="end">
+            <Text as="pre" textWrap="wrap">
+              {currentAnnouncement.content}
+            </Text>
+            <VStack alignItems="end">
               <Text>{parseDate(currentAnnouncement.createdAt)}</Text>
-            </HStack>
+              <Text>作成者：{currentAnnouncement.user.name}</Text>
+            </VStack>
           </VStack>
         </HStack>
       </CardBody>

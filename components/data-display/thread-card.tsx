@@ -76,28 +76,35 @@ export const ThreadCard: FC<ThreadCardProps> = ({
     <>
       <Snacks snacks={snacks} />
       <Card w="full" h="full">
-        <CardHeader justifyContent="space-between">
+        <CardHeader
+          justifyContent="space-between"
+          alignItems={{ md: "end" }}
+          flexDir={{ base: "row", md: "column-reverse" }}
+        >
           <HStack>
             <Avatar src={currentThread.user.image || ""} />
             <VStack gap={0}>
               <Text>{currentThread.title}</Text>
-              <Text fontSize="sm" as="pre">
+              <Text fontSize="sm" as="pre" textWrap="wrap">
                 {currentThread.content}
               </Text>
             </VStack>
           </HStack>
-          <HStack>
-            <Text>{parseDate(currentThread.createdAt)}</Text>
-            {isAdmin || currentThread.userId === userId ? (
-              <ThreadMenuButton
-                editLink={`/circles/${circleId}/${currentThread.type}/${currentThread.id}/edit`}
-                handleDelete={() => {
-                  handleDelete(currentThread.id, currentThread.type)
-                  router.push(`/circles/${circleId}/notifications/`)
-                }}
-              />
-            ) : undefined}
-          </HStack>
+          <VStack w="auto">
+            <HStack>
+              <Text>{parseDate(currentThread.createdAt)}</Text>
+              {isAdmin || currentThread.userId === userId ? (
+                <ThreadMenuButton
+                  editLink={`/circles/${circleId}/${currentThread.type}/${currentThread.id}/edit`}
+                  handleDelete={() => {
+                    handleDelete(currentThread.id, currentThread.type)
+                    router.push(`/circles/${circleId}/notifications/`)
+                  }}
+                />
+              ) : undefined}
+            </HStack>
+            <Text>作成者：{currentThread.user.name}</Text>
+          </VStack>
         </CardHeader>
         <CardBody flexGrow={1} minH="sm">
           {currentThread.comments.map((comment) => (
@@ -107,7 +114,9 @@ export const ThreadCard: FC<ThreadCardProps> = ({
                   <Avatar src={comment.user.image || ""} />
                   <VStack>
                     <Text>{comment.user.name}</Text>
-                    <Text>{comment.content}</Text>
+                    <Text as="pre" textWrap="wrap">
+                      {comment.content}
+                    </Text>
                   </VStack>
                 </HStack>
                 <Text>{parseDate(comment.createdAt)}</Text>

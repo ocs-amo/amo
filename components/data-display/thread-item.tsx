@@ -35,7 +35,12 @@ export const ThreadItem: FC<ThreadItemProps> = ({
   return (
     <Card w="full" rounded="md">
       <CardBody as={LinkBox}>
-        <HStack w="full" gap="4" justifyContent="space-around">
+        <HStack
+          w="full"
+          gap="4"
+          justifyContent="space-around"
+          flexDir={{ base: "row", md: "column" }}
+        >
           <HStack w="full">
             <Avatar src={topic.user.image || ""} />
             <VStack gap="sm" w="auto" alignItems="center">

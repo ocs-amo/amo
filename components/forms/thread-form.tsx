@@ -61,7 +61,7 @@ export const ThreadForm: FC<ThreadFormProps> = ({
           ? await submitThread(data, userId, circleId)
           : await submitThreadUpdate(data, thread?.id || "", circleId)
       if (result.success) {
-        // スレッド作成が成功した場合、通知ページにリダイレクト
+        // スレッド作成が成功した場合、サークル詳細の掲示板タブにリダイレクト
         router.push(`/circles/${circleId}/notifications`)
       } else {
         snack({ title: `エラー: ${result.error}`, status: "error" })

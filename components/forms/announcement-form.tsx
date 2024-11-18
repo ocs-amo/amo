@@ -72,7 +72,7 @@ export const AnnouncementForm: FC<AnnouncementFormProps> = ({
               circleId,
             )
       if (result.success) {
-        // スレッド作成が成功した場合、通知ページにリダイレクト
+        // スレッド作成が成功した場合、サークル詳細の掲示板タブにリダイレクト
         router.push(`/circles/${circleId}/notifications`)
       } else {
         snack({ title: `エラー: ${result.error}`, status: "error" })
