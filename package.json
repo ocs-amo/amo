@@ -4,6 +4,7 @@
   "description": "",
   "scripts": {
     "dev": "next dev",
+    "dev:ssl": "next dev --experimental-https",
     "build": "next build",
     "start": "next start",
     "lint": "eslint . --max-warnings=0 --config eslint.config.mjs",
