@@ -40,32 +40,34 @@ export const getCircleById = async (id: string) => {
     // メンバー数を手動でカウント
     const memberCount = circle?.CircleMember.length || 0
 
-    return {
-      ...circle,
-      memberCount, // 退会していないメンバーのみカウント
-      members: circle?.CircleMember.map((member) => ({
-        id: member.user.id,
-        name: member.user.name,
-        email: member.user.email,
-        image: member.user.image,
-        studentNumber: member.user.studentNumber,
-        profileText: member.user.profileText,
-        joinDate: member.joinDate,
-        role: member.role,
-      })),
-      instructors: circle?.CircleInstructor.map((instructor) => ({
-        id: instructor.user.id,
-        name: instructor.user.name,
-        email: instructor.user.email,
-        image: instructor.user.image,
-        studentNumber: instructor.user.studentNumber,
-        profileText: instructor.user.profileText,
-      })),
-      tags: circle?.CircleTag.map((tag) => ({
-        id: tag.id,
-        tagName: tag.tagName,
-      })),
-    }
+    return circle
+      ? {
+          ...circle,
+          memberCount, // 退会していないメンバーのみカウント
+          members: circle?.CircleMember.map((member) => ({
+            id: member.user.id,
+            name: member.user.name,
+            email: member.user.email,
+            image: member.user.image,
+            studentNumber: member.user.studentNumber,
+            profileText: member.user.profileText,
+            joinDate: member.joinDate,
+            role: member.role,
+          })),
+          instructors: circle?.CircleInstructor.map((instructor) => ({
+            id: instructor.user.id,
+            name: instructor.user.name,
+            email: instructor.user.email,
+            image: instructor.user.image,
+            studentNumber: instructor.user.studentNumber,
+            profileText: instructor.user.profileText,
+          })),
+          tags: circle?.CircleTag.map((tag) => ({
+            id: tag.id,
+            tagName: tag.tagName,
+          })),
+        }
+      : null
   } catch (error) {
     console.error("getCircleById: ", error)
     return null
