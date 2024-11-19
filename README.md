@@ -41,7 +41,7 @@ pnpm studio
 3. Next.jsの起動
 
 ```sh
-pnpm dev
+pnpm dev # https:// で立ち上げる際は「pnpm dev:ssl」
 ```
 
 4. コンテナ（データベース）の終了

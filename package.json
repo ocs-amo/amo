@@ -4,6 +4,7 @@
   "description": "",
   "scripts": {
     "dev": "next dev",
+    "dev:ssl": "next dev --experimental-https",
     "build": "next build",
     "start": "next start",
     "lint": "eslint . --max-warnings=0 --config eslint.config.mjs",
@@ -13,6 +14,7 @@
     "format:check": "prettier --check --cache .",
     "format:write": "prettier --write --cache .",
     "migrate": "prisma migrate dev --name init",
+    "migrate:deploy": "prisma migrate deploy",
     "generate": "prisma generate",
     "seed": "prisma db seed",
     "studio": "prisma studio"
