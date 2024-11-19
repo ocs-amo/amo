@@ -1,8 +1,11 @@
-import { LoginForm } from "@/components/signin/SignIn"
-import { Metadata } from "next"
+import { LoginForm } from "@/components/forms/signin-form"
 
-export const generateMetadata = async () => ({title: "サインイン"})
+export const metadata = {
+  title: "サインインページ",
+}
 
-const LoginPage = LoginForm
+const LoginPage = () => {
+  return <LoginForm />
+}
 
 export default LoginPage
