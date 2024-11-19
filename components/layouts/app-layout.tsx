@@ -12,12 +12,19 @@ import {
 import { Box, HStack, IconButton, VStack } from "@yamada-ui/react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { signOut } from "next-auth/react"
 import type { FC, ReactNode } from "react"
 import { signout } from "@/actions/auth/signout"
+import type { getUserById } from "@/actions/user/user"
 
-export const AppLayout: FC<{ children?: ReactNode }> = ({ children }) => {
+export const AppLayout: FC<{
+  children?: ReactNode
+  user?: Awaited<ReturnType<typeof getUserById>>
+}> = ({ children, user }) => {
   const pathname = usePathname()
-
+  if (!user && pathname !== "/signin") {
+    signOut({ redirectTo: "/signin" })
+  }
   return pathname !== "/signin" ? (
     <HStack w="100vw" h="100dvh" gap={0}>
       <VStack
