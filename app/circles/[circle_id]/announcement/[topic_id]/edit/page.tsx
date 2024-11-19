@@ -43,6 +43,7 @@ export const generateStaticParams = async () => {
 }
 
 export const dynamicParams = false
+export const dynamic = "force-dynamic"
 
 const Page = async ({ params }: Props) => {
   const { circle_id: circleId, topic_id: topicId } = params

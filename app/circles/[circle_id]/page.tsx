@@ -25,6 +25,7 @@ export const generateMetadata = async ({ params }: Props) => {
   }
 }
 export const dynamicParams = false
+export const dynamic = "force-dynamic"
 
 export const generateStaticParams = async () => {
   const circles = await getCircles()
