@@ -17,6 +17,14 @@ export const findActiveMember = async (userId: string, circleId: string) => {
       circleId,
       leaveDate: null, // leaveDateがnullなら退会していないメンバー
     },
+    include: {
+      user: {
+        select: {
+          id: true,
+          name: true, // ユーザー名を取得
+        },
+      },
+    },
   })
 }
 

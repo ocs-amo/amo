@@ -25,3 +25,6 @@ post-merge:
     pnpm:
       glob: "{package.json,pnpm-lock.yaml}"
       run: pnpm install
+    prisma:
+      glob: "prisma/schema.prisma"
+      run: pnpm generate
