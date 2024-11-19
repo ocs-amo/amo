@@ -20,8 +20,8 @@ docker compose up -d
 
 # pnpm コマンド群
 echo "Running pnpm commands..."
-pnpm migrate
 pnpm generate
+pnpm migrate
 pnpm seed
 pnpm build
 pnpm start:custom
