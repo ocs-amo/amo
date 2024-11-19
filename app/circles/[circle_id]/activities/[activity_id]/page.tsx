@@ -60,11 +60,7 @@ const Page = async ({ params }: Props) => {
     circle_id || "",
   )
   const currentActivity = await getActivityById(activityId)
-  if (
-    !circle ||
-    !currentActivity ||
-    currentActivity.createdBy !== session?.user?.id
-  ) {
+  if (!circle || !currentActivity || currentActivity.circleId !== circle_id) {
     notFound()
   }
 

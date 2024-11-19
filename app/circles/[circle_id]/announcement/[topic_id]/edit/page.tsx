@@ -57,7 +57,7 @@ const Page = async ({ params }: Props) => {
   if (!circle || !announcement) {
     notFound()
   }
-  return isMember && announcement.userId === session?.user?.id ? (
+  return isMember && announcement.circleId === circleId ? (
     <AnnouncementForm
       circleId={circleId || ""}
       userId={session?.user?.id || ""}

@@ -60,7 +60,7 @@ const Page = async ({ params }: Props) => {
   if (!circle || !activity) {
     notFound()
   }
-  return isMember && activity.createdBy === session?.user?.id ? (
+  return isMember && activity.circleId === circleId ? (
     <ActivityForm
       circleId={circleId || ""}
       userId={session?.user?.id || ""}

@@ -58,7 +58,7 @@ const Page = async ({ params }: Props) => {
     circle_id || "",
   )
   const currentThread = await getThreadById(threadId)
-  if (!circle || !currentThread || currentThread.userId !== session?.user?.id) {
+  if (!circle || !currentThread || currentThread.circleId !== circle_id) {
     notFound()
   }
   return (

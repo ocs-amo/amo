@@ -57,7 +57,7 @@ const Page = async ({ params }: Props) => {
   if (!circle || !thread) {
     notFound()
   }
-  return isMember && thread.userId === session?.user?.id ? (
+  return isMember && thread.circleId === circleId ? (
     <ThreadForm
       circleId={circleId || ""}
       userId={session?.user?.id || ""}

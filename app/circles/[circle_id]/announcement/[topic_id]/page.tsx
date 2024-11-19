@@ -61,7 +61,7 @@ const Page = async ({ params }: Props) => {
   if (
     !circle ||
     !currentAnnouncement ||
-    currentAnnouncement.userId !== session?.user?.id
+    currentAnnouncement.circleId !== circle_id
   ) {
     notFound()
   }
