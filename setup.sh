@@ -15,6 +15,7 @@ git pull origin main  # もしくは必要なブランチ名に変更してく�
 
 # Docker Compose 起動
 echo "Starting Docker Compose..."
+docker compose down
 docker compose up -d
 
 # pnpm コマンド群
