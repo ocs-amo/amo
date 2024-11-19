@@ -51,7 +51,9 @@ export const ActivityCard: FC<ActivityCardProps> = ({
             alignItems={{ md: "start" }}
           >
             <Text>内容:</Text>
-            <Text as="pre">{currentActivity.description}</Text>
+            <Text text-wrap="auto" whiteSpace="pre-wrap">
+              {currentActivity.description}
+            </Text>
           </HStack>
           <HStack
             flexDir={{ base: "row", md: "column" }}
@@ -89,7 +91,9 @@ export const ActivityCard: FC<ActivityCardProps> = ({
             alignItems={{ md: "start" }}
           >
             <Text>備考:</Text>
-            <Text as="pre">{currentActivity.notes}</Text>
+            <Text text-wrap="auto" whiteSpace="pre-wrap">
+              {currentActivity.notes}
+            </Text>
           </HStack>
         </VStack>
       </CardBody>
