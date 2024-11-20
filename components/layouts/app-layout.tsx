@@ -9,7 +9,7 @@ import {
   SettingsIcon,
   UsersIcon,
 } from "@yamada-ui/lucide"
-import { Box, HStack, IconButton, VStack } from "@yamada-ui/react"
+import { Box, Heading, HStack, IconButton, VStack } from "@yamada-ui/react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { signOut } from "next-auth/react"
@@ -26,15 +26,104 @@ export const AppLayout: FC<{
     signOut({ redirectTo: "/signin" })
   }
   return pathname !== "/signin" ? (
-    <HStack w="100vw" h="100dvh" gap={0}>
-      <VStack
-        w="fit-content"
-        h="full"
-        p="sm"
-        borderRightWidth={1}
-        justifyContent="space-between"
-      >
-        <VStack>
+    <VStack w="100vw" h="100dvh" gap={0}>
+      <VStack w="full" h="md" bgColor="black" px="md">
+        <Heading
+          position="relative"
+          color="white"
+          _firstLetter={{ color: "#35B0D2" }}
+          fontWeight="light"
+          textShadow="1px 1px 0 #666,2px 2px 0 #666,3px 3px 0 #666"
+        >
+          CIRCLIA
+        </Heading>
+      </VStack>
+      <HStack w="full" h="full" gap={0}>
+        <VStack
+          w="fit-content"
+          h="full"
+          p="sm"
+          borderRightWidth={1}
+          justifyContent="space-between"
+        >
+          <VStack>
+            <IconButton
+              w="50px"
+              h="50px"
+              justifyContent="center"
+              alignItems="center"
+              as={Link}
+              variant="ghost"
+              href="/"
+              icon={<HouseIcon fontSize="2xl" />}
+              title="ホーム"
+            />
+            <IconButton
+              w="50px"
+              h="50px"
+              justifyContent="center"
+              alignItems="center"
+              as={Link}
+              variant="ghost"
+              href="/circles"
+              icon={<UsersIcon fontSize="2xl" />}
+              title="サークル一覧"
+            />
+            <IconButton
+              w="50px"
+              h="50px"
+              justifyContent="center"
+              alignItems="center"
+              as={Link}
+              variant="ghost"
+              href="/"
+              icon={<MessageCircleMoreIcon fontSize="2xl" />}
+              title="DM"
+            />
+            <IconButton
+              w="50px"
+              h="50px"
+              justifyContent="center"
+              alignItems="center"
+              as={Link}
+              variant="ghost"
+              href="/calendar"
+              icon={<CalendarDaysIcon fontSize="2xl" />}
+              title="カレンダー"
+            />
+            <IconButton
+              w="50px"
+              h="50px"
+              justifyContent="center"
+              alignItems="center"
+              as={Link}
+              variant="ghost"
+              href=""
+              icon={<FileDigitIcon fontSize="2xl" />}
+              title="今日のイベント"
+            />
+            <IconButton
+              w="50px"
+              h="50px"
+              justifyContent="center"
+              alignItems="center"
+              as={Link}
+              variant="ghost"
+              href="/notifications"
+              icon={<BellIcon fontSize="2xl" />}
+              title="通知"
+            />
+            <IconButton
+              w="50px"
+              h="50px"
+              justifyContent="center"
+              alignItems="center"
+              variant="ghost"
+              onClick={() => signout()}
+              icon={<LogOutIcon fontSize="2xl" />}
+              title="ログアウト"
+            />
+          </VStack>
           <IconButton
             w="50px"
             h="50px"
@@ -43,91 +132,15 @@ export const AppLayout: FC<{
             as={Link}
             variant="ghost"
             href="/"
-            icon={<HouseIcon fontSize="2xl" />}
-            title="ホーム"
-          />
-          <IconButton
-            w="50px"
-            h="50px"
-            justifyContent="center"
-            alignItems="center"
-            as={Link}
-            variant="ghost"
-            href="/circles"
-            icon={<UsersIcon fontSize="2xl" />}
-            title="サークル一覧"
-          />
-          <IconButton
-            w="50px"
-            h="50px"
-            justifyContent="center"
-            alignItems="center"
-            as={Link}
-            variant="ghost"
-            href="/"
-            icon={<MessageCircleMoreIcon fontSize="2xl" />}
-            title="DM"
-          />
-          <IconButton
-            w="50px"
-            h="50px"
-            justifyContent="center"
-            alignItems="center"
-            as={Link}
-            variant="ghost"
-            href="/calendar"
-            icon={<CalendarDaysIcon fontSize="2xl" />}
-            title="カレンダー"
-          />
-          <IconButton
-            w="50px"
-            h="50px"
-            justifyContent="center"
-            alignItems="center"
-            as={Link}
-            variant="ghost"
-            href=""
-            icon={<FileDigitIcon fontSize="2xl" />}
-            title="今日のイベント"
-          />
-          <IconButton
-            w="50px"
-            h="50px"
-            justifyContent="center"
-            alignItems="center"
-            as={Link}
-            variant="ghost"
-            href="/notifications"
-            icon={<BellIcon fontSize="2xl" />}
-            title="通知"
-          />
-          <IconButton
-            w="50px"
-            h="50px"
-            justifyContent="center"
-            alignItems="center"
-            variant="ghost"
-            onClick={() => signout()}
-            icon={<LogOutIcon fontSize="2xl" />}
-            title="ログアウト"
+            icon={<SettingsIcon fontSize="2xl" />}
+            title="設定"
           />
         </VStack>
-        <IconButton
-          w="50px"
-          h="50px"
-          justifyContent="center"
-          alignItems="center"
-          as={Link}
-          variant="ghost"
-          href="/"
-          icon={<SettingsIcon fontSize="2xl" />}
-          title="設定"
-        />
-      </VStack>
-      <Box w="full" h="full" overflowY="auto">
-        {children}
-      </Box>
-    </HStack>
+        <Box w="full" h="full" overflowY="auto">
+          {children}
+        </Box>
+      </HStack>
+    </VStack>
   ) : (
     children
   )
