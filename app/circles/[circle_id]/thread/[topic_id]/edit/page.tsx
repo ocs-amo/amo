@@ -1,4 +1,5 @@
 import { Center } from "@yamada-ui/react"
+import { notFound } from "next/navigation"
 import { getCircleById, getCircles } from "@/actions/circle/fetch-circle"
 import { auth } from "@/auth"
 import { ThreadForm } from "@/components/forms/thread-form"
@@ -53,7 +54,10 @@ const Page = async ({ params }: Props) => {
     (member) => member.id === session?.user?.id,
   )
   const thread = await getThreadById(topicId || "")
-  return isMember ? (
+  if (!circle || !thread) {
+    notFound()
+  }
+  return isMember && thread.circleId === circleId ? (
     <ThreadForm
       circleId={circleId || ""}
       userId={session?.user?.id || ""}
