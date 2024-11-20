@@ -2,7 +2,7 @@ import { Center } from "@yamada-ui/react"
 import { getCircleById, getCircles } from "@/actions/circle/fetch-circle"
 import { auth } from "@/auth"
 import { AnnouncementForm } from "@/components/forms/announcement-form"
-import { demo } from "@/components/tab/tab-title"
+import { MetadataSet } from "@/components/tab/tab-title"
 import { getAnnouncementById, getAnnouncements } from "@/data/announcement"
 
 interface Props {
@@ -13,7 +13,7 @@ interface Props {
 }
 
 export const generateMetadata = ({ params }: Props) =>
-  demo(params.circle_id || "", "お知らせ編集")
+  MetadataSet(params.circle_id || "", "お知らせ編集")
 
 export const generateStaticParams = async () => {
   const circles = await getCircles()

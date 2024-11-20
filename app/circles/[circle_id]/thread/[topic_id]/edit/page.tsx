@@ -2,7 +2,7 @@ import { Center } from "@yamada-ui/react"
 import { getCircleById, getCircles } from "@/actions/circle/fetch-circle"
 import { auth } from "@/auth"
 import { ThreadForm } from "@/components/forms/thread-form"
-import { demo } from "@/components/tab/tab-title"
+import { MetadataSet } from "@/components/tab/tab-title"
 import { getThreadById, getThreads } from "@/data/thread"
 
 interface Props {
@@ -13,7 +13,7 @@ interface Props {
 }
 
 export const generateMetadata = ({ params }: Props) =>
-  demo(params.circle_id || "", "スレッド編集")
+  MetadataSet(params.circle_id || "", "スレッド編集")
 
 export const generateStaticParams = async () => {
   const circles = await getCircles()

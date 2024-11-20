@@ -2,7 +2,7 @@ import { getCircleById, getCircles } from "@/actions/circle/fetch-circle"
 import { getMembershipRequests } from "@/actions/circle/membership-request"
 import { auth } from "@/auth"
 import { CircleDetailPage } from "@/components/layouts/circle-detail-page"
-import { demo } from "@/components/tab/tab-title"
+import { MetadataSet } from "@/components/tab/tab-title"
 
 interface Props {
   params: {
@@ -12,7 +12,7 @@ interface Props {
 }
 
 export const generateMetadata = ({ params }: Props) =>
-  demo(params.circle_id || "", params.tab_key || "")
+  MetadataSet(params.circle_id || "", params.tab_key || "")
 
 // 固定されたタブキーのリスト
 const list = ["activities", "images", "notifications", "members"]

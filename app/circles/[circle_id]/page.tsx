@@ -2,14 +2,14 @@ import { getCircleById, getCircles } from "@/actions/circle/fetch-circle"
 import { getMembershipRequests } from "@/actions/circle/membership-request"
 import { auth } from "@/auth"
 import { CircleDetailPage } from "@/components/layouts/circle-detail-page"
-import { demo } from "@/components/tab/tab-title"
+import { MetadataSet } from "@/components/tab/tab-title"
 
 interface Props {
   params: { circle_id?: string }
 }
 
 export const generateMetadata = ({ params }: Props) =>
-  demo(params.circle_id || "", "activities")
+  MetadataSet(params.circle_id || "", "activities")
 
 export const dynamicParams = false
 export const dynamic = "force-dynamic"

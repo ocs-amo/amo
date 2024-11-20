@@ -17,7 +17,7 @@ const handlingTab = (key: string) => {
   }
 }
 
-export const demo = async (circle_id: string, page_key: string) => {
+export const MetadataSet = async (circle_id: string, page_key: string) => {
   if (circle_id === "") {
     if (page_key === "") {
       return {

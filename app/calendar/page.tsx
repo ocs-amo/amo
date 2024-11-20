@@ -1,4 +1,4 @@
-import { CalendarPage } from "@/components/forms/calendar"
+import { CalendarPage } from "@/components/layouts/calendar"
 
 export const metadata = {
   title: "カレンダー - CIRCLIA",

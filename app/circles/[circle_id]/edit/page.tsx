@@ -3,7 +3,7 @@ import { Center } from "@yamada-ui/react"
 import { getCircleById, getCircles } from "@/actions/circle/fetch-circle"
 import { auth } from "@/auth"
 import { CircleForm } from "@/components/forms/circle-form"
-import { demo } from "@/components/tab/tab-title"
+import { MetadataSet } from "@/components/tab/tab-title"
 import { getInstructors } from "@/data/circle"
 
 interface Props {
@@ -11,7 +11,7 @@ interface Props {
 }
 
 export const generateMetadata = ({ params }: Props) =>
-  demo(params.circle_id || "", "編集")
+  MetadataSet(params.circle_id || "", "編集")
 
 export const dynamicParams = false
 export const dynamic = "force-dynamic"
