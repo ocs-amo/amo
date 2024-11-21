@@ -73,6 +73,7 @@ export default async function Home() {
           borderWidth="2px"
           orientation="horizontal"
           variant="solid"
+          borderColor="black"
         />
       </VStack>
       <Grid
@@ -192,8 +193,8 @@ export default async function Home() {
             </Heading>
           </CardHeader>
           <CardBody>
-            <ScrollArea w="full" h="full">
-              <HStack w="full" h="full" bg="white" gap={0} as={Card}>
+            <ScrollArea w="full" h="full" mb="md" as={Card}>
+              <HStack w="full" h="full" gap={0}>
                 {calendarMockData.map((data, index) => (
                   <VStack
                     key={index}
@@ -204,6 +205,7 @@ export default async function Home() {
                     }
                     p="md"
                     minW="2xs"
+                    bg="white"
                   >
                     <Box>{data.date}</Box>
                     <VStack h="sm" overflowY="auto">
