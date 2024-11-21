@@ -5,6 +5,7 @@ import { SessionProvider } from "next-auth/react"
 import { getUserById } from "@/actions/user/user"
 import { auth } from "@/auth"
 import { AppLayout } from "@/components/layouts/app-layout"
+import theme from "@/theme"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
@@ -22,7 +23,7 @@ export default async function RootLayout({
   return (
     <html lang="ja">
       <body className={inter.className}>
-        <UIProvider>
+        <UIProvider theme={theme}>
           <SessionProvider>
             <AppLayout user={user}>{children}</AppLayout>
           </SessionProvider>

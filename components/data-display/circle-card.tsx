@@ -1,6 +1,7 @@
 "use client"
 import {
   Box,
+  Card,
   forwardRef,
   GridItem,
   Heading,
@@ -8,7 +9,6 @@ import {
   LinkBox,
   LinkOverlay,
   Text,
-  VStack,
 } from "@yamada-ui/react"
 import Link from "next/link"
 import { memo } from "react"
@@ -28,7 +28,7 @@ export interface CircleCardProps {
 export const CircleCard = memo(
   forwardRef<CircleCardProps, "div">(({ data }, ref) => {
     return (
-      <VStack ref={ref} gap={0} borderWidth={1} w="full" as={GridItem}>
+      <GridItem ref={ref} w="full" as={Card} background="white">
         <LinkBox>
           {data.imagePath ? (
             <Image w="full" h="40" src={data.imagePath} alt="preview image" />
@@ -45,7 +45,7 @@ export const CircleCard = memo(
             <Text>活動日：{data.activityDay}</Text>
           </Box>
         </LinkBox>
-      </VStack>
+      </GridItem>
     )
   }),
 )

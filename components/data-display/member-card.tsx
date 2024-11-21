@@ -94,7 +94,7 @@ export const MemberCard: FC<MemberCard> = ({
   }
 
   return (
-    <GridItem w="full" rounded="md" as={Card}>
+    <GridItem w="full" rounded="md" as={Card} bg="white">
       <CardBody>
         <HStack
           as={Center}

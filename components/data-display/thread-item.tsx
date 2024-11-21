@@ -33,7 +33,7 @@ export const ThreadItem: FC<ThreadItemProps> = ({
   handleDelete,
 }) => {
   return (
-    <Card w="full" rounded="md">
+    <Card w="full" rounded="md" bg="white">
       <CardBody as={LinkBox}>
         <HStack
           w="full"
