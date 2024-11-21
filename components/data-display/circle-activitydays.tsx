@@ -137,6 +137,9 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
               locale="ja"
               defaultValue={currentMonth}
               onChange={setCurrentMonth}
+              containerProps={{
+                bg: "white",
+              }}
             />
             {isMember ? (
               <IconButton
@@ -154,7 +157,7 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
             ) : activitys && activitys.length > 0 ? (
               activitys?.map((activity) => (
                 <GridItem key={activity.id}>
-                  <Card variant="outline" as={LinkBox}>
+                  <Card variant="outline" as={LinkBox} bg="white">
                     <CardBody>
                       <HStack justifyContent="space-between" w="full">
                         <HStack

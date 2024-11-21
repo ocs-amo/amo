@@ -26,7 +26,7 @@ export const ActivityCard: FC<ActivityCardProps> = ({
   handleParticipation,
 }) => {
   return (
-    <Card w="full">
+    <Card w="full" h="full" bg="white">
       <CardBody flexDir="row">
         <HStack>
           <Card variant="outline" padding="sm" w="10" as={Center}>

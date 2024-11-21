@@ -75,7 +75,7 @@ export const ThreadCard: FC<ThreadCardProps> = ({
   return (
     <>
       <Snacks snacks={snacks} />
-      <Card w="full" h="full">
+      <Card w="full" h="full" bg="white">
         <CardHeader
           justifyContent="space-between"
           alignItems={{ md: "end" }}

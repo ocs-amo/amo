@@ -27,7 +27,7 @@ export const AppLayout: FC<{
   }
   return pathname !== "/signin" ? (
     <VStack w="100vw" h="100dvh" gap={0}>
-      <VStack w="full" h="md" bgColor="black" px="md">
+      <VStack w="full" bgColor="black" px="md">
         <Heading
           position="relative"
           color="white"
