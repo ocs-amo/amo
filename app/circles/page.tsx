@@ -1,10 +1,10 @@
-import { CirclesPage } from "@/components/layouts/circles";
+import { CirclesPage } from "@/components/layouts/circles"
 
 export const metadata = {
   title: "サークル一覧 - CIRCLIA",
 }
 
-const Circles =  () => {
+const Circles = () => {
   return <CirclesPage />
 }
 

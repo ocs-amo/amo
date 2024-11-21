@@ -3,8 +3,8 @@ import { getCircleById, getCircles } from "@/actions/circle/fetch-circle"
 import { getMembershipRequests } from "@/actions/circle/membership-request"
 import { auth } from "@/auth"
 import { CircleDetailPage } from "@/components/layouts/circle-detail-page"
-import { MetadataSet } from "@/utils/metadata"
 import { getActivities, getActivityById } from "@/data/activity"
+import { MetadataSet } from "@/utils/metadata"
 
 interface Props {
   params: {

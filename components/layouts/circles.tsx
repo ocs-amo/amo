@@ -17,7 +17,7 @@ import {
   VStack,
 } from "@yamada-ui/react"
 import Link from "next/link"
-import {useRef } from "react"
+import { useRef } from "react"
 import { getCircles } from "@/actions/circle/fetch-circle"
 import { CircleCard } from "@/components/data-display/circle-card"
 
