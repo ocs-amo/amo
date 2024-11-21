@@ -50,6 +50,32 @@ pnpm dev # https:// で立ち上げる際は「pnpm dev:ssl」
 docker compose down
 ```
 
+# ローカルでのビルド・デプロイ
+
+`.env`に以下を追加
+
+```sh
+NODE_ENV="production"
+NEXTAUTH_URL="" # https://localhost:3000以外のIPアドレスやドメインなど
+```
+
+`pnpm dev:ssl`を実行し、証明書ファイルを作成しておく
+
+実行できれば`Ctrl + C`で停止
+
+以下を実行するか、`setup.sh`を実行
+
+```sh
+docker compose up -d
+pnpm migrate
+pnpm generate
+pnpm seed
+pnpm build
+pnpm start:custom
+```
+
+同じネットワーク内でならIPアドレス指定でログインできる
+
 # コミット規約
 
 プルリクエストを作成する前に、あなたのコミットがこのリポジトリで使用されているコミット規約に準拠しているかどうかを確認してください。

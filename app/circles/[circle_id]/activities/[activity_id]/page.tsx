@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation"
 import { getCircleById, getCircles } from "@/actions/circle/fetch-circle"
 import { getMembershipRequests } from "@/actions/circle/membership-request"
 import { auth } from "@/auth"
@@ -63,6 +64,9 @@ const Page = async ({ params }: Props) => {
     circle_id || "",
   )
   const currentActivity = await getActivityById(activityId)
+  if (!circle || !currentActivity || currentActivity.circleId !== circle_id) {
+    notFound()
+  }
 
   return (
     <CircleDetailPage

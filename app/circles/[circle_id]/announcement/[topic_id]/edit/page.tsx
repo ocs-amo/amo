@@ -1,4 +1,5 @@
 import { Center } from "@yamada-ui/react"
+import { notFound } from "next/navigation"
 import { getCircleById, getCircles } from "@/actions/circle/fetch-circle"
 import { auth } from "@/auth"
 import { AnnouncementForm } from "@/components/forms/announcement-form"
@@ -40,7 +41,10 @@ const Page = async ({ params }: Props) => {
     (member) => member.id === session?.user?.id,
   )
   const announcement = await getAnnouncementById(topicId || "")
-  return isMember ? (
+  if (!circle || !announcement) {
+    notFound()
+  }
+  return isMember && announcement.circleId === circleId ? (
     <AnnouncementForm
       circleId={circleId || ""}
       userId={session?.user?.id || ""}

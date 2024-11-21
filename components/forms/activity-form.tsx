@@ -27,6 +27,7 @@ import type { getActivityById } from "@/data/activity"
 import type { ActivityFormType } from "@/schema/activity"
 import { ActivitySchema } from "@/schema/activity"
 import { zeroPadding } from "@/utils/format"
+import "dayjs/locale/ja"
 
 interface ActivityFormProps {
   userId: string

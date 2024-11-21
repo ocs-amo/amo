@@ -15,12 +15,13 @@ git pull origin main  # もしくは必要なブランチ名に変更してく�
 
 # Docker Compose 起動
 echo "Starting Docker Compose..."
+docker compose down
 docker compose up -d
 
 # pnpm コマンド群
 echo "Running pnpm commands..."
-pnpm migrate
 pnpm generate
+pnpm migrate
 pnpm seed
 pnpm build
 pnpm start:custom

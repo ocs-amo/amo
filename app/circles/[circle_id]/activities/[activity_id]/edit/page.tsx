@@ -1,4 +1,5 @@
 import { Center } from "@yamada-ui/react"
+import { notFound } from "next/navigation"
 import { getCircleById, getCircles } from "@/actions/circle/fetch-circle"
 import { auth } from "@/auth"
 import { ActivityForm } from "@/components/forms/activity-form"
@@ -59,7 +60,10 @@ const Page = async ({ params }: Props) => {
     (member) => member.id === session?.user?.id,
   )
   const activity = await getActivityById(activityId)
-  return isMember ? (
+  if (!circle || !activity) {
+    notFound()
+  }
+  return isMember && activity.circleId === circleId ? (
     <ActivityForm
       circleId={circleId || ""}
       userId={session?.user?.id || ""}
