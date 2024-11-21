@@ -9,7 +9,14 @@ import {
   SettingsIcon,
   UsersIcon,
 } from "@yamada-ui/lucide"
-import { Box, Heading, HStack, IconButton, VStack } from "@yamada-ui/react"
+import {
+  Box,
+  Heading,
+  HStack,
+  IconButton,
+  useSafeLayoutEffect,
+  VStack,
+} from "@yamada-ui/react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { signOut } from "next-auth/react"
@@ -22,9 +29,11 @@ export const AppLayout: FC<{
   user?: Awaited<ReturnType<typeof getUserById>>
 }> = ({ children, user }) => {
   const pathname = usePathname()
-  if (!user && pathname !== "/signin") {
-    signOut({ redirectTo: "/signin" })
-  }
+  useSafeLayoutEffect(() => {
+    if (!user && pathname !== "/signin") {
+      signOut({ redirectTo: "/signin" })
+    }
+  }, [])
   return pathname !== "/signin" ? (
     <VStack w="100vw" h="100dvh" gap={0}>
       <VStack w="full" bgColor="black" px="md">
