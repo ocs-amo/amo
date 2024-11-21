@@ -2,7 +2,7 @@ import { Center } from "@yamada-ui/react"
 import { getCircleById, getCircles } from "@/actions/circle/fetch-circle"
 import { auth } from "@/auth"
 import { ThreadForm } from "@/components/forms/thread-form"
-import { MetadataSet } from "@/components/tab/tab-title"
+import { MetadataSet } from "@/utils/metadata"
 interface Props {
   params: { circle_id?: string }
 }

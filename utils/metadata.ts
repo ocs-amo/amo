@@ -2,7 +2,7 @@
 
 import { getCircleById } from "@/actions/circle/fetch-circle"
 
-const handlingTab = (key: string) => {
+const handlingTabTitle = (key: string) => {
   switch (key) {
     case "activities":
       return "活動日程"
@@ -40,7 +40,7 @@ export const MetadataSet = async (circle_id: string, page_key: string) => {
     }
   }
 
-  const page = await handlingTab(page_key || "")
+  const page = handlingTabTitle(page_key || "")
   return {
     title: page + " - " + circle.name,
     description: page + " - " + circle.description,

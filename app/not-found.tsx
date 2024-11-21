@@ -1,7 +1,7 @@
 import { Center, Text } from "@yamada-ui/react"
 
 export const metadata = {
-  title: "Not Found",
+  title: "ページが見つかりません",
 }
 
 const NotFound = () => {

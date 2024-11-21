@@ -3,7 +3,7 @@ import { notFound } from "next/navigation"
 import { getCircleById, getCircles } from "@/actions/circle/fetch-circle"
 import { auth } from "@/auth"
 import { AnnouncementForm } from "@/components/forms/announcement-form"
-import { MetadataSet } from "@/components/tab/tab-title"
+import { MetadataSet } from "@/utils/metadata"
 import { getAnnouncementById, getAnnouncements } from "@/data/announcement"
 
 interface Props {
