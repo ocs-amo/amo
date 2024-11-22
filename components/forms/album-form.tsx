@@ -24,7 +24,7 @@ export const AlbumForm: FC<AlbumFormProps> = ({ circleId, mode }) => {
   return (
     <VStack
       w="full"
-      h="full"
+      //   h="full"
       as="form"
       onSubmit={(e) => e.preventDefault()}
       p="md"
