@@ -1,9 +1,10 @@
 "use client"
+
 import type { FC } from "@yamada-ui/react"
 import { Box, Heading, HStack, Tag, Text, VStack } from "@yamada-ui/react"
 import { useState } from "react"
 import { CircleDetailTabs } from "../disclosure/circle-detail-tabs"
-import { CircleMembershipButton } from "../forms/circle-membership-button"
+import { CircleDetailButton } from "../forms/circle-detail-button"
 import { getCircleById } from "@/actions/circle/fetch-circle"
 import { getMembershipRequests } from "@/actions/circle/membership-request"
 import type { getActivityById } from "@/data/activity"
@@ -92,9 +93,10 @@ export const CircleDetailPage: FC<{
               <Text>人数：{circleData?.members?.length}人</Text>
               <Text>活動場所：{circle?.location}</Text>
               <Box>
-                <CircleMembershipButton
-                  circleId={circle?.id || ""}
+                <CircleDetailButton
                   userId={userId}
+                  tabKey={tabKey || ""}
+                  circle={circle}
                   isAdmin={!!isAdmin}
                   isMember={!!isMember}
                 />

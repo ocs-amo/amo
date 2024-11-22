@@ -57,7 +57,7 @@ export const CircleMembershipButton: FC<CircleMembershipButtonProps> = ({
   if (isAdmin) {
     return (
       <Button
-        colorScheme="primary"
+        colorScheme="riverBlue"
         as={Link}
         href={`/circles/${circleId}/edit`}
       >
@@ -69,18 +69,30 @@ export const CircleMembershipButton: FC<CircleMembershipButtonProps> = ({
   if (isMember) {
     // 退会申請中の状態を確認
     return pendingWithdrawalRequest ? (
-      <Button isDisabled>退会申請中</Button>
+      <Button colorScheme="riverBlue" isDisabled>
+        退会申請中
+      </Button>
     ) : (
-      <Button onClick={handleMemberButtonClick} isLoading={isLoading}>
+      <Button
+        colorScheme="riverBlue"
+        onClick={handleMemberButtonClick}
+        isLoading={isLoading}
+      >
         退会申請
       </Button>
     )
   } else {
     // 入会申請中の状態を確認
     return pendingJoinRequest ? (
-      <Button isDisabled>入会申請中</Button>
+      <Button colorScheme="riverBlue" isDisabled>
+        入会申請中
+      </Button>
     ) : (
-      <Button onClick={handleMemberButtonClick} isLoading={isLoading}>
+      <Button
+        colorScheme="riverBlue"
+        onClick={handleMemberButtonClick}
+        isLoading={isLoading}
+      >
         入会申請
       </Button>
     )
