@@ -10,7 +10,7 @@ export const handlingTab = (key: string) => {
   switch (key) {
     case "activities":
       return 0
-    case "images":
+    case "album":
       return 1
     case "notifications":
       return 2

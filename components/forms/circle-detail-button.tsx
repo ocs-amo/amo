@@ -47,7 +47,7 @@ export const CircleDetailButton: FC<CircleDetailButtonProps> = ({
       return isMember ? (
         <Button
           as={Link}
-          href={`/circles/${circle?.id}/album/new`}
+          href={`/circles/${circle?.id}/album/create`}
           leftIcon={<PlusIcon />}
           colorScheme="riverBlue"
         >

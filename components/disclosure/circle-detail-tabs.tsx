@@ -52,24 +52,16 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
   return (
     <Tabs index={tabIndex}>
       <TabList overflowX="auto" overflowY="hidden">
-        <Tab
-          flexShrink={0}
-          as={Link}
-          href={`/circles/${circle?.id}/activities`}
-        >
+        <Tab flexShrink={0} as={Link} href={`/circles/${circle?.id}/${tabKey}`}>
           活動日程
         </Tab>
-        <Tab flexShrink={0} as={Link} href={`/circles/${circle?.id}/images`}>
-          画像
+        <Tab flexShrink={0} as={Link} href={`/circles/${circle?.id}/${tabKey}`}>
+          アルバム
         </Tab>
-        <Tab
-          flexShrink={0}
-          as={Link}
-          href={`/circles/${circle?.id}/notifications`}
-        >
+        <Tab flexShrink={0} as={Link} href={`/circles/${circle?.id}/${tabKey}`}>
           掲示板
         </Tab>
-        <Tab flexShrink={0} as={Link} href={`/circles/${circle?.id}/members`}>
+        <Tab flexShrink={0} as={Link} href={`/circles/${circle?.id}/${tabKey}`}>
           <Indicator
             colorScheme="danger"
             size="sm"
@@ -93,7 +85,7 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
             circle={circle}
           />
         </TabPanel>
-        <TabPanel>画像</TabPanel>
+        <TabPanel>アルバム</TabPanel>
 
         <TabPanel>
           <CircleThreads
