@@ -31,10 +31,7 @@ export const AlbumForm: FC<AlbumFormProps> = ({ circleId, mode }) => {
     >
       <Heading>アルバム作成</Heading>
       <FormControl
-        display="flex"
-        flexDirection={{ base: "row", md: "column" }}
-        gap={{ base: "2xl", md: "md" }}
-        //   isInvalid={!!errors.title}
+      //   isInvalid={!!errors.title}
       >
         <VStack w="full">
           <Label flexGrow={1} isRequired>
@@ -54,10 +51,7 @@ export const AlbumForm: FC<AlbumFormProps> = ({ circleId, mode }) => {
         </VStack>
       </FormControl>
       <FormControl
-        display="flex"
-        flexDirection={{ base: "row", md: "column" }}
-        gap={{ base: "2xl", md: "md" }}
-        //   isInvalid={!!errors.title}
+      //   isInvalid={!!errors.title}
       >
         <VStack w="full">
           <Label flexGrow={1} isRequired>
@@ -80,10 +74,7 @@ export const AlbumForm: FC<AlbumFormProps> = ({ circleId, mode }) => {
         </VStack>
       </FormControl>
       <FormControl
-        display="flex"
-        flexDirection={{ base: "row", md: "column" }}
-        gap={{ base: "2xl", md: "md" }}
-        //   isInvalid={!!errors.title}
+      //   isInvalid={!!errors.title}
       >
         <VStack w="full">
           <Label flexGrow={1} isRequired>
