@@ -1,13 +1,6 @@
 "use client"
 import type { FC } from "@yamada-ui/react"
-import {
-  Box,
-  Heading,
-  HStack,
-  Tag,
-  Text,
-  VStack,
-} from "@yamada-ui/react"
+import { Box, Heading, HStack, Tag, Text, VStack } from "@yamada-ui/react"
 import { useState } from "react"
 import { CircleDetailTabs } from "../disclosure/circle-detail-tabs"
 import { CircleMembershipButton } from "../forms/circle-membership-button"
@@ -71,7 +64,6 @@ export const CircleDetailPage: FC<{
               })}
           p="md"
         >
-          <Heading>{circle?.name}</Heading>
           <HStack
             w="full"
             flexDirection={{
@@ -80,6 +72,7 @@ export const CircleDetailPage: FC<{
             }}
           >
             <VStack>
+              <Heading>{circle?.name}</Heading>
               <Text as="pre" textWrap="wrap">
                 {circle?.description}
               </Text>
