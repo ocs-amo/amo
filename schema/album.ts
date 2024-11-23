@@ -6,30 +6,13 @@ export const AlbumFormSchema = z
     title: z.string().trim().min(1, { message: "タイトルは必須です。" }),
     description: z.string().trim().min(1, { message: "内容は必須です。" }),
     images: z
-      .custom<FileList>()
+      .array(z.instanceof(File)) // File[] 型を期待
+      .nonempty("画像は最低1枚以上アップロードしてください。")
+      .max(10, { message: "画像は最大10枚までアップロード可能です。" })
       .refine(
-        (files) =>
-          files instanceof FileList &&
-          files.length > 0 && // 最低1枚以上
-          files.length <= 10 && // 最大10枚
-          Array.from(files).every((file) => file.type.startsWith("image/")),
-        {
-          message:
-            "画像は1枚以上10枚以下、かつ画像ファイルのみアップロード可能です。",
-        },
-      )
-      .transform(async (files) => {
-        const base64Promises = Array.from(files).map(
-          (file) =>
-            new Promise<string>((resolve, reject) => {
-              const reader = new FileReader()
-              reader.readAsDataURL(file)
-              reader.onload = () => resolve(reader.result as string)
-              reader.onerror = reject
-            }),
-        )
-        return Promise.all(base64Promises) // 全ての画像をbase64に変換
-      }),
+        (files) => files.every((file) => file.type.startsWith("image/")),
+        { message: "画像ファイルのみアップロード可能です。" },
+      ),
   })
   .brand<"AlbumFormSchema">()
 
