@@ -5,11 +5,13 @@ import type { FC } from "@yamada-ui/react"
 import {
   Button,
   Center,
+  CloseIcon,
   ErrorMessage,
   FormControl,
   Grid,
   GridItem,
   Heading,
+  IconButton,
   Image,
   Input,
   Label,
@@ -78,13 +80,24 @@ export const AlbumForm: FC<AlbumFormProps> = ({ circleId, mode }) => {
                         rounded="md"
                         boxSize="100px"
                         key={`${file.name}-${index}`}
+                        position="relative"
                       >
                         <Image
-                          src={URL.createObjectURL(file)} // ローカルファイルのプレビューURLを生成
+                          src={URL.createObjectURL(file)}
                           alt={file.name}
                           boxSize="full"
                           borderRadius="md"
                           objectFit="cover"
+                        />
+                        <IconButton
+                          size="xs"
+                          isRounded
+                          icon={<CloseIcon />}
+                          position="absolute"
+                          top="-sm"
+                          right="-sm"
+                          onClick={(e) => e.stopPropagation()}
+                          colorScheme="danger"
                         />
                       </GridItem>
                     ))}
