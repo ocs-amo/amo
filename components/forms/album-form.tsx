@@ -7,7 +7,10 @@ import {
   Center,
   ErrorMessage,
   FormControl,
+  Grid,
+  GridItem,
   Heading,
+  Image,
   Input,
   Label,
   Text,
@@ -17,7 +20,7 @@ import {
 import Link from "next/link"
 import { Controller, useForm } from "react-hook-form"
 import { AlbumFormSchema } from "@/schema/album"
-import type { FrontAlbumForm } from "@/schema/album";
+import type { FrontAlbumForm } from "@/schema/album"
 
 interface AlbumFormProps {
   circleId: string
@@ -62,11 +65,34 @@ export const AlbumForm: FC<AlbumFormProps> = ({ circleId, mode }) => {
                 onDrop={onChange}
                 ref={ref}
               >
-                <Text>画像をドラッグ&ドロップ</Text>
+                {value && value.length > 0 ? (
+                  <Grid
+                    templateColumns="repeat(5, 1fr)"
+                    templateRows="repeat(2, 1fr)"
+                    gap="md"
+                  >
+                    {Array.from(value).map((file, index) => (
+                      <GridItem
+                        w="full"
+                        h="4xs"
+                        rounded="md"
+                        boxSize="100px"
+                        key={`${file.name}-${index}`}
+                      >
+                        <Image
+                          src={URL.createObjectURL(file)} // ローカルファイルのプレビューURLを生成
+                          alt={file.name}
+                          boxSize="full"
+                          borderRadius="md"
+                          objectFit="cover"
+                        />
+                      </GridItem>
+                    ))}
+                  </Grid>
+                ) : (
+                  <Text>画像をドラッグ&ドロップ</Text>
+                )}
               </Dropzone>
-              {value && value.length > 0 && (
-                <Text>{value.length} 個のファイルが選択されました</Text>
-              )}
               {errors?.images && (
                 <ErrorMessage mt={0}>{errors.images.message}</ErrorMessage>
               )}
