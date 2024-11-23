@@ -43,6 +43,7 @@ export const AlbumForm: FC<AlbumFormProps> = ({ circleId, mode }) => {
       description: "",
       images: [],
     },
+    mode: "all",
   })
 
   const onSubmit = async (data: FrontAlbumForm) => {
@@ -56,7 +57,7 @@ export const AlbumForm: FC<AlbumFormProps> = ({ circleId, mode }) => {
         <Controller
           name="images"
           control={control}
-          render={({ field: { onChange, value, ref } }) => (
+          render={({ field: { onChange, value = [], ref, ...rest } }) => (
             <>
               <Label isRequired>画像を選択</Label>
               <Dropzone
@@ -64,10 +65,12 @@ export const AlbumForm: FC<AlbumFormProps> = ({ circleId, mode }) => {
                 accept={IMAGE_ACCEPT_TYPE}
                 size="full"
                 h="xs"
-                onDrop={onChange}
+                onDrop={(files) => onChange([...value, ...files])}
                 ref={ref}
+                overflow="auto"
+                {...rest}
               >
-                {value && value.length > 0 ? (
+                {value.length > 0 ? (
                   <Grid
                     templateColumns="repeat(5, 1fr)"
                     templateRows="repeat(2, 1fr)"
@@ -75,8 +78,6 @@ export const AlbumForm: FC<AlbumFormProps> = ({ circleId, mode }) => {
                   >
                     {Array.from(value).map((file, index) => (
                       <GridItem
-                        w="full"
-                        h="4xs"
                         rounded="md"
                         boxSize="100px"
                         key={`${file.name}-${index}`}
@@ -96,8 +97,15 @@ export const AlbumForm: FC<AlbumFormProps> = ({ circleId, mode }) => {
                           position="absolute"
                           top="-sm"
                           right="-sm"
-                          onClick={(e) => e.stopPropagation()}
+                          onClick={(e) => {
+                            e.stopPropagation() // ドロップゾーンのクリックイベントを止める
+                            const updatedFiles = value.filter(
+                              (_, fileIndex) => fileIndex !== index,
+                            ) // 削除対象以外を保持
+                            onChange(updatedFiles) // 更新
+                          }}
                           colorScheme="danger"
+                          aria-label="画像削除"
                         />
                       </GridItem>
                     ))}
