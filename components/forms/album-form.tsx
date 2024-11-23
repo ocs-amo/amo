@@ -21,7 +21,7 @@ import {
 } from "@yamada-ui/react"
 import Link from "next/link"
 import { Controller, useForm } from "react-hook-form"
-import { AlbumFormSchema } from "@/schema/album"
+import { AlbumFormSchema, AlbumImageSchema } from "@/schema/album"
 import type { FrontAlbumForm } from "@/schema/album"
 
 interface AlbumFormProps {
@@ -35,6 +35,8 @@ export const AlbumForm: FC<AlbumFormProps> = ({ circleId, mode }) => {
     register,
     control,
     handleSubmit,
+    setError,
+    clearErrors,
     formState: { errors },
   } = useForm<FrontAlbumForm>({
     resolver: zodResolver(AlbumFormSchema),
@@ -64,10 +66,33 @@ export const AlbumForm: FC<AlbumFormProps> = ({ circleId, mode }) => {
                 multiple
                 accept={IMAGE_ACCEPT_TYPE}
                 size="full"
-                h="xs"
-                onDrop={(files) => onChange([...value, ...files])}
+                minH="xs"
+                onDrop={(acceptedFiles, fileRejections) => {
+                  const files = [
+                    ...acceptedFiles,
+                    ...fileRejections.map(
+                      (fileRejection) => fileRejection.file,
+                    ),
+                  ]
+                  const { success, error } = AlbumImageSchema.safeParse([
+                    ...value,
+                    ...files,
+                  ])
+
+                  if (success) {
+                    onChange([...value, ...acceptedFiles])
+                    clearErrors("images")
+                  } else {
+                    const errorMessage = error.errors?.[0]?.message
+                    setError("images", {
+                      type: "manual",
+                      message: errorMessage || "不明なエラーが発生しました。",
+                    })
+                  }
+                }}
                 ref={ref}
                 overflow="auto"
+                maxFiles={10}
                 {...rest}
               >
                 {value.length > 0 ? (
