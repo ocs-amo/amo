@@ -15,13 +15,22 @@ import {
   Image,
   Input,
   Label,
+  Snacks,
   Text,
   Textarea,
+  useBoolean,
+  useSnacks,
   VStack,
 } from "@yamada-ui/react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { Controller, useForm } from "react-hook-form"
-import { AlbumFormSchema, AlbumImageSchema } from "@/schema/album"
+import { handleCreateAlbum } from "@/actions/circle/album"
+import {
+  AlbumImageSchema,
+  BackAlbumSchema,
+  FrontAlbumFormSchema,
+} from "@/schema/album"
 import type { FrontAlbumForm } from "@/schema/album"
 
 interface AlbumFormProps {
@@ -39,7 +48,7 @@ export const AlbumForm: FC<AlbumFormProps> = ({ circleId, mode }) => {
     clearErrors,
     formState: { errors },
   } = useForm<FrontAlbumForm>({
-    resolver: zodResolver(AlbumFormSchema),
+    resolver: zodResolver(FrontAlbumFormSchema),
     defaultValues: {
       title: "",
       description: "",
@@ -47,9 +56,45 @@ export const AlbumForm: FC<AlbumFormProps> = ({ circleId, mode }) => {
     },
     mode: "all",
   })
+  const [isLoading, { on: start, off: end }] = useBoolean()
+  const { snack, snacks } = useSnacks()
+  const router = useRouter()
 
   const onSubmit = async (data: FrontAlbumForm) => {
-    console.log(data)
+    start()
+    const { title, description, images } = data
+    const base64Images = await Promise.all(
+      images.map(
+        (image) =>
+          new Promise<string>((resolve, reject) => {
+            const reader = new FileReader()
+            reader.readAsDataURL(image)
+            reader.onload = () => resolve(reader.result as string)
+            reader.onerror = reject
+          }),
+      ),
+    )
+
+    const {
+      success,
+      error,
+      data: parseData,
+    } = BackAlbumSchema.safeParse({ title, description, images: base64Images })
+
+    if (!success) {
+      snack({ title: error.message, status: "error" })
+      end()
+      return
+    }
+    if (mode === "create") {
+      const { success, error } = await handleCreateAlbum(parseData, circleId)
+      if (success) {
+        router.push(`/circles/${circleId}/album/`)
+      } else {
+        snack({ title: error, status: "error" })
+        end()
+      }
+    }
   }
 
   return (
@@ -169,11 +214,14 @@ export const AlbumForm: FC<AlbumFormProps> = ({ circleId, mode }) => {
           <ErrorMessage mt={0}>{errors.description.message}</ErrorMessage>
         )}
       </FormControl>
+      <Snacks snacks={snacks} />
       <Center gap="md" justifyContent="end">
         <Button as={Link} href={`/circles/${circleId}/album`}>
           キャンセル
         </Button>
-        <Button type="submit">{mode === "create" ? "作成" : "更新"}</Button>
+        <Button type="submit" isLoading={isLoading}>
+          {mode === "create" ? "作成" : "更新"}
+        </Button>
       </Center>
     </VStack>
   )

@@ -11,23 +11,23 @@ export const AlbumImageSchema = z
   )
 
 // フロントエンド用スキーマ
-export const AlbumFormSchema = z
-  .object({
-    title: z.string().trim().min(1, { message: "タイトルは必須です。" }),
-    description: z.string().trim().min(1, { message: "内容は必須です。" }),
-    images: AlbumImageSchema,
-  })
-  .brand<"AlbumFormSchema">()
+export const AlbumFormSchema = z.object({
+  title: z.string().trim().min(1, { message: "タイトルは必須です。" }),
+  description: z.string().trim().min(1, { message: "内容は必須です。" }),
+})
 
-export type FrontAlbumForm = z.infer<typeof AlbumFormSchema>
+export const FrontAlbumFormSchema = AlbumFormSchema.extend({
+  images: AlbumImageSchema,
+}).brand<"AlbumFormSchema">()
+
+export type FrontAlbumForm = z.infer<typeof FrontAlbumFormSchema>
 
 // バックエンド用スキーマ
-export const BackAlbumSchema = z
-  .object({
-    title: z.string(),
-    description: z.string(),
-    images: z.array(z.string()).min(1, { message: "画像は最低1枚必要です。" }), // 最低1枚以上
-  })
-  .brand<"BackAlbumSchema">()
+export const BackAlbumSchema = AlbumFormSchema.extend({
+  images: z
+    .array(z.string())
+    .min(1, "画像は最低1枚以上必要です。")
+    .max(10, "画像は最大10枚までアップロード可能です。"),
+}).brand<"BackAlbumSchema">()
 
 export type BackAlbumForm = z.infer<typeof BackAlbumSchema>
