@@ -11,11 +11,13 @@ import {
   HStack,
   IconButton,
   Image,
+  Loading,
   Menu,
   MenuButton,
   MenuItem,
   MenuList,
   Text,
+  useBoolean,
   useSafeLayoutEffect,
   VStack,
 } from "@yamada-ui/react"
@@ -34,16 +36,27 @@ export const CircleAlbums: FC<CircleAlbums> = ({ circleId, isAdmin }) => {
   const [albums, setAlbum] = useState<
     Awaited<ReturnType<typeof handleGetAlbumsByCircleId>>
   >([])
+  const [loading, { off: loadingOff, on: loadingOn }] = useBoolean(true)
 
   const fetchData = async () => {
+    loadingOn()
     const newAlbums = await handleGetAlbumsByCircleId(circleId)
     setAlbum(newAlbums)
+    loadingOff()
   }
 
   useSafeLayoutEffect(() => {
     fetchData()
   }, [])
-  return (
+  return loading ? (
+    <Center w="full">
+      <Loading fontSize="xl" />
+    </Center>
+  ) : albums.length === 0 ? (
+    <Center w="full">
+      <Text>アルバムがありません</Text>
+    </Center>
+  ) : (
     <Grid
       templateColumns={{ base: "repeat(3, 1fr)", md: "repeat(1, 1fr)" }}
       gap="md"
