@@ -1,4 +1,5 @@
 import { z } from "zod"
+import { getBase64Image } from "@/utils/file"
 
 // 共通の基本スキーマ（バックエンドでも使用）
 export const CircleSchema = z.object({
@@ -39,12 +40,7 @@ export const FrontCircleSchema = CircleSchema.extend({
         return null // 画像がない場合はnullを返す
       }
       const selectedFile = file[0]
-      return new Promise<string>((resolve, reject) => {
-        const reader = new FileReader()
-        reader.readAsDataURL(selectedFile) // 画像ファイルをbase64に変換
-        reader.onload = () => resolve(reader.result as string)
-        reader.onerror = reject
-      })
+      return await getBase64Image(selectedFile)
     }),
 })
 

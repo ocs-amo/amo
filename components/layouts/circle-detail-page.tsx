@@ -53,7 +53,7 @@ export const CircleDetailPage: FC<{
         <VStack
           {...(circle?.imagePath
             ? {
-                backgroundImage: `url(${circle.imagePath})`,
+                backgroundImage: circle.imagePath,
                 backgroundSize: "cover",
                 backgroundColor: "whiteAlpha.700",
                 backgroundBlendMode: "overlay",

@@ -118,20 +118,13 @@ export const updateCircle = async (
         id: circleId,
         deletedAt: null,
       },
-      data: values.imagePath
-        ? {
-            name: values.name,
-            description: values.description,
-            location: values.location,
-            imagePath: values.imagePath,
-            activityDay: values.activityDay,
-          }
-        : {
-            name: values.name,
-            description: values.description,
-            location: values.location,
-            activityDay: values.activityDay,
-          },
+      data: {
+        name: values.name,
+        description: values.description,
+        location: values.location,
+        imagePath: values.imagePath,
+        activityDay: values.activityDay,
+      },
     })
   } catch (error) {
     console.error("Failed to update circle: ", error)
