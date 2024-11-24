@@ -1,4 +1,5 @@
 import { z } from "zod"
+import { MAX_BASE64_SIZE, sizeInMB } from "@/utils/file"
 
 // 画像専用のスキーマ
 export const AlbumImageSchema = z
@@ -8,6 +9,10 @@ export const AlbumImageSchema = z
   .refine(
     (files) => files.every((file) => file.type.startsWith("image/")),
     "画像ファイルのみアップロード可能です。",
+  )
+  .refine(
+    (files) => files.every((file) => sizeInMB(file.size) <= MAX_BASE64_SIZE),
+    `各画像のファイルサイズは最大1MBまでです。`,
   )
 
 // フロントエンド用スキーマ

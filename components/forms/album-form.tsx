@@ -32,6 +32,7 @@ import {
   FrontAlbumFormSchema,
 } from "@/schema/album"
 import type { FrontAlbumForm } from "@/schema/album"
+import { getBase64Image } from "@/utils/file"
 
 interface AlbumFormProps {
   circleId: string
@@ -63,17 +64,9 @@ export const AlbumForm: FC<AlbumFormProps> = ({ circleId, mode }) => {
   const onSubmit = async (data: FrontAlbumForm) => {
     start()
     const { title, description, images } = data
-    const base64Images = await Promise.all(
-      images.map(
-        (image) =>
-          new Promise<string>((resolve, reject) => {
-            const reader = new FileReader()
-            reader.readAsDataURL(image)
-            reader.onload = () => resolve(reader.result as string)
-            reader.onerror = reject
-          }),
-      ),
-    )
+
+    // Base64に変換 & サイズチェック
+    const base64Images = await Promise.all(images.map(getBase64Image))
 
     const {
       success,
