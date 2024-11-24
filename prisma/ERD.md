@@ -124,6 +124,23 @@ announcement announcement
     DateTime deletedAt "❓"
     }
 
+
+  "Album" {
+    String id "🗝️"
+    String title
+    String description
+    DateTime createdAt
+    DateTime updatedAt
+    DateTime deletedAt "❓"
+    }
+
+
+  "AlbumImage" {
+    String id "🗝️"
+    String imageUrl
+    DateTime createdAt
+    }
+
     "User" o{--}o "Account" : "accounts"
     "User" o{--}o "CircleMember" : "CircleMember"
     "User" o{--}o "CircleInstructor" : "CircleInstructor"
@@ -133,12 +150,14 @@ announcement announcement
     "User" o{--}o "ActivityParticipant" : "ActivityParticipant"
     "User" o{--}o "Topic" : "topics"
     "User" o{--}o "Comment" : "comments"
+    "User" o{--}o "Album" : "album"
     "Account" o|--|| "User" : "user"
     "Circle" o{--}o "CircleMember" : "CircleMember"
     "Circle" o{--}o "CircleInstructor" : "CircleInstructor"
     "Circle" o{--}o "CircleTag" : "CircleTag"
     "Circle" o{--}o "MembershipRequest" : "MembershipRequest"
     "Circle" o{--}o "Activity" : "Activity"
+    "Circle" o{--}o "Album" : "Album"
     "CircleMember" o|--|| "User" : "user"
     "CircleMember" o|--|| "Circle" : "circle"
     "CircleMember" o|--|| "Role" : "role"
@@ -159,4 +178,8 @@ announcement announcement
     "Topic" o|--|| "User" : "user"
     "Comment" o|--|| "Topic" : "topic"
     "Comment" o|--|| "User" : "user"
+    "Album" o{--}o "AlbumImage" : "images"
+    "Album" o|--|| "Circle" : "circle"
+    "Album" o|--|| "User" : "creator"
+    "AlbumImage" o|--|| "Album" : "album"
 ```
