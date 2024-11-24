@@ -25,7 +25,8 @@ import {
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { Controller, useForm } from "react-hook-form"
-import { handleCreateAlbum } from "@/actions/circle/album"
+import { handleCreateAlbum, handleUpdateAlbum } from "@/actions/circle/album"
+import type { getAlbumById } from "@/data/album"
 import {
   AlbumImageSchema,
   BackAlbumSchema,
@@ -38,9 +39,10 @@ interface AlbumFormProps {
   circleId: string
   userId: string
   mode: "create" | "edit"
+  album?: Awaited<ReturnType<typeof getAlbumById>>
 }
 
-export const AlbumForm: FC<AlbumFormProps> = ({ circleId, mode }) => {
+export const AlbumForm: FC<AlbumFormProps> = ({ circleId, mode, album }) => {
   const {
     register,
     control,
@@ -51,9 +53,9 @@ export const AlbumForm: FC<AlbumFormProps> = ({ circleId, mode }) => {
   } = useForm<FrontAlbumForm>({
     resolver: zodResolver(FrontAlbumFormSchema),
     defaultValues: {
-      title: "",
-      description: "",
-      images: [],
+      title: album?.title,
+      description: album?.description,
+      images: album?.images ? album.images.map((image) => image.imageUrl) : [],
     },
     mode: "all",
   })
@@ -65,28 +67,39 @@ export const AlbumForm: FC<AlbumFormProps> = ({ circleId, mode }) => {
     start()
     const { title, description, images } = data
 
-    // Base64に変換 & サイズチェック
-    const base64Images = await Promise.all(images.map(getBase64Image))
+    // 画像を Base64 に変換
+    const base64Images = await Promise.all(
+      images.map((image) =>
+        typeof image === "string" ? image : getBase64Image(image),
+      ),
+    )
 
     const {
       success,
       error,
       data: parseData,
-    } = BackAlbumSchema.safeParse({ title, description, images: base64Images })
+    } = BackAlbumSchema.safeParse({
+      title,
+      description,
+      images: base64Images,
+    })
 
     if (!success) {
       snack({ title: error.message, status: "error" })
       end()
       return
     }
-    if (mode === "create") {
-      const { success, error } = await handleCreateAlbum(parseData, circleId)
-      if (success) {
-        router.push(`/circles/${circleId}/album/`)
-      } else {
-        snack({ title: error, status: "error" })
-        end()
-      }
+
+    const result =
+      mode === "create"
+        ? await handleCreateAlbum(parseData, circleId)
+        : await handleUpdateAlbum(parseData, circleId, album?.id || "")
+
+    if (result.success) {
+      router.push(`/circles/${circleId}/album/`)
+    } else {
+      snack({ title: result.error, status: "error" })
+      end()
     }
   }
 
@@ -105,20 +118,18 @@ export const AlbumForm: FC<AlbumFormProps> = ({ circleId, mode }) => {
                 accept={IMAGE_ACCEPT_TYPE}
                 size="full"
                 minH="xs"
-                onDrop={(acceptedFiles, fileRejections) => {
+                onDrop={async (acceptedFiles, fileRejections) => {
                   const files = [
                     ...acceptedFiles,
                     ...fileRejections.map(
                       (fileRejection) => fileRejection.file,
                     ),
                   ]
-                  const { success, error } = AlbumImageSchema.safeParse([
-                    ...value,
-                    ...files,
-                  ])
+                  const { success, error, data } =
+                    await AlbumImageSchema.safeParseAsync([...value, ...files])
 
                   if (success) {
-                    onChange([...value, ...acceptedFiles])
+                    onChange([...data])
                     clearErrors("images")
                   } else {
                     const errorMessage = error.errors?.[0]?.message
@@ -143,12 +154,12 @@ export const AlbumForm: FC<AlbumFormProps> = ({ circleId, mode }) => {
                       <GridItem
                         rounded="md"
                         boxSize="100px"
-                        key={`${file.name}-${index}`}
+                        key={`${file}-${index}`}
                         position="relative"
                       >
                         <Image
-                          src={URL.createObjectURL(file)}
-                          alt={file.name}
+                          src={file}
+                          alt={`${file}-${index}`}
                           boxSize="full"
                           borderRadius="md"
                           objectFit="cover"

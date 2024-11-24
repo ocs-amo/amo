@@ -139,6 +139,7 @@ announcement announcement
     String id "🗝️"
     String imageUrl
     DateTime createdAt
+    DateTime deletedAt "❓"
     }
 
     "User" o{--}o "Account" : "accounts"

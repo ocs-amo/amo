@@ -21,6 +21,7 @@ import {
   useSafeLayoutEffect,
   VStack,
 } from "@yamada-ui/react"
+import Link from "next/link"
 import { useState } from "react"
 import { handleGetAlbumsByCircleId } from "@/actions/circle/album"
 import { parseDate } from "@/utils/format"
@@ -90,7 +91,12 @@ export const CircleAlbums: FC<CircleAlbums> = ({ circleId, isAdmin }) => {
                     isRounded
                   />
                   <MenuList>
-                    <MenuItem>編集</MenuItem>
+                    <MenuItem
+                      as={Link}
+                      href={`/circles/${circleId}/album/${album.id}/edit`}
+                    >
+                      編集
+                    </MenuItem>
                     <MenuItem color="red">削除</MenuItem>
                   </MenuList>
                 </Menu>

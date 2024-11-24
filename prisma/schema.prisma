@@ -236,6 +236,7 @@ model AlbumImage {
   imageUrl  String   // 画像の保存先URL
   albumId   String   // 外部キー (Album テーブル)
   createdAt DateTime @default(now()) // 作成日時
+  deletedAt DateTime?
 
   // リレーション
   album Album @relation(fields: [albumId], references: [id], onDelete: Cascade)
