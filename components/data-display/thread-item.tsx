@@ -15,7 +15,7 @@ import {
 import { ThreadMenuButton } from "../forms/thread-menu-button"
 import type { getCircleById } from "@/actions/circle/fetch-circle"
 import type { fetchTopics } from "@/actions/circle/thread"
-import { parseDate } from "@/utils/format"
+import { parseFullDate } from "@/utils/format"
 
 interface ThreadItemProps {
   userId: string
@@ -69,7 +69,7 @@ export const ThreadItem: FC<ThreadItemProps> = ({
           </HStack>
           <HStack w="full" justifyContent="end">
             <Text fontSize="sm" color="gray.500">
-              {parseDate(topic.createdAt)}
+              {parseFullDate(topic.createdAt)}
             </Text>
             {isAdmin || topic.userId === userId ? (
               <ThreadMenuButton

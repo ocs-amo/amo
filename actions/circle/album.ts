@@ -1,7 +1,7 @@
 "use server"
 import { getUserById } from "../user/user"
 import { auth } from "@/auth"
-import { createAlbum } from "@/data/album"
+import { createAlbum, getAlbumsByCircleId } from "@/data/album"
 import { getMemberByCircleId } from "@/data/circle"
 import type { BackAlbumForm } from "@/schema/album"
 
@@ -48,3 +48,6 @@ export async function handleCreateAlbum(data: BackAlbumForm, circleId: string) {
     }
   }
 }
+
+export const handleGetAlbumsByCircleId = async (circleId: string) =>
+  await getAlbumsByCircleId(circleId)

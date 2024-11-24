@@ -14,7 +14,7 @@ import {
 import { useRouter } from "next/navigation"
 import { ThreadMenuButton } from "../forms/thread-menu-button"
 import type { getAnnouncementById } from "@/data/announcement"
-import { parseDate } from "@/utils/format"
+import { parseFullDate } from "@/utils/format"
 
 interface AnnouncementCardProps {
   userId: string
@@ -66,7 +66,7 @@ export const AnnouncementCard: FC<AnnouncementCardProps> = ({
               {currentAnnouncement.content}
             </Text>
             <VStack alignItems="end">
-              <Text>{parseDate(currentAnnouncement.createdAt)}</Text>
+              <Text>{parseFullDate(currentAnnouncement.createdAt)}</Text>
               <Text>作成者：{currentAnnouncement.user.name}</Text>
             </VStack>
           </VStack>

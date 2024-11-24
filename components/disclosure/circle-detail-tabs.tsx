@@ -11,6 +11,7 @@ import {
 } from "@yamada-ui/react"
 import Link from "next/link"
 import { CircleActivitydays } from "../data-display/circle-activitydays"
+import { CircleAlbums } from "../data-display/circle-albums"
 import { CircleMembers } from "../data-display/circle-members"
 import { CircleThreads } from "../data-display/circle-threads"
 import type { getCircleById } from "@/actions/circle/fetch-circle"
@@ -93,8 +94,14 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
             circle={circle}
           />
         </TabPanel>
-        <TabPanel>アルバム</TabPanel>
-
+        <TabPanel>
+          <CircleAlbums
+            userId={userId}
+            circleId={circle?.id || ""}
+            isAdmin={!!isAdmin}
+            isMember={!!isMember}
+          />
+        </TabPanel>
         <TabPanel>
           <CircleThreads
             userId={userId}

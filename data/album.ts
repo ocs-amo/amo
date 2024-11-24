@@ -39,3 +39,14 @@ export async function createAlbum(
     return album
   })
 }
+
+export const getAlbumsByCircleId = async (circleId: string) =>
+  await db.album.findMany({
+    where: {
+      circleId,
+      deletedAt: null,
+    },
+    include: {
+      images: true,
+    },
+  })
