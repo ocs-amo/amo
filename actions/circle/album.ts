@@ -3,12 +3,46 @@ import { getUserById } from "../user/user"
 import { auth } from "@/auth"
 import {
   createAlbum,
+  deleteAlbum,
   getAlbumById,
   getAlbumsByCircleId,
   updateAlbum,
 } from "@/data/album"
 import { getMemberByCircleId } from "@/data/circle"
 import type { BackAlbumForm } from "@/schema/album"
+
+export async function handleDeleteAlbum(circleId: string, albumId: string) {
+  const session = await auth()
+  const user = await getUserById(session?.user?.id || "")
+  // メンバー情報を取得
+  const members = await getMemberByCircleId(circleId)
+  // 管理者権限の確認
+  const isMember = members?.some((member) => member.id === user?.id)
+
+  const currentAlbum = await getAlbumById(albumId)
+
+  if (!session || !user || !isMember || !currentAlbum) {
+    return {
+      success: false,
+      error: "権限がありません。",
+    }
+  }
+
+  try {
+    const deletedAlbum = await deleteAlbum(albumId)
+
+    return {
+      success: true,
+      id: deletedAlbum.id,
+    }
+  } catch (error) {
+    console.error("アルバム削除中にエラーが発生しました:", error)
+    return {
+      success: false,
+      error: "アルバム削除に失敗しました。",
+    }
+  }
+}
 
 export async function handleUpdateAlbum(
   data: BackAlbumForm,
@@ -24,7 +58,7 @@ export async function handleUpdateAlbum(
 
   const currentAlbum = await getAlbumById(albumId)
 
-  if (!session || !user || !isMember || currentAlbum?.createdBy !== user.id) {
+  if (!session || !user || !isMember || !currentAlbum) {
     return {
       success: false,
       error: "権限がありません。",
@@ -34,7 +68,12 @@ export async function handleUpdateAlbum(
   const { title, description, images } = data
 
   try {
-    const newAlbum = await updateAlbum(albumId, title, description, images)
+    const newAlbum = await updateAlbum(
+      currentAlbum.id,
+      title,
+      description,
+      images,
+    )
     return {
       success: true,
       data: newAlbum,

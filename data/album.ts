@@ -1,5 +1,24 @@
 import { db } from "@/utils/db"
 
+export async function deleteAlbum(albumId: string) {
+  return db.$transaction(async (tx) => {
+    // アルバム情報を更新
+    const album = await tx.album.update({
+      where: { id: albumId },
+      data: {
+        deletedAt: new Date(),
+      },
+    })
+
+    // 既存の画像を論理削除（deletedAtを設定）
+    await tx.albumImage.updateMany({
+      where: { albumId },
+      data: { deletedAt: new Date() }, // 論理削除
+    })
+    return album
+  })
+}
+
 export async function updateAlbum(
   albumId: string,
   title: string,
