@@ -5,24 +5,15 @@ import { getCircleById, getCircles } from "@/actions/circle/fetch-circle"
 import { auth } from "@/auth"
 import { CircleForm } from "@/components/forms/circle-form"
 import { getInstructors } from "@/data/circle"
+import { MetadataSet } from "@/utils/metadata"
+
 interface Props {
   params: { circle_id?: string }
 }
-export const generateMetadata = async ({ params }: Props) => {
-  const { circle_id } = params
-  const circle = await getCircleById(circle_id || "")
-  if (!circle) {
-    return {
-      title: "サークルが見つかりません。",
-      description: "サークルが見つかりません。",
-    }
-  }
 
-  return {
-    title: circle.name,
-    description: circle.description,
-  }
-}
+export const generateMetadata = ({ params }: Props) =>
+  MetadataSet(params.circle_id || "", "サークル編集")
+
 export const dynamicParams = false
 export const dynamic = "force-dynamic"
 

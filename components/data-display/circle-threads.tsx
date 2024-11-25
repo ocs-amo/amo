@@ -1,20 +1,9 @@
 "use client"
 import type { TopicType } from "@prisma/client"
-import {
-  BellPlusIcon,
-  MessageCircleMoreIcon,
-  PlusIcon,
-} from "@yamada-ui/lucide"
 import type { FC } from "@yamada-ui/react"
 import {
   Center,
-  HStack,
-  IconButton,
   Loading,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
   MultiSelect,
   Option,
   Snacks,
@@ -25,7 +14,6 @@ import {
   useSnacks,
   VStack,
 } from "@yamada-ui/react"
-import Link from "next/link"
 import { useState } from "react"
 import { AnnouncementCard } from "./announcement-card"
 import { ThreadCard } from "./thread-card"
@@ -55,7 +43,6 @@ interface CircleThreadsProps {
 export const CircleThreads: FC<CircleThreadsProps> = ({
   userId,
   isAdmin,
-  isMember,
   circle,
   currentThread: thread,
   currentAnnouncement: announcement,
@@ -152,45 +139,18 @@ export const CircleThreads: FC<CircleThreadsProps> = ({
         />
       ) : (
         <>
-          <HStack>
-            <MultiSelect
-              placeholder="項目を選択"
-              component={({ label, onRemove }) => (
-                <Tag onClose={onRemove}>{label}</Tag>
-              )}
-              onChange={setSelectedOptions}
-              value={selectedOptions}
-            >
-              <Option value="thread">スレッド</Option>
-              <Option value="announcement">お知らせ</Option>
-              <Option value="isImportant">重要</Option>
-            </MultiSelect>
-            {isMember ? (
-              <Menu>
-                <MenuButton
-                  as={IconButton}
-                  icon={<PlusIcon fontSize="2xl" />}
-                  variant="outline"
-                />
-                <MenuList>
-                  <MenuItem
-                    icon={<BellPlusIcon fontSize="2xl" />}
-                    as={Link}
-                    href={`/circles/${circle?.id}/announcement/create`}
-                  >
-                    お知らせ
-                  </MenuItem>
-                  <MenuItem
-                    icon={<MessageCircleMoreIcon fontSize="2xl" />}
-                    as={Link}
-                    href={`/circles/${circle?.id}/thread/create`}
-                  >
-                    スレッド
-                  </MenuItem>
-                </MenuList>
-              </Menu>
-            ) : undefined}
-          </HStack>
+          <MultiSelect
+            placeholder="項目を選択"
+            component={({ label, onRemove }) => (
+              <Tag onClose={onRemove}>{label}</Tag>
+            )}
+            onChange={setSelectedOptions}
+            value={selectedOptions}
+          >
+            <Option value="thread">スレッド</Option>
+            <Option value="announcement">お知らせ</Option>
+            <Option value="isImportant">重要</Option>
+          </MultiSelect>
           {loading ? (
             <Center w="full" h="full">
               <Loading fontSize="xl" />

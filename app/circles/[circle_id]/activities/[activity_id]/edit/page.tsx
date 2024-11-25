@@ -4,6 +4,7 @@ import { getCircleById, getCircles } from "@/actions/circle/fetch-circle"
 import { auth } from "@/auth"
 import { ActivityForm } from "@/components/forms/activity-form"
 import { getActivities, getActivityById } from "@/data/activity"
+import { MetadataSet } from "@/utils/metadata"
 
 interface Props {
   params: {
@@ -11,23 +12,8 @@ interface Props {
     activity_id?: string
   }
 }
-
-export const generateMetadata = async ({ params }: Props) => {
-  const { circle_id } = params
-  const circle = await getCircleById(circle_id || "")
-
-  if (!circle) {
-    return {
-      title: "サークルが見つかりません。",
-      description: "サークルが見つかりません。",
-    }
-  }
-
-  return {
-    title: circle.name,
-    description: circle.description,
-  }
-}
+export const generateMetadata = ({ params }: Props) =>
+  MetadataSet(params.circle_id || "", "活動日程編集")
 
 export const generateStaticParams = async () => {
   const circles = await getCircles()

@@ -3,6 +3,7 @@ import { getCircleById, getCircles } from "@/actions/circle/fetch-circle"
 import { getMembershipRequests } from "@/actions/circle/membership-request"
 import { auth } from "@/auth"
 import { CircleDetailPage } from "@/components/layouts/circle-detail-page"
+import { MetadataSet } from "@/utils/metadata"
 
 interface Props {
   params: {
@@ -10,6 +11,9 @@ interface Props {
     tab_key?: string
   }
 }
+
+export const generateMetadata = ({ params }: Props) =>
+  MetadataSet(params.circle_id || "", params.tab_key || "")
 
 // 固定されたタブキーのリスト
 const list = ["activities", "album", "notifications", "members"]
