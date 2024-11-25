@@ -20,10 +20,26 @@ import {
 } from "@yamada-ui/react"
 import Link from "next/link"
 import { getCirclesByUserId } from "@/actions/circle/fetch-circle"
+import { fetchActivitiesByWeek } from "@/actions/circle/hoge-activity"
 import { getUserById } from "@/actions/user/user"
 import { auth } from "@/auth"
 import { CircleCard } from "@/components/data-display/circle-card"
 
+const generateCalendarData = () => {
+  const today = new Date()
+  const todayFormatted = `${today.getMonth() + 1}/${today.getDate()}`
+  return Array.from({ length: 7 }, (_, i) => {
+    const date = new Date(today)
+    date.setDate(today.getDate() + i)
+    const formattedDate = `${date.getMonth() + 1}/${date.getDate()}`
+    return {
+      date: formattedDate,
+      isToday: formattedDate === todayFormatted, 
+      events: i % 1 === 0 ? [{ title: `イベント${i + 1}` }] : [],
+    }
+  })
+}
+ 
 const notificationMockData = [
   {
     id: 1,
@@ -55,6 +71,9 @@ export default async function Home() {
   const session = await auth()
   const user = await getUserById(session?.user?.id || "")
   const circles = await getCirclesByUserId(user?.id || "")
+  const calendarData = generateCalendarData()
+  // const weekcalendar =  ActivitiesByDateRange()
+ 
   return (
     <VStack w="full" h="fit-content" p="md">
       <VStack>
@@ -78,10 +97,10 @@ export default async function Home() {
         flexGrow={1}
         templateAreas={{
           base: `
-        "notification circles circles circles" 
-        "notification circles circles circles" 
-        "notification calendar calendar calendar" 
-        "notification calendar calendar calendar" 
+        "notification circles circles circles"
+        "notification circles circles circles"
+        "notification calendar calendar calendar"
+        "notification calendar calendar calendar"
         `,
           md: `
         "notification"
@@ -161,25 +180,32 @@ export default async function Home() {
         </GridItem>
         <GridItem as={Card} area="calendar" w="full" overflowX="auto">
           <CardHeader>
-            <Heading as="h3" size="sm">
-              カレンダー
-            </Heading>
+          <HStack justifyContent="space-between">        
+             <Heading as="h3" size="sm">
+               カレンダー
+             </Heading>
+             <Button>前の週</Button>
+             <Button>次の週</Button>
+           </HStack>
           </CardHeader>
           <CardBody>
             <ScrollArea w="full" borderWidth={1}>
               <HStack w="full" gap={0}>
-                {calendarMockData.map((data, index) => (
+                {calendarData.map((data, index) => (
                   <VStack
                     key={index}
                     h="full"
                     flex={1}
                     borderRightWidth={
-                      index < calendarMockData.length - 1 ? 1 : 0
+                      index < calendarData.length - 1 ? 1 : 0
                     }
                     p="md"
                     minW="2xs"
                   >
-                    <Box>{data.date}</Box>
+                    <Box fontWeight={data.isToday ? 900 : "normal"}
+                     fontSize={data.isToday ? "lg" : "md"} >
+                    {data.date}
+                    </Box>
                     <VStack h="sm" overflowY="auto">
                       {data.events.map((event, i) => (
                         <Tag key={i}>{event.title}</Tag>

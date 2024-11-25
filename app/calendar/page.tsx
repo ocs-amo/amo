@@ -83,6 +83,22 @@ const CalendarPage = () => {
       location: "会議室",
       time: "16:00〜18:00",
     },
+    {
+      year: 2024,
+      month: 11,
+      day: 27,
+      name: "プログラミングサークル",
+      location: "会議室",
+      time: "16:00〜18:00",
+    },
+    {
+      year: 2024,
+      month: 11,
+      day: 14,
+      name: "プログラミングサークル",
+      location: "会議室",
+      time: "16:00〜18:00",
+    },
   ]
 
   return (
