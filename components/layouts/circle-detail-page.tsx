@@ -1,19 +1,14 @@
 "use client"
+
 import type { FC } from "@yamada-ui/react"
-import {
-  Box,
-  Heading,
-  HStack,
-  Tag,
-  Text,
-  VStack,
-} from "@yamada-ui/react"
+import { Box, Heading, HStack, Tag, Text, VStack } from "@yamada-ui/react"
 import { useState } from "react"
 import { CircleDetailTabs } from "../disclosure/circle-detail-tabs"
-import { CircleMembershipButton } from "../forms/circle-membership-button"
+import { CircleDetailButton } from "../forms/circle-detail-button"
 import { getCircleById } from "@/actions/circle/fetch-circle"
 import { getMembershipRequests } from "@/actions/circle/membership-request"
 import type { getActivityById } from "@/data/activity"
+import type { getAlbumById } from "@/data/album"
 import type { getAnnouncementById } from "@/data/announcement"
 import type { getThreadById } from "@/data/thread"
 
@@ -25,6 +20,7 @@ export const CircleDetailPage: FC<{
   currentActivity?: Awaited<ReturnType<typeof getActivityById>>
   currentThread?: Awaited<ReturnType<typeof getThreadById>>
   currentAnnouncement?: Awaited<ReturnType<typeof getAnnouncementById>>
+  currentAlbum?: Awaited<ReturnType<typeof getAlbumById>>
 }> = ({
   userId,
   circle,
@@ -33,6 +29,7 @@ export const CircleDetailPage: FC<{
   currentActivity,
   currentThread,
   currentAnnouncement,
+  currentAlbum,
 }) => {
   const [circleData, setCircleData] =
     useState<Awaited<ReturnType<typeof getCircleById>>>(circle)
@@ -59,9 +56,7 @@ export const CircleDetailPage: FC<{
         <VStack
           {...(circle?.imagePath
             ? {
-                backgroundImage: circle?.imagePath
-                  ? `url(${circle.imagePath})`
-                  : undefined,
+                backgroundImage: circle.imagePath,
                 backgroundSize: "cover",
                 backgroundColor: "whiteAlpha.700",
                 backgroundBlendMode: "overlay",
@@ -71,7 +66,6 @@ export const CircleDetailPage: FC<{
               })}
           p="md"
         >
-          <Heading>{circle?.name}</Heading>
           <HStack
             w="full"
             flexDirection={{
@@ -80,6 +74,7 @@ export const CircleDetailPage: FC<{
             }}
           >
             <VStack>
+              <Heading>{circle?.name}</Heading>
               <Text as="pre" textWrap="wrap">
                 {circle?.description}
               </Text>
@@ -89,7 +84,12 @@ export const CircleDetailPage: FC<{
                 ))}
               </HStack>
             </VStack>
-            <VStack alignItems="end">
+            <VStack
+              alignItems="end"
+              flexDir={{ base: "column", md: "row" }}
+              flexWrap={{ base: "initial", md: "wrap" }}
+              justifyContent="space-around"
+            >
               <Text>
                 講師：
                 {circle?.instructors
@@ -99,9 +99,10 @@ export const CircleDetailPage: FC<{
               <Text>人数：{circleData?.members?.length}人</Text>
               <Text>活動場所：{circle?.location}</Text>
               <Box>
-                <CircleMembershipButton
-                  circleId={circle?.id || ""}
+                <CircleDetailButton
                   userId={userId}
+                  tabKey={tabKey || ""}
+                  circle={circle}
                   isAdmin={!!isAdmin}
                   isMember={!!isMember}
                 />
@@ -119,6 +120,7 @@ export const CircleDetailPage: FC<{
           currentActivity={currentActivity}
           currentThread={currentThread}
           currentAnnouncement={currentAnnouncement}
+          currentAlbum={currentAlbum}
           fetchData={fetchData}
         />
       </VStack>

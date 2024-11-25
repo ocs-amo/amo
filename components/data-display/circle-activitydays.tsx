@@ -1,6 +1,5 @@
 "use client"
 import { MonthPicker } from "@yamada-ui/calendar"
-import { PlusIcon } from "@yamada-ui/lucide"
 import type { FC } from "@yamada-ui/react"
 import {
   Card,
@@ -8,7 +7,6 @@ import {
   Center,
   GridItem,
   HStack,
-  IconButton,
   LinkBox,
   LinkOverlay,
   Loading,
@@ -20,7 +18,6 @@ import {
   VStack,
 } from "@yamada-ui/react"
 import "dayjs/locale/ja"
-import Link from "next/link"
 import { useState } from "react"
 import { ActivityMenuButton } from "../forms/activity-menu-button"
 import { ActivityCard } from "./activity-card"
@@ -131,7 +128,7 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
         />
       ) : (
         <>
-          <HStack justifyContent="space-between">
+          <HStack justifyContent="start">
             <MonthPicker
               w="md"
               locale="ja"
@@ -141,13 +138,6 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
                 bg: "white",
               }}
             />
-            {isMember ? (
-              <IconButton
-                as={Link}
-                href={`/circles/${circle?.id}/activities/new`}
-                icon={<PlusIcon />}
-              />
-            ) : undefined}
           </HStack>
           <VStack>
             {loading ? (

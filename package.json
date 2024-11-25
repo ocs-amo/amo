@@ -57,6 +57,8 @@
     "@typescript-eslint/eslint-plugin": "^8.13.0",
     "@typescript-eslint/typescript-estree": "^8.13.0",
     "@yamada-ui/calendar": "^1.8.6",
+    "@yamada-ui/carousel": "^2.1.4",
+    "@yamada-ui/dropzone": "^1.0.52",
     "@yamada-ui/lucide": "^1.7.3",
     "@yamada-ui/react": "^1.6.2",
     "eslint": "^9.14.0",

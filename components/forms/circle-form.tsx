@@ -164,6 +164,9 @@ export const CircleForm: FC<CircleFormProps> = ({
 
   const onSubmit = async (values: FrontCircleForm) => {
     start()
+    if (watch("imagePath") && !values.imagePath) {
+      values.imagePath = watch("imagePath")
+    }
     const {
       success,
       error,
