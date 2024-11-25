@@ -3,55 +3,71 @@ import { getCircleById, getCircles } from "@/actions/circle/fetch-circle"
 import { getMembershipRequests } from "@/actions/circle/membership-request"
 import { auth } from "@/auth"
 import { CircleDetailPage } from "@/components/layouts/circle-detail-page"
+import { getAlbumById, getAlbums } from "@/data/album"
 
 interface Props {
   params: {
     circle_id?: string
-    tab_key?: string
+    album_id?: string
   }
 }
 
-// 固定されたタブキーのリスト
-const list = ["activities", "album", "notifications", "members"]
+export const generateMetadata = async ({ params }: Props) => {
+  const { circle_id } = params
+  const circle = await getCircleById(circle_id || "")
 
-export const dynamicParams = false
-export const dynamic = "force-dynamic"
+  if (!circle) {
+    return {
+      title: "サークルが見つかりません。",
+      description: "サークルが見つかりません。",
+    }
+  }
 
-// generateStaticParams 関数
+  return {
+    title: circle.name,
+    description: circle.description,
+  }
+}
+
 export const generateStaticParams = async () => {
   const circles = await getCircles()
-
-  if (!circles) return []
-
-  // 各サークルのIDとタブキーの組み合わせを生成
-  return circles?.flatMap((circle) =>
-    list.map((tab_key) => ({
+  const albums = await getAlbums()
+  if (!circles || !albums) {
+    return []
+  }
+  return circles.flatMap((circle) =>
+    albums.map((album) => ({
       circle_id: circle.id,
-      tab_key: tab_key,
+      album_id: album.id.toString(),
     })),
   )
 }
 
+export const dynamicParams = false
+export const dynamic = "force-dynamic"
+
 // ダイナミックルートのページコンポーネント
 const Page = async ({ params }: Props) => {
-  const { circle_id, tab_key } = params
+  const { circle_id, album_id: albumId } = params
   const session = await auth()
   const userId = session?.user?.id || ""
   const circle = await getCircleById(circle_id || "")
-  if (!circle) {
-    notFound()
-  }
   const membershipRequests = await getMembershipRequests(
     userId,
     circle_id || "",
   )
+  const currentAlbum = await getAlbumById(albumId || "")
+  if (!circle || !currentAlbum) {
+    notFound()
+  }
 
   return (
     <CircleDetailPage
       circle={circle}
       userId={userId}
       membershipRequests={membershipRequests}
-      tabKey={tab_key}
+      currentAlbum={currentAlbum}
+      tabKey="album"
     />
   )
 }

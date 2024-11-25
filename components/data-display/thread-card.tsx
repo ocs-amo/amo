@@ -27,7 +27,7 @@ import { PostCommentAction } from "@/actions/circle/thread-comment"
 import type { getThreadById } from "@/data/thread"
 import type { CommentFormInput } from "@/schema/topic"
 import { CommentFormSchema } from "@/schema/topic"
-import { parseDate } from "@/utils/format"
+import { parseFullDate } from "@/utils/format"
 
 interface ThreadCardProps {
   userId: string
@@ -92,7 +92,7 @@ export const ThreadCard: FC<ThreadCardProps> = ({
           </HStack>
           <VStack w="auto">
             <HStack>
-              <Text>{parseDate(currentThread.createdAt)}</Text>
+              <Text>{parseFullDate(currentThread.createdAt)}</Text>
               {isAdmin || currentThread.userId === userId ? (
                 <ThreadMenuButton
                   editLink={`/circles/${circleId}/${currentThread.type}/${currentThread.id}/edit`}
@@ -119,7 +119,7 @@ export const ThreadCard: FC<ThreadCardProps> = ({
                     </Text>
                   </VStack>
                 </HStack>
-                <Text>{parseDate(comment.createdAt)}</Text>
+                <Text>{parseFullDate(comment.createdAt)}</Text>
               </CardBody>
             </Card>
           ))}
