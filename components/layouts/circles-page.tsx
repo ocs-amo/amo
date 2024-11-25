@@ -1,5 +1,3 @@
-//circle/page.tsxから'use client'の分離
-
 "use client"
 
 import { SearchIcon, TriangleIcon } from "@yamada-ui/lucide"
