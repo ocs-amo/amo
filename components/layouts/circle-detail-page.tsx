@@ -84,7 +84,12 @@ export const CircleDetailPage: FC<{
                 ))}
               </HStack>
             </VStack>
-            <VStack alignItems="end">
+            <VStack
+              alignItems="end"
+              flexDir={{ base: "column", md: "row" }}
+              flexWrap={{ base: "initial", md: "wrap" }}
+              justifyContent="space-around"
+            >
               <Text>
                 講師：
                 {circle?.instructors
