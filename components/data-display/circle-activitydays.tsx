@@ -180,7 +180,9 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
                               ? `～${displayTime(activity.endTime)}`
                               : undefined}
                           </Text>
-                          <Text>{activity.participants.length}人</Text>
+                          <Text whiteSpace="nowrap">
+                            {activity.participants.length}人
+                          </Text>
                           <ActivityMenuButton
                             userId={userId}
                             isMember={!!isMember}
