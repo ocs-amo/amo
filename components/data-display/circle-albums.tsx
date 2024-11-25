@@ -99,7 +99,11 @@ export const CircleAlbums: FC<CircleAlbums> = ({
         </Center>
       ) : (
         <Grid
-          templateColumns={{ base: "repeat(3, 1fr)", md: "repeat(1, 1fr)" }}
+          templateColumns={{
+            base: "repeat(3, 1fr)",
+            lg: "repeat(2, 1fr)",
+            md: "repeat(1, 1fr)",
+          }}
           gap="md"
         >
           {albums.map((album) => (
@@ -118,42 +122,48 @@ export const CircleAlbums: FC<CircleAlbums> = ({
                   ))}
                 </Carousel>
                 <VStack p="md">
-                  <HStack justifyContent="space-between" alignItems="center">
-                    <HStack>
-                      <Heading
-                        as={LinkOverlay}
-                        href={`/circles/${circleId}/album/${album.id}`}
-                      >
-                        {album.title}
-                      </Heading>
+                  <HStack
+                    justifyContent="space-between"
+                    alignItems="center"
+                    flexWrap="wrap"
+                  >
+                    <Heading
+                      as={LinkOverlay}
+                      href={`/circles/${circleId}/album/${album.id}`}
+                    >
+                      {album.title}
+                    </Heading>
+                    <HStack ml="auto">
                       <Text>{parseDate(album.createdAt)}</Text>
+                      {isAdmin ? (
+                        <Menu>
+                          <MenuButton
+                            as={IconButton}
+                            icon={<EllipsisIcon fontSize="2xl" />}
+                            variant="outline"
+                            isRounded
+                          />
+                          <MenuList>
+                            <MenuItem
+                              as={Link}
+                              href={`/circles/${circleId}/album/${album.id}/edit`}
+                            >
+                              編集
+                            </MenuItem>
+                            <MenuItem
+                              color="red"
+                              onClick={() => handleDelete(album.id)}
+                            >
+                              削除
+                            </MenuItem>
+                          </MenuList>
+                        </Menu>
+                      ) : undefined}
                     </HStack>
-                    {isAdmin ? (
-                      <Menu>
-                        <MenuButton
-                          as={IconButton}
-                          icon={<EllipsisIcon fontSize="2xl" />}
-                          variant="outline"
-                          isRounded
-                        />
-                        <MenuList>
-                          <MenuItem
-                            as={Link}
-                            href={`/circles/${circleId}/album/${album.id}/edit`}
-                          >
-                            編集
-                          </MenuItem>
-                          <MenuItem
-                            color="red"
-                            onClick={() => handleDelete(album.id)}
-                          >
-                            削除
-                          </MenuItem>
-                        </MenuList>
-                      </Menu>
-                    ) : undefined}
                   </HStack>
-                  <Text as="pre">{album.description}</Text>
+                  <Text as="pre" textWrap="wrap">
+                    {album.description}
+                  </Text>
                 </VStack>
               </LinkBox>
             </GridItem>
