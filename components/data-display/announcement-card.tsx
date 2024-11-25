@@ -35,7 +35,7 @@ export const AnnouncementCard: FC<AnnouncementCardProps> = ({
 }) => {
   const router = useRouter()
   return (
-    <Card w="full" h="full">
+    <Card w="full" h="full" bg="white">
       <CardBody>
         <HStack w="full">
           <Avatar src={currentAnnouncement.user.image || ""} />

@@ -1,4 +1,5 @@
 import {
+  Avatar,
   Box,
   Button,
   Card,
@@ -64,30 +65,33 @@ export default async function Home() {
       <VStack>
         <Heading as="h2" size="lg">
           ようこそ！
+          <Text display={{ base: "inline", md: "none" }}>
+            {` `}
+            {user?.studentNumber}
+            {` `}
+            {user?.name}
+          </Text>
         </Heading>
         <Divider
           w="full"
           borderWidth="2px"
           orientation="horizontal"
           variant="solid"
+          borderColor="black"
         />
-        <Heading as="h2" size="lg">
-          {user?.studentNumber}
-          {` `}
-          {user?.name}
-        </Heading>
       </VStack>
       <Grid
         w="full"
         flexGrow={1}
         templateAreas={{
           base: `
-        "notification circles circles circles" 
-        "notification circles circles circles" 
+        "avatar circles circles circles" 
+        "avatar circles circles circles" 
         "notification calendar calendar calendar" 
         "notification calendar calendar calendar" 
         `,
           md: `
+        "avatar"
         "notification"
         "circles"
         "calendar"
@@ -96,7 +100,23 @@ export default async function Home() {
         gap="lg"
       >
         <GridItem
+          area="avatar"
+          as={Center}
+          w="full"
+          justifyContent="space-evenly"
+        >
+          <Avatar
+            src={session?.user?.image || ""}
+            boxSize={{ base: "xs", md: "24" }}
+          />
+          <Heading display={{ base: "none", md: "block" }} fontSize="lg">
+            <Text>{user?.studentNumber}</Text>
+            <Text>{user?.name}</Text>
+          </Heading>
+        </GridItem>
+        <GridItem
           as={Card}
+          variant="unstyled"
           area="notification"
           minW={{ base: "md", sm: "full" }}
         >
@@ -106,9 +126,9 @@ export default async function Home() {
             </Heading>
           </CardHeader>
           <CardBody>
-            <VStack overflowY="auto" gap="md">
+            <VStack w="full" h="full" overflowY="auto" gap="md">
               {notificationMockData.map((data) => (
-                <HStack key={data.id} p="sm" borderWidth={1}>
+                <HStack key={data.id} p="sm" bg="white" as={Card}>
                   <Box>
                     <Image src={data.icon} w="full" alt="icon image" />
                   </Box>
@@ -128,7 +148,7 @@ export default async function Home() {
             </VStack>
           </CardBody>
         </GridItem>
-        <GridItem as={Card} area="circles">
+        <GridItem as={Card} variant="unstyled" area="circles">
           <CardHeader>
             <Heading as="h3" size="sm">
               所属サークル
@@ -149,11 +169,12 @@ export default async function Home() {
               }
               gap="md"
               w="full"
+              h="full"
             >
               {circles?.length ? (
                 circles?.map((data) => <CircleCard key={data.id} data={data} />)
               ) : (
-                <Center w="full" as={VStack}>
+                <Center w="full" h="full" as={VStack}>
                   <Text>サークルに入っていません</Text>
                   <Button as={Link} href="/circles">
                     サークルを探す
@@ -163,15 +184,21 @@ export default async function Home() {
             </Grid>
           </CardBody>
         </GridItem>
-        <GridItem as={Card} area="calendar" w="full" overflowX="auto">
+        <GridItem
+          as={Card}
+          variant="unstyled"
+          area="calendar"
+          w="full"
+          overflowX="auto"
+        >
           <CardHeader>
             <Heading as="h3" size="sm">
               カレンダー
             </Heading>
           </CardHeader>
           <CardBody>
-            <ScrollArea w="full" borderWidth={1}>
-              <HStack w="full" gap={0}>
+            <ScrollArea w="full" h="full" mb="md" as={Card}>
+              <HStack w="full" h="full" gap={0}>
                 {calendarMockData.map((data, index) => (
                   <VStack
                     key={index}
@@ -182,6 +209,7 @@ export default async function Home() {
                     }
                     p="md"
                     minW="2xs"
+                    bg="white"
                   >
                     <Box>{data.date}</Box>
                     <VStack h="sm" overflowY="auto">

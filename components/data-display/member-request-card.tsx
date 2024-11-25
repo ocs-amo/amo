@@ -79,7 +79,7 @@ export const MemberRequestCard: FC<MemberRequestCardProps> = ({
     }
   }
   return (
-    <GridItem w="full" rounded="md" as={Card}>
+    <GridItem w="full" rounded="md" as={Card} bg="white">
       <Dialog
         isOpen={isOpen}
         onClose={onClose}
