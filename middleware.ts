@@ -2,7 +2,9 @@ import { NextResponse } from "next/server"
 import { auth as middleware } from "@/auth"
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+  matcher: [
+    "/((?!api|_next/static|_next/image|favicon.ico|images/).*)", // `images/` を追加
+  ],
 }
 
 export default middleware((req) => {
@@ -10,9 +12,13 @@ export default middleware((req) => {
 
   console.log("auth", reqUrl.pathname)
 
-  if (!req.auth && reqUrl?.pathname !== "/signin") {
+  if (!req.auth && reqUrl.pathname !== "/signin") {
     return NextResponse.redirect(new URL("/signin", req.url))
-  } else if (req.auth && reqUrl?.pathname === "/signin") {
+  }
+
+  if (req.auth && reqUrl.pathname === "/signin") {
     return NextResponse.redirect(new URL("/", req.url))
   }
+
+  return NextResponse.next()
 })

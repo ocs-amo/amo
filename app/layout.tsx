@@ -9,8 +9,8 @@ import theme from "@/theme"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "amo",
-  description: "amo",
+  title: "CIRCLIA",
+  description: "CIRCLIA",
 }
 
 export default async function RootLayout({

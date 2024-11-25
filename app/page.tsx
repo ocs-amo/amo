@@ -25,6 +25,10 @@ import { getUserById } from "@/actions/user/user"
 import { auth } from "@/auth"
 import { CircleCard } from "@/components/data-display/circle-card"
 
+export const metadata = {
+  title: "ホーム - CIRCLIA",
+}
+
 const notificationMockData = [
   {
     id: 1,

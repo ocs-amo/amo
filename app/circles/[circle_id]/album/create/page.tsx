@@ -2,10 +2,15 @@ import { Center } from "@yamada-ui/react"
 import { getCircleById, getCircles } from "@/actions/circle/fetch-circle"
 import { auth } from "@/auth"
 import { AlbumForm } from "@/components/forms/album-form"
+import { MetadataSet } from "@/utils/metadata"
 
 interface Props {
   params: { circle_id?: string }
 }
+
+export const generateMetadata = ({ params }: Props) =>
+  MetadataSet(params.circle_id || "", "アルバム作成")
+
 export const generateStaticParams = async () => {
   const circles = await getCircles()
 

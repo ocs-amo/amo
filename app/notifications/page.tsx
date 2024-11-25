@@ -10,6 +10,10 @@ import {
   VStack,
 } from "@yamada-ui/react"
 
+export const metadata = {
+  title: "通知 - CIRCLIA",
+}
+
 const notificationMockData = [
   {
     id: 1,
