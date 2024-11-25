@@ -27,6 +27,7 @@ import {
 } from "@yamada-ui/react"
 import Link from "next/link"
 import { useState } from "react"
+import { AlbumCard } from "./album-card"
 import {
   handleDeleteAlbum,
   handleGetAlbumById,
@@ -82,7 +83,12 @@ export const CircleAlbums: FC<CircleAlbums> = ({
     <VStack>
       <Snacks snacks={snacks} />
       {currentAlbum ? (
-        <></>
+        <AlbumCard
+          circleId={circleId}
+          isAdmin={isAdmin}
+          currentAlbum={currentAlbum}
+          handleDelete={handleDelete}
+        />
       ) : loading ? (
         <Center w="full">
           <Loading fontSize="xl" />
