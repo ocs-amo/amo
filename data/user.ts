@@ -1,5 +1,21 @@
 import { db } from "@/utils/db"
 
+export const getUsers = async () =>
+  db.user.findMany({
+    select: {
+      id: true,
+      image: true,
+      name: true,
+      profileText: true,
+      studentNumber: true,
+      CircleMember: {
+        include: {
+          circle: true,
+        },
+      },
+    },
+  })
+
 export const getUserByEmail = async (email: string) => {
   try {
     const user = await db.user.findUnique({
