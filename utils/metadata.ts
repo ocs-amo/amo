@@ -6,8 +6,8 @@ const handlingTabTitle = (key: string) => {
   switch (key) {
     case "activities":
       return "活動日程"
-    case "images":
-      return "画像"
+    case "album":
+      return "アルバム"
     case "notifications":
       return "掲示板"
     case "members":
