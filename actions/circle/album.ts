@@ -133,3 +133,6 @@ export async function handleCreateAlbum(data: BackAlbumForm, circleId: string) {
 
 export const handleGetAlbumsByCircleId = async (circleId: string) =>
   await getAlbumsByCircleId(circleId)
+
+export const handleGetAlbumById = async (albumId: string) =>
+  await getAlbumById(albumId)
