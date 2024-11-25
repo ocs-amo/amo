@@ -1,7 +1,6 @@
 import { Carousel, CarouselSlide } from "@yamada-ui/carousel"
 import { EllipsisIcon } from "@yamada-ui/lucide"
-import type {
-  FC} from "@yamada-ui/react";
+import type { FC } from "@yamada-ui/react"
 import {
   Center,
   Heading,

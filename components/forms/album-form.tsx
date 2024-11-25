@@ -1,18 +1,15 @@
 "use client"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Dropzone, IMAGE_ACCEPT_TYPE } from "@yamada-ui/dropzone"
+import { ImageIcon } from "@yamada-ui/lucide"
 import type { FC } from "@yamada-ui/react"
 import {
   Button,
   Center,
-  CloseIcon,
   ErrorMessage,
+  FileButton,
   FormControl,
-  Grid,
-  GridItem,
   Heading,
-  IconButton,
-  Image,
   Input,
   Label,
   Snacks,
@@ -25,15 +22,12 @@ import {
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { Controller, useForm } from "react-hook-form"
+import { AlbumPreviewGrid } from "../data-display/album-preview-grid"
 import { handleCreateAlbum, handleUpdateAlbum } from "@/actions/circle/album"
 import type { getAlbumById } from "@/data/album"
-import {
-  AlbumImageSchema,
-  BackAlbumSchema,
-  FrontAlbumFormSchema,
-} from "@/schema/album"
+import { BackAlbumSchema, FrontAlbumFormSchema } from "@/schema/album"
 import type { FrontAlbumForm } from "@/schema/album"
-import { getBase64Image } from "@/utils/file"
+import { getBase64Image, handleImageValidation } from "@/utils/file"
 
 interface AlbumFormProps {
   circleId: string
@@ -113,7 +107,40 @@ export const AlbumForm: FC<AlbumFormProps> = ({ circleId, mode, album }) => {
           render={({ field: { onChange, value = [], ref, ...rest } }) => (
             <>
               <Label isRequired>画像を選択</Label>
+              <VStack display={{ base: "none", md: "flex" }}>
+                <FileButton
+                  {...{ ref, ...rest }}
+                  leftIcon={<ImageIcon />}
+                  alignItems="center"
+                  multiple
+                  accept="image/*"
+                  onChange={async (newFiles) => {
+                    if (!newFiles) return
+                    const { valid, error } = await handleImageValidation(
+                      value,
+                      newFiles,
+                    )
+                    if (valid) {
+                      onChange(valid)
+                      clearErrors("images")
+                    } else {
+                      setError("images", { type: "manual", message: error })
+                    }
+                  }}
+                >
+                  選択
+                </FileButton>
+                {value.length > 0 ? (
+                  <AlbumPreviewGrid
+                    images={value}
+                    onRemove={(index) =>
+                      onChange(value.filter((_, i) => i !== index))
+                    }
+                  />
+                ) : undefined}
+              </VStack>
               <Dropzone
+                display={{ base: "flex", md: "none" }}
                 multiple
                 accept={IMAGE_ACCEPT_TYPE}
                 size="full"
@@ -125,18 +152,15 @@ export const AlbumForm: FC<AlbumFormProps> = ({ circleId, mode, album }) => {
                       (fileRejection) => fileRejection.file,
                     ),
                   ]
-                  const { success, error, data } =
-                    await AlbumImageSchema.safeParseAsync([...value, ...files])
-
-                  if (success) {
-                    onChange([...data])
+                  const { valid, error } = await handleImageValidation(
+                    value,
+                    files,
+                  )
+                  if (valid) {
+                    onChange(valid)
                     clearErrors("images")
                   } else {
-                    const errorMessage = error.errors?.[0]?.message
-                    setError("images", {
-                      type: "manual",
-                      message: errorMessage || "不明なエラーが発生しました。",
-                    })
+                    setError("images", { type: "manual", message: error })
                   }
                 }}
                 ref={ref}
@@ -145,45 +169,12 @@ export const AlbumForm: FC<AlbumFormProps> = ({ circleId, mode, album }) => {
                 {...rest}
               >
                 {value.length > 0 ? (
-                  <Grid
-                    templateColumns="repeat(5, 1fr)"
-                    templateRows="repeat(2, 1fr)"
-                    gap="md"
-                  >
-                    {Array.from(value).map((file, index) => (
-                      <GridItem
-                        rounded="md"
-                        boxSize="100px"
-                        key={`${file}-${index}`}
-                        position="relative"
-                      >
-                        <Image
-                          src={file}
-                          alt={`${file}-${index}`}
-                          boxSize="full"
-                          borderRadius="md"
-                          objectFit="cover"
-                        />
-                        <IconButton
-                          size="xs"
-                          isRounded
-                          icon={<CloseIcon />}
-                          position="absolute"
-                          top="-sm"
-                          right="-sm"
-                          onClick={(e) => {
-                            e.stopPropagation() // ドロップゾーンのクリックイベントを止める
-                            const updatedFiles = value.filter(
-                              (_, fileIndex) => fileIndex !== index,
-                            ) // 削除対象以外を保持
-                            onChange(updatedFiles) // 更新
-                          }}
-                          colorScheme="danger"
-                          aria-label="画像削除"
-                        />
-                      </GridItem>
-                    ))}
-                  </Grid>
+                  <AlbumPreviewGrid
+                    images={value}
+                    onRemove={(index) =>
+                      onChange(value.filter((_, i) => i !== index))
+                    }
+                  />
                 ) : (
                   <Text>画像をドラッグ&ドロップ</Text>
                 )}
