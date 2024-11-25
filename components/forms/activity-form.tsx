@@ -301,10 +301,12 @@ export const ActivityForm: FC<ActivityFormProps> = ({
         </FormControl>
         <Snacks snacks={snacks} />
         <Center gap="md" justifyContent="end">
-          <Button as={Link} href={`/circles/${circleId || ""}/activities`}>
+          <Button as={Link} href={`/circles/${circleId || ""}/activities`}
+          colorScheme="riverBlue">
             キャンセル
           </Button>
-          <Button type="submit" isLoading={isLoading}>
+          <Button type="submit" isLoading={isLoading}
+          colorScheme="riverBlue">
             {mode === "create" ? "追加" : "更新"}
           </Button>
         </Center>

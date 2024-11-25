@@ -60,7 +60,9 @@ export const CirclesPage = () => {
             </InputGroup>
           </HStack>
           <Box textAlign="right">
-            <Button as={Link} href="/circles/create">
+            <Button as={Link} href="/circles/create"
+            colorScheme="riverBlue"
+              >
               サークル作成
             </Button>
           </Box>
