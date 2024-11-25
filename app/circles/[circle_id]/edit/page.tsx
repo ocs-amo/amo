@@ -12,7 +12,7 @@ interface Props {
 }
 
 export const generateMetadata = ({ params }: Props) =>
-  MetadataSet(params.circle_id || "", "編集")
+  MetadataSet(params.circle_id || "", "サークル編集")
 
 export const dynamicParams = false
 export const dynamic = "force-dynamic"
