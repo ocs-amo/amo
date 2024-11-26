@@ -125,16 +125,16 @@ export const ProfileForm: FC<ProfileForm> = ({ user }) => {
         <FormControl
           isInvalid={!!errors.image}
           errorMessage={errors.image ? errors.image.message : undefined}
+          w="full"
+          boxSize={{ base: "2xs", md: "24" }}
+          position="relative"
+          as={Center}
         >
           <Controller
             name="image"
             control={control}
             render={({ field: { ref, name, onChange, onBlur } }) => (
-              <Center
-                w="full"
-                boxSize={{ base: "2xs", md: "24" }}
-                position="relative"
-              >
+              <>
                 <Avatar
                   src={imagePreview}
                   boxSize={{ base: "2xs", md: "24" }}
@@ -178,7 +178,7 @@ export const ProfileForm: FC<ProfileForm> = ({ user }) => {
                     </MenuItem>
                   </MenuList>
                 </Menu>
-              </Center>
+              </>
             )}
           />
         </FormControl>
