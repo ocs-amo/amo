@@ -35,7 +35,11 @@ export const AlbumImageSchema = z
 
 // フロントエンド用スキーマ
 export const AlbumFormSchema = z.object({
-  title: z.string().trim().min(1, { message: "タイトルは必須です。" }),
+  title: z
+    .string()
+    .trim()
+    .min(1, { message: "タイトルは必須です。" })
+    .max(20, { message: "20文字以下にしてください。" }),
   description: z.string().trim().min(1, { message: "内容は必須です。" }),
 })
 
