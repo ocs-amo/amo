@@ -57,14 +57,17 @@ const Page = async ({ params }: Props) => {
   }
 
   return (
-    <VStack w="full" h="full" p="md">
+    <VStack w="full" maxW="6xl" h="full" p="md" m="auto">
       <HStack
         w="full"
         maxW="3xl"
         m="auto"
         flexDir={{ base: "row", sm: "column" }}
       >
-        <Avatar src={user?.image || ""} boxSize={{ base: "2xs", md: "24" }} />
+        <Avatar
+          src={user?.image || ""}
+          boxSize={{ base: "2xs", md: "28", sm: "24" }}
+        />
         <VStack maxW="xl">
           <Heading fontSize="2xl">{user?.name}</Heading>
           <HStack justifyContent="space-between" flexWrap="wrap">
