@@ -70,7 +70,13 @@ const Page = async ({ params }: Props) => {
           <HStack justifyContent="space-between" flexWrap="wrap">
             <Text>{user?.studentNumber}</Text>
             {userId === session?.user?.id ? (
-              <Button colorScheme="riverBlue">プロフィール編集</Button>
+              <Button
+                as={Link}
+                href={`/user/${userId}/edit`}
+                colorScheme="riverBlue"
+              >
+                プロフィール編集
+              </Button>
             ) : undefined}
           </HStack>
         </VStack>

@@ -30,6 +30,10 @@ export const FrontUserProfileSchema = UserProfileSchema.extend({
   image: UserIconSchema,
 }).brand<"FrontUserProfileSchema">()
 
+export type FrontUserProfileForm = z.infer<typeof FrontUserProfileSchema>
+
 export const BackUserProfileSchema = UserProfileSchema.extend({
   image: z.string().optional().nullable(),
 }).brand<"BackUserProfileSchema">()
+
+export type BackUserProfileForm = z.infer<typeof BackUserProfileSchema>
