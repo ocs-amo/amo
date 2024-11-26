@@ -15,17 +15,25 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
+  Snacks,
   Text,
   Textarea,
+  useBoolean,
   useSafeLayoutEffect,
+  useSnacks,
   VStack,
   type FC,
 } from "@yamada-ui/react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { Controller, useForm } from "react-hook-form"
-import type { getUserById } from "@/actions/user/user"
-import { FrontUserProfileSchema, UserIconSchema } from "@/schema/user"
+import { updateUserAction, type getUserById } from "@/actions/user/user"
+import {
+  BackUserProfileSchema,
+  FrontUserProfileSchema,
+  UserIconSchema,
+} from "@/schema/user"
 import type { FrontUserProfileForm } from "@/schema/user"
 
 interface ProfileForm {
@@ -34,6 +42,7 @@ interface ProfileForm {
 
 export const ProfileForm: FC<ProfileForm> = ({ user }) => {
   const [imagePreview, setImagePreview] = useState<string>(user?.image || "")
+  const [isLoading, { on: start, off: end }] = useBoolean()
   const {
     register,
     control,
@@ -48,9 +57,37 @@ export const ProfileForm: FC<ProfileForm> = ({ user }) => {
       image: user?.image || "",
     },
   })
+  const { snack, snacks } = useSnacks()
+  const router = useRouter()
+  const onSubmit = async (data: FrontUserProfileForm) => {
+    start()
+    if (watch("image") && !data.image) {
+      data.image = watch("image")
+    }
+    const {
+      success,
+      error,
+      data: parseData,
+    } = BackUserProfileSchema.safeParse(data)
 
-  const onSubmit = (data: FrontUserProfileForm) => {
-    console.log(data)
+    if (!success) {
+      // エラーメッセージを表示
+      console.error("Validation failed:", error)
+      end()
+      return
+    }
+
+    const result = await updateUserAction(parseData)
+    if (result.success) {
+      snack({ title: "プロフィールの更新に成功しました", status: "success" })
+      router.push(`/user/${user?.id}`)
+    } else {
+      snack({
+        title: result.error || "プロフィールの更新に失敗しました",
+        status: "error",
+      })
+      end()
+    }
   }
 
   // watchでimagePathを監視
@@ -170,11 +207,14 @@ export const ProfileForm: FC<ProfileForm> = ({ user }) => {
           ) : undefined}
         </VStack>
       </FormControl>
+      <Snacks snacks={snacks} />
       <Center gap="md" justifyContent="end">
         <Button as={Link} href={`/user/${user?.id || ""}`}>
           キャンセル
         </Button>
-        <Button type="submit">更新</Button>
+        <Button type="submit" isLoading={isLoading}>
+          更新
+        </Button>
       </Center>
     </VStack>
   )
