@@ -190,7 +190,9 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
                 </GridItem>
               ))
             ) : (
-              <Text>活動がありません</Text>
+              <Center w="full">
+                <Text>活動がありません</Text>
+              </Center>
             )}
           </VStack>
         </>

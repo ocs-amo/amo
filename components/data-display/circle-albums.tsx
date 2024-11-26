@@ -90,7 +90,7 @@ export const CircleAlbums: FC<CircleAlbums> = ({
           handleDelete={handleDelete}
         />
       ) : loading ? (
-        <Center w="full">
+        <Center w="full" h="full">
           <Loading fontSize="xl" />
         </Center>
       ) : albums.length === 0 ? (
