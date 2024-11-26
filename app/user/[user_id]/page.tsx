@@ -17,14 +17,22 @@ import { getUserById } from "@/actions/user/user"
 import { auth } from "@/auth"
 import { CircleCard } from "@/components/data-display/circle-card"
 import { getUsers } from "@/data/user"
-import { MetadataSet } from "@/utils/metadata"
 
 interface Props {
   params: { user_id?: string }
 }
 
-export const generateMetadata = ({ params }: Props) =>
-  MetadataSet(params.user_id || "", "")
+export const generateMetadata = async ({ params }: Props) => {
+  const user = await getUserById(params.user_id || "")
+  if (!user) {
+    return {
+      title: "ユーザーがいません",
+    }
+  }
+  return {
+    title: `${user.name}さんのプロフィール`,
+  }
+}
 
 export const dynamicParams = false
 export const dynamic = "force-dynamic"
