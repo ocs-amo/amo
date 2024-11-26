@@ -76,7 +76,9 @@ export const AlbumCard: FC<AlbumCard> = ({
             ) : undefined}
           </HStack>
         </HStack>
-        <Text as="pre">{currentAlbum.description}</Text>
+        <Text as="pre" textWrap="wrap">
+          {currentAlbum.description}
+        </Text>
       </VStack>
     </HStack>
   )
