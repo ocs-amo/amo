@@ -82,7 +82,7 @@ const Page = async ({ params }: Props) => {
         </VStack>
       </HStack>
       {user.profileText ? (
-        <Card>
+        <Card bg="white">
           <CardBody>
             <Text as="pre" textWrap="wrap">
               {user.profileText}
