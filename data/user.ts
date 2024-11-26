@@ -1,5 +1,44 @@
 import { db } from "@/utils/db"
 
+export const updateUser = async (
+  userId: string,
+  profileText: string,
+  image: string,
+) =>
+  db.user.update({
+    select: {
+      id: true,
+      email: true,
+      name: true,
+      image: true,
+      profileText: true,
+      studentNumber: true,
+    },
+    where: {
+      id: userId,
+    },
+    data: {
+      profileText,
+      image,
+    },
+  })
+
+export const getUsers = async () =>
+  db.user.findMany({
+    select: {
+      id: true,
+      image: true,
+      name: true,
+      profileText: true,
+      studentNumber: true,
+      CircleMember: {
+        include: {
+          circle: true,
+        },
+      },
+    },
+  })
+
 export const getUserByEmail = async (email: string) => {
   try {
     const user = await db.user.findUnique({

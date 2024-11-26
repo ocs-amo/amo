@@ -11,6 +11,8 @@ import {
   Dialog,
   GridItem,
   HStack,
+  LinkBox,
+  LinkOverlay,
   Text,
   useDisclosure,
 } from "@yamada-ui/react"
@@ -98,14 +100,14 @@ export const MemberRequestCard: FC<MemberRequestCardProps> = ({
         {confirmState === "approve" ? "本当に承認しますか？" : undefined}
         {confirmState === "reject" ? "本当に拒否しますか？" : undefined}
       </Dialog>
-      <CardBody>
+      <CardBody as={LinkBox}>
         <HStack
           as={Center}
           justifyContent="space-between"
           w="full"
           flexWrap="wrap"
         >
-          <HStack flexWrap="wrap">
+          <HStack flexWrap="wrap" as={LinkOverlay} href={`/user/${member.id}`}>
             <Avatar src={member.image || ""} />
             {member.requestType === "join" ? (
               <Badge colorScheme="success">入会</Badge>
