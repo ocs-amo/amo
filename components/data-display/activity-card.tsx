@@ -1,6 +1,18 @@
 "use client"
 import type { FC } from "@yamada-ui/react"
-import { Card, CardBody, Center, HStack, Text, VStack } from "@yamada-ui/react"
+import {
+  Avatar,
+  Card,
+  CardBody,
+  Center,
+  Grid,
+  GridItem,
+  HStack,
+  LinkBox,
+  LinkOverlay,
+  Text,
+  VStack,
+} from "@yamada-ui/react"
 import { ActivityMenuButton } from "../forms/activity-menu-button"
 import type { getCircleById } from "@/actions/circle/fetch-circle"
 import type { getActivityById } from "@/data/activity"
@@ -91,6 +103,43 @@ export const ActivityCard: FC<ActivityCardProps> = ({
             <Text>備考:</Text>
             <Text as="pre">{currentActivity.notes}</Text>
           </HStack>
+          <VStack>
+            <Text>参加者</Text>
+            <Grid
+              templateColumns={{ base: "repeat(2, 1fr)", md: "repeat(1, 1fr)" }}
+              gap="md"
+            >
+              {currentActivity.participants.map((participant) => (
+                <GridItem
+                  w="full"
+                  rounded="md"
+                  as={Card}
+                  bg="white"
+                  variant="outline"
+                  key={participant.id}
+                >
+                  <CardBody as={LinkBox}>
+                    <HStack
+                      as={Center}
+                      w="full"
+                      flexWrap="wrap"
+                      justifyContent="space-between"
+                    >
+                      <HStack
+                        flexWrap="wrap"
+                        as={LinkOverlay}
+                        href={`/user/${participant.user.id}`}
+                      >
+                        <Avatar src={participant.user.image || ""} />
+                        <Text>{participant.user.name}</Text>
+                        <Text>{participant.user.studentNumber}</Text>
+                      </HStack>
+                    </HStack>
+                  </CardBody>
+                </GridItem>
+              ))}
+            </Grid>
+          </VStack>
         </VStack>
       </CardBody>
     </Card>
