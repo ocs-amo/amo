@@ -5,13 +5,13 @@ import { parse } from "url"
 import dotenv from "dotenv"
 import next from "next"
 
-// NODE_OPTIONS をプログラム内で設定
-process.env.NODE_OPTIONS = "--max-http-header-size=1280000"
-
 dotenv.config({ path: ".env" })
 
 // 開発モードか本番モードかを判定
 const dev = process.env.NODE_ENV !== "production"
+
+console.log("NODE_ENV:", process.env.NODE_ENV)
+console.log("NODE_OPTIONS:", process.env.NODE_OPTIONS)
 
 const app = next({ dev })
 const handle = app.getRequestHandler()
