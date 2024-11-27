@@ -21,29 +21,6 @@ import { signin } from "@/actions/auth/signin"
 import { SigninSchema } from "@/schema/auth"
 import type { SigninForm } from "@/schema/auth"
 
-const AmoLogo = () => (
-  <svg
-    width="100"
-    height="40"
-    viewBox="0 0 100 40"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path d="M20 0L40 40H0L20 0Z" fill="#FF6B6B" />
-    <path d="M60 0L80 40H40L60 0Z" fill="#4ECDC4" />
-    <text
-      x="50"
-      y="35"
-      fontFamily="Arial"
-      fontSize="24"
-      fill="#333333"
-      textAnchor="middle"
-    >
-      amo
-    </text>
-  </svg>
-)
-
 export const LoginForm = () => {
   const [isLoading, { on: start, off: end }] = useBoolean()
   const [error, setError] = useState("")
@@ -70,12 +47,11 @@ export const LoginForm = () => {
       <VStack as="form" onSubmit={handleSubmit(onSubmit)}>
         <Center>
           <Heading
-            fontSize="70px"
-            position="relative"
+            fontSize="7xl"
             color="black"
             _firstLetter={{ color: "#35B0D2" }}
             fontWeight="light"
-            textShadow="1px 1px 0 #666,2px 2px 0 #666,3px 3px 0 #666"
+            textShadow="1px 1px 0 #fff,2px 2px 0 #666,3px 3px 0 #666"
           >
             CIRCLIA
           </Heading>
