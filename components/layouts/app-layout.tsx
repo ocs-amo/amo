@@ -36,7 +36,6 @@ export const AppLayout: FC<{
     <VStack w="100vw" h="100dvh" gap={0}>
       <VStack w="full" bgColor="black" px="md">
         <Heading
-          position="relative"
           color="white"
           _firstLetter={{ color: "#35B0D2" }}
           fontWeight="light"
