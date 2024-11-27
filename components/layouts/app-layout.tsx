@@ -85,31 +85,9 @@ export const AppLayout: FC<{
               alignItems="center"
               as={Link}
               variant="ghost"
-              href="/"
-              icon={<MessageCircleMoreIcon fontSize="2xl" />}
-              title="DM"
-            />
-            <IconButton
-              w="50px"
-              h="50px"
-              justifyContent="center"
-              alignItems="center"
-              as={Link}
-              variant="ghost"
               href="/calendar"
               icon={<CalendarDaysIcon fontSize="2xl" />}
               title="カレンダー"
-            />
-            <IconButton
-              w="50px"
-              h="50px"
-              justifyContent="center"
-              alignItems="center"
-              as={Link}
-              variant="ghost"
-              href=""
-              icon={<FileDigitIcon fontSize="2xl" />}
-              title="今日のイベント"
             />
             <IconButton
               w="50px"
@@ -133,17 +111,6 @@ export const AppLayout: FC<{
               title="ログアウト"
             />
           </VStack>
-          <IconButton
-            w="50px"
-            h="50px"
-            justifyContent="center"
-            alignItems="center"
-            as={Link}
-            variant="ghost"
-            href="/"
-            icon={<SettingsIcon fontSize="2xl" />}
-            title="設定"
-          />
         </VStack>
         <Box w="full" h="full" overflowY="auto">
           {children}
