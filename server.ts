@@ -4,6 +4,10 @@ import { join } from "path"
 import { parse } from "url"
 import dotenv from "dotenv"
 import next from "next"
+
+// NODE_OPTIONS をプログラム内で設定
+process.env.NODE_OPTIONS = "--max-http-header-size=1280000"
+
 dotenv.config({ path: ".env" })
 
 // 開発モードか本番モードかを判定
