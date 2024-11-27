@@ -40,6 +40,7 @@ export const CirclesPage = () => {
           position="sticky"
           py="md"
           top={0}
+          backgroundImage="url('/images/white_marble.png')"
           backgroundColor="Menu"
           as="header"
           zIndex={1}
