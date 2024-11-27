@@ -7,14 +7,10 @@ import {
   CardHeader,
   Center,
   Divider,
-  Flex,
   Grid,
   GridItem,
   Heading,
   HStack,
-  InfoIcon,
-  LinkBox,
-  LinkOverlay,
   ScrollArea,
   Tag,
   Text,
@@ -25,8 +21,8 @@ import { getCirclesByUserId } from "@/actions/circle/fetch-circle"
 import { getUserById } from "@/actions/user/user"
 import { auth } from "@/auth"
 import { CircleCard } from "@/components/data-display/circle-card"
+import { NotificationList } from "@/components/data-display/notification-list"
 import { getAnnouncementsByUserId } from "@/data/announcement"
-import { parseDate } from "@/utils/format"
 
 export const metadata = {
   title: "ホーム - CIRCLIA",
@@ -125,42 +121,7 @@ export default async function Home() {
           </CardHeader>
 
           <CardBody>
-            <VStack w="full" h="full" overflowY="auto" gap="md">
-              {announcements?.length ? (
-                announcements?.map((announcement) => (
-                  <HStack key={announcement.id} bg="white" as={Card}>
-                    <HStack as={LinkBox} w="full" p="sm">
-                      <Box>
-                        <Avatar
-                          src={announcement.user.image || ""}
-                          alt={`${announcement.user.name}のアイコン画像`}
-                        />
-                      </Box>
-                      <VStack
-                        as={LinkOverlay}
-                        href={`/circles/${announcement.circleId}/announcement/${announcement.id}`}
-                      >
-                        <HStack gap="sm">
-                          {announcement.isImportant ? (
-                            <InfoIcon fontSize="lg" color="primary" />
-                          ) : undefined}
-                          <Heading size="xs" as="h4">
-                            {announcement.title}
-                          </Heading>
-                        </HStack>
-                        <Flex justifyContent="right">
-                          {parseDate(announcement.createdAt)}
-                        </Flex>
-                      </VStack>
-                    </HStack>
-                  </HStack>
-                ))
-              ) : (
-                <Center w="full" h="full">
-                  <Text>お知らせはありません</Text>
-                </Center>
-              )}
-            </VStack>
+            <NotificationList announcements={announcements} />
           </CardBody>
         </GridItem>
 
