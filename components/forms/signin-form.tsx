@@ -69,9 +69,17 @@ export const LoginForm = () => {
     <Container m="auto" maxW="4xl" w="full" h="100dvh" as={Center}>
       <VStack as="form" onSubmit={handleSubmit(onSubmit)}>
         <Center>
-          <AmoLogo />
+          <Heading
+            fontSize="70px"
+            position="relative"
+            color="black"
+            _firstLetter={{ color: "#35B0D2" }}
+            fontWeight="light"
+            textShadow="1px 1px 0 #666,2px 2px 0 #666,3px 3px 0 #666"
+          >
+            CIRCLIA
+          </Heading>
         </Center>
-        <Heading textAlign="center">amo</Heading>
         <FormControl
           label="メールアドレス"
           isInvalid={!!errors.email}
