@@ -29,6 +29,21 @@ export const metadata = {
   title: "ホーム - CIRCLIA",
 }
 
+const generateCalendarData = () => {
+  const today = new Date()
+  const todayFormatted = `${today.getMonth() + 1}/${today.getDate()}`
+  return Array.from({ length: 7 }, (_, i) => {
+    const date = new Date(today)
+    date.setDate(today.getDate() + i)
+    const formattedDate = `${date.getMonth() + 1}/${date.getDate()}`
+    return {
+      date: formattedDate,
+      isToday: formattedDate === todayFormatted,
+      events: i % 1 === 0 ? [{ title: `イベント${i + 1}` }] : [],
+    }
+  })
+}
+
 const notificationMockData = [
   {
     id: 1,
@@ -46,20 +61,13 @@ const notificationMockData = [
   },
 ]
 
-const calendarMockData = [
-  { date: "2", events: [] },
-  { date: "3", events: [{ title: "ゲームサークル" }] },
-  { date: "4", events: [] },
-  { date: "5", events: [] },
-  { date: "6", events: [{ title: "プログラミングサークル" }] },
-  { date: "7", events: [] },
-  { date: "8", events: [] },
-]
-
 export default async function Home() {
   const session = await auth()
   const user = await getUserById(session?.user?.id || "")
   const circles = await getCirclesByUserId(user?.id || "")
+  const calendarData = generateCalendarData()
+  // const weekcalendar =  ActivitiesByDateRange()
+
   return (
     <VStack w="full" h="fit-content" p="md">
       <VStack>
@@ -195,26 +203,33 @@ export default async function Home() {
           overflowX="auto"
         >
           <CardHeader>
-            <Heading as="h3" size="sm">
-              カレンダー
-            </Heading>
+            <HStack justifyContent="space-between">
+              <Heading as="h3" size="sm">
+                カレンダー
+              </Heading>
+              <Button>前の週</Button>
+              <Button>次の週</Button>
+            </HStack>
           </CardHeader>
           <CardBody>
             <ScrollArea w="full" h="full" mb="md" as={Card}>
               <HStack w="full" h="full" gap={0}>
-                {calendarMockData.map((data, index) => (
+                {calendarData.map((data, index) => (
                   <VStack
                     key={index}
                     h="full"
                     flex={1}
-                    borderRightWidth={
-                      index < calendarMockData.length - 1 ? 1 : 0
-                    }
+                    borderRightWidth={index < calendarData.length - 1 ? 1 : 0}
                     p="md"
                     minW="2xs"
                     bg="white"
                   >
-                    <Box>{data.date}</Box>
+                    <Box
+                      fontWeight={data.isToday ? 900 : "normal"}
+                      fontSize={data.isToday ? "lg" : "md"}
+                    >
+                      {data.date}
+                    </Box>
                     <VStack h="sm" overflowY="auto">
                       {data.events.map((event, i) => (
                         <Tag key={i}>{event.title}</Tag>
