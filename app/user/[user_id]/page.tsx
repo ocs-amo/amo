@@ -51,6 +51,9 @@ const Page = async ({ params }: Props) => {
   const { user_id: userId } = params
   const session = await auth()
   const user = await getUserById(userId || "")
+  const isMicrosoft = user?.accounts.some(
+    (account) => account.provider === "microsoft-entra-id",
+  )
   const circles = await getCirclesByUserId(userId || "")
   if (!user) {
     notFound()
@@ -79,6 +82,15 @@ const Page = async ({ params }: Props) => {
                 colorScheme="riverBlue"
               >
                 プロフィール編集
+              </Button>
+            ) : isMicrosoft ? (
+              <Button
+                as={Link}
+                href={`https://teams.microsoft.com/l/chat/0/0?users=${user.email}`}
+                colorScheme="riverBlue"
+                target="_blank"
+              >
+                Teamsでメッセージを送る
               </Button>
             ) : undefined}
           </HStack>

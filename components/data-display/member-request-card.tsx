@@ -107,7 +107,11 @@ export const MemberRequestCard: FC<MemberRequestCardProps> = ({
           w="full"
           flexWrap="wrap"
         >
-          <HStack flexWrap="wrap" as={LinkOverlay} href={`/user/${member.id}`}>
+          <HStack
+            flexWrap="wrap"
+            as={LinkOverlay}
+            href={`/user/${member.userId}`}
+          >
             <Avatar src={member.image || ""} />
             {member.requestType === "join" ? (
               <Badge colorScheme="success">入会</Badge>
