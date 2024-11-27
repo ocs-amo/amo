@@ -141,7 +141,7 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
           </HStack>
           <VStack>
             {loading ? (
-              <Center w="full" h="full">
+              <Center w="full" h="xs">
                 <Loading fontSize="xl" />
               </Center>
             ) : activitys && activitys.length > 0 ? (
@@ -192,7 +192,7 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
                 </GridItem>
               ))
             ) : (
-              <Center w="full">
+              <Center w="full" h="xs">
                 <Text>活動がありません</Text>
               </Center>
             )}

@@ -152,7 +152,7 @@ export const CircleThreads: FC<CircleThreadsProps> = ({
             <Option value="isImportant">重要</Option>
           </MultiSelect>
           {loading ? (
-            <Center w="full" h="full">
+            <Center w="full" h="xs">
               <Loading fontSize="xl" />
             </Center>
           ) : topics && topics.length > 0 ? (
@@ -169,7 +169,7 @@ export const CircleThreads: FC<CircleThreadsProps> = ({
               ))}
             </VStack>
           ) : (
-            <Center w="full">
+            <Center w="full" h="xs">
               <Text>投稿がありません</Text>
             </Center>
           )}
