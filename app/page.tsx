@@ -125,6 +125,7 @@ export default async function Home() {
             <Text>{user?.name}</Text>
           </Heading>
         </GridItem>
+{/** ここから */}
         <GridItem
           as={Card}
           variant="unstyled"
@@ -136,8 +137,21 @@ export default async function Home() {
               お知らせ
             </Heading>
           </CardHeader>
+
           <CardBody>
             <VStack w="full" h="full" overflowY="auto" gap="md">
+
+              {circles?.length ? (
+                circles?.map((data) => 
+                  <text>test</text>
+                )
+              ) : (
+                <Center w="full" h="full" as={VStack}>
+                  <Text>お知らせはありません</Text>
+                </Center>
+              )}
+
+
               {notificationMockData.map((data) => (
                 <HStack key={data.id} p="sm" bg="white" as={Card}>
                   <Box>
@@ -156,9 +170,12 @@ export default async function Home() {
                   </VStack>
                 </HStack>
               ))}
+
             </VStack>
           </CardBody>
+
         </GridItem>
+{/** ここまで */}
         <GridItem as={Card} variant="unstyled" area="circles">
           <CardHeader>
             <Heading as="h3" size="sm">
