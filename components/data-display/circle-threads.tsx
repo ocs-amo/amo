@@ -169,7 +169,9 @@ export const CircleThreads: FC<CircleThreadsProps> = ({
               ))}
             </VStack>
           ) : (
-            <Text>投稿がありません</Text>
+            <Center w="full">
+              <Text>投稿がありません</Text>
+            </Center>
           )}
         </>
       )}
