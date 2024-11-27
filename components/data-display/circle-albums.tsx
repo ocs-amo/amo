@@ -90,11 +90,11 @@ export const CircleAlbums: FC<CircleAlbums> = ({
           handleDelete={handleDelete}
         />
       ) : loading ? (
-        <Center w="full" h="full">
+        <Center w="full" h="350px">
           <Loading fontSize="xl" />
         </Center>
       ) : albums.length === 0 ? (
-        <Center w="full">
+        <Center w="full" h="350px">
           <Text>アルバムがありません</Text>
         </Center>
       ) : (
