@@ -100,8 +100,7 @@ const Page = async ({ params }: Props) => {
         gridTemplateColumns={
           circles?.length
             ? {
-                base: "repeat(5, 1fr)",
-                xl: "repeat(4, 1fr)",
+                base: "repeat(4, 1fr)",
                 lg: "repeat(3, 1fr)",
                 md: "repeat(2, 1fr)",
                 sm: "repeat(1, 1fr)",
