@@ -12,8 +12,9 @@ import {
   GridItem,
   Heading,
   HStack,
-  Image,
   InfoIcon,
+  LinkBox,
+  LinkOverlay,
   ScrollArea,
   Tag,
   Text,
@@ -24,6 +25,8 @@ import { getCirclesByUserId } from "@/actions/circle/fetch-circle"
 import { getUserById } from "@/actions/user/user"
 import { auth } from "@/auth"
 import { CircleCard } from "@/components/data-display/circle-card"
+import { getAnnouncementsByUserId } from "@/data/announcement"
+import { parseDate } from "@/utils/format"
 
 export const metadata = {
   title: "ホーム - CIRCLIA",
@@ -44,27 +47,11 @@ const generateCalendarData = () => {
   })
 }
 
-const notificationMockData = [
-  {
-    id: 1,
-    icon: "https://i.pravatar.cc/100",
-    title: "今月からの新メンバー",
-    createdAt: "2024-06-02 9:00",
-    type: "alert",
-  },
-  {
-    id: 2,
-    icon: "https://picsum.photos/seed/picsum/100/100",
-    title: "やってみたいこと募集",
-    createdAt: "2024-06-02 9:00",
-    type: "",
-  },
-]
-
 export default async function Home() {
   const session = await auth()
   const user = await getUserById(session?.user?.id || "")
   const circles = await getCirclesByUserId(user?.id || "")
+  const announcements = await getAnnouncementsByUserId(user?.id || "")
   const calendarData = generateCalendarData()
   // const weekcalendar =  ActivitiesByDateRange()
 
@@ -125,7 +112,6 @@ export default async function Home() {
             <Text>{user?.name}</Text>
           </Heading>
         </GridItem>
-{/** ここから */}
         <GridItem
           as={Card}
           variant="unstyled"
@@ -140,42 +126,44 @@ export default async function Home() {
 
           <CardBody>
             <VStack w="full" h="full" overflowY="auto" gap="md">
-
-              {circles?.length ? (
-                circles?.map((data) => 
-                  <text>test</text>
-                )
+              {announcements?.length ? (
+                announcements?.map((announcement) => (
+                  <HStack key={announcement.id} p="sm" bg="white" as={Card}>
+                    <HStack as={LinkBox} w="full">
+                      <Box>
+                        <Avatar
+                          src={announcement.user.image || ""}
+                          alt="icon image"
+                        />
+                      </Box>
+                      <VStack
+                        as={LinkOverlay}
+                        href={`/circles/${announcement.circleId}/announcement/${announcement.id}`}
+                      >
+                        <HStack gap="sm">
+                          {announcement.isImportant ? (
+                            <InfoIcon fontSize="lg" color="primary" />
+                          ) : undefined}
+                          <Heading size="xs" as="h4">
+                            {announcement.title}
+                          </Heading>
+                        </HStack>
+                        <Flex justifyContent="right">
+                          {parseDate(announcement.createdAt)}
+                        </Flex>
+                      </VStack>
+                    </HStack>
+                  </HStack>
+                ))
               ) : (
                 <Center w="full" h="full" as={VStack}>
                   <Text>お知らせはありません</Text>
                 </Center>
               )}
-
-
-              {notificationMockData.map((data) => (
-                <HStack key={data.id} p="sm" bg="white" as={Card}>
-                  <Box>
-                    <Image src={data.icon} w="full" alt="icon image" />
-                  </Box>
-                  <VStack>
-                    <HStack gap="sm">
-                      {data.type === "alert" ? (
-                        <InfoIcon fontSize="lg" color="primary" />
-                      ) : undefined}
-                      <Heading size="xs" as="h4">
-                        {data.title}
-                      </Heading>
-                    </HStack>
-                    <Flex justifyContent="right">{data.createdAt}</Flex>
-                  </VStack>
-                </HStack>
-              ))}
-
             </VStack>
           </CardBody>
-
         </GridItem>
-{/** ここまで */}
+
         <GridItem as={Card} variant="unstyled" area="circles">
           <CardHeader>
             <Heading as="h3" size="sm">
