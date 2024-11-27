@@ -18,7 +18,14 @@ const config: NextAuthConfig = {
         delete profile.email_verified
         // emailから「@」の前の部分を抽出
         const studentNumber = profile.email.split("@")[0]
-        user.studentNumber = studentNumber
+        // もし学籍番号でないなら講師フラグをつける
+        const isInstructor = isNaN(parseInt(studentNumber))
+        if (isInstructor) {
+          user.instructorFlag = true
+          user.studentNumber = ""
+        } else {
+          user.studentNumber = studentNumber
+        }
       }
       return true
     },
@@ -35,8 +42,7 @@ const config: NextAuthConfig = {
       return session
     },
   },
-  // debug: process.env.NODE_ENV === "development",
-  debug: true,
+  debug: process.env.NODE_ENV === "development",
   basePath: "/api/auth",
   secret: process.env.NEXTAUTH_SECRET,
   trustHost: true,

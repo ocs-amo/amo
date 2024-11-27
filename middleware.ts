@@ -20,5 +20,5 @@ export default middleware((req) => {
     return NextResponse.redirect(new URL("/", req.url))
   }
 
-  return NextResponse.next()
+  // return NextResponse.next()
 })

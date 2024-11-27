@@ -11,7 +11,7 @@ pnpm i # Windowsの場合はnpx pnpm i
 
 ```env
 NEXTAUTH_SECRET="" #「openssl rand -base64 32」を実行した結果を貼り付ける
-
+NODE_ENV="development"
 DATABASE_URL="postgresql://johndoe:postgres@localhost:54320/mydb?schema=public"
 
 AUTH_MICROSOFT_ENTRA_ID_ID=""
