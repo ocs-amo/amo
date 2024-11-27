@@ -156,7 +156,7 @@ export default async function Home() {
                   </HStack>
                 ))
               ) : (
-                <Center w="full" h="full" as={VStack}>
+                <Center w="full" h="full">
                   <Text>お知らせはありません</Text>
                 </Center>
               )}
