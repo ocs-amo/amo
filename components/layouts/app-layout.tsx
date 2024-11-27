@@ -2,14 +2,12 @@
 import {
   BellIcon,
   CalendarDaysIcon,
-  FileDigitIcon,
   HouseIcon,
   LogOutIcon,
-  MessageCircleMoreIcon,
-  SettingsIcon,
   UsersIcon,
 } from "@yamada-ui/lucide"
 import {
+  Avatar,
   Box,
   Heading,
   HStack,
@@ -63,6 +61,17 @@ export const AppLayout: FC<{
               alignItems="center"
               as={Link}
               variant="ghost"
+              href={`/user/${user?.id}`}
+              icon={<Avatar src={user?.image || ""} boxSize="8xs" />}
+              title="プロフィール"
+            />
+            <IconButton
+              w="50px"
+              h="50px"
+              justifyContent="center"
+              alignItems="center"
+              as={Link}
+              variant="ghost"
               href="/"
               icon={<HouseIcon fontSize="2xl" />}
               title="ホーム"
@@ -85,31 +94,9 @@ export const AppLayout: FC<{
               alignItems="center"
               as={Link}
               variant="ghost"
-              href="/"
-              icon={<MessageCircleMoreIcon fontSize="2xl" />}
-              title="DM"
-            />
-            <IconButton
-              w="50px"
-              h="50px"
-              justifyContent="center"
-              alignItems="center"
-              as={Link}
-              variant="ghost"
               href="/calendar"
               icon={<CalendarDaysIcon fontSize="2xl" />}
               title="カレンダー"
-            />
-            <IconButton
-              w="50px"
-              h="50px"
-              justifyContent="center"
-              alignItems="center"
-              as={Link}
-              variant="ghost"
-              href=""
-              icon={<FileDigitIcon fontSize="2xl" />}
-              title="今日のイベント"
             />
             <IconButton
               w="50px"
@@ -133,17 +120,6 @@ export const AppLayout: FC<{
               title="ログアウト"
             />
           </VStack>
-          <IconButton
-            w="50px"
-            h="50px"
-            justifyContent="center"
-            alignItems="center"
-            as={Link}
-            variant="ghost"
-            href="/"
-            icon={<SettingsIcon fontSize="2xl" />}
-            title="設定"
-          />
         </VStack>
         <Box w="full" h="full" overflowY="auto">
           {children}
