@@ -22,6 +22,8 @@ import {
   ModalBody,
   ModalFooter,
   Button,
+  LinkBox,
+  LinkOverlay,
 } from "@yamada-ui/react"
 import { useState, type FC } from "react"
 import type { getCircleById } from "@/actions/circle/fetch-circle"
@@ -95,14 +97,14 @@ export const MemberCard: FC<MemberCard> = ({
 
   return (
     <GridItem w="full" rounded="md" as={Card} bg="white">
-      <CardBody>
+      <CardBody as={LinkBox}>
         <HStack
           as={Center}
           w="full"
           flexWrap="wrap"
           justifyContent="space-between"
         >
-          <HStack flexWrap="wrap">
+          <HStack flexWrap="wrap" as={LinkOverlay} href={`/user/${member.id}`}>
             <Avatar src={member.image || ""} />
             <Badge>{member.role.roleName}</Badge>
             <Text>{member.name}</Text>

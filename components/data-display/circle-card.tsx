@@ -12,23 +12,16 @@ import {
 } from "@yamada-ui/react"
 import Link from "next/link"
 import { memo } from "react"
+import type { getCirclesByUserId } from "@/actions/circle/fetch-circle"
 
 export interface CircleCardProps {
-  data: {
-    id: string
-    name: string
-    description: string
-    location: string
-    imagePath: string | null
-    activityDay: string | null
-    memberCount: number
-  }
+  data: NonNullable<Awaited<ReturnType<typeof getCirclesByUserId>>>[number]
 }
 
 export const CircleCard = memo(
   forwardRef<CircleCardProps, "div">(({ data }, ref) => {
     return (
-      <GridItem ref={ref} w="full" as={Card} background="white">
+      <GridItem ref={ref} w="full" h="fit-content" as={Card} background="white">
         <LinkBox>
           {data.imagePath ? (
             <Image w="full" h="40" src={data.imagePath} alt="preview image" />

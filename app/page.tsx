@@ -106,8 +106,11 @@ export default async function Home() {
           justifyContent="space-evenly"
         >
           <Avatar
+            as={Link}
+            href={`/user/${session?.user?.id}`}
             src={session?.user?.image || ""}
             boxSize={{ base: "xs", md: "24" }}
+            title="プロフィールへ移動"
           />
           <Heading display={{ base: "none", md: "block" }} fontSize="lg">
             <Text>{user?.studentNumber}</Text>
