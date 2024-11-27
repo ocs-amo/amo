@@ -22,6 +22,7 @@ const config: NextAuthConfig = {
         const isInstructor = isNaN(parseInt(studentNumber))
         if (isInstructor) {
           user.instructorFlag = true
+          user.studentNumber = ""
         } else {
           user.studentNumber = studentNumber
         }
