@@ -162,18 +162,20 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
                           >
                             {activity.activityDay.getDate()}
                           </Card>
-                          <Text>{activity.title}</Text>
+                          <Text lineClamp={1}>{activity.title}</Text>
                         </HStack>
 
                         <HStack>
-                          <Text>{activity.location}</Text>
+                          <Text lineClamp={1}>{activity.location}</Text>
                           <Text>
                             {displayTime(activity.startTime)}
                             {activity.endTime
                               ? `～${displayTime(activity.endTime)}`
                               : undefined}
                           </Text>
-                          <Text>{activity.participants.length}人</Text>
+                          <Text whiteSpace="nowrap">
+                            {activity.participants.length}人
+                          </Text>
                           <ActivityMenuButton
                             userId={userId}
                             isMember={!!isMember}

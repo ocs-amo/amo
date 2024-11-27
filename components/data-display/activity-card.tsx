@@ -62,32 +62,29 @@ export const ActivityCard: FC<ActivityCardProps> = ({
             flexDir={{ base: "row", md: "column" }}
             alignItems={{ md: "start" }}
           >
-            <Text>内容:</Text>
-            <Text as="pre">{currentActivity.description}</Text>
+            <Text whiteSpace="nowrap">内容:</Text>
+            <Text text-wrap="auto" whiteSpace="pre-wrap">
+              {currentActivity.description}
+            </Text>
           </HStack>
           <HStack
             flexDir={{ base: "row", md: "column" }}
             alignItems={{ md: "start" }}
           >
-            <HStack
-              flexDir={{ base: "row", md: "column" }}
-              alignItems={{ md: "start" }}
-            >
-              <Text>活動時間:</Text>
-              <Text>
-                {displayTime(currentActivity.startTime)}
-                {currentActivity.endTime
-                  ? `～${displayTime(currentActivity.endTime)}`
-                  : undefined}
-              </Text>
-            </HStack>
-            <HStack
-              flexDir={{ base: "row", md: "column" }}
-              alignItems={{ md: "start" }}
-            >
-              <Text>活動場所:</Text>
-              <Text>{currentActivity.location}</Text>
-            </HStack>
+            <Text>活動時間:</Text>
+            <Text>
+              {displayTime(currentActivity.startTime)}
+              {currentActivity.endTime
+                ? `～${displayTime(currentActivity.endTime)}`
+                : undefined}
+            </Text>
+          </HStack>
+          <HStack
+            flexDir={{ base: "row", md: "column" }}
+            alignItems={{ md: "start" }}
+          >
+            <Text>活動場所:</Text>
+            <Text>{currentActivity.location}</Text>
           </HStack>
           <HStack
             flexDir={{ base: "row", md: "column" }}
@@ -100,8 +97,10 @@ export const ActivityCard: FC<ActivityCardProps> = ({
             flexDir={{ base: "row", md: "column" }}
             alignItems={{ md: "start" }}
           >
-            <Text>備考:</Text>
-            <Text as="pre">{currentActivity.notes}</Text>
+            <Text whiteSpace="nowrap">備考:</Text>
+            <Text text-wrap="auto" whiteSpace="pre-wrap">
+              {currentActivity.notes}
+            </Text>
           </HStack>
           <VStack>
             <Text>参加者</Text>
