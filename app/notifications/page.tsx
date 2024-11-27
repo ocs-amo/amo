@@ -56,8 +56,7 @@ const NotificationsPage = async () => {
               <Box>
                 <Avatar
                   src={announcement.user.image || ""}
-                  w="full"
-                  alt="icon image"
+                  alt={`${announcement.user.name}のアイコン画像`}
                 />
               </Box>
               <VStack

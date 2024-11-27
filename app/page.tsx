@@ -133,7 +133,7 @@ export default async function Home() {
                       <Box>
                         <Avatar
                           src={announcement.user.image || ""}
-                          alt="icon image"
+                          alt={`${announcement.user.name}のアイコン画像`}
                         />
                       </Box>
                       <VStack
