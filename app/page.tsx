@@ -128,8 +128,8 @@ export default async function Home() {
             <VStack w="full" h="full" overflowY="auto" gap="md">
               {announcements?.length ? (
                 announcements?.map((announcement) => (
-                  <HStack key={announcement.id} p="sm" bg="white" as={Card}>
-                    <HStack as={LinkBox} w="full">
+                  <HStack key={announcement.id} bg="white" as={Card}>
+                    <HStack as={LinkBox} w="full" p="sm">
                       <Box>
                         <Avatar
                           src={announcement.user.image || ""}
