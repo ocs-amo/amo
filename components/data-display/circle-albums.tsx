@@ -161,7 +161,7 @@ export const CircleAlbums: FC<CircleAlbums> = ({
                       ) : undefined}
                     </HStack>
                   </HStack>
-                  <Text as="pre" textWrap="wrap">
+                  <Text as="pre" textWrap="wrap" lineClamp={3}>
                     {album.description}
                   </Text>
                 </VStack>
