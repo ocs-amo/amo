@@ -107,8 +107,8 @@ export default async function Home() {
         >
           <Avatar
             as={Link}
-            href={`/user/${session?.user?.id}`}
-            src={session?.user?.image || ""}
+            href={`/user/${user?.id}`}
+            src={user?.image || ""}
             boxSize={{ base: "xs", md: "24" }}
             title="プロフィールへ移動"
           />
