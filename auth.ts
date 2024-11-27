@@ -41,8 +41,7 @@ const config: NextAuthConfig = {
       return session
     },
   },
-  // debug: process.env.NODE_ENV === "development",
-  debug: true,
+  debug: process.env.NODE_ENV === "development",
   basePath: "/api/auth",
   secret: process.env.NEXTAUTH_SECRET,
   trustHost: true,

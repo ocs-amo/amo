@@ -9,16 +9,19 @@ import { user } from "./seeds/user"
 import { db } from "@/utils/db"
 
 async function main() {
-  const result = await db.$transaction([
-    user(), // PrismaPromiseをトランザクションに渡す
-    circle(),
-    circleMemberRole(),
-    circleMembers(),
-    circleInstructors(),
-    circleTags(),
-    circleActivities(),
-    circleActivityParticipants(),
-  ])
+  const result =
+    process.env.NODE_ENV !== "production"
+      ? await db.$transaction([
+          user(), // PrismaPromiseをトランザクションに渡す
+          circle(),
+          circleMemberRole(),
+          circleMembers(),
+          circleInstructors(),
+          circleTags(),
+          circleActivities(),
+          circleActivityParticipants(),
+        ])
+      : await db.$transaction([circleMemberRole()])
 
   console.log("Transaction result:", result) // 結果を確認
 }
