@@ -2,14 +2,12 @@
 import {
   BellIcon,
   CalendarDaysIcon,
-  FileDigitIcon,
   HouseIcon,
   LogOutIcon,
-  MessageCircleMoreIcon,
-  SettingsIcon,
   UsersIcon,
 } from "@yamada-ui/lucide"
 import {
+  Avatar,
   Box,
   Heading,
   HStack,
@@ -56,6 +54,17 @@ export const AppLayout: FC<{
           justifyContent="space-between"
         >
           <VStack>
+            <IconButton
+              w="50px"
+              h="50px"
+              justifyContent="center"
+              alignItems="center"
+              as={Link}
+              variant="ghost"
+              href={`/user/${user?.id}`}
+              icon={<Avatar src={user?.image || ""} boxSize="8xs" />}
+              title="プロフィール"
+            />
             <IconButton
               w="50px"
               h="50px"
