@@ -286,6 +286,7 @@ export async function getWeeklyActivities(
             leaveDate: null,
           },
         },
+        deletedAt: null,
       },
       activityDay: {
         gte: start, // 開始日
@@ -368,6 +369,7 @@ export async function getMonthlyEvents(userId: string, startDate: Date) {
             leaveDate: null,
           },
         },
+        deletedAt: null,
       },
       activityDay: {
         gte: startOfMonth, // 月初以降
