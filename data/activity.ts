@@ -283,6 +283,7 @@ export async function getWeeklyActivities(
         CircleMember: {
           some: {
             userId: userId, // ユーザーが所属しているサークル
+            leaveDate: null,
           },
         },
       },
@@ -364,6 +365,7 @@ export async function getMonthlyEvents(userId: string, startDate: Date) {
         CircleMember: {
           some: {
             userId: userId, // ユーザーが所属しているサークル
+            leaveDate: null,
           },
         },
       },
