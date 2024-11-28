@@ -1,6 +1,5 @@
 import {
   Avatar,
-  Box,
   Button,
   Card,
   CardBody,
@@ -10,9 +9,6 @@ import {
   Grid,
   GridItem,
   Heading,
-  HStack,
-  ScrollArea,
-  Tag,
   Text,
   VStack,
 } from "@yamada-ui/react"
@@ -22,25 +18,12 @@ import { getUserById } from "@/actions/user/user"
 import { auth } from "@/auth"
 import { CircleCard } from "@/components/data-display/circle-card"
 import { NotificationList } from "@/components/data-display/notification-list"
+import { WeekCalendar } from "@/components/data-display/week-calendar"
+import { getWeeklyActivities } from "@/data/activity"
 import { getAnnouncementsByUserId } from "@/data/announcement"
 
 export const metadata = {
   title: "ホーム - CIRCLIA",
-}
-
-const generateCalendarData = () => {
-  const today = new Date()
-  const todayFormatted = `${today.getMonth() + 1}/${today.getDate()}`
-  return Array.from({ length: 7 }, (_, i) => {
-    const date = new Date(today)
-    date.setDate(today.getDate() + i)
-    const formattedDate = `${date.getMonth() + 1}/${date.getDate()}`
-    return {
-      date: formattedDate,
-      isToday: formattedDate === todayFormatted,
-      events: i % 1 === 0 ? [{ title: `イベント${i + 1}` }] : [],
-    }
-  })
 }
 
 export default async function Home() {
@@ -48,8 +31,7 @@ export default async function Home() {
   const user = await getUserById(session?.user?.id || "")
   const circles = await getCirclesByUserId(user?.id || "")
   const announcements = await getAnnouncementsByUserId(user?.id || "")
-  const calendarData = generateCalendarData()
-  // const weekcalendar =  ActivitiesByDateRange()
+  const calendarData = await getWeeklyActivities(user?.id || "")
 
   return (
     <VStack w="full" h="fit-content" p="md">
@@ -161,52 +143,7 @@ export default async function Home() {
             </Grid>
           </CardBody>
         </GridItem>
-        <GridItem
-          as={Card}
-          variant="unstyled"
-          area="calendar"
-          w="full"
-          overflowX="auto"
-        >
-          <CardHeader>
-            <HStack justifyContent="space-between">
-              <Heading as="h3" size="sm">
-                カレンダー
-              </Heading>
-              <Button>前の週</Button>
-              <Button>次の週</Button>
-            </HStack>
-          </CardHeader>
-          <CardBody>
-            <ScrollArea w="full" h="full" mb="md" as={Card}>
-              <HStack w="full" h="full" gap={0}>
-                {calendarData.map((data, index) => (
-                  <VStack
-                    key={index}
-                    h="full"
-                    flex={1}
-                    borderRightWidth={index < calendarData.length - 1 ? 1 : 0}
-                    p="md"
-                    minW="2xs"
-                    bg="white"
-                  >
-                    <Box
-                      fontWeight={data.isToday ? 900 : "normal"}
-                      fontSize={data.isToday ? "lg" : "md"}
-                    >
-                      {data.date}
-                    </Box>
-                    <VStack h="sm" overflowY="auto">
-                      {data.events.map((event, i) => (
-                        <Tag key={i}>{event.title}</Tag>
-                      ))}
-                    </VStack>
-                  </VStack>
-                ))}
-              </HStack>
-            </ScrollArea>
-          </CardBody>
-        </GridItem>
+        <WeekCalendar calendarData={calendarData} userId={user?.id || ""} />
       </Grid>
     </VStack>
   )

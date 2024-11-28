@@ -5,6 +5,7 @@ import {
   getActivities,
   getActivitiesByMonth,
   getActivityById,
+  getWeeklyActivities,
 } from "@/data/activity"
 
 // サーバーアクション：指定月のイベントを取得
@@ -39,5 +40,16 @@ export const fetchActivitiesByMonth = async (date: Date, circleId: string) => {
   }
 }
 
+export const getWeeklyActivitiesActioins = async (
+  userId: string,
+  date: Date,
+) => {
+  const session = await auth()
+  if (!session) {
+    return
+  }
+
+  return await getWeeklyActivities(userId, date)
+}
 export const getActivityByIdActions = getActivityById
 export const getActivitiesActions = getActivities

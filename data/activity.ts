@@ -1,5 +1,7 @@
+import type { Circle } from "@prisma/client"
 import type { ActivityFormType } from "@/schema/activity"
 import { db } from "@/utils/db"
+import { parseMonthDate } from "@/utils/format"
 
 export const getActivityById = async (activityId: number) => {
   try {
@@ -245,4 +247,88 @@ export const deleteActivity = async (activityId: number) => {
       deletedAt: new Date(),
     },
   })
+}
+
+type WeeklyActivities = Record<
+  string,
+  {
+    date: string // 日付（フォーマット済み）
+    activities: {
+      id: number
+      title: string
+      description?: string
+      location: string
+      startTime: string // 開始時間
+      endTime?: string // 終了時間
+      circle: Circle
+    }[]
+  }
+>
+
+export async function getWeeklyActivities(
+  userId: string,
+  startDate?: Date,
+): Promise<WeeklyActivities> {
+  const start = startDate ?? new Date()
+  const end = new Date(start)
+  end.setDate(start.getDate() + 7) // 1週間後の日付
+
+  const activities = await db.activity.findMany({
+    where: {
+      circle: {
+        CircleMember: {
+          some: {
+            userId: userId, // ユーザーが所属しているサークル
+          },
+        },
+      },
+      activityDay: {
+        gte: start, // 開始日
+        lt: end, // 終了日
+      },
+    },
+    orderBy: {
+      activityDay: "asc", // 日付順で並べる
+    },
+    select: {
+      id: true,
+      title: true,
+      description: true,
+      location: true,
+      activityDay: true,
+      startTime: true,
+      endTime: true,
+      circle: true,
+    },
+  })
+
+  // 日付ごとにイベントを分類
+  const groupedActivities: WeeklyActivities = {}
+
+  // 1週間の日付を初期化（空の配列を設定）
+  for (let i = 0; i < 7; i++) {
+    const currentDate = new Date(start)
+    currentDate.setDate(start.getDate() + i)
+    const dateStr = parseMonthDate(currentDate)
+    groupedActivities[dateStr] = {
+      date: dateStr,
+      activities: [],
+    }
+  }
+
+  // データを分類
+  activities.forEach((activity) => {
+    const date = parseMonthDate(activity.activityDay)
+    groupedActivities[date].activities.push({
+      id: activity.id,
+      title: activity.title,
+      description: activity.description || undefined,
+      location: activity.location,
+      startTime: parseMonthDate(activity.startTime),
+      endTime: activity.endTime ? parseMonthDate(activity.endTime) : undefined,
+      circle: activity.circle,
+    })
+  })
+
+  return groupedActivities
 }
