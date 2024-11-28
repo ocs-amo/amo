@@ -101,12 +101,10 @@ export default async function Home() {
               お知らせ
             </Heading>
           </CardHeader>
-
           <CardBody>
             <NotificationList announcements={announcements} />
           </CardBody>
         </GridItem>
-
         <GridItem as={Card} variant="unstyled" area="circles">
           <CardHeader>
             <Heading as="h3" size="sm">
