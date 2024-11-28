@@ -4,10 +4,14 @@ import { join } from "path"
 import { parse } from "url"
 import dotenv from "dotenv"
 import next from "next"
+
 dotenv.config({ path: ".env" })
 
 // 開発モードか本番モードかを判定
 const dev = process.env.NODE_ENV !== "production"
+
+console.log("NODE_ENV:", process.env.NODE_ENV)
+console.log("NODE_OPTIONS:", process.env.NODE_OPTIONS)
 
 const app = next({ dev })
 const handle = app.getRequestHandler()
