@@ -290,6 +290,7 @@ export async function getWeeklyActivities(
         gte: start, // 開始日
         lt: end, // 終了日
       },
+      deletedAt: null,
     },
     orderBy: {
       activityDay: "asc", // 日付順で並べる
@@ -370,6 +371,7 @@ export async function getMonthlyEvents(userId: string, startDate: Date) {
         gte: startOfMonth, // 月初以降
         lte: endOfMonth, // 月末まで
       },
+      deletedAt: null,
     },
     orderBy: {
       activityDay: "asc", // 日付順で並べる
