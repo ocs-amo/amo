@@ -270,8 +270,12 @@ export async function getWeeklyActivities(
   startDate?: Date,
 ): Promise<WeeklyActivities> {
   const start = startDate ?? new Date()
+  // 時刻部分を0にする
+  start.setHours(0, 0, 0, 0)
+
   const end = new Date(start)
   end.setDate(start.getDate() + 7) // 1週間後の日付
+  end.setHours(23, 59, 59, 999) // 時刻を23:59:59.999に設定
 
   const activities = await db.activity.findMany({
     where: {
@@ -309,25 +313,32 @@ export async function getWeeklyActivities(
   for (let i = 0; i < 7; i++) {
     const currentDate = new Date(start)
     currentDate.setDate(start.getDate() + i)
-    const dateStr = parseMonthDate(currentDate)
+    const dateStr = parseMonthDate(currentDate) // 日付を文字列に変換
     groupedActivities[dateStr] = {
       date: dateStr,
-      activities: [],
+      activities: [], // 初期化されているか確認
     }
   }
 
   // データを分類
   activities.forEach((activity) => {
-    const date = parseMonthDate(activity.activityDay)
-    groupedActivities[date].activities.push({
-      id: activity.id,
-      title: activity.title,
-      description: activity.description || undefined,
-      location: activity.location,
-      startTime: parseMonthDate(activity.startTime),
-      endTime: activity.endTime ? parseMonthDate(activity.endTime) : undefined,
-      circle: activity.circle,
-    })
+    const date = parseMonthDate(activity.activityDay) // 日付を文字列に変換
+    if (groupedActivities[date]) {
+      // 必ず存在することを確認
+      groupedActivities[date].activities.push({
+        id: activity.id,
+        title: activity.title,
+        description: activity.description || undefined,
+        location: activity.location,
+        startTime: parseMonthDate(activity.startTime),
+        endTime: activity.endTime
+          ? parseMonthDate(activity.endTime)
+          : undefined,
+        circle: activity.circle,
+      })
+    } else {
+      console.error(`No group found for date: ${date}`) // デバッグ用
+    }
   })
 
   return groupedActivities
