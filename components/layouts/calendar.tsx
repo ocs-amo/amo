@@ -18,6 +18,7 @@ import Link from "next/link"
 import { useState } from "react"
 import { getMonthlyEventsActions } from "@/actions/circle/fetch-activity"
 import type { getMonthlyEvents } from "@/data/activity"
+import "dayjs/locale/ja"
 
 interface CalendarPageProps {
   userId: string
