@@ -3,6 +3,7 @@ import type { FC } from "@yamada-ui/react"
 import {
   Avatar,
   Box,
+  Card,
   Divider,
   Heading,
   HStack,
@@ -46,36 +47,31 @@ export const NotificationPage: FC<NotificationPageProps> = ({
                 flexDir={{ sm: "column" }}
                 gap={{ sm: "sm", base: "md" }}
               >
-                <HStack
-                  flexGrow={1}
-                  p="sm"
-                  borderWidth={1}
-                  as={LinkBox}
-                  bg="white"
-                  w="full"
-                >
-                  <Box>
-                    <Avatar
-                      src={announcement.user.image || ""}
-                      alt={`${announcement.user.name}のアイコン画像`}
-                    />
-                  </Box>
-                  <VStack
-                    as={LinkOverlay}
-                    href={`/circles/${announcement.circleId}/announcement/${announcement.id}`}
-                  >
-                    <HStack gap="sm">
-                      {announcement.isImportant ? (
-                        <InfoIcon fontSize="lg" color="primary" />
-                      ) : undefined}
-                      <Heading size="xs" as="h4">
-                        {announcement.title}
-                      </Heading>
-                    </HStack>
-                    <Text fontSize="sm" as="pre">
-                      {announcement.content}
-                    </Text>
-                  </VStack>
+                <HStack flexGrow={1} as={Card} bg="white" w="full">
+                  <HStack p="sm" w="full" h="full" as={LinkBox}>
+                    <Box>
+                      <Avatar
+                        src={announcement.user.image || ""}
+                        alt={`${announcement.user.name}のアイコン画像`}
+                      />
+                    </Box>
+                    <VStack
+                      as={LinkOverlay}
+                      href={`/circles/${announcement.circleId}/announcement/${announcement.id}`}
+                    >
+                      <HStack gap="sm">
+                        {announcement.isImportant ? (
+                          <InfoIcon fontSize="lg" color="primary" />
+                        ) : undefined}
+                        <Heading size="xs" as="h4">
+                          {announcement.title}
+                        </Heading>
+                      </HStack>
+                      <Text fontSize="sm" as="pre">
+                        {announcement.content}
+                      </Text>
+                    </VStack>
+                  </HStack>
                 </HStack>
                 <Text>{parseDate(announcement.createdAt)}</Text>
               </HStack>
