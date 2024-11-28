@@ -66,6 +66,7 @@ export const NotificationPage: FC<NotificationPageProps> = ({
                         <Heading size="xs" as="h4">
                           {announcement.title}
                         </Heading>
+                        <Text>{announcement.circle.name}</Text>
                       </HStack>
                       <Text fontSize="sm" as="pre">
                         {announcement.content}

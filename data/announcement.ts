@@ -71,28 +71,17 @@ export const getAnnouncementById = async (topicId: string) => {
 
 export const getAnnouncementsByUserId = async (userId: string) => {
   try {
-    // ユーザーが所属するサークルIDを取得
-    const circleIds = await db.circleMember.findMany({
-      where: {
-        userId: userId,
-        leaveDate: null, // 退会していないサークル
-      },
-      select: {
-        circleId: true,
-      },
-    })
-
-    const circleIdList = circleIds.map((member) => member.circleId)
-
-    if (circleIdList.length === 0) {
-      return [] // ユーザーがサークルに所属していない場合
-    }
-
     // サークルのお知らせを取得
     const announcements = await db.topic.findMany({
       where: {
-        circleId: {
-          in: circleIdList, // ユーザーが所属しているサークルのIDに一致
+        circle: {
+          CircleMember: {
+            some: {
+              userId: userId, // ユーザーが所属しているサークル
+              leaveDate: null,
+            },
+          },
+          deletedAt: null,
         },
         deletedAt: null, // 論理削除されていないお知らせ
         type: "announcement",
@@ -105,6 +94,7 @@ export const getAnnouncementsByUserId = async (userId: string) => {
             image: true,
           }, // 作成者情報
         },
+        circle: true,
       },
       orderBy: {
         createdAt: "desc", // 最新順
