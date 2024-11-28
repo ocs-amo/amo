@@ -5,6 +5,7 @@ import {
   getActivities,
   getActivitiesByMonth,
   getActivityById,
+  getMonthlyEvents,
   getWeeklyActivities,
 } from "@/data/activity"
 
@@ -45,11 +46,24 @@ export const getWeeklyActivitiesActioins = async (
   date: Date,
 ) => {
   const session = await auth()
-  if (!session) {
+  if (!session?.user) {
     return
   }
 
   return await getWeeklyActivities(userId, date)
 }
+
+export const getMonthlyEventsActions = async (
+  userId: string,
+  startDate: Date,
+) => {
+  const session = await auth()
+  if (!session?.user) {
+    return
+  }
+
+  return await getMonthlyEvents(userId, startDate)
+}
+
 export const getActivityByIdActions = getActivityById
 export const getActivitiesActions = getActivities

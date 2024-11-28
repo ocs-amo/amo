@@ -3,6 +3,7 @@
 "use client"
 
 import { Calendar } from "@yamada-ui/calendar"
+import type { FC } from "@yamada-ui/react"
 import {
   VStack,
   Container,
@@ -10,106 +11,40 @@ import {
   Heading,
   List,
   ListItem,
-  HStack,
-  Button,
   Text,
+  useSafeLayoutEffect,
 } from "@yamada-ui/react"
+import Link from "next/link"
 import { useState } from "react"
+import { getMonthlyEventsActions } from "@/actions/circle/fetch-activity"
+import type { getMonthlyEvents } from "@/data/activity"
 
-type Event = {
-  year: number
-  month: number
-  day: number
-  name: string
-  location: string
-  time: string
+interface CalendarPageProps {
+  userId: string
+  events: Awaited<ReturnType<typeof getMonthlyEvents>>
 }
 
-export const CalendarPage = () => {
-  const [activeTab, setActiveTab] = useState("allCircles")
+export const CalendarPage: FC<CalendarPageProps> = ({ userId, events }) => {
+  const [currentMonth, onChangeMonth] = useState<Date>(new Date())
 
-  const events: Event[] = [
-    {
-      year: 2024,
-      month: 5,
-      day: 7,
-      name: "プログラミングサークル",
-      location: "402教室",
-      time: "16:00〜18:00",
-    },
-    {
-      year: 2024,
-      month: 5,
-      day: 7,
-      name: "料理サークル",
-      location: "701教室",
-      time: "16:00〜18:00",
-    },
-    {
-      year: 2024,
-      month: 5,
-      day: 7,
-      name: "読書サークル",
-      location: "会議室",
-      time: "16:00〜18:00",
-    },
-    {
-      year: 2024,
-      month: 11,
-      day: 7,
-      name: "読書サークル",
-      location: "会議室",
-      time: "16:00〜18:00",
-    },
-    {
-      year: 2024,
-      month: 11,
-      day: 7,
-      name: "プログラミングサークル",
-      location: "会議室",
-      time: "16:00〜18:00",
-    },
-    {
-      year: 2024,
-      month: 11,
-      day: 7,
-      name: "aaaaaaaaaaaaaaaサークル",
-      location: "会議室",
-      time: "16:00〜18:00",
-    },
-    {
-      year: 2024,
-      month: 11,
-      day: 14,
-      name: "プログラミングサークル",
-      location: "会議室",
-      time: "16:00〜18:00",
-    },
-  ]
+  const [currentEvents, setCurrentEvents] =
+    useState<Awaited<ReturnType<typeof getMonthlyEvents>>>(events)
+
+  const fetchData = async () => {
+    const data = await getMonthlyEventsActions(userId, currentMonth)
+    if (data) setCurrentEvents(data)
+  }
+
+  useSafeLayoutEffect(() => {
+    fetchData()
+  }, [currentMonth])
 
   return (
-    <Container maxW="container.md" p={4}>
+    <Container p={4}>
       <Heading mb={4}>カレンダー</Heading>
-      <HStack justifyContent="flex-end" mb={4}>
-        <Button
-          variant="ghost"
-          fontWeight={activeTab === "scheduled" ? "bold" : "normal"}
-          onClick={() => setActiveTab("scheduled")}
-          color={activeTab === "scheduled" ? "blue.500" : "gray.500"}
-        >
-          参加予定
-        </Button>
-        <Button
-          variant="ghost"
-          fontWeight={activeTab === "allCircles" ? "bold" : "normal"}
-          onClick={() => setActiveTab("allCircles")}
-          color={activeTab === "allCircles" ? "blue.500" : "gray.500"}
-        >
-          すべてのサークル
-        </Button>
-      </HStack>
-
       <Calendar
+        month={currentMonth}
+        onChangeMonth={onChangeMonth}
         dateFormat="YYYY年 M月"
         locale="ja"
         size="full"
@@ -138,11 +73,11 @@ export const CalendarPage = () => {
           p: 0,
           _active: {},
           component: ({ date, isSelected }) => {
-            const dayEvents = events.filter(
+            const dayEvents = currentEvents.filter(
               (event) =>
-                event.year === date.getFullYear() &&
-                event.month === date.getMonth() + 1 &&
-                event.day === date.getDate(),
+                event.activityDay.getFullYear() === date.getFullYear() &&
+                event.activityDay.getMonth() === date.getMonth() &&
+                event.activityDay.getDate() === date.getDate(),
             )
 
             // 表示するイベントのリストと、省略されるイベント数
@@ -156,9 +91,9 @@ export const CalendarPage = () => {
                 </Center>
 
                 <List w="full" px={2} overflow="hidden">
-                  {displayedEvents.map((event, index) => (
+                  {displayedEvents.map((event) => (
                     <ListItem
-                      key={index}
+                      key={event.id}
                       width="95%"
                       minWidth="80px"
                       py="0.1"
@@ -173,8 +108,10 @@ export const CalendarPage = () => {
                       textOverflow="ellipsis"
                       textAlign="center"
                       mx="auto"
+                      as={Link}
+                      href={`/circles/${event.circle.id}/activities/${event.id}`}
                     >
-                      {event.name}
+                      {event.title}
                     </ListItem>
                   ))}
                   {hiddenEventCount > 0 && (

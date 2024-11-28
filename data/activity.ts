@@ -332,3 +332,49 @@ export async function getWeeklyActivities(
 
   return groupedActivities
 }
+
+export async function getMonthlyEvents(userId: string, startDate: Date) {
+  // 月初と月末の日付を計算
+  const startOfMonth = new Date(
+    startDate.getFullYear(),
+    startDate.getMonth(),
+    1,
+  )
+  const endOfMonth = new Date(
+    startDate.getFullYear(),
+    startDate.getMonth() + 1,
+    0,
+  )
+
+  const events = await db.activity.findMany({
+    where: {
+      circle: {
+        CircleMember: {
+          some: {
+            userId: userId, // ユーザーが所属しているサークル
+          },
+        },
+      },
+      activityDay: {
+        gte: startOfMonth, // 月初以降
+        lte: endOfMonth, // 月末まで
+      },
+    },
+    orderBy: {
+      activityDay: "asc", // 日付順で並べる
+    },
+    select: {
+      id: true,
+      title: true,
+      description: true,
+      location: true,
+      activityDay: true,
+      startTime: true,
+      endTime: true,
+      circle: true,
+    },
+  })
+
+  // データを整形
+  return events
+}
