@@ -8,20 +8,24 @@ import {
   getAlbumsByCircleId,
   updateAlbum,
 } from "@/data/album"
-import { getMemberByCircleId } from "@/data/circle"
+import { getMemberByCircleId, isUserAdmin } from "@/data/circle"
 import type { BackAlbumForm } from "@/schema/album"
 
 export async function handleDeleteAlbum(circleId: string, albumId: string) {
   const session = await auth()
   const user = await getUserById(session?.user?.id || "")
-  // メンバー情報を取得
-  const members = await getMemberByCircleId(circleId)
   // 管理者権限の確認
-  const isMember = members?.some((member) => member.id === user?.id)
+  const isAdmin = await isUserAdmin(session?.user?.id || "", circleId || "")
 
   const currentAlbum = await getAlbumById(albumId)
 
-  if (!session || !user || !isMember || !currentAlbum) {
+  if (
+    !session ||
+    !user ||
+    !isAdmin ||
+    !currentAlbum ||
+    currentAlbum.createdBy !== user.id
+  ) {
     return {
       success: false,
       error: "権限がありません。",
@@ -51,14 +55,17 @@ export async function handleUpdateAlbum(
 ) {
   const session = await auth()
   const user = await getUserById(session?.user?.id || "")
-  // メンバー情報を取得
-  const members = await getMemberByCircleId(circleId)
-  // 管理者権限の確認
-  const isMember = members?.some((member) => member.id === user?.id)
+  const isAdmin = await isUserAdmin(session?.user?.id || "", circleId || "")
 
   const currentAlbum = await getAlbumById(albumId)
 
-  if (!session || !user || !isMember || !currentAlbum) {
+  if (
+    !session ||
+    !user ||
+    !isAdmin ||
+    !currentAlbum ||
+    currentAlbum.createdBy !== user.id
+  ) {
     return {
       success: false,
       error: "権限がありません。",
