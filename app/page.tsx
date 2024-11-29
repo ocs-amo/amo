@@ -1,21 +1,14 @@
 import {
   Avatar,
-  Box,
   Button,
   Card,
   CardBody,
   CardHeader,
   Center,
   Divider,
-  Flex,
   Grid,
   GridItem,
   Heading,
-  HStack,
-  Image,
-  InfoIcon,
-  ScrollArea,
-  Tag,
   Text,
   VStack,
 } from "@yamada-ui/react"
@@ -24,42 +17,22 @@ import { getCirclesByUserId } from "@/actions/circle/fetch-circle"
 import { getUserById } from "@/actions/user/user"
 import { auth } from "@/auth"
 import { CircleCard } from "@/components/data-display/circle-card"
+import { NotificationList } from "@/components/data-display/notification-list"
+import { WeekCalendar } from "@/components/data-display/week-calendar"
+import { getWeeklyActivities } from "@/data/activity"
+import { getAnnouncementsByUserId } from "@/data/announcement"
 
 export const metadata = {
   title: "ホーム - CIRCLIA",
 }
 
-const notificationMockData = [
-  {
-    id: 1,
-    icon: "https://i.pravatar.cc/100",
-    title: "今月からの新メンバー",
-    createdAt: "2024-06-02 9:00",
-    type: "alert",
-  },
-  {
-    id: 2,
-    icon: "https://picsum.photos/seed/picsum/100/100",
-    title: "やってみたいこと募集",
-    createdAt: "2024-06-02 9:00",
-    type: "",
-  },
-]
-
-const calendarMockData = [
-  { date: "2", events: [] },
-  { date: "3", events: [{ title: "ゲームサークル" }] },
-  { date: "4", events: [] },
-  { date: "5", events: [] },
-  { date: "6", events: [{ title: "プログラミングサークル" }] },
-  { date: "7", events: [] },
-  { date: "8", events: [] },
-]
-
 export default async function Home() {
   const session = await auth()
   const user = await getUserById(session?.user?.id || "")
   const circles = await getCirclesByUserId(user?.id || "")
+  const announcements = await getAnnouncementsByUserId(user?.id || "")
+  const calendarData = await getWeeklyActivities(user?.id || "")
+
   return (
     <VStack w="full" h="fit-content" p="md">
       <VStack>
@@ -129,26 +102,7 @@ export default async function Home() {
             </Heading>
           </CardHeader>
           <CardBody>
-            <VStack w="full" h="full" overflowY="auto" gap="md">
-              {notificationMockData.map((data) => (
-                <HStack key={data.id} p="sm" bg="white" as={Card}>
-                  <Box>
-                    <Image src={data.icon} w="full" alt="icon image" />
-                  </Box>
-                  <VStack>
-                    <HStack gap="sm">
-                      {data.type === "alert" ? (
-                        <InfoIcon fontSize="lg" color="primary" />
-                      ) : undefined}
-                      <Heading size="xs" as="h4">
-                        {data.title}
-                      </Heading>
-                    </HStack>
-                    <Flex justifyContent="right">{data.createdAt}</Flex>
-                  </VStack>
-                </HStack>
-              ))}
-            </VStack>
+            <NotificationList announcements={announcements} />
           </CardBody>
         </GridItem>
         <GridItem as={Card} variant="unstyled" area="circles">
@@ -187,45 +141,7 @@ export default async function Home() {
             </Grid>
           </CardBody>
         </GridItem>
-        <GridItem
-          as={Card}
-          variant="unstyled"
-          area="calendar"
-          w="full"
-          overflowX="auto"
-        >
-          <CardHeader>
-            <Heading as="h3" size="sm">
-              カレンダー
-            </Heading>
-          </CardHeader>
-          <CardBody>
-            <ScrollArea w="full" h="full" mb="md" as={Card}>
-              <HStack w="full" h="full" gap={0}>
-                {calendarMockData.map((data, index) => (
-                  <VStack
-                    key={index}
-                    h="full"
-                    flex={1}
-                    borderRightWidth={
-                      index < calendarMockData.length - 1 ? 1 : 0
-                    }
-                    p="md"
-                    minW="2xs"
-                    bg="white"
-                  >
-                    <Box>{data.date}</Box>
-                    <VStack h="sm" overflowY="auto">
-                      {data.events.map((event, i) => (
-                        <Tag key={i}>{event.title}</Tag>
-                      ))}
-                    </VStack>
-                  </VStack>
-                ))}
-              </HStack>
-            </ScrollArea>
-          </CardBody>
-        </GridItem>
+        <WeekCalendar calendarData={calendarData} userId={user?.id || ""} />
       </Grid>
     </VStack>
   )

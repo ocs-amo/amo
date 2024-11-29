@@ -1,5 +1,7 @@
+import type { Circle } from "@prisma/client"
 import type { ActivityFormType } from "@/schema/activity"
 import { db } from "@/utils/db"
+import { parseMonthDate } from "@/utils/format"
 
 export const getActivityById = async (activityId: number) => {
   try {
@@ -42,6 +44,50 @@ export const getActivities = async () => {
     })
   } catch (error) {
     console.error("getActivities: ", error)
+    return null
+  }
+}
+
+//siteisaretassyuu
+export const getActivitiesByDateRange = async (
+  startDate: Date,
+  endDate: Date,
+  circleId: string,
+) => {
+  try {
+    return await db.activity.findMany({
+      where: {
+        circleId,
+        activityDay: {
+          gte: startDate,
+          lte: endDate,
+        },
+        deletedAt: null, // 削除されていないもの
+      },
+      include: {
+        participants: {
+          include: {
+            user: {
+              select: {
+                id: true,
+                name: true,
+                email: true,
+                image: true,
+                studentNumber: true,
+              },
+            },
+          },
+          where: {
+            removedAt: null, // 退会していない参加者
+          },
+        },
+      },
+      orderBy: {
+        startTime: "asc", // 開始時刻順に並べる
+      },
+    })
+  } catch (error) {
+    console.error("getActivitiesByDateRange Error:", error)
     return null
   }
 }
@@ -201,4 +247,151 @@ export const deleteActivity = async (activityId: number) => {
       deletedAt: new Date(),
     },
   })
+}
+
+type WeeklyActivities = Record<
+  string,
+  {
+    date: string // 日付（フォーマット済み）
+    activities: {
+      id: number
+      title: string
+      description?: string
+      location: string
+      startTime: string // 開始時間
+      endTime?: string // 終了時間
+      circle: Circle
+    }[]
+  }
+>
+
+export async function getWeeklyActivities(
+  userId: string,
+  startDate?: Date,
+): Promise<WeeklyActivities> {
+  const start = startDate ?? new Date()
+  // 時刻部分を0にする
+  start.setHours(0, 0, 0, 0)
+
+  const end = new Date(start)
+  end.setDate(start.getDate() + 7) // 1週間後の日付
+  end.setHours(23, 59, 59, 999) // 時刻を23:59:59.999に設定
+
+  const activities = await db.activity.findMany({
+    where: {
+      circle: {
+        CircleMember: {
+          some: {
+            userId: userId, // ユーザーが所属しているサークル
+            leaveDate: null,
+          },
+        },
+        deletedAt: null,
+      },
+      activityDay: {
+        gte: start, // 開始日
+        lt: end, // 終了日
+      },
+      deletedAt: null,
+    },
+    orderBy: {
+      activityDay: "asc", // 日付順で並べる
+    },
+    select: {
+      id: true,
+      title: true,
+      description: true,
+      location: true,
+      activityDay: true,
+      startTime: true,
+      endTime: true,
+      circle: true,
+    },
+  })
+
+  // 日付ごとにイベントを分類
+  const groupedActivities: WeeklyActivities = {}
+
+  // 1週間の日付を初期化（空の配列を設定）
+  for (let i = 0; i < 7; i++) {
+    const currentDate = new Date(start)
+    currentDate.setDate(start.getDate() + i)
+    const dateStr = parseMonthDate(currentDate) // 日付を文字列に変換
+    groupedActivities[dateStr] = {
+      date: dateStr,
+      activities: [], // 初期化されているか確認
+    }
+  }
+
+  // データを分類
+  activities.forEach((activity) => {
+    const date = parseMonthDate(activity.activityDay) // 日付を文字列に変換
+    if (groupedActivities[date]) {
+      // 必ず存在することを確認
+      groupedActivities[date].activities.push({
+        id: activity.id,
+        title: activity.title,
+        description: activity.description || undefined,
+        location: activity.location,
+        startTime: parseMonthDate(activity.startTime),
+        endTime: activity.endTime
+          ? parseMonthDate(activity.endTime)
+          : undefined,
+        circle: activity.circle,
+      })
+    } else {
+      console.error(`No group found for date: ${date}`) // デバッグ用
+    }
+  })
+
+  return groupedActivities
+}
+
+export async function getMonthlyEvents(userId: string, startDate: Date) {
+  // 月初と月末の日付を計算
+  const startOfMonth = new Date(
+    startDate.getFullYear(),
+    startDate.getMonth(),
+    1,
+  )
+  const endOfMonth = new Date(
+    startDate.getFullYear(),
+    startDate.getMonth() + 1,
+    0,
+  )
+
+  const events = await db.activity.findMany({
+    where: {
+      circle: {
+        CircleMember: {
+          some: {
+            userId: userId, // ユーザーが所属しているサークル
+            leaveDate: null,
+          },
+        },
+        deletedAt: null,
+      },
+      activityDay: {
+        gte: startOfMonth, // 月初以降
+        lte: endOfMonth, // 月末まで
+      },
+      deletedAt: null,
+    },
+    orderBy: {
+      activityDay: "asc", // 日付順で並べる
+    },
+    select: {
+      id: true,
+      title: true,
+      description: true,
+      location: true,
+      activityDay: true,
+      startTime: true,
+      endTime: true,
+      circle: true,
+    },
+  })
+
+  // データを整形
+  return events
 }

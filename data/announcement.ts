@@ -69,6 +69,45 @@ export const getAnnouncementById = async (topicId: string) => {
   }
 }
 
+export const getAnnouncementsByUserId = async (userId: string) => {
+  try {
+    // サークルのお知らせを取得
+    const announcements = await db.topic.findMany({
+      where: {
+        circle: {
+          CircleMember: {
+            some: {
+              userId: userId, // ユーザーが所属しているサークル
+              leaveDate: null,
+            },
+          },
+          deletedAt: null,
+        },
+        deletedAt: null, // 論理削除されていないお知らせ
+        type: "announcement",
+      },
+      include: {
+        user: {
+          select: {
+            id: true,
+            name: true,
+            image: true,
+          }, // 作成者情報
+        },
+        circle: true,
+      },
+      orderBy: {
+        createdAt: "desc", // 最新順
+      },
+    })
+
+    return announcements
+  } catch (error) {
+    console.error("Error fetching announcements:", error)
+    throw new Error("お知らせを取得中にエラーが発生しました。")
+  }
+}
+
 export const getAnnouncements = async () => {
   try {
     return db.topic.findMany({

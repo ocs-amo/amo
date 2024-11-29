@@ -29,7 +29,7 @@ export const CircleDetailButton: FC<CircleDetailButtonProps> = ({
         <Button
           as={Link}
           href={`/circles/${circle?.id}/activities/new`}
-          leftIcon={<PlusIcon />}
+          leftIcon={<PlusIcon fontSize="2xl" />}
           colorScheme="riverBlue"
         >
           追加
@@ -48,7 +48,7 @@ export const CircleDetailButton: FC<CircleDetailButtonProps> = ({
         <Button
           as={Link}
           href={`/circles/${circle?.id}/album/create`}
-          leftIcon={<PlusIcon />}
+          leftIcon={<PlusIcon fontSize="2xl" />}
           colorScheme="riverBlue"
         >
           作成

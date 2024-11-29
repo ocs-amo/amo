@@ -5,6 +5,8 @@ import {
   getActivities,
   getActivitiesByMonth,
   getActivityById,
+  getMonthlyEvents,
+  getWeeklyActivities,
 } from "@/data/activity"
 
 // サーバーアクション：指定月のイベントを取得
@@ -37,6 +39,30 @@ export const fetchActivitiesByMonth = async (date: Date, circleId: string) => {
         error instanceof Error ? error.message : "不明なエラーが発生しました。",
     }
   }
+}
+
+export const getWeeklyActivitiesActioins = async (
+  userId: string,
+  date: Date,
+) => {
+  const session = await auth()
+  if (!session?.user) {
+    return
+  }
+
+  return await getWeeklyActivities(userId, date)
+}
+
+export const getMonthlyEventsActions = async (
+  userId: string,
+  startDate: Date,
+) => {
+  const session = await auth()
+  if (!session?.user) {
+    return
+  }
+
+  return await getMonthlyEvents(userId, startDate)
 }
 
 export const getActivityByIdActions = getActivityById

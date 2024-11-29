@@ -75,6 +75,7 @@ model Circle {
     MembershipRequest MembershipRequest[]
     Activity          Activity[]
     Album            Album[] // User created Comments
+    topic Topic[]
 
     @@index([name]) // Optional: Index on circle name for fast lookup
 }
@@ -190,6 +191,7 @@ model Topic {
     // リレーション
     comments Comment[] @relation("TopicComments")
     user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+    circle Circle @relation(fields: [circleId], references: [id], onDelete: Cascade)
 
     @@index([circleId]) // circleIdでインデックスを作成
 }

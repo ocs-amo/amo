@@ -9,6 +9,9 @@ export const parseFullDate = (date: Date) =>
 export const parseDate = (date: Date) =>
   `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`
 
+export const parseMonthDate = (date: Date) =>
+  `${date.getMonth() + 1}/${date.getDate()}`
+
 export const handlingTab = (key: string) => {
   switch (key) {
     case "activities":

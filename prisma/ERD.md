@@ -106,7 +106,6 @@ announcement announcement
 
   "Topic" {
     String id "🗝️"
-    String circleId
     TopicType type
     String title
     String content "❓"
@@ -159,6 +158,7 @@ announcement announcement
     "Circle" o{--}o "MembershipRequest" : "MembershipRequest"
     "Circle" o{--}o "Activity" : "Activity"
     "Circle" o{--}o "Album" : "Album"
+    "Circle" o{--}o "Topic" : "topic"
     "CircleMember" o|--|| "User" : "user"
     "CircleMember" o|--|| "Circle" : "circle"
     "CircleMember" o|--|| "Role" : "role"
@@ -177,6 +177,7 @@ announcement announcement
     "Topic" o|--|| "TopicType" : "enum:type"
     "Topic" o{--}o "Comment" : "comments"
     "Topic" o|--|| "User" : "user"
+    "Topic" o|--|| "Circle" : "circle"
     "Comment" o|--|| "Topic" : "topic"
     "Comment" o|--|| "User" : "user"
     "Album" o{--}o "AlbumImage" : "images"
