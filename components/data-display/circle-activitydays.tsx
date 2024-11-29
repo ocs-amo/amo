@@ -1,5 +1,6 @@
 "use client"
 import { MonthPicker } from "@yamada-ui/calendar"
+import { ChevronLeftIcon, ChevronRightIcon } from "@yamada-ui/lucide"
 import type { FC } from "@yamada-ui/react"
 import {
   Card,
@@ -7,6 +8,7 @@ import {
   Center,
   GridItem,
   HStack,
+  IconButton,
   LinkBox,
   LinkOverlay,
   Loading,
@@ -138,6 +140,17 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
                 bg: "white",
               }}
             />
+            <HStack>
+              {/* 1ヶ月前後動かしたい */}
+              <IconButton
+                icon={<ChevronLeftIcon fontSize="2xl" />}
+                colorScheme="riverBlue"
+              />
+              <IconButton
+                icon={<ChevronRightIcon fontSize="2xl" />}
+                colorScheme="riverBlue"
+              />
+            </HStack>
           </HStack>
           <VStack w="full" h="full">
             {loading ? (
