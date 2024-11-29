@@ -10,8 +10,8 @@ import {
   LinkBox,
   LinkOverlay,
   Text,
-  VStack,
 } from "@yamada-ui/react"
+import Link from "next/link"
 import type { getAnnouncementsByUserId } from "@/data/announcement"
 import { parseDate } from "@/utils/format"
 
@@ -33,8 +33,14 @@ export const NotificationListItem: FC<NotificationListItemProps> = ({
             alt={`${announcement.user.name}のアイコン画像`}
           />
         </Box>
-        <VStack
-          as={LinkOverlay}
+        <LinkOverlay
+          w="full"
+          as={Link}
+          justifyContent="center"
+          alignItems="start"
+          display="flex"
+          gap="md"
+          flexDir="column"
           href={`/circles/${announcement.circleId}/announcement/${announcement.id}`}
         >
           <Text>{announcement.circle.name}</Text>
@@ -51,10 +57,10 @@ export const NotificationListItem: FC<NotificationListItemProps> = ({
               {announcement.content}
             </Text>
           )}
-          <Flex justifyContent="right">
+          <Flex w="full" justifyContent="right">
             {parseDate(announcement.createdAt)}
           </Flex>
-        </VStack>
+        </LinkOverlay>
       </HStack>
     </HStack>
   )

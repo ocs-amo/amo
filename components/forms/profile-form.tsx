@@ -209,7 +209,11 @@ export const ProfileForm: FC<ProfileForm> = ({ user }) => {
       </FormControl>
       <Snacks snacks={snacks} />
       <Center gap="md" justifyContent="end">
-        <Button as={Link} href={`/user/${user?.id || ""}`} colorScheme="riverBlue">
+        <Button
+          as={Link}
+          href={`/user/${user?.id || ""}`}
+          colorScheme="riverBlue"
+        >
           キャンセル
         </Button>
         <Button type="submit" isLoading={isLoading} colorScheme="riverBlue">
