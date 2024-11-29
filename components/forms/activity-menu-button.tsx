@@ -58,6 +58,7 @@ export const ActivityMenuButton: FC<ActivityMenuButtonProps> = ({
           <MenuItem
             as={Link}
             href={`/circles/${circle?.id}/activities/${activity.id}/edit`}
+            isDisabled={!isAdmin || activity.createdBy !== userId}
           >
             編集
           </MenuItem>

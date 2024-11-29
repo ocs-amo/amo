@@ -1,6 +1,6 @@
 "use server"
 import { auth } from "@/auth"
-import { deleteActivity } from "@/data/activity"
+import { deleteActivity, getActivityById } from "@/data/activity"
 import { isUserAdmin } from "@/data/circle"
 
 // 活動日の削除アクション
@@ -19,7 +19,8 @@ export const removeActivityAction = async (
 
   // メンバー情報を取得して管理者権限を確認
   const isAdmin = isUserAdmin(userId, circleId)
-  if (!isAdmin) {
+  const activity = await getActivityById(activityId)
+  if (!isAdmin || activity?.createdBy !== userId) {
     return { success: false, error: "管理者権限がありません。" }
   }
 
