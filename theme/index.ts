@@ -9,6 +9,13 @@ import * as tokens from "./tokens/index"
 const customTheme: UsageTheme = {
   styles,
   // components,
+  components: {
+    Input: {
+      baseStyle: {
+        bg: "white",
+      },
+    },
+  },
   ...tokens,
 }
 
