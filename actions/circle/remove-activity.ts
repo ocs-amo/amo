@@ -18,7 +18,7 @@ export const removeActivityAction = async (
   }
 
   // メンバー情報を取得して管理者権限を確認
-  const isAdmin = isUserAdmin(userId, circleId)
+  const isAdmin = await isUserAdmin(userId, circleId)
   const activity = await getActivityById(activityId)
   if (!isAdmin || activity?.createdBy !== userId) {
     return { success: false, error: "管理者権限がありません。" }

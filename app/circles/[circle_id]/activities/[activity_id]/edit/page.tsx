@@ -4,6 +4,7 @@ import { getCircleById, getCircles } from "@/actions/circle/fetch-circle"
 import { auth } from "@/auth"
 import { ActivityForm } from "@/components/forms/activity-form"
 import { getActivities, getActivityById } from "@/data/activity"
+import { isUserAdmin } from "@/data/circle"
 import { MetadataSet } from "@/utils/metadata"
 
 interface Props {
@@ -39,14 +40,13 @@ const Page = async ({ params }: Props) => {
     : 0
   const session = await auth()
   const circle = await getCircleById(circleId || "")
-  const isMember = circle?.members?.some(
-    (member) => member.id === session?.user?.id,
-  )
+  const isAdmin = await isUserAdmin(session?.user?.id || "", circleId || "")
   const activity = await getActivityById(activityId)
   if (!circle || !activity) {
     notFound()
   }
-  return isMember && activity.circleId === circleId ? (
+  return (isAdmin || activity.createdBy === session?.user?.id) &&
+    activity.circleId === circleId ? (
     <ActivityForm
       circleId={circleId || ""}
       userId={session?.user?.id || ""}
