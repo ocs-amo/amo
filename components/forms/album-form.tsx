@@ -211,10 +211,14 @@ export const AlbumForm: FC<AlbumFormProps> = ({ circleId, mode, album }) => {
       </FormControl>
       <Snacks snacks={snacks} />
       <Center gap="md" justifyContent="end">
-        <Button as={Link} href={`/circles/${circleId}/album`}>
+        <Button
+          colorScheme="riverBlue"
+          as={Link}
+          href={`/circles/${circleId}/album`}
+        >
           キャンセル
         </Button>
-        <Button type="submit" isLoading={isLoading}>
+        <Button colorScheme="riverBlue" type="submit" isLoading={isLoading}>
           {mode === "create" ? "作成" : "更新"}
         </Button>
       </Center>
