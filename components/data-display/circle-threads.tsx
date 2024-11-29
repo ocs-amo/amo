@@ -118,7 +118,7 @@ export const CircleThreads: FC<CircleThreadsProps> = ({
     fetchData()
   }, [selectedOptions])
   return (
-    <VStack gap="md">
+    <VStack gap="md" w="full" h="full">
       <Snacks snacks={snacks} />
       {currentThread ? (
         <ThreadCard
@@ -152,7 +152,7 @@ export const CircleThreads: FC<CircleThreadsProps> = ({
             <Option value="isImportant">重要</Option>
           </MultiSelect>
           {loading ? (
-            <Center w="full" h="xs">
+            <Center w="full" h="full">
               <Loading fontSize="xl" />
             </Center>
           ) : topics && topics.length > 0 ? (
@@ -169,7 +169,7 @@ export const CircleThreads: FC<CircleThreadsProps> = ({
               ))}
             </VStack>
           ) : (
-            <Center w="full" h="xs">
+            <Center w="full" h="full">
               <Text>投稿がありません</Text>
             </Center>
           )}
