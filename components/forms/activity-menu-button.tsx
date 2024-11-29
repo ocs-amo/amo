@@ -62,7 +62,11 @@ export const ActivityMenuButton: FC<ActivityMenuButtonProps> = ({
           >
             編集
           </MenuItem>
-          <MenuItem color="red" isDisabled={!isAdmin} onClick={onOpen}>
+          <MenuItem
+            color="red"
+            isDisabled={!isAdmin && activity.createdBy !== userId}
+            onClick={onOpen}
+          >
             削除
           </MenuItem>
 
