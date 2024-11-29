@@ -80,7 +80,7 @@ export const CircleAlbums: FC<CircleAlbums> = ({
     fetchData()
   }, [])
   return (
-    <VStack>
+    <VStack w="full" h="full">
       <Snacks snacks={snacks} />
       {currentAlbum ? (
         <AlbumCard
@@ -94,7 +94,7 @@ export const CircleAlbums: FC<CircleAlbums> = ({
           <Loading fontSize="xl" />
         </Center>
       ) : albums.length === 0 ? (
-        <Center w="full">
+        <Center w="full" h="full">
           <Text>アルバムがありません</Text>
         </Center>
       ) : (

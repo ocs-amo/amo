@@ -51,7 +51,7 @@ export const CircleDetailPage: FC<{
   )
 
   return (
-    <VStack w="full" h="fit-content" gap={0} p={0}>
+    <VStack w="full" h="full" gap={0} p={0}>
       <VStack w="full" h="full" flexGrow={1} p={0}>
         <VStack
           {...(circle?.imagePath

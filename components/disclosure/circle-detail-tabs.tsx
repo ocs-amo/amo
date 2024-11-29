@@ -54,7 +54,7 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
   const { data } = membershipRequests
 
   return (
-    <Tabs index={tabIndex}>
+    <Tabs index={tabIndex} w="full" h="full">
       <TabList overflowX="auto" overflowY="hidden">
         <Tab
           flexShrink={0}
@@ -86,8 +86,8 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
           </Indicator>
         </Tab>
       </TabList>
-      <TabPanels>
-        <TabPanel>
+      <TabPanels h="full">
+        <TabPanel h="full">
           <CircleActivitydays
             userId={userId}
             userRole={userRole}
@@ -97,7 +97,7 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
             circle={circle}
           />
         </TabPanel>
-        <TabPanel>
+        <TabPanel h="full">
           <CircleAlbums
             userId={userId}
             circleId={circle?.id || ""}
@@ -106,7 +106,7 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
             currentAlbum={currentAlbum}
           />
         </TabPanel>
-        <TabPanel>
+        <TabPanel h="full">
           <CircleThreads
             userId={userId}
             isAdmin={isAdmin}
@@ -117,7 +117,7 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
           />
         </TabPanel>
 
-        <TabPanel>
+        <TabPanel h="full">
           <CircleMembers
             userId={userId}
             userRole={userRole}

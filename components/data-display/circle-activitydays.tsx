@@ -114,7 +114,7 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
   }
 
   return (
-    <VStack>
+    <VStack w="full" h="full">
       <Snacks snacks={snacks} />
       {currentActivity ? (
         <ActivityCard
@@ -139,7 +139,7 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
               }}
             />
           </HStack>
-          <VStack>
+          <VStack w="full" h="full">
             {loading ? (
               <Center w="full" h="full">
                 <Loading fontSize="xl" />
@@ -192,7 +192,7 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
                 </GridItem>
               ))
             ) : (
-              <Center w="full">
+              <Center w="full" h="full">
                 <Text>活動がありません</Text>
               </Center>
             )}
