@@ -80,8 +80,12 @@ export const WeekCalendar: React.FC<WeekCalendarProps> = ({
             カレンダー
           </Heading>
           <HStack>
-            <Button onClick={prevDate}>前の週</Button>
-            <Button onClick={nextDate}>次の週</Button>
+            <Button colorScheme="riverBlue" onClick={prevDate}>
+              前の週
+            </Button>
+            <Button colorScheme="riverBlue" onClick={nextDate}>
+              次の週
+            </Button>
           </HStack>
           <Text>{currentDate.getFullYear()}</Text>
         </HStack>

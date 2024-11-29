@@ -161,10 +161,14 @@ export const AnnouncementForm: FC<AnnouncementFormProps> = ({
 
         <Snacks snacks={snacks} />
         <Center gap="md" justifyContent="end">
-          <Button as={Link} href={`/circles/${circleId}/notifications`}>
+          <Button
+            colorScheme="riverBlue"
+            as={Link}
+            href={`/circles/${circleId}/notifications`}
+          >
             キャンセル
           </Button>
-          <Button type="submit" isLoading={isLoading}>
+          <Button colorScheme="riverBlue" type="submit" isLoading={isLoading}>
             {mode === "create" ? "作成" : "更新"}
           </Button>
         </Center>
