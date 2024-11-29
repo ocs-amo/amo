@@ -281,6 +281,7 @@ export const CircleForm: FC<CircleFormProps> = ({
                     onChange={onChange}
                     icon={<CameraIcon fontSize="5xl" color="gray" />}
                     isRounded
+                    variant="outline"
                   />
                 </Tooltip>
                 <Tooltip label="画像を削除" placement="bottom">
@@ -380,7 +381,7 @@ export const CircleForm: FC<CircleFormProps> = ({
                       {...field}
                       items={instructors}
                       containerProps={{
-                        bg: "white",
+                        bg: "blackAlpha.50",
                       }}
                     />
                     {errors.instructors ? (

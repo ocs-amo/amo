@@ -141,7 +141,7 @@ export const CircleThreads: FC<CircleThreadsProps> = ({
         <>
           <MultiSelect
             containerProps={{
-              bg: "white",
+              bg: "blackAlpha.50",
             }}
             placeholder="項目を選択"
             component={({ label, onRemove }) => (
