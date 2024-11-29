@@ -468,10 +468,10 @@ export const CircleForm: FC<CircleFormProps> = ({
             </VStack>
           </FormControl>
           <Center gap="md" justifyContent="end">
-            <Button as={Link} href={`/circles/${circle?.id || ""}`}>
+            <Button as={Link} href={`/circles/${circle?.id || ""}`} colorScheme="riverBlue">
               キャンセル
             </Button>
-            <Button type="submit" isLoading={isLoading}>
+            <Button type="submit" isLoading={isLoading} colorScheme="riverBlue">
               {mode === "create" ? "作成" : "更新"}
             </Button>
           </Center>
