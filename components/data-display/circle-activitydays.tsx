@@ -134,9 +134,6 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
               locale="ja"
               defaultValue={currentMonth}
               onChange={setCurrentMonth}
-              containerProps={{
-                bg: "white",
-              }}
             />
           </HStack>
           <VStack w="full" h="full">

@@ -281,6 +281,7 @@ export const CircleForm: FC<CircleFormProps> = ({
                     onChange={onChange}
                     icon={<CameraIcon fontSize="5xl" color="gray" />}
                     isRounded
+                    variant="outline"
                   />
                 </Tooltip>
                 <Tooltip label="画像を削除" placement="bottom">
@@ -379,6 +380,9 @@ export const CircleForm: FC<CircleFormProps> = ({
                       placeholder="講師を選択"
                       {...field}
                       items={instructors}
+                      containerProps={{
+                        bg: "blackAlpha.50",
+                      }}
                     />
                     {errors.instructors ? (
                       <ErrorMessage mt={0}>
@@ -468,7 +472,11 @@ export const CircleForm: FC<CircleFormProps> = ({
             </VStack>
           </FormControl>
           <Center gap="md" justifyContent="end">
-            <Button as={Link} href={`/circles/${circle?.id || ""}`} colorScheme="riverBlue">
+            <Button
+              as={Link}
+              href={`/circles/${circle?.id || ""}`}
+              colorScheme="riverBlue"
+            >
               キャンセル
             </Button>
             <Button type="submit" isLoading={isLoading} colorScheme="riverBlue">
