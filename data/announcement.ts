@@ -1,5 +1,5 @@
-import type { AnnouncementFormInput } from "@/schema/topic"
-import { db } from "@/utils/db"
+import type { AnnouncementFormInput } from "schema/topic"
+import { db } from "utils/db"
 
 export const deleteAnnouncement = async (announcementId: string) => {
   return db.topic.update({

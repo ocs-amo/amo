@@ -1,19 +1,19 @@
 "use server"
-import { auth } from "@/auth"
+import { auth } from "auth"
 import {
   addMemberToCircle,
   findActiveMember,
   isUserAdmin,
   markMemberAsInactive,
   removeMemberFromCircle,
-} from "@/data/circle"
+} from "data/circle"
 import {
   approveMembershipRequest,
   checkExistingMembershipRequest,
   createMembershipRequest,
   fetchPendingMembershipRequests,
   rejectMembershipRequest,
-} from "@/data/membership"
+} from "data/membership"
 
 export const handleMembershipRequest = async (
   userId: string,

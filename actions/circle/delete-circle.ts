@@ -1,7 +1,7 @@
 "use server"
 
-import { auth } from "@/auth"
-import { deleteCircle, isUserAdmin } from "@/data/circle"
+import { auth } from "auth"
+import { deleteCircle, isUserAdmin } from "data/circle"
 
 // サーバーアクション：サークル削除
 export const removeCircle = async (circleId: string, userId: string) => {

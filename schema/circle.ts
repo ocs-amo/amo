@@ -1,5 +1,5 @@
 import { z } from "zod"
-import { getBase64Image } from "@/utils/file"
+import { getBase64Image } from "utils/file"
 
 // 共通の基本スキーマ（バックエンドでも使用）
 export const CircleSchema = z.object({

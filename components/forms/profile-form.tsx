@@ -28,13 +28,13 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { Controller, useForm } from "react-hook-form"
-import { updateUserAction, type getUserById } from "@/actions/user/user"
+import { updateUserAction, type getUserById } from "actions/user/user"
 import {
   BackUserProfileSchema,
   FrontUserProfileSchema,
   UserIconSchema,
-} from "@/schema/user"
-import type { FrontUserProfileForm } from "@/schema/user"
+} from "schema/user"
+import type { FrontUserProfileForm } from "schema/user"
 
 interface ProfileForm {
   user: Awaited<ReturnType<typeof getUserById>>
@@ -209,7 +209,11 @@ export const ProfileForm: FC<ProfileForm> = ({ user }) => {
       </FormControl>
       <Snacks snacks={snacks} />
       <Center gap="md" justifyContent="end">
-        <Button as={Link} href={`/user/${user?.id || ""}`} colorScheme="riverBlue">
+        <Button
+          as={Link}
+          href={`/user/${user?.id || ""}`}
+          colorScheme="riverBlue"
+        >
           キャンセル
         </Button>
         <Button type="submit" isLoading={isLoading} colorScheme="riverBlue">

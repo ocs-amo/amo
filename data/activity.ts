@@ -1,7 +1,7 @@
 import type { Circle } from "@prisma/client"
-import type { ActivityFormType } from "@/schema/activity"
-import { db } from "@/utils/db"
-import { parseMonthDate } from "@/utils/format"
+import type { ActivityFormType } from "schema/activity"
+import { db } from "utils/db"
+import { parseMonthDate } from "utils/format"
 
 export const getActivityById = async (activityId: number) => {
   try {

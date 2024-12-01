@@ -16,9 +16,9 @@ import {
 } from "@yamada-ui/react"
 import Link from "next/link"
 import { useState } from "react"
-import { getWeeklyActivitiesActioins } from "@/actions/circle/fetch-activity"
-import type { getWeeklyActivities } from "@/data/activity"
-import { parseMonthDate } from "@/utils/format"
+import { getWeeklyActivitiesActioins } from "actions/circle/fetch-activity"
+import type { getWeeklyActivities } from "data/activity"
+import { parseMonthDate } from "utils/format"
 
 interface WeekCalendarProps {
   userId: string

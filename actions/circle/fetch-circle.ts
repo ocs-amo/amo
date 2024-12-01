@@ -1,5 +1,5 @@
 "use server"
-import { db } from "@/utils/db"
+import { db } from "utils/db"
 
 export const getCircleById = async (id: string) => {
   try {

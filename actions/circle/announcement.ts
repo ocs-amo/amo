@@ -1,14 +1,14 @@
 "use server"
-import { auth } from "@/auth"
+import { auth } from "auth"
 import {
   createAnnouncement,
   deleteAnnouncement,
   getAnnouncementById,
   updateAnnouncement,
-} from "@/data/announcement"
-import { getMemberByCircleId, isUserAdmin } from "@/data/circle"
-import type { AnnouncementFormInput } from "@/schema/topic"
-import { AnnouncementFormSchema } from "@/schema/topic"
+} from "data/announcement"
+import { getMemberByCircleId, isUserAdmin } from "data/circle"
+import type { AnnouncementFormInput } from "schema/topic"
+import { AnnouncementFormSchema } from "schema/topic"
 
 export const submitAnnouncement = async (
   formData: AnnouncementFormInput,

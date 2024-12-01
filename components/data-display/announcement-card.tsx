@@ -13,8 +13,8 @@ import {
 } from "@yamada-ui/react"
 import { useRouter } from "next/navigation"
 import { ThreadMenuButton } from "../forms/thread-menu-button"
-import type { getAnnouncementById } from "@/data/announcement"
-import { parseFullDate } from "@/utils/format"
+import type { getAnnouncementById } from "data/announcement"
+import { parseFullDate } from "utils/format"
 
 interface AnnouncementCardProps {
   userId: string

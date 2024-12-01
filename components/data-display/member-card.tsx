@@ -26,7 +26,7 @@ import {
   LinkOverlay,
 } from "@yamada-ui/react"
 import { useState, type FC } from "react"
-import type { getCircleById } from "@/actions/circle/fetch-circle"
+import type { getCircleById } from "actions/circle/fetch-circle"
 
 interface MemberCard {
   member: NonNullable<

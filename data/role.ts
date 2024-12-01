@@ -1,5 +1,5 @@
 // utils/db-helpers.ts
-import { db } from "@/utils/db"
+import { db } from "utils/db"
 
 // メンバーの役職を更新する関数
 export const updateMemberRole = async (memberId: number, newRoleId: number) => {

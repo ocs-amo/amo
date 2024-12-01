@@ -20,13 +20,13 @@ import {
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { Controller, useForm } from "react-hook-form"
-import { addActivityAction } from "@/actions/circle/add-activity"
-import { editActivity } from "@/actions/circle/edit-activity"
-import type { getCircleById } from "@/actions/circle/fetch-circle"
-import type { getActivityById } from "@/data/activity"
-import type { ActivityFormType } from "@/schema/activity"
-import { ActivitySchema } from "@/schema/activity"
-import { zeroPadding } from "@/utils/format"
+import { addActivityAction } from "actions/circle/add-activity"
+import { editActivity } from "actions/circle/edit-activity"
+import type { getCircleById } from "actions/circle/fetch-circle"
+import type { getActivityById } from "data/activity"
+import type { ActivityFormType } from "schema/activity"
+import { ActivitySchema } from "schema/activity"
+import { zeroPadding } from "utils/format"
 import "dayjs/locale/ja"
 
 interface ActivityFormProps {
@@ -301,12 +301,14 @@ export const ActivityForm: FC<ActivityFormProps> = ({
         </FormControl>
         <Snacks snacks={snacks} />
         <Center gap="md" justifyContent="end">
-          <Button as={Link} href={`/circles/${circleId || ""}/activities`}
-          colorScheme="riverBlue">
+          <Button
+            as={Link}
+            href={`/circles/${circleId || ""}/activities`}
+            colorScheme="riverBlue"
+          >
             キャンセル
           </Button>
-          <Button type="submit" isLoading={isLoading}
-          colorScheme="riverBlue">
+          <Button type="submit" isLoading={isLoading} colorScheme="riverBlue">
             {mode === "create" ? "追加" : "更新"}
           </Button>
         </Center>

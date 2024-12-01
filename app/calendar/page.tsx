@@ -1,6 +1,6 @@
-import { auth } from "@/auth"
-import { CalendarPage } from "@/components/layouts/calendar"
-import { getMonthlyEvents } from "@/data/activity"
+import { auth } from "auth"
+import { CalendarPage } from "components/layouts/calendar"
+import { getMonthlyEvents } from "data/activity"
 
 export const metadata = {
   title: "カレンダー - CIRCLIA",

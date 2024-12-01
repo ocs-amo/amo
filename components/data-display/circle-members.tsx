@@ -3,10 +3,10 @@ import type { AlertStatus, FC } from "@yamada-ui/react"
 import { SimpleGrid, Snacks, useSnacks } from "@yamada-ui/react"
 import { MemberCard } from "./member-card"
 import { MemberRequestCard } from "./member-request-card"
-import type { getCircleById } from "@/actions/circle/fetch-circle"
-import type { getMembershipRequests } from "@/actions/circle/membership-request"
-import { removeMember } from "@/actions/circle/membership-request"
-import { changeMemberRole } from "@/actions/circle/update-role"
+import type { getCircleById } from "actions/circle/fetch-circle"
+import type { getMembershipRequests } from "actions/circle/membership-request"
+import { removeMember } from "actions/circle/membership-request"
+import { changeMemberRole } from "actions/circle/update-role"
 
 interface CircleMembersProps {
   userId: string

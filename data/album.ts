@@ -1,4 +1,4 @@
-import { db } from "@/utils/db"
+import { db } from "utils/db"
 
 export async function deleteAlbum(albumId: string) {
   return db.$transaction(async (tx) => {

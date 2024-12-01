@@ -7,7 +7,7 @@ import { useState } from "react"
 import {
   checkPendingRequest,
   handleMembershipRequest,
-} from "@/actions/circle/membership-request"
+} from "actions/circle/membership-request"
 
 interface CircleMembershipButtonProps {
   isAdmin: boolean

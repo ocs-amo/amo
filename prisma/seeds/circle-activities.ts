@@ -1,4 +1,4 @@
-import { db } from "@/utils/db"
+import { db } from "utils/db"
 
 // イベント生成関数
 const createActivity = (

@@ -12,8 +12,8 @@ import {
   Text,
   VStack,
 } from "@yamada-ui/react"
-import type { getAnnouncementsByUserId } from "@/data/announcement"
-import { parseDate } from "@/utils/format"
+import type { getAnnouncementsByUserId } from "data/announcement"
+import { parseDate } from "utils/format"
 
 interface NotificationListItemProps {
   announcement: Awaited<ReturnType<typeof getAnnouncementsByUserId>>[number]

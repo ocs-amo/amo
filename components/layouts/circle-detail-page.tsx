@@ -5,12 +5,12 @@ import { Box, Heading, HStack, Tag, Text, VStack } from "@yamada-ui/react"
 import { useState } from "react"
 import { CircleDetailTabs } from "../disclosure/circle-detail-tabs"
 import { CircleDetailButton } from "../forms/circle-detail-button"
-import { getCircleById } from "@/actions/circle/fetch-circle"
-import { getMembershipRequests } from "@/actions/circle/membership-request"
-import type { getActivityById } from "@/data/activity"
-import type { getAlbumById } from "@/data/album"
-import type { getAnnouncementById } from "@/data/announcement"
-import type { getThreadById } from "@/data/thread"
+import { getCircleById } from "actions/circle/fetch-circle"
+import { getMembershipRequests } from "actions/circle/membership-request"
+import type { getActivityById } from "data/activity"
+import type { getAlbumById } from "data/album"
+import type { getAnnouncementById } from "data/announcement"
+import type { getThreadById } from "data/thread"
 
 export const CircleDetailPage: FC<{
   circle: Awaited<ReturnType<typeof getCircleById>>

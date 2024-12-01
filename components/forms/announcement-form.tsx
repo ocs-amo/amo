@@ -24,10 +24,10 @@ import { Controller, useForm } from "react-hook-form"
 import {
   submitAnnouncement,
   submitAnnouncementUpdate,
-} from "@/actions/circle/announcement"
-import type { getAnnouncementById } from "@/data/announcement"
-import { AnnouncementFormSchema } from "@/schema/topic"
-import type { AnnouncementFormInput } from "@/schema/topic"
+} from "actions/circle/announcement"
+import type { getAnnouncementById } from "data/announcement"
+import { AnnouncementFormSchema } from "schema/topic"
+import type { AnnouncementFormInput } from "schema/topic"
 
 interface AnnouncementFormProps {
   mode: "create" | "edit"

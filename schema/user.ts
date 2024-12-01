@@ -1,5 +1,5 @@
 import { z } from "zod"
-import { getBase64Image } from "@/utils/file"
+import { getBase64Image } from "utils/file"
 
 export const UserIconSchema = z
   .custom<FileList>()

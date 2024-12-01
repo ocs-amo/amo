@@ -1,13 +1,13 @@
 "use server"
 
-import { auth } from "@/auth"
+import { auth } from "auth"
 import {
   getActivities,
   getActivitiesByMonth,
   getActivityById,
   getMonthlyEvents,
   getWeeklyActivities,
-} from "@/data/activity"
+} from "data/activity"
 
 // サーバーアクション：指定月のイベントを取得
 export const fetchActivitiesByMonth = async (date: Date, circleId: string) => {

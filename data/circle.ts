@@ -1,5 +1,5 @@
-import type { BackCircleForm } from "@/schema/circle"
-import { db } from "@/utils/db"
+import type { BackCircleForm } from "schema/circle"
+import { db } from "utils/db"
 
 // メンバーを退会（論理削除）させる関数
 export const markMemberAsInactive = async (memberId: number) => {

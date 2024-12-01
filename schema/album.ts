@@ -1,5 +1,5 @@
 import { z } from "zod"
-import { getBase64Image, MAX_BASE64_SIZE, sizeInMB } from "@/utils/file"
+import { getBase64Image, MAX_BASE64_SIZE, sizeInMB } from "utils/file"
 
 // 画像専用のスキーマ
 export const AlbumImageSchema = z

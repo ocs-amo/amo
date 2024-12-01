@@ -7,8 +7,8 @@ import type { FC } from "@yamada-ui/react"
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@yamada-ui/react"
 import Link from "next/link"
 import { CircleMembershipButton } from "./circle-membership-button"
-import type { getCircleById } from "@/actions/circle/fetch-circle"
-import { handlingTab } from "@/utils/format"
+import type { getCircleById } from "actions/circle/fetch-circle"
+import { handlingTab } from "utils/format"
 interface CircleDetailButtonProps {
   tabKey: string
   isAdmin: boolean

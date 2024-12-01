@@ -1,8 +1,8 @@
 import { Center } from "@yamada-ui/react"
-import { getCircleById, getCircles } from "@/actions/circle/fetch-circle"
-import { auth } from "@/auth"
-import { AlbumForm } from "@/components/forms/album-form"
-import { MetadataSet } from "@/utils/metadata"
+import { getCircleById, getCircles } from "actions/circle/fetch-circle"
+import { auth } from "auth"
+import { AlbumForm } from "components/forms/album-form"
+import { MetadataSet } from "utils/metadata"
 
 interface Props {
   params: { circle_id?: string }

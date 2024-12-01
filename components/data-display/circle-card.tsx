@@ -12,7 +12,7 @@ import {
 } from "@yamada-ui/react"
 import Link from "next/link"
 import { memo } from "react"
-import type { getCirclesByUserId } from "@/actions/circle/fetch-circle"
+import type { getCirclesByUserId } from "actions/circle/fetch-circle"
 
 export interface CircleCardProps {
   data: NonNullable<Awaited<ReturnType<typeof getCirclesByUserId>>>[number]

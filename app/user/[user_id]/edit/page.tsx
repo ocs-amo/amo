@@ -1,9 +1,9 @@
 import { Center, Text } from "@yamada-ui/react"
 import { notFound } from "next/navigation"
-import { getUserById } from "@/actions/user/user"
-import { auth } from "@/auth"
-import { ProfileForm } from "@/components/forms/profile-form"
-import { getUsers } from "@/data/user"
+import { getUserById } from "actions/user/user"
+import { auth } from "auth"
+import { ProfileForm } from "components/forms/profile-form"
+import { getUsers } from "data/user"
 
 interface Props {
   params: { user_id?: string }

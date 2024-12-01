@@ -1,10 +1,10 @@
 "use server"
 
 import { AuthError } from "next-auth"
-import { signIn } from "@/auth"
-import { getUserByEmail } from "@/data/user"
-import type { SigninForm } from "@/schema/auth"
-import { SigninSchema } from "@/schema/auth"
+import { signIn } from "auth"
+import { getUserByEmail } from "data/user"
+import type { SigninForm } from "schema/auth"
+import { SigninSchema } from "schema/auth"
 
 export async function signin(values: SigninForm) {
   const validatedFields = SigninSchema.safeParse(values)

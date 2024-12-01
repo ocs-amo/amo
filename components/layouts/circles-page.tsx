@@ -16,8 +16,8 @@ import {
 } from "@yamada-ui/react"
 import Link from "next/link"
 import { useRef } from "react"
-import { getCircles } from "@/actions/circle/fetch-circle"
-import { CircleCard } from "@/components/data-display/circle-card"
+import { getCircles } from "actions/circle/fetch-circle"
+import { CircleCard } from "components/data-display/circle-card"
 
 export const CirclesPage = () => {
   const { value } = useAsync(async () => {
@@ -60,9 +60,7 @@ export const CirclesPage = () => {
             </InputGroup>
           </HStack>
           <Box textAlign="right">
-            <Button as={Link} href="/circles/create"
-            colorScheme="riverBlue"
-              >
+            <Button as={Link} href="/circles/create" colorScheme="riverBlue">
               サークル作成
             </Button>
           </Box>

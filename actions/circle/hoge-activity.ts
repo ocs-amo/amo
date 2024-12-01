@@ -1,7 +1,7 @@
 "use server"
 
-import { auth } from "@/auth"
-import { getActivitiesByDateRange } from "@/data/activity"
+import { auth } from "auth"
+import { getActivitiesByDateRange } from "data/activity"
 
 // サーバーアクション：指定週のイベントを取得
 export const fetchActivitiesByWeek = async (date: Date, circleId: string) => {

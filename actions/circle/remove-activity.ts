@@ -1,7 +1,7 @@
 "use server"
-import { auth } from "@/auth"
-import { deleteActivity } from "@/data/activity"
-import { isUserAdmin } from "@/data/circle"
+import { auth } from "auth"
+import { deleteActivity } from "data/activity"
+import { isUserAdmin } from "data/circle"
 
 // 活動日の削除アクション
 export const removeActivityAction = async (

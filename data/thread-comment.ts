@@ -1,5 +1,5 @@
-import type { CommentFormInput } from "@/schema/topic"
-import { db } from "@/utils/db"
+import type { CommentFormInput } from "schema/topic"
+import { db } from "utils/db"
 
 export const postComment = async (
   userId: string,

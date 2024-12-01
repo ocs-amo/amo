@@ -1,10 +1,10 @@
 import { Center } from "@yamada-ui/react"
 import { notFound } from "next/navigation"
-import { getCircleById, getCircles } from "@/actions/circle/fetch-circle"
-import { auth } from "@/auth"
-import { ThreadForm } from "@/components/forms/thread-form"
-import { getThreadById, getThreads } from "@/data/thread"
-import { MetadataSet } from "@/utils/metadata"
+import { getCircleById, getCircles } from "actions/circle/fetch-circle"
+import { auth } from "auth"
+import { ThreadForm } from "components/forms/thread-form"
+import { getThreadById, getThreads } from "data/thread"
+import { MetadataSet } from "utils/metadata"
 
 interface Props {
   params: {

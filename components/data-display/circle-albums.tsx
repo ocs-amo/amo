@@ -32,9 +32,9 @@ import {
   handleDeleteAlbum,
   handleGetAlbumById,
   handleGetAlbumsByCircleId,
-} from "@/actions/circle/album"
-import type { getAlbumById } from "@/data/album"
-import { parseDate } from "@/utils/format"
+} from "actions/circle/album"
+import type { getAlbumById } from "data/album"
+import { parseDate } from "utils/format"
 
 interface CircleAlbums {
   userId: string

@@ -23,11 +23,11 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { Controller, useForm } from "react-hook-form"
 import { AlbumPreviewGrid } from "../data-display/album-preview-grid"
-import { handleCreateAlbum, handleUpdateAlbum } from "@/actions/circle/album"
-import type { getAlbumById } from "@/data/album"
-import { BackAlbumSchema, FrontAlbumFormSchema } from "@/schema/album"
-import type { FrontAlbumForm } from "@/schema/album"
-import { getBase64Image, handleImageValidation } from "@/utils/file"
+import { handleCreateAlbum, handleUpdateAlbum } from "actions/circle/album"
+import type { getAlbumById } from "data/album"
+import { BackAlbumSchema, FrontAlbumFormSchema } from "schema/album"
+import type { FrontAlbumForm } from "schema/album"
+import { getBase64Image, handleImageValidation } from "utils/file"
 
 interface AlbumFormProps {
   circleId: string

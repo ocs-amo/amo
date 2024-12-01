@@ -14,9 +14,9 @@ import {
   VStack,
 } from "@yamada-ui/react"
 import { ActivityMenuButton } from "../forms/activity-menu-button"
-import type { getCircleById } from "@/actions/circle/fetch-circle"
-import type { getActivityById } from "@/data/activity"
-import { displayTime } from "@/utils/format"
+import type { getCircleById } from "actions/circle/fetch-circle"
+import type { getActivityById } from "data/activity"
+import { displayTime } from "utils/format"
 
 interface ActivityCardProps {
   userId: string
