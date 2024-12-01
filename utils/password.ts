@@ -1,11 +1,10 @@
-import { createHash } from "crypto"
+import CryptoJS from "crypto-js"
 
 /**
  * パスワードをハッシュ化する関数
  */
 export const hashPassword = (password: string): string => {
-  const hash = createHash("sha256")
-  return hash.update(password).digest("hex")
+  return CryptoJS.SHA256(password).toString(CryptoJS.enc.Hex)
 }
 
 /**
