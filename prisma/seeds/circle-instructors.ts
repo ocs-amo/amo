@@ -1,4 +1,4 @@
-import { db } from "@/utils/db"
+import { db } from "../../utils/db"
 
 export const circleInstructors = () =>
   db.circleInstructor.createMany({
