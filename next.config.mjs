@@ -8,7 +8,10 @@ const nextConfig = {
     },
   },
   webpack: (config) => {
-    config.resolve.alias["@"] = path.resolve(process.cwd()) // プロジェクトルートにマッピング
+    config.resolve.alias = {
+      ...config.resolve.alias, // 既存のエイリアスを保持
+      "@": path.resolve(process.cwd()), // プロジェクトルートへのエイリアス
+    }
     return config
   },
 }
