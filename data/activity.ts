@@ -48,50 +48,6 @@ export const getActivities = async () => {
   }
 }
 
-//siteisaretassyuu
-export const getActivitiesByDateRange = async (
-  startDate: Date,
-  endDate: Date,
-  circleId: string,
-) => {
-  try {
-    return await db.activity.findMany({
-      where: {
-        circleId,
-        activityDay: {
-          gte: startDate,
-          lte: endDate,
-        },
-        deletedAt: null, // 削除されていないもの
-      },
-      include: {
-        participants: {
-          include: {
-            user: {
-              select: {
-                id: true,
-                name: true,
-                email: true,
-                image: true,
-                studentNumber: true,
-              },
-            },
-          },
-          where: {
-            removedAt: null, // 退会していない参加者
-          },
-        },
-      },
-      orderBy: {
-        startTime: "asc", // 開始時刻順に並べる
-      },
-    })
-  } catch (error) {
-    console.error("getActivitiesByDateRange Error:", error)
-    return null
-  }
-}
-
 // 指定された月のイベントを取得する関数
 export const getActivitiesByMonth = async (
   year: number,
