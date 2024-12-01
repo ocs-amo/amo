@@ -8,6 +8,7 @@ const config: NextAuthConfig = {
   adapter: PrismaAdapter(db),
   session: {
     strategy: "jwt",
+    maxAge: 30 * 24 * 60 * 60, // 30日間
   },
   pages: {
     signIn: "/signin",
@@ -35,10 +36,13 @@ const config: NextAuthConfig = {
         return false
       }
     },
-    async jwt({ token, account }) {
+    async jwt({ token, account, user }) {
       if (account && account.provider === "microsoft-entra-id") {
         token.accessToken = account.access_token
         token.refreshToken = account.refresh_token
+      }
+      if (user) {
+        token.id = user.id
       }
       return token
     },
