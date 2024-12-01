@@ -1,8 +1,8 @@
 "use server"
-import { auth } from "auth"
-import { updateUser } from "data/user"
-import type { BackUserProfileForm } from "schema/user"
-import { db } from "utils/db"
+import { auth } from "../../auth"
+import { updateUser } from "../../data/user"
+import type { BackUserProfileForm } from "../../schema/user"
+import { db } from "../../utils/db"
 
 export const updateUserAction = async (data: BackUserProfileForm) => {
   const session = await auth()
