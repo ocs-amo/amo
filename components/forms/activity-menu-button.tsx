@@ -103,10 +103,18 @@ export const ActivityMenuButton: FC<ActivityMenuButtonProps> = ({
   ) : activity.participants.some(
       (participant) => participant.userId === userId,
     ) ? (
-    <Button onClick={() => handleParticipation(activity.id)}>
+    <Button
+      colorScheme="riverBlue"
+      onClick={() => handleParticipation(activity.id)}
+    >
       参加をキャンセル
     </Button>
   ) : (
-    <Button onClick={() => handleParticipation(activity.id)}>参加</Button>
+    <Button
+      colorScheme="riverBlue"
+      onClick={() => handleParticipation(activity.id)}
+    >
+      参加
+    </Button>
   )
 }

@@ -1,5 +1,6 @@
 "use client"
 import { MonthPicker } from "@yamada-ui/calendar"
+import { ChevronLeftIcon, ChevronRightIcon } from "@yamada-ui/lucide"
 import type { FC } from "@yamada-ui/react"
 import {
   Card,
@@ -7,6 +8,7 @@ import {
   Center,
   GridItem,
   HStack,
+  IconButton,
   LinkBox,
   LinkOverlay,
   Loading,
@@ -75,6 +77,25 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
   }, [currentMonth])
   const { snack, snacks } = useSnacks()
 
+  // 現在の月を1ヶ月前後させる関数
+  const handlePreviousMonth = () => {
+    setCurrentMonth((prev) => {
+      if (!prev) return undefined
+      const newDate = new Date(prev)
+      newDate.setMonth(prev.getMonth() - 1) // 1ヶ月前
+      return newDate
+    })
+  }
+
+  const handleNextMonth = () => {
+    setCurrentMonth((prev) => {
+      if (!prev) return undefined
+      const newDate = new Date(prev)
+      newDate.setMonth(prev.getMonth() + 1) // 1ヶ月後
+      return newDate
+    })
+  }
+
   const handleDelete = async (activityId: number) => {
     if (!isAdmin) return
     const { success, error } = await removeActivityAction(
@@ -133,11 +154,21 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
               w="md"
               locale="ja"
               defaultValue={currentMonth}
+              value={currentMonth}
               onChange={setCurrentMonth}
-              containerProps={{
-                bg: "white",
-              }}
             />
+            <HStack>
+              <IconButton
+                onClick={handlePreviousMonth}
+                icon={<ChevronLeftIcon fontSize="2xl" />}
+                colorScheme="riverBlue"
+              />
+              <IconButton
+                onClick={handleNextMonth}
+                icon={<ChevronRightIcon fontSize="2xl" />}
+                colorScheme="riverBlue"
+              />
+            </HStack>
           </HStack>
           <VStack w="full" h="full">
             {loading ? (
