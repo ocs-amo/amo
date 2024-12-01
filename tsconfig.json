@@ -17,10 +17,10 @@
         "name": "next"
       }
     ],
+    "baseUrl": ".",
     "paths": {
       "@/*": ["./*"]
     },
-    "baseUrl": ".",
     "typeRoots": ["./node_modules/@types", "./@types"]
   },
   "include": [
