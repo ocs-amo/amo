@@ -1,4 +1,4 @@
-import { AlbumImageSchema } from "schema/album"
+import { AlbumImageSchema } from "../schema/album"
 
 export const MAX_BASE64_SIZE = 1
 

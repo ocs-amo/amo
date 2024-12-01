@@ -1,6 +1,6 @@
 //タブのタイトル変更
 
-import { getCircleById } from "actions/circle/fetch-circle"
+import { getCircleById } from "../actions/circle/fetch-circle"
 
 const handlingTabTitle = (key: string) => {
   switch (key) {
