@@ -1,7 +1,7 @@
 "use server"
 
-import { auth } from "auth"
-import { updateActivityParticipation } from "data/activity"
+import { auth } from "../../auth"
+import { updateActivityParticipation } from "../../data/activity"
 
 // アクティビティ参加・キャンセルのトグルアクション
 export const toggleActivityParticipation = async (

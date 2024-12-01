@@ -1,9 +1,9 @@
 "use client"
 import type { FC } from "@yamada-ui/react"
 import { Divider, Heading, Text, VStack } from "@yamada-ui/react"
+import type { getAnnouncementsByUserId } from "../../data/announcement"
 import { NotificationListItem } from "../data-display/notification-list-item"
 import { PaginationList } from "../navigation/pagination-list"
-import type { getAnnouncementsByUserId } from "data/announcement"
 
 interface NotificationPageProps {
   announcements: Awaited<ReturnType<typeof getAnnouncementsByUserId>>

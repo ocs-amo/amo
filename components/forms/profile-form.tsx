@@ -28,13 +28,13 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { Controller, useForm } from "react-hook-form"
-import { updateUserAction, type getUserById } from "actions/user/user"
+import { updateUserAction, type getUserById } from "../../actions/user/user"
 import {
   BackUserProfileSchema,
   FrontUserProfileSchema,
   UserIconSchema,
-} from "schema/user"
-import type { FrontUserProfileForm } from "schema/user"
+} from "../../schema/user"
+import type { FrontUserProfileForm } from "../../schema/user"
 
 interface ProfileForm {
   user: Awaited<ReturnType<typeof getUserById>>

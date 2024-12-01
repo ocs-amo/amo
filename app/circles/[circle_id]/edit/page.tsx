@@ -1,11 +1,14 @@
 import type { AutocompleteItem } from "@yamada-ui/react"
 import { Center } from "@yamada-ui/react"
 import { notFound } from "next/navigation"
-import { getCircleById, getCircles } from "actions/circle/fetch-circle"
-import { auth } from "auth"
-import { CircleForm } from "components/forms/circle-form"
-import { getInstructors } from "data/circle"
-import { MetadataSet } from "utils/metadata"
+import {
+  getCircleById,
+  getCircles,
+} from "../../../../actions/circle/fetch-circle"
+import { auth } from "../../../../auth"
+import { CircleForm } from "../../../../components/forms/circle-form"
+import { getInstructors } from "../../../../data/circle"
+import { MetadataSet } from "../../../../utils/metadata"
 
 interface Props {
   params: { circle_id?: string }

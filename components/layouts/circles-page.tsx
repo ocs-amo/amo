@@ -16,8 +16,8 @@ import {
 } from "@yamada-ui/react"
 import Link from "next/link"
 import { useRef } from "react"
-import { getCircles } from "actions/circle/fetch-circle"
-import { CircleCard } from "components/data-display/circle-card"
+import { getCircles } from "../../actions/circle/fetch-circle"
+import { CircleCard } from "../../components/data-display/circle-card"
 
 export const CirclesPage = () => {
   const { value } = useAsync(async () => {

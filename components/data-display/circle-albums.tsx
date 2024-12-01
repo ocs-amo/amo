@@ -27,14 +27,14 @@ import {
 } from "@yamada-ui/react"
 import Link from "next/link"
 import { useState } from "react"
-import { AlbumCard } from "./album-card"
 import {
   handleDeleteAlbum,
   handleGetAlbumById,
   handleGetAlbumsByCircleId,
-} from "actions/circle/album"
-import type { getAlbumById } from "data/album"
-import { parseDate } from "utils/format"
+} from "../../actions/circle/album"
+import type { getAlbumById } from "../../data/album"
+import { parseDate } from "../../utils/format"
+import { AlbumCard } from "./album-card"
 
 interface CircleAlbums {
   userId: string

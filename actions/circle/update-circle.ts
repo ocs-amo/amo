@@ -1,14 +1,14 @@
 "use server"
-import { getUserById } from "../user/user"
-import { auth } from "auth"
+import { auth } from "../../auth"
 import {
   getMemberByCircleId,
   updateInstructors,
   updateTags,
   updateCircle,
-} from "data/circle"
-import type { BackCircleForm } from "schema/circle"
-import { BackCircleSchema } from "schema/circle"
+} from "../../data/circle"
+import type { BackCircleForm } from "../../schema/circle"
+import { BackCircleSchema } from "../../schema/circle"
+import { getUserById } from "../user/user"
 
 export const UpdateCircle = async (
   values: BackCircleForm,

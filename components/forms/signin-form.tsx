@@ -17,9 +17,9 @@ import {
 import { signIn } from "next-auth/react"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
-import { signin } from "actions/auth/signin"
-import { SigninSchema } from "schema/auth"
-import type { SigninForm } from "schema/auth"
+import { signin } from "../../actions/auth/signin"
+import { SigninSchema } from "../../schema/auth"
+import type { SigninForm } from "../../schema/auth"
 
 export const LoginForm = () => {
   const [isLoading, { on: start, off: end }] = useBoolean()

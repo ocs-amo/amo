@@ -12,11 +12,11 @@ import {
 } from "@yamada-ui/react"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { getCirclesByUserId } from "actions/circle/fetch-circle"
-import { getUserById } from "actions/user/user"
-import { auth } from "auth"
-import { CircleCard } from "components/data-display/circle-card"
-import { getUsers } from "data/user"
+import { getCirclesByUserId } from "../../../actions/circle/fetch-circle"
+import { getUserById } from "../../../actions/user/user"
+import { auth } from "../../../auth"
+import { CircleCard } from "../../../components/data-display/circle-card"
+import { getUsers } from "../../../data/user"
 
 interface Props {
   params: { user_id?: string }

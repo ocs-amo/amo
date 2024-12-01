@@ -1,5 +1,5 @@
-import { db } from "utils/db"
-import { hashPassword } from "utils/password"
+import { db } from "@/utils/db"
+import { hashPassword } from "@/utils/password"
 
 export const user = () =>
   db.user.createMany({

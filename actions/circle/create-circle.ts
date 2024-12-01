@@ -1,14 +1,14 @@
 "use server"
-import { getUserById } from "../user/user"
-import { auth } from "auth"
+import { auth } from "../../auth"
 import {
   addCircle,
   addInitialMember,
   addInstructors,
   addTags,
-} from "data/circle"
-import type { BackCircleForm } from "schema/circle"
-import { BackCircleSchema } from "schema/circle"
+} from "../../data/circle"
+import type { BackCircleForm } from "../../schema/circle"
+import { BackCircleSchema } from "../../schema/circle"
+import { getUserById } from "../user/user"
 
 export const CreateCircle = async (values: BackCircleForm, userId: string) => {
   // 認証情報を取得

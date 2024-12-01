@@ -15,8 +15,8 @@ import {
   VStack,
 } from "@yamada-ui/react"
 import Link from "next/link"
-import type { getAlbumById } from "data/album"
-import { parseDate } from "utils/format"
+import type { getAlbumById } from "../../data/album"
+import { parseDate } from "../../utils/format"
 
 interface AlbumCard {
   currentAlbum: NonNullable<Awaited<ReturnType<typeof getAlbumById>>>

@@ -1,7 +1,7 @@
 import type { AutocompleteItem } from "@yamada-ui/react"
-import { auth } from "auth"
-import { CircleForm } from "components/forms/circle-form"
-import { getInstructors } from "data/circle"
+import { auth } from "../../../auth"
+import { CircleForm } from "../../../components/forms/circle-form"
+import { getInstructors } from "../../../data/circle"
 
 export const metadata = {
   title: "サークル作成 - CIRCLIA",

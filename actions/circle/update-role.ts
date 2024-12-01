@@ -1,8 +1,8 @@
 "use server"
-import { auth } from "auth"
-import { findActiveMember, isUserAdmin } from "data/circle"
-import { checkExistingMembershipRequest } from "data/membership"
-import { demoteCurrentAdmin, updateMemberRole } from "data/role"
+import { auth } from "../../auth"
+import { findActiveMember, isUserAdmin } from "../../data/circle"
+import { checkExistingMembershipRequest } from "../../data/membership"
+import { demoteCurrentAdmin, updateMemberRole } from "../../data/role"
 
 interface ChangeRoleParams {
   userId: string // 権限を変更するユーザーのID

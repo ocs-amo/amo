@@ -1,16 +1,16 @@
 "use server"
 
-import { auth } from "auth"
-import { getMemberByCircleId, isUserAdmin } from "data/circle"
+import { auth } from "../../auth"
+import { getMemberByCircleId, isUserAdmin } from "../../data/circle"
 import {
   createThread,
   deleteThread,
   getThreadById,
   getTopics,
   updateThread,
-} from "data/thread"
-import type { ThreadFormInput } from "schema/topic"
-import { ThreadFormSchema } from "schema/topic"
+} from "../../data/thread"
+import type { ThreadFormInput } from "../../schema/topic"
+import { ThreadFormSchema } from "../../schema/topic"
 
 export const submitThread = async (
   formData: ThreadFormInput,

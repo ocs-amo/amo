@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server"
-import { auth as middleware } from "auth"
+import { auth as middleware } from "./auth"
 
 export const config = {
   matcher: [

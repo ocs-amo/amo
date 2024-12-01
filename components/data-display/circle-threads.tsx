@@ -15,21 +15,21 @@ import {
   VStack,
 } from "@yamada-ui/react"
 import { useState } from "react"
-import { AnnouncementCard } from "./announcement-card"
-import { ThreadCard } from "./thread-card"
-import { ThreadItem } from "./thread-item"
 import {
   getAnnouncementByIdAction,
   submitAnnouncementDelete,
-} from "actions/circle/announcement"
-import type { getCircleById } from "actions/circle/fetch-circle"
+} from "../../actions/circle/announcement"
+import type { getCircleById } from "../../actions/circle/fetch-circle"
 import {
   fetchTopics,
   getThreadByIdAction,
   submitThreadDelete,
-} from "actions/circle/thread"
-import type { getAnnouncementById } from "data/announcement"
-import type { getThreadById } from "data/thread"
+} from "../../actions/circle/thread"
+import type { getAnnouncementById } from "../../data/announcement"
+import type { getThreadById } from "../../data/thread"
+import { AnnouncementCard } from "./announcement-card"
+import { ThreadCard } from "./thread-card"
+import { ThreadItem } from "./thread-item"
 
 interface CircleThreadsProps {
   userId: string

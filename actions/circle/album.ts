@@ -1,15 +1,15 @@
 "use server"
-import { getUserById } from "../user/user"
-import { auth } from "auth"
+import { auth } from "../../auth"
 import {
   createAlbum,
   deleteAlbum,
   getAlbumById,
   getAlbumsByCircleId,
   updateAlbum,
-} from "data/album"
-import { getMemberByCircleId } from "data/circle"
-import type { BackAlbumForm } from "schema/album"
+} from "../../data/album"
+import { getMemberByCircleId } from "../../data/circle"
+import type { BackAlbumForm } from "../../schema/album"
+import { getUserById } from "../user/user"
 
 export async function handleDeleteAlbum(circleId: string, albumId: string) {
   const session = await auth()

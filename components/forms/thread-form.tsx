@@ -20,10 +20,10 @@ import {
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
-import { submitThread, submitThreadUpdate } from "actions/circle/thread"
-import type { getThreadById } from "data/thread"
-import { ThreadFormSchema } from "schema/topic"
-import type { ThreadFormInput } from "schema/topic"
+import { submitThread, submitThreadUpdate } from "../../actions/circle/thread"
+import type { getThreadById } from "../../data/thread"
+import { ThreadFormSchema } from "../../schema/topic"
+import type { ThreadFormInput } from "../../schema/topic"
 
 interface ThreadFormProps {
   mode: "create" | "edit"

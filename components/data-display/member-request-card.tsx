@@ -20,7 +20,7 @@ import { useState } from "react"
 import {
   handleMembershipRequestAction,
   type getMembershipRequests,
-} from "actions/circle/membership-request"
+} from "../../actions/circle/membership-request"
 
 interface MemberRequestCardProps {
   userId: string

@@ -22,12 +22,12 @@ import {
 } from "@yamada-ui/react"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
+import { PostCommentAction } from "../../actions/circle/thread-comment"
+import type { getThreadById } from "../../data/thread"
+import type { CommentFormInput } from "../../schema/topic"
+import { CommentFormSchema } from "../../schema/topic"
+import { parseFullDate } from "../../utils/format"
 import { ThreadMenuButton } from "../forms/thread-menu-button"
-import { PostCommentAction } from "actions/circle/thread-comment"
-import type { getThreadById } from "data/thread"
-import type { CommentFormInput } from "schema/topic"
-import { CommentFormSchema } from "schema/topic"
-import { parseFullDate } from "utils/format"
 
 interface ThreadCardProps {
   userId: string

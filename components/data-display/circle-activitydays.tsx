@@ -21,17 +21,17 @@ import {
 } from "@yamada-ui/react"
 import "dayjs/locale/ja"
 import { useState } from "react"
-import { ActivityMenuButton } from "../forms/activity-menu-button"
-import { ActivityCard } from "./activity-card"
 import {
   fetchActivitiesByMonth,
   getActivityByIdActions,
-} from "actions/circle/fetch-activity"
-import type { getCircleById } from "actions/circle/fetch-circle"
-import { removeActivityAction } from "actions/circle/remove-activity"
-import { toggleActivityParticipation } from "actions/circle/toggle-activity"
-import type { getActivityById } from "data/activity"
-import { displayTime } from "utils/format"
+} from "../../actions/circle/fetch-activity"
+import type { getCircleById } from "../../actions/circle/fetch-circle"
+import { removeActivityAction } from "../../actions/circle/remove-activity"
+import { toggleActivityParticipation } from "../../actions/circle/toggle-activity"
+import type { getActivityById } from "../../data/activity"
+import { displayTime } from "../../utils/format"
+import { ActivityMenuButton } from "../forms/activity-menu-button"
+import { ActivityCard } from "./activity-card"
 
 interface CircleActivitydays {
   isAdmin?: boolean

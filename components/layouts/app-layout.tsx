@@ -19,8 +19,8 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { signOut } from "next-auth/react"
 import type { FC, ReactNode } from "react"
-import { signout } from "actions/auth/signout"
-import type { getUserById } from "actions/user/user"
+import { signout } from "../../actions/auth/signout"
+import type { getUserById } from "../../actions/user/user"
 
 export const AppLayout: FC<{
   children?: ReactNode

@@ -13,14 +13,14 @@ import {
   VStack,
 } from "@yamada-ui/react"
 import Link from "next/link"
-import { getCirclesByUserId } from "actions/circle/fetch-circle"
-import { getUserById } from "actions/user/user"
-import { auth } from "auth"
-import { CircleCard } from "components/data-display/circle-card"
-import { NotificationList } from "components/data-display/notification-list"
-import { WeekCalendar } from "components/data-display/week-calendar"
-import { getWeeklyActivities } from "data/activity"
-import { getAnnouncementsByUserId } from "data/announcement"
+import { getCirclesByUserId } from "../actions/circle/fetch-circle"
+import { getUserById } from "../actions/user/user"
+import { auth } from "../auth"
+import { CircleCard } from "../components/data-display/circle-card"
+import { NotificationList } from "../components/data-display/notification-list"
+import { WeekCalendar } from "../components/data-display/week-calendar"
+import { getWeeklyActivities } from "../data/activity"
+import { getAnnouncementsByUserId } from "../data/announcement"
 
 export const metadata = {
   title: "ホーム - CIRCLIA",

@@ -16,8 +16,8 @@ import {
   useDisclosure,
 } from "@yamada-ui/react"
 import Link from "next/link"
-import type { getCircleById } from "actions/circle/fetch-circle"
-import type { getActivityById } from "data/activity"
+import type { getCircleById } from "../../actions/circle/fetch-circle"
+import type { getActivityById } from "../../data/activity"
 
 interface ActivityMenuButtonProps {
   isMember: boolean

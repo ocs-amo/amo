@@ -1,9 +1,9 @@
 "use server"
-import { auth } from "auth"
-import { getMemberByCircleId } from "data/circle"
-import { postComment } from "data/thread-comment"
-import type { CommentFormInput } from "schema/topic"
-import { CommentFormSchema } from "schema/topic"
+import { auth } from "../../auth"
+import { getMemberByCircleId } from "../../data/circle"
+import { postComment } from "../../data/thread-comment"
+import type { CommentFormInput } from "../../schema/topic"
+import { CommentFormSchema } from "../../schema/topic"
 
 export const PostCommentAction = async (
   threadId: string,

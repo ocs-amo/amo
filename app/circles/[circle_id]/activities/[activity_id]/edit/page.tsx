@@ -1,10 +1,13 @@
 import { Center } from "@yamada-ui/react"
 import { notFound } from "next/navigation"
-import { getCircleById, getCircles } from "actions/circle/fetch-circle"
-import { auth } from "auth"
-import { ActivityForm } from "components/forms/activity-form"
-import { getActivities, getActivityById } from "data/activity"
-import { MetadataSet } from "utils/metadata"
+import {
+  getCircleById,
+  getCircles,
+} from "../../../../../../actions/circle/fetch-circle"
+import { auth } from "../../../../../../auth"
+import { ActivityForm } from "../../../../../../components/forms/activity-form"
+import { getActivities, getActivityById } from "../../../../../../data/activity"
+import { MetadataSet } from "../../../../../../utils/metadata"
 
 interface Props {
   params: {

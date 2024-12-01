@@ -1,10 +1,10 @@
 "use server"
 
+import { auth } from "../../auth"
+import { updateActivity } from "../../data/activity"
+import { getMemberByCircleId } from "../../data/circle"
+import type { ActivityFormType } from "../../schema/activity"
 import { getUserById } from "../user/user"
-import { auth } from "auth"
-import { updateActivity } from "data/activity"
-import { getMemberByCircleId } from "data/circle"
-import type { ActivityFormType } from "schema/activity"
 
 export const editActivity = async (
   data: ActivityFormType,
