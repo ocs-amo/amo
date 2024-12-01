@@ -33,7 +33,8 @@
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.53.1",
     "zod": "^3.23.8",
-    "prisma-erd-generator": "^1.11.2"
+    "prisma-erd-generator": "^1.11.2",
+    "@prisma/client": "^5.22.0"
   },
   "devDependencies": {
     "@clack/prompts": "^0.7.0",
@@ -50,7 +51,6 @@
     "@next/eslint-plugin-next": "^14.2.17",
     "@octokit/request-error": "^6.1.5",
     "@octokit/rest": "^21.0.2",
-    "@prisma/client": "^5.22.0",
     "@types/eslint__js": "^8.42.3",
     "@types/node": "^20.17.6",
     "@types/react": "^18.3.12",
