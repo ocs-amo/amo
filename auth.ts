@@ -29,9 +29,10 @@ const config: NextAuthConfig = {
       }
       return true
     },
-    async jwt({ token, user }) {
-      if (user) {
-        token.id = user.id
+    async jwt({ token, account }) {
+      if (account && account.provider === "microsoft-entra-id") {
+        token.accessToken = account.access_token
+        token.refreshToken = account.refresh_token
       }
       return token
     },
