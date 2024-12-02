@@ -122,7 +122,7 @@ export const getMembershipRequests = async (
       id: request.id,
       userId: request.userId,
       userName: request.user.name,
-      image: request.user.image,
+      profileImageUrl: request.user.profileImageUrl,
       studentNumber: request.user.studentNumber,
       requestType: request.requestType,
       requestDate: request.requestDate,

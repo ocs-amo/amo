@@ -14,6 +14,7 @@ announcement announcement
     String password "❓"
     DateTime createdAt
     DateTime updatedAt
+    String profileImageUrl "❓"
     String image "❓"
     String profileText "❓"
     Boolean instructorFlag

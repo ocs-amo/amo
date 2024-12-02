@@ -17,7 +17,7 @@ export const updateUserAction = async (data: BackUserProfileForm) => {
     const result = await updateUser(
       user.id,
       data.profileText || "",
-      data.image || "",
+      data.profileImageUrl || "",
     )
     return {
       success: true,
@@ -46,7 +46,7 @@ export const getUserById = async (id: string) => {
         studentNumber: true,
         updatedAt: true,
         createdAt: true,
-        image: true,
+        profileImageUrl: true,
         accounts: true,
       },
     })

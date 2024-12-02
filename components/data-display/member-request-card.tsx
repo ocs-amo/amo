@@ -112,7 +112,7 @@ export const MemberRequestCard: FC<MemberRequestCardProps> = ({
             as={LinkOverlay}
             href={`/user/${member.userId}`}
           >
-            <Avatar src={member.image || ""} />
+            <Avatar src={member.profileImageUrl || ""} />
             {member.requestType === "join" ? (
               <Badge colorScheme="success">入会</Badge>
             ) : (

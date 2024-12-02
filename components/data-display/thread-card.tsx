@@ -82,7 +82,7 @@ export const ThreadCard: FC<ThreadCardProps> = ({
           flexDir={{ base: "row", md: "column-reverse" }}
         >
           <HStack>
-            <Avatar src={currentThread.user.image || ""} />
+            <Avatar src={currentThread.user.profileImageUrl || ""} />
             <VStack gap={0}>
               <Text>{currentThread.title}</Text>
               <Text fontSize="sm" as="pre" textWrap="wrap">
@@ -111,7 +111,7 @@ export const ThreadCard: FC<ThreadCardProps> = ({
             <Card key={comment.id} w="full" variant="outline">
               <CardBody flexDir="row" justifyContent="space-between">
                 <HStack>
-                  <Avatar src={comment.user.image || ""} />
+                  <Avatar src={comment.user.profileImageUrl || ""} />
                   <VStack>
                     <Text>{comment.user.name}</Text>
                     <Text as="pre" textWrap="wrap">

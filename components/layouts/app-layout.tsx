@@ -61,7 +61,7 @@ export const AppLayout: FC<{
               as={Link}
               variant="ghost"
               href={`/user/${user?.id}`}
-              icon={<Avatar src={user?.image || ""} boxSize="8xs" />}
+              icon={<Avatar src={user?.profileImageUrl || ""} boxSize="8xs" />}
               title="プロフィール"
             />
             <IconButton

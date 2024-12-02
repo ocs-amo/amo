@@ -41,7 +41,9 @@ interface ProfileForm {
 }
 
 export const ProfileForm: FC<ProfileForm> = ({ user }) => {
-  const [imagePreview, setImagePreview] = useState<string>(user?.image || "")
+  const [imagePreview, setImagePreview] = useState<string>(
+    user?.profileImageUrl || "",
+  )
   const [isLoading, { on: start, off: end }] = useBoolean()
   const {
     register,
@@ -54,15 +56,15 @@ export const ProfileForm: FC<ProfileForm> = ({ user }) => {
     resolver: zodResolver(FrontUserProfileSchema),
     defaultValues: {
       profileText: user?.profileText || "",
-      image: user?.image || "",
+      profileImageUrl: user?.profileImageUrl || "",
     },
   })
   const { snack, snacks } = useSnacks()
   const router = useRouter()
   const onSubmit = async (data: FrontUserProfileForm) => {
     start()
-    if (watch("image") && !data.image) {
-      data.image = watch("image")
+    if (watch("profileImageUrl") && !data.profileImageUrl) {
+      data.profileImageUrl = watch("profileImageUrl")
     }
     const {
       success,
@@ -91,7 +93,7 @@ export const ProfileForm: FC<ProfileForm> = ({ user }) => {
   }
 
   // watchでimagePathを監視
-  const image = watch("image") as unknown as FileList | null
+  const image = watch("profileImageUrl") as unknown as FileList | null
 
   const updateImage = async () => {
     const { success, data } = await UserIconSchema.safeParseAsync(image)
@@ -101,7 +103,7 @@ export const ProfileForm: FC<ProfileForm> = ({ user }) => {
   }
 
   const onResetImage = () => {
-    setValue("image", null)
+    setValue("profileImageUrl", null)
     setImagePreview("")
   }
 
@@ -123,15 +125,17 @@ export const ProfileForm: FC<ProfileForm> = ({ user }) => {
     >
       <HStack w="full" m="auto" flexDir={{ base: "row", sm: "column" }}>
         <FormControl
-          isInvalid={!!errors.image}
-          errorMessage={errors.image ? errors.image.message : undefined}
+          isInvalid={!!errors.profileImageUrl}
+          errorMessage={
+            errors.profileImageUrl ? errors.profileImageUrl.message : undefined
+          }
           w="full"
           boxSize={{ base: "2xs", md: "24" }}
           position="relative"
           as={Center}
         >
           <Controller
-            name="image"
+            name="profileImageUrl"
             control={control}
             render={({ field: { ref, name, onChange, onBlur } }) => (
               <>
@@ -209,7 +213,11 @@ export const ProfileForm: FC<ProfileForm> = ({ user }) => {
       </FormControl>
       <Snacks snacks={snacks} />
       <Center gap="md" justifyContent="end">
-        <Button as={Link} href={`/user/${user?.id || ""}`} colorScheme="riverBlue">
+        <Button
+          as={Link}
+          href={`/user/${user?.id || ""}`}
+          colorScheme="riverBlue"
+        >
           キャンセル
         </Button>
         <Button type="submit" isLoading={isLoading} colorScheme="riverBlue">

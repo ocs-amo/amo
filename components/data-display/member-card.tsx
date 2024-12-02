@@ -105,7 +105,7 @@ export const MemberCard: FC<MemberCard> = ({
           justifyContent="space-between"
         >
           <HStack flexWrap="wrap" as={LinkOverlay} href={`/user/${member.id}`}>
-            <Avatar src={member.image || ""} />
+            <Avatar src={member.profileImageUrl || ""} />
             <Badge>{member.role.roleName}</Badge>
             <Text>{member.name}</Text>
             <Text>{member.studentNumber}</Text>

@@ -28,6 +28,7 @@ const config: NextAuthConfig = {
           } else {
             user.studentNumber = studentNumber
           }
+          user.profileImageUrl = user.image || ""
         }
         return true
       } catch (error) {

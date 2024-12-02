@@ -68,7 +68,7 @@ const Page = async ({ params }: Props) => {
         flexDir={{ base: "row", sm: "column" }}
       >
         <Avatar
-          src={user?.image || ""}
+          src={user?.profileImageUrl || ""}
           boxSize={{ base: "2xs", md: "28", sm: "24" }}
         />
         <VStack maxW="xl">

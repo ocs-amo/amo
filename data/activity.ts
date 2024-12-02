@@ -16,7 +16,7 @@ export const getActivityById = async (activityId: number) => {
               select: {
                 id: true,
                 name: true,
-                image: true,
+                profileImageUrl: true,
                 studentNumber: true,
                 email: true,
               },
@@ -72,7 +72,7 @@ export const getActivitiesByDateRange = async (
                 id: true,
                 name: true,
                 email: true,
-                image: true,
+                profileImageUrl: true,
                 studentNumber: true,
               },
             },
@@ -120,7 +120,7 @@ export const getActivitiesByMonth = async (
               id: true,
               name: true,
               email: true,
-              image: true,
+              profileImageUrl: true,
               studentNumber: true,
             },
           }, // `ActivityParticipant`がユーザー情報を持つ場合、参加者のユーザー情報も取得

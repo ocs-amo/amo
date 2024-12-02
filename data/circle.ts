@@ -277,7 +277,7 @@ export const getInstructors = async () =>
       studentNumber: true,
       updatedAt: true,
       createdAt: true,
-      image: true,
+      profileImageUrl: true,
       accounts: true,
     },
     where: {
@@ -302,7 +302,7 @@ export const getMemberByCircleId = async (circleId: string) => {
       id: member.user.id,
       name: member.user.name,
       email: member.user.email,
-      image: member.user.image,
+      profileImageUrl: member.user.profileImageUrl,
       studentNumber: member.user.studentNumber,
       profileText: member.user.profileText,
       joinDate: member.joinDate,
