@@ -43,7 +43,9 @@ export default {
       clientSecret: process.env.AUTH_MICROSOFT_ENTRA_ID_SECRET,
       issuer: process.env.AUTH_MICROSOFT_ENTRA_ID_ISSUER,
       authorization: {
-        prompt: "select_account",
+        params: {
+          scope: "openid profile email offline_access",
+        },
       },
     }),
   ],
