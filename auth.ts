@@ -37,12 +37,11 @@ const config: NextAuthConfig = {
       }
     },
     async jwt({ token, account, user }) {
-      if (account && account.provider === "microsoft-entra-id") {
-        token.accessToken = account.access_token
-        token.refreshToken = account.refresh_token
-      }
-      if (user) {
-        token.id = user.id
+      // Microsoft認証の場合のみトークンに追加
+      if (account?.provider === "microsoft-entra-id") {
+        if (user) {
+          token.id = user.id // 必須データのみトークンに保存
+        }
       }
       return token
     },

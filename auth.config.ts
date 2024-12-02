@@ -45,6 +45,7 @@ export default {
       authorization: {
         params: {
           scope: "openid profile email offline_access",
+          prompt: "login", // キャッシュ問題を抑制
         },
       },
     }),
