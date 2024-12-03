@@ -107,10 +107,12 @@ export const createActivity = async (
         description: data.description || "", // オプションフィールドに空文字を設定
         activityDay: data.date,
         startTime: new Date(
-          `${data.date.toISOString().split("T")[0]}T${data.startTime}`,
+          `${data.date.toISOString().split("T")[0]}T${data.startTime}Z`,
         ),
         endTime: data.endTime
-          ? new Date(`${data.date.toISOString().split("T")[0]}T${data.endTime}`)
+          ? new Date(
+              `${data.date.toISOString().split("T")[0]}T${data.endTime}Z`,
+            )
           : null,
         location: data.location || "",
         notes: data.notes,
@@ -151,10 +153,10 @@ export const updateActivity = async (
       location: data.location,
       activityDay: data.date,
       startTime: new Date(
-        `${data.date.toISOString().split("T")[0]}T${data.startTime}`,
+        `${data.date.toISOString().split("T")[0]}T${data.startTime}Z`,
       ),
       endTime: data.endTime
-        ? new Date(`${data.date.toISOString().split("T")[0]}T${data.endTime}`)
+        ? new Date(`${data.date.toISOString().split("T")[0]}T${data.endTime}Z`)
         : null,
       notes: data.notes,
     },
