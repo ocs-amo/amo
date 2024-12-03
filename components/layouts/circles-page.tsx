@@ -31,6 +31,10 @@ export const CirclesPage = () => {
       behavior: "smooth",
       block: "start",
     })
+    window.scroll({
+      top: 0,
+      behavior: "smooth",
+    })
   }
 
   return (
