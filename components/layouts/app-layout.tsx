@@ -33,7 +33,16 @@ export const AppLayout: FC<{
   }, [])
   return pathname !== "/signin" ? (
     <VStack w="100vw" h="100dvh" gap={0}>
-      <VStack w="full" bgColor="black" px="md">
+      <VStack
+        w="full"
+        bgColor="black"
+        px="md"
+        position="sticky"
+        zIndex="9999"
+        top={0}
+        left={0}
+        right={0}
+      >
         <Heading
           color="white"
           _firstLetter={{ color: "#35B0D2" }}
@@ -50,6 +59,11 @@ export const AppLayout: FC<{
           p="sm"
           borderRightWidth={1}
           justifyContent="space-between"
+          position="sticky"
+          top="12"
+          maxH="calc(100dvh - 3rem)"
+          left={0}
+          bottom={0}
         >
           <VStack>
             <IconButton
