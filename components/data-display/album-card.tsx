@@ -19,6 +19,7 @@ import type { getAlbumById } from "@/data/album"
 import { parseDate } from "@/utils/format"
 
 interface AlbumCard {
+  userId: string
   currentAlbum: NonNullable<Awaited<ReturnType<typeof getAlbumById>>>
   isAdmin: boolean
   circleId: string
@@ -26,6 +27,7 @@ interface AlbumCard {
 }
 
 export const AlbumCard: FC<AlbumCard> = ({
+  userId,
   currentAlbum,
   isAdmin,
   circleId,
@@ -33,7 +35,7 @@ export const AlbumCard: FC<AlbumCard> = ({
 }) => {
   return (
     <HStack flexDir={{ base: "row", md: "column" }} alignItems="start">
-      <Carousel h={{ base: "full", md: "xs" }}>
+      <Carousel h={{ base: "full", md: "xs" }} maxH="lg">
         {currentAlbum.images.map((image) => (
           <CarouselSlide key={image.id} as={Center}>
             <Image
@@ -50,7 +52,7 @@ export const AlbumCard: FC<AlbumCard> = ({
           <Heading>{currentAlbum.title}</Heading>
           <HStack>
             <Text>{parseDate(currentAlbum.createdAt)}</Text>
-            {isAdmin ? (
+            {isAdmin || currentAlbum.createdBy === userId ? (
               <Menu>
                 <MenuButton
                   as={IconButton}

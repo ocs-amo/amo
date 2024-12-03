@@ -4,6 +4,7 @@ import { getCircleById, getCircles } from "@/actions/circle/fetch-circle"
 import { auth } from "@/auth"
 import { AnnouncementForm } from "@/components/forms/announcement-form"
 import { getAnnouncementById, getAnnouncements } from "@/data/announcement"
+import { isUserAdmin } from "@/data/circle"
 import { MetadataSet } from "@/utils/metadata"
 
 interface Props {
@@ -37,14 +38,13 @@ const Page = async ({ params }: Props) => {
   const { circle_id: circleId, topic_id: topicId } = params
   const session = await auth()
   const circle = await getCircleById(circleId || "")
-  const isMember = circle?.members?.some(
-    (member) => member.id === session?.user?.id,
-  )
+  const isAdmin = await isUserAdmin(session?.user?.id || "", circleId || "")
   const announcement = await getAnnouncementById(topicId || "")
   if (!circle || !announcement) {
     notFound()
   }
-  return isMember && announcement.circleId === circleId ? (
+  return (isAdmin || announcement.userId === session?.user?.id) &&
+    announcement.circleId === circleId ? (
     <AnnouncementForm
       circleId={circleId || ""}
       userId={session?.user?.id || ""}

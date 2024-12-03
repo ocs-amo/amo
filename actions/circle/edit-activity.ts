@@ -2,8 +2,8 @@
 
 import { getUserById } from "../user/user"
 import { auth } from "@/auth"
-import { updateActivity } from "@/data/activity"
-import { getMemberByCircleId } from "@/data/circle"
+import { getActivityById, updateActivity } from "@/data/activity"
+import { isUserAdmin } from "@/data/circle"
 import type { ActivityFormType } from "@/schema/activity"
 
 export const editActivity = async (
@@ -18,19 +18,16 @@ export const editActivity = async (
   if (!session?.user || session.user.id !== userId) {
     return { success: false, error: "権限がありません。" }
   }
-
-  // メンバー情報を取得
-  const members = await getMemberByCircleId(circleId)
-
-  // 管理者権限の確認
-  const isMember = members?.some((member) => member.id === userId)
-
-  if (!isMember) {
-    return { success: false, error: "権限がありません。" }
-  }
   const user = await getUserById(userId)
   if (!user) {
     return { success: false, error: "ユーザーが存在しません。" }
+  }
+
+  // メンバー情報を取得して管理者権限を確認
+  const isAdmin = await isUserAdmin(userId, circleId)
+  const activity = await getActivityById(activityId)
+  if (!isAdmin && activity?.createdBy !== userId) {
+    return { success: false, error: "管理者権限がありません。" }
   }
 
   try {
