@@ -25,6 +25,7 @@ import {
   LinkBox,
   LinkOverlay,
 } from "@yamada-ui/react"
+import Link from "next/link"
 import { useState, type FC } from "react"
 import type { getCircleById } from "@/actions/circle/fetch-circle"
 
@@ -104,12 +105,20 @@ export const MemberCard: FC<MemberCard> = ({
           flexWrap="wrap"
           justifyContent="space-between"
         >
-          <HStack flexWrap="wrap" as={LinkOverlay} href={`/user/${member.id}`}>
+          <LinkOverlay
+            display="flex"
+            gap="md"
+            justifyContent="center"
+            alignItems="center"
+            flexWrap="wrap"
+            as={Link}
+            href={`/user/${member.id}`}
+          >
             <Avatar src={member.image || ""} />
             <Badge>{member.role.roleName}</Badge>
             <Text>{member.name}</Text>
             <Text>{member.studentNumber}</Text>
-          </HStack>
+          </LinkOverlay>
           {isAdmin && userId !== member.id && member?.role?.id !== 0 ? (
             <Menu>
               <MenuButton

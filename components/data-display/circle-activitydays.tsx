@@ -20,6 +20,7 @@ import {
   VStack,
 } from "@yamada-ui/react"
 import "dayjs/locale/ja"
+import Link from "next/link"
 import { useState } from "react"
 import { ActivityMenuButton } from "../forms/activity-menu-button"
 import { ActivityCard } from "./activity-card"
@@ -180,8 +181,12 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
                   <Card variant="outline" as={LinkBox} bg="white">
                     <CardBody>
                       <HStack justifyContent="space-between" w="full">
-                        <HStack
-                          as={LinkOverlay}
+                        <LinkOverlay
+                          justifyContent="center"
+                          alignItems="center"
+                          gap="md"
+                          as={Link}
+                          display="flex"
                           href={`/circles/${circle?.id}/activities/${activity.id}`}
                         >
                           <Card
@@ -193,7 +198,7 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
                             {activity.activityDay.getDate()}
                           </Card>
                           <Text lineClamp={1}>{activity.title}</Text>
-                        </HStack>
+                        </LinkOverlay>
 
                         <HStack>
                           <Text lineClamp={1}>{activity.location}</Text>

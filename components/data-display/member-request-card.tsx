@@ -16,6 +16,7 @@ import {
   Text,
   useDisclosure,
 } from "@yamada-ui/react"
+import Link from "next/link"
 import { useState } from "react"
 import {
   handleMembershipRequestAction,
@@ -107,9 +108,13 @@ export const MemberRequestCard: FC<MemberRequestCardProps> = ({
           w="full"
           flexWrap="wrap"
         >
-          <HStack
+          <LinkOverlay
+            justifyContent="center"
+            alignItems="center"
+            display="flex"
+            gap="md"
             flexWrap="wrap"
-            as={LinkOverlay}
+            as={Link}
             href={`/user/${member.userId}`}
           >
             <Avatar src={member.image || ""} />
@@ -120,7 +125,7 @@ export const MemberRequestCard: FC<MemberRequestCardProps> = ({
             )}
             <Text>{member.userName}</Text>
             <Text>{member.studentNumber}</Text>
-          </HStack>
+          </LinkOverlay>
           <HStack>
             <Button
               variant="outline"

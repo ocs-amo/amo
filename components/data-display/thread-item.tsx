@@ -12,6 +12,7 @@ import {
   Text,
   VStack,
 } from "@yamada-ui/react"
+import Link from "next/link"
 import { ThreadMenuButton } from "../forms/thread-menu-button"
 import type { getCircleById } from "@/actions/circle/fetch-circle"
 import type { fetchTopics } from "@/actions/circle/thread"
@@ -59,13 +60,13 @@ export const ThreadItem: FC<ThreadItemProps> = ({
                 {topic.type === "announcement" ? "お知らせ" : "スレッド"}
               </Badge>
             </VStack>
-            <Text
-              as={LinkOverlay}
+            <LinkOverlay
+              as={Link}
               href={`/circles/${circle?.id}/${topic.type}/${topic.id}`}
               fontWeight="bold"
             >
               {topic.title}
-            </Text>
+            </LinkOverlay>
           </HStack>
           <HStack w="full" justifyContent="end">
             <Text fontSize="sm" color="gray.500">

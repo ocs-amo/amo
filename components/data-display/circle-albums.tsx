@@ -129,11 +129,13 @@ export const CircleAlbums: FC<CircleAlbums> = ({
                     alignItems="center"
                     flexWrap="wrap"
                   >
-                    <Heading
-                      as={LinkOverlay}
-                      href={`/circles/${circleId}/album/${album.id}`}
-                    >
-                      {album.title}
+                    <Heading>
+                      <LinkOverlay
+                        as={Link}
+                        href={`/circles/${circleId}/album/${album.id}`}
+                      >
+                        {album.title}
+                      </LinkOverlay>
                     </Heading>
                     <HStack ml="auto">
                       <Text>{parseDate(album.createdAt)}</Text>
