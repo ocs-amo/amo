@@ -1,6 +1,9 @@
 "use client"
 
-import { SearchIcon, TriangleIcon } from "@yamada-ui/lucide"
+import {
+  ChevronUpIcon,
+  SearchIcon,
+} from "@yamada-ui/lucide"
 import {
   Box,
   Button,
@@ -81,10 +84,10 @@ export const CirclesPage = () => {
       </VStack>
       <IconButton
         position="fixed"
-        colorScheme="primary"
+        colorScheme="riverBlue"
         bottom="8"
         right="8"
-        icon={<TriangleIcon />}
+        icon={<ChevronUpIcon />}
         onClick={handleScroll}
       />
     </>
