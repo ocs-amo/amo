@@ -1,7 +1,10 @@
 import type { Circle } from "@prisma/client"
+import { DateTime } from "luxon"
 import type { ActivityFormType } from "@/schema/activity"
 import { db } from "@/utils/db"
 import { parseMonthDate } from "@/utils/format"
+
+const timeZone = "Asia/Tokyo" // 日本時間
 
 export const getActivityById = async (activityId: number) => {
   try {
@@ -98,6 +101,27 @@ export const createActivity = async (
   circleId: string,
   createdBy: string,
 ) => {
+  // ISO文字列をLuxonで扱い、日本時間（Asia/Tokyo）に変換
+  const activityDay = DateTime.fromJSDate(data.date).setZone(timeZone)
+
+  // 開始時間と終了時間を日本時間として組み立て
+  const startTime = activityDay
+    .set({
+      hour: parseInt(data.startTime.split(":")[0], 10),
+      minute: parseInt(data.startTime.split(":")[1], 10),
+    })
+    .toUTC()
+    .toJSDate()
+
+  const endTime = data.endTime
+    ? activityDay
+        .set({
+          hour: parseInt(data.endTime.split(":")[0], 10),
+          minute: parseInt(data.endTime.split(":")[1], 10),
+        })
+        .toUTC()
+        .toJSDate()
+    : null
   // トランザクションでアクティビティ作成と参加者追加をまとめる
   return await db.$transaction(async (tx) => {
     // アクティビティの作成
@@ -105,15 +129,9 @@ export const createActivity = async (
       data: {
         title: data.title,
         description: data.description || "", // オプションフィールドに空文字を設定
-        activityDay: data.date,
-        startTime: new Date(
-          `${data.date.toISOString().split("T")[0]}T${data.startTime}Z`,
-        ),
-        endTime: data.endTime
-          ? new Date(
-              `${data.date.toISOString().split("T")[0]}T${data.endTime}Z`,
-            )
-          : null,
+        activityDay: activityDay.toJSDate(), // 日付だけの情報
+        startTime: startTime, // 日本時間をUTCに変換
+        endTime: endTime, // 終了時間も同様に
         location: data.location || "",
         notes: data.notes,
         circleId: circleId,
@@ -145,19 +163,37 @@ export const updateActivity = async (
   data: ActivityFormType,
   activityId: number,
 ) => {
+  // ISO文字列をLuxonで扱い、日本時間（Asia/Tokyo）に変換
+  const activityDay = DateTime.fromJSDate(data.date).setZone(timeZone)
+
+  // 開始時間と終了時間を日本時間として組み立て
+  const startTime = activityDay
+    .set({
+      hour: parseInt(data.startTime.split(":")[0], 10),
+      minute: parseInt(data.startTime.split(":")[1], 10),
+    })
+    .toUTC()
+    .toJSDate()
+
+  const endTime = data.endTime
+    ? activityDay
+        .set({
+          hour: parseInt(data.endTime.split(":")[0], 10),
+          minute: parseInt(data.endTime.split(":")[1], 10),
+        })
+        .toUTC()
+        .toJSDate()
+    : null
+
   return await db.activity.update({
     where: { id: activityId },
     data: {
       title: data.title,
       description: data.description,
       location: data.location,
-      activityDay: data.date,
-      startTime: new Date(
-        `${data.date.toISOString().split("T")[0]}T${data.startTime}Z`,
-      ),
-      endTime: data.endTime
-        ? new Date(`${data.date.toISOString().split("T")[0]}T${data.endTime}Z`)
-        : null,
+      activityDay: activityDay.toJSDate(), // 日付だけの情報
+      startTime: startTime, // 日本時間をUTCに変換
+      endTime: endTime, // 終了時間も同様に
       notes: data.notes,
     },
   })
