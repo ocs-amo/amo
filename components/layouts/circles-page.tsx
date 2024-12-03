@@ -86,7 +86,7 @@ export const CirclesPage = () => {
       <IconButton
         position="fixed"
         colorScheme="primary"
-        bottom="8"
+        bottom={{ base: "8", sm: "3xl" }}
         right="8"
         icon={<TriangleIcon />}
         onClick={handleScroll}
