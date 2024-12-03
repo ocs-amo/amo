@@ -51,12 +51,12 @@ export const CirclesPage: FC<CirclesPageProps> = ({ circles }) => {
 
   return (
     <>
-      <VStack ref={scrollRef} w="full" h="fit-content" px="md" gap={0}>
+      <VStack ref={scrollRef} w="full" h="fit-content" gap={0}>
         <VStack
           position="sticky"
-          py="md"
+          p="md"
           top={0}
-          backgroundImage="url('/images/white_marble.png')"
+          backgroundImage="/images/white_marble.png"
           backgroundColor="Menu"
           as="header"
           zIndex={1}
@@ -89,6 +89,7 @@ export const CirclesPage: FC<CirclesPageProps> = ({ circles }) => {
         </VStack>
         <Grid
           pb="md"
+          px="md"
           gridTemplateColumns={{
             base: "repeat(4, 1fr)",
             lg: "repeat(3, 1fr)",
