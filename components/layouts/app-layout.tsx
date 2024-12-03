@@ -13,6 +13,7 @@ import {
   HStack,
   IconButton,
   useSafeLayoutEffect,
+  useToken,
   VStack,
 } from "@yamada-ui/react"
 import Link from "next/link"
@@ -26,6 +27,7 @@ export const AppLayout: FC<{
   user?: Awaited<ReturnType<typeof getUserById>>
 }> = ({ children, user }) => {
   const pathname = usePathname()
+  const hRem = useToken("spaces", "12")
   useSafeLayoutEffect(() => {
     if (!user && pathname !== "/signin") {
       signOut({ redirectTo: "/signin" })
@@ -61,7 +63,7 @@ export const AppLayout: FC<{
           justifyContent="space-between"
           position="sticky"
           top="12"
-          maxH="calc(100dvh - 3rem)"
+          maxH={`calc(100dvh - ${hRem})`}
           left={0}
           bottom={0}
         >
