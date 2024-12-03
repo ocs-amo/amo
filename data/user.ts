@@ -3,14 +3,14 @@ import { db } from "@/utils/db"
 export const updateUser = async (
   userId: string,
   profileText: string,
-  image: string,
+  profileImageUrl: string,
 ) =>
   db.user.update({
     select: {
       id: true,
       email: true,
       name: true,
-      image: true,
+      profileImageUrl: true,
       profileText: true,
       studentNumber: true,
     },
@@ -19,7 +19,7 @@ export const updateUser = async (
     },
     data: {
       profileText,
-      image,
+      profileImageUrl,
     },
   })
 
@@ -27,7 +27,7 @@ export const getUsers = async () =>
   db.user.findMany({
     select: {
       id: true,
-      image: true,
+      profileImageUrl: true,
       name: true,
       profileText: true,
       studentNumber: true,

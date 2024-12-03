@@ -58,7 +58,7 @@ export const getAnnouncementById = async (topicId: string) => {
           select: {
             id: true,
             name: true,
-            image: true,
+            profileImageUrl: true,
           },
         },
       },
@@ -91,7 +91,7 @@ export const getAnnouncementsByUserId = async (userId: string) => {
           select: {
             id: true,
             name: true,
-            image: true,
+            profileImageUrl: true,
           }, // 作成者情報
         },
         circle: true,
@@ -120,7 +120,7 @@ export const getAnnouncements = async () => {
           select: {
             id: true,
             name: true,
-            image: true,
+            profileImageUrl: true,
           },
         },
       },

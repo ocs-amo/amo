@@ -14,6 +14,7 @@ export default {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
+        // ここでUser型を返すように指定
         const { success, data } = SigninSchema.safeParse(credentials)
 
         if (!success) {
@@ -42,6 +43,12 @@ export default {
       clientId: process.env.AUTH_MICROSOFT_ENTRA_ID_ID,
       clientSecret: process.env.AUTH_MICROSOFT_ENTRA_ID_SECRET,
       issuer: process.env.AUTH_MICROSOFT_ENTRA_ID_ISSUER,
+      authorization: {
+        params: {
+          scope: "openid profile email offline_access",
+          prompt: "login", // キャッシュ問題を抑制
+        },
+      },
     }),
   ],
 } satisfies NextAuthConfig

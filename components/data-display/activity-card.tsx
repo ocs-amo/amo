@@ -134,7 +134,7 @@ export const ActivityCard: FC<ActivityCardProps> = ({
                         as={Link}
                         href={`/user/${participant.user.id}`}
                       >
-                        <Avatar src={participant.user.image || ""} />
+                        <Avatar src={participant.user.profileImageUrl || ""} />
                         <Text>{participant.user.name}</Text>
                         <Text>{participant.user.studentNumber}</Text>
                       </LinkOverlay>
