@@ -4,6 +4,6 @@ declare module "next-auth" {
   interface User extends NextAuthUser {
     studentNumber: string // ここでstudentNumberを追加
     instructorFlag: boolean
-    profileImageUrl: string
+    profileImageUrl: string | null
   }
 }

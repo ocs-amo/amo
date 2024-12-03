@@ -1,4 +1,4 @@
-import type { NextAuthConfig , User } from "next-auth"
+import type { NextAuthConfig } from "next-auth"
 import Credentials from "next-auth/providers/credentials"
 import MicrosoftEntraID from "next-auth/providers/microsoft-entra-id"
 import { getUserByEmail } from "./data/user"
@@ -13,7 +13,7 @@ export default {
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials): Promise<User | null> {
+      async authorize(credentials) {
         // ここでUser型を返すように指定
         const { success, data } = SigninSchema.safeParse(credentials)
 
@@ -36,13 +36,7 @@ export default {
           return null
         }
 
-        // User型に合わせて返す
-        return {
-          ...user,
-          studentNumber: user.studentNumber || "",
-          instructorFlag: user.instructorFlag || false,
-          profileImageUrl: user.profileImageUrl || "", // 必要なプロパティを追加
-        }
+        return user
       },
     }),
     MicrosoftEntraID({

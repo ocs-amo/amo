@@ -19,7 +19,6 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { signOut } from "next-auth/react"
 import type { FC, ReactNode } from "react"
-import { signout } from "@/actions/auth/signout"
 import type { getUserById } from "@/actions/user/user"
 
 export const AppLayout: FC<{
@@ -114,7 +113,7 @@ export const AppLayout: FC<{
               justifyContent="center"
               alignItems="center"
               variant="ghost"
-              onClick={() => signout()}
+              onClick={() => signOut({ redirectTo: "/signin" })}
               icon={<LogOutIcon fontSize="2xl" />}
               title="ログアウト"
             />
