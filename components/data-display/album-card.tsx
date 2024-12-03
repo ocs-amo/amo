@@ -2,6 +2,7 @@ import { Carousel, CarouselSlide } from "@yamada-ui/carousel"
 import { EllipsisIcon } from "@yamada-ui/lucide"
 import type { FC } from "@yamada-ui/react"
 import {
+  Button,
   Center,
   Heading,
   HStack,
@@ -44,6 +45,21 @@ export const AlbumCard: FC<AlbumCard> = ({
               src={image.imageUrl}
               alt={image.albumId}
             />
+            <Button
+              as="a"
+              position="absolute"
+              margin="auto"
+              w="fit-content"
+              href={image.imageUrl}
+              download={image.id}
+              bottom={10}
+              left={0}
+              right={0}
+              variant="solid"
+              colorScheme="primary"
+            >
+              ダウンロード
+            </Button>
           </CarouselSlide>
         ))}
       </Carousel>
