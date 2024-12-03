@@ -4,6 +4,7 @@ import { getCircleById, getCircles } from "@/actions/circle/fetch-circle"
 import { auth } from "@/auth"
 import { AlbumForm } from "@/components/forms/album-form"
 import { getAlbumById, getAlbums } from "@/data/album"
+import { isUserAdmin } from "@/data/circle"
 import { MetadataSet } from "@/utils/metadata"
 
 interface Props {
@@ -38,14 +39,13 @@ const Page = async ({ params }: Props) => {
 
   const session = await auth()
   const circle = await getCircleById(circleId || "")
-  const isMember = circle?.members?.some(
-    (member) => member.id === session?.user?.id,
-  )
+  const isAdmin = await isUserAdmin(session?.user?.id || "", circleId || "")
   const album = await getAlbumById(albumId || "")
   if (!circle || !album) {
     notFound()
   }
-  return isMember && album.circleId === circleId ? (
+  return (isAdmin || album.createdBy === session?.user?.id) &&
+    album.circleId === circleId ? (
     <AlbumForm
       circleId={circleId || ""}
       userId={session?.user?.id || ""}

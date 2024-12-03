@@ -45,6 +45,7 @@ interface CircleAlbums {
 }
 
 export const CircleAlbums: FC<CircleAlbums> = ({
+  userId,
   circleId,
   isAdmin,
   currentAlbum: album,
@@ -84,6 +85,7 @@ export const CircleAlbums: FC<CircleAlbums> = ({
       <Snacks snacks={snacks} />
       {currentAlbum ? (
         <AlbumCard
+          userId={userId}
           circleId={circleId}
           isAdmin={isAdmin}
           currentAlbum={currentAlbum}
@@ -135,7 +137,7 @@ export const CircleAlbums: FC<CircleAlbums> = ({
                     </Heading>
                     <HStack ml="auto">
                       <Text>{parseDate(album.createdAt)}</Text>
-                      {isAdmin ? (
+                      {isAdmin || album.createdBy === userId ? (
                         <Menu>
                           <MenuButton
                             as={IconButton}

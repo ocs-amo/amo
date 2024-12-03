@@ -97,7 +97,6 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
   }
 
   const handleDelete = async (activityId: number) => {
-    if (!isAdmin) return
     const { success, error } = await removeActivityAction(
       activityId,
       circle?.id || "",
