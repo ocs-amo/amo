@@ -36,12 +36,12 @@ export const AlbumCard: FC<AlbumCard> = ({
 }) => {
   return (
     <HStack flexDir={{ base: "row", md: "column" }} alignItems="start">
-      <Carousel h={{ base: "full", md: "xs" }} maxH="lg">
+      <Carousel h={{ base: "full", md: "xs" }}>
         {currentAlbum.images.map((image) => (
-          <CarouselSlide key={image.id} as={Center}>
+          <CarouselSlide key={image.id} as={Center} position="relative">
             <Image
               boxSize="full"
-              objectFit="cover"
+              objectFit="contain"
               src={image.imageUrl}
               alt={image.albumId}
             />
