@@ -1,9 +1,6 @@
 "use client"
-
-import {
-  ChevronUpIcon,
-  SearchIcon,
-} from "@yamada-ui/lucide"
+import { ChevronUpIcon, SearchIcon } from "@yamada-ui/lucide"
+import type { FC } from "@yamada-ui/react"
 import {
   Box,
   Button,
@@ -14,18 +11,34 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
-  useAsync,
   VStack,
 } from "@yamada-ui/react"
+import { matchSorter } from "match-sorter"
 import Link from "next/link"
-import { useRef } from "react"
-import { getCircles } from "@/actions/circle/fetch-circle"
+import { useMemo, useRef, useState } from "react"
+import type { getCircles } from "@/actions/circle/fetch-circle"
 import { CircleCard } from "@/components/data-display/circle-card"
 
-export const CirclesPage = () => {
-  const { value } = useAsync(async () => {
-    return await getCircles()
-  }, [])
+interface CirclesPageProps {
+  circles: Awaited<ReturnType<typeof getCircles>>
+}
+
+export const CirclesPage: FC<CirclesPageProps> = ({ circles }) => {
+  const [query, setQuery] = useState("")
+
+  const filteredCircles = useMemo(
+    () =>
+      query
+        ? matchSorter(circles || [], query, {
+            keys: [
+              "name", // サークル名
+              "description", // 説明
+              "tags", // タグ名
+            ],
+          })
+        : circles,
+    [query, circles],
+  )
 
   const scrollRef = useRef<HTMLDivElement | null>(null)
 
@@ -59,7 +72,13 @@ export const CirclesPage = () => {
               <InputLeftElement>
                 <SearchIcon color="gray.500" />
               </InputLeftElement>
-              <Input type="search" placeholder="サークルを検索" pl="lg" />
+              <Input
+                type="search"
+                placeholder="サークルを検索"
+                pl="lg"
+                value={query}
+                onChange={(e) => setQuery(e.currentTarget.value)}
+              />
             </InputGroup>
           </HStack>
           <Box textAlign="right">
@@ -79,7 +98,9 @@ export const CirclesPage = () => {
           gap="md"
           w="full"
         >
-          {value?.map((data) => <CircleCard key={data.id} data={data} />)}
+          {filteredCircles?.map((data) => (
+            <CircleCard key={data.id} data={data} />
+          ))}
         </Grid>
       </VStack>
       <IconButton
