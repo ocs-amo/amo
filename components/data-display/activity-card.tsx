@@ -13,6 +13,7 @@ import {
   Text,
   VStack,
 } from "@yamada-ui/react"
+import Link from "next/link"
 import { ActivityMenuButton } from "../forms/activity-menu-button"
 import type { getCircleById } from "@/actions/circle/fetch-circle"
 import type { getActivityById } from "@/data/activity"
@@ -124,15 +125,19 @@ export const ActivityCard: FC<ActivityCardProps> = ({
                       flexWrap="wrap"
                       justifyContent="space-between"
                     >
-                      <HStack
+                      <LinkOverlay
+                        justifyContent="center"
+                        alignItems="center"
+                        display="flex"
+                        gap="md"
                         flexWrap="wrap"
-                        as={LinkOverlay}
+                        as={Link}
                         href={`/user/${participant.user.id}`}
                       >
                         <Avatar src={participant.user.profileImageUrl || ""} />
                         <Text>{participant.user.name}</Text>
                         <Text>{participant.user.studentNumber}</Text>
-                      </HStack>
+                      </LinkOverlay>
                     </HStack>
                   </CardBody>
                 </GridItem>
