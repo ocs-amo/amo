@@ -1,3 +1,5 @@
+import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { UIProvider } from "@yamada-ui/react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
@@ -6,6 +8,7 @@ import { getUserById } from "@/actions/user/user"
 import { auth } from "@/auth"
 import { AppLayout } from "@/components/layouts/app-layout"
 import theme from "@/theme"
+
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
@@ -26,6 +29,8 @@ export default async function RootLayout({
         <UIProvider theme={theme}>
           <SessionProvider>
             <AppLayout user={user}>{children}</AppLayout>
+            <SpeedInsights />
+            <Analytics />
           </SessionProvider>
         </UIProvider>
       </body>
