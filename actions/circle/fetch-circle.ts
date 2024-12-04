@@ -86,6 +86,7 @@ export const getCircles = async () => {
             leaveDate: null, // 退会日が設定されていないメンバーのみを取得
           },
         },
+        CircleTag: true,
       },
     })
 
@@ -97,6 +98,7 @@ export const getCircles = async () => {
       imagePath: circle.imagePath,
       activityDay: circle.activityDay,
       memberCount: circle.CircleMember.length, // 退会していないメンバーのみカウント
+      tags: circle.CircleTag.map((tag) => tag.tagName),
     }))
   } catch (error) {
     console.error("getCircles: ", error)
