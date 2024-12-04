@@ -47,6 +47,10 @@ export const CirclesPage: FC<CirclesPageProps> = ({ circles }) => {
       behavior: "smooth",
       block: "start",
     })
+    window.scroll({
+      top: 0,
+      behavior: "smooth",
+    })
   }
 
   return (
@@ -107,7 +111,7 @@ export const CirclesPage: FC<CirclesPageProps> = ({ circles }) => {
       <IconButton
         position="fixed"
         colorScheme="riverBlue"
-        bottom="8"
+        bottom={{ base: "8", sm: "2xl" }}
         right="8"
         icon={<ChevronUpIcon />}
         onClick={handleScroll}

@@ -9,10 +9,17 @@ import {
 import {
   Avatar,
   Box,
+  Center,
   Heading,
   HStack,
   IconButton,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  Text,
   useSafeLayoutEffect,
+  useToken,
   VStack,
 } from "@yamada-ui/react"
 import Link from "next/link"
@@ -26,6 +33,8 @@ export const AppLayout: FC<{
   user?: Awaited<ReturnType<typeof getUserById>>
 }> = ({ children, user }) => {
   const pathname = usePathname()
+  const hRem = useToken("spaces", "12")
+  const pbRem = useToken("sizes", "15")
   useSafeLayoutEffect(() => {
     if (!user && pathname !== "/signin") {
       signOut({ redirectTo: "/signin" })
@@ -33,7 +42,16 @@ export const AppLayout: FC<{
   }, [])
   return pathname !== "/signin" ? (
     <VStack w="100vw" h="100dvh" gap={0}>
-      <VStack w="full" bgColor="black" px="md">
+      <VStack
+        w="full"
+        bgColor="black"
+        px="md"
+        position="sticky"
+        zIndex="9999"
+        top={0}
+        left={0}
+        right={0}
+      >
         <Heading
           color="white"
           _firstLetter={{ color: "#35B0D2" }}
@@ -50,6 +68,12 @@ export const AppLayout: FC<{
           p="sm"
           borderRightWidth={1}
           justifyContent="space-between"
+          position="sticky"
+          top="12"
+          maxH={`calc(100dvh - ${hRem})`}
+          left={0}
+          bottom={0}
+          display={{ base: "flex", sm: "none" }}
         >
           <VStack>
             <IconButton
@@ -119,9 +143,98 @@ export const AppLayout: FC<{
             />
           </VStack>
         </VStack>
-        <Box w="full" h="full" overflowY="auto">
+        <Box w="full" h="full" overflowY="auto" pb={{ sm: pbRem }}>
           {children}
         </Box>
+      </HStack>
+      <HStack
+        w="full"
+        h="15"
+        p="sm"
+        borderTopWidth={1}
+        justifyContent="space-between"
+        position="fixed"
+        left={0}
+        right={0}
+        bottom={0}
+        display={{ base: "none", sm: "flex" }}
+        background="whiteAlpha.400"
+        backdropBlur="10px"
+        backdropFilter="auto"
+        backdropSaturate="180%"
+      >
+        <IconButton
+          w="50px"
+          h="50px"
+          justifyContent="center"
+          alignItems="center"
+          as={Link}
+          variant="ghost"
+          href="/"
+          icon={<HouseIcon fontSize="2xl" />}
+          title="ホーム"
+        />
+        <IconButton
+          w="50px"
+          h="50px"
+          justifyContent="center"
+          alignItems="center"
+          as={Link}
+          variant="ghost"
+          href="/circles"
+          icon={<UsersIcon fontSize="2xl" />}
+          title="サークル一覧"
+        />
+        <IconButton
+          w="50px"
+          h="50px"
+          justifyContent="center"
+          alignItems="center"
+          as={Link}
+          variant="ghost"
+          href="/calendar"
+          icon={<CalendarDaysIcon fontSize="2xl" />}
+          title="カレンダー"
+        />
+        <IconButton
+          w="50px"
+          h="50px"
+          justifyContent="center"
+          alignItems="center"
+          as={Link}
+          variant="ghost"
+          href="/notifications"
+          icon={<BellIcon fontSize="2xl" />}
+          title="通知"
+        />
+        <Menu>
+          <MenuButton
+            as={IconButton}
+            w="50px"
+            h="50px"
+            justifyContent="center"
+            alignItems="center"
+            variant="ghost"
+            icon={<Avatar src={user?.profileImageUrl || ""} boxSize="8xs" />}
+            title="プロフィール"
+          />
+          <MenuList>
+            <MenuItem>
+              <HStack w="full" as={Link} href={`/user/${user?.id}`}>
+                <Avatar src={user?.profileImageUrl || ""} boxSize="8xs" />
+                <Text>プロフィール</Text>
+              </HStack>
+            </MenuItem>
+            <MenuItem onClick={() => signOut({ redirectTo: "/signin" })}>
+              <HStack w="full">
+                <Center boxSize="10">
+                  <LogOutIcon fontSize="8xs" />
+                </Center>
+                <Text>ログアウト</Text>
+              </HStack>
+            </MenuItem>
+          </MenuList>
+        </Menu>
       </HStack>
     </VStack>
   ) : (
