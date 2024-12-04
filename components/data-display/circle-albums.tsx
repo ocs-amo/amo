@@ -1,6 +1,6 @@
 "use client"
 import { Carousel, CarouselSlide } from "@yamada-ui/carousel"
-import { EllipsisIcon } from "@yamada-ui/lucide"
+import { ArrowLeftIcon, ArrowRightIcon, EllipsisIcon } from "@yamada-ui/lucide"
 import type { FC } from "@yamada-ui/react"
 import {
   Card,
@@ -111,9 +111,25 @@ export const CircleAlbums: FC<CircleAlbums> = ({
           {albums.map((album) => (
             <GridItem key={album.id} as={Card} flexDir="column" bg="white">
               <LinkBox>
-                <Carousel h="xs">
+                <Carousel
+                  h="xs"
+                  controlPrevProps={{
+                    icon: <ArrowLeftIcon />, // 左矢印アイコンを指定
+                    bg: "blackAlpha.400", // 背景を黒の半透明に
+                    _hover: { bg: "blackAlpha.600" }, // ホバー時に濃い黒に
+                  }}
+                  controlNextProps={{
+                    icon: <ArrowRightIcon />, // 右矢印アイコンを指定
+                    bg: "blackAlpha.400", // 背景を黒の半透明に
+                    _hover: { bg: "blackAlpha.600" }, // ホバー時に濃い黒に
+                  }}
+                >
                   {album.images.map((image) => (
-                    <CarouselSlide key={image.id} as={Center}>
+                    <CarouselSlide
+                      key={image.id}
+                      as={Center}
+                      background="blackAlpha.100"
+                    >
                       <Image
                         boxSize="full"
                         objectFit="cover"
@@ -123,6 +139,7 @@ export const CircleAlbums: FC<CircleAlbums> = ({
                     </CarouselSlide>
                   ))}
                 </Carousel>
+
                 <VStack p="md">
                   <HStack
                     justifyContent="space-between"

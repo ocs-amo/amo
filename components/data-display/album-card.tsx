@@ -1,7 +1,8 @@
 import { Carousel, CarouselSlide } from "@yamada-ui/carousel"
-import { EllipsisIcon } from "@yamada-ui/lucide"
+import { ArrowLeftIcon, ArrowRightIcon, EllipsisIcon } from "@yamada-ui/lucide"
 import type { FC } from "@yamada-ui/react"
 import {
+  Button,
   Center,
   Heading,
   HStack,
@@ -35,18 +36,52 @@ export const AlbumCard: FC<AlbumCard> = ({
 }) => {
   return (
     <HStack flexDir={{ base: "row", md: "column" }} alignItems="start">
-      <Carousel h={{ base: "full", md: "xs" }} maxH="lg">
+      <Carousel
+        h={{ base: "sm", md: "xs" }}
+        controlProps={{ background: "blackAlpha.500" }}
+        controlPrevProps={{
+          icon: <ArrowLeftIcon />, // 左矢印アイコンを指定
+          bg: "blackAlpha.400", // 背景を黒の半透明に
+          _hover: { bg: "blackAlpha.600" }, // ホバー時に濃い黒に
+        }}
+        controlNextProps={{
+          icon: <ArrowRightIcon />, // 右矢印アイコンを指定
+          bg: "blackAlpha.400", // 背景を黒の半透明に
+          _hover: { bg: "blackAlpha.600" }, // ホバー時に濃い黒に
+        }}
+      >
         {currentAlbum.images.map((image) => (
-          <CarouselSlide key={image.id} as={Center}>
+          <CarouselSlide
+            key={image.id}
+            as={Center}
+            position="relative"
+            background="blackAlpha.100"
+          >
             <Image
               boxSize="full"
-              objectFit="cover"
+              objectFit="contain"
               src={image.imageUrl}
               alt={image.albumId}
             />
+            <Button
+              as="a"
+              position="absolute"
+              margin="auto"
+              w="fit-content"
+              href={image.imageUrl}
+              download={image.id}
+              bottom={10}
+              left={0}
+              right={0}
+              variant="solid"
+              colorScheme="primary"
+            >
+              ダウンロード
+            </Button>
           </CarouselSlide>
         ))}
       </Carousel>
+
       <VStack w="full" h="full">
         <HStack justifyContent="space-between" flexWrap="wrap">
           <Heading>{currentAlbum.title}</Heading>
