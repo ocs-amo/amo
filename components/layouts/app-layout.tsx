@@ -34,6 +34,7 @@ export const AppLayout: FC<{
 }> = ({ children, user }) => {
   const pathname = usePathname()
   const hRem = useToken("spaces", "12")
+  const pbRem = useToken("sizes", "15")
   useSafeLayoutEffect(() => {
     if (!user && pathname !== "/signin") {
       signOut({ redirectTo: "/signin" })
@@ -142,7 +143,7 @@ export const AppLayout: FC<{
             />
           </VStack>
         </VStack>
-        <Box w="full" h="full" overflowY="auto">
+        <Box w="full" h="full" overflowY="auto" pb={{ sm: pbRem }}>
           {children}
         </Box>
       </HStack>
@@ -152,7 +153,7 @@ export const AppLayout: FC<{
         p="sm"
         borderTopWidth={1}
         justifyContent="space-between"
-        position="sticky"
+        position="fixed"
         left={0}
         right={0}
         bottom={0}
