@@ -80,6 +80,7 @@ export const ActivityForm: FC<ActivityFormProps> = ({
           title: result.error || "活動日の登録に失敗しました。",
           status: "error",
         })
+        end()
       }
     } else if (mode === "edit") {
       const result = await editActivity(
@@ -95,9 +96,9 @@ export const ActivityForm: FC<ActivityFormProps> = ({
           title: result.error || "活動日の更新に失敗しました。",
           status: "error",
         })
+        end()
       }
     }
-    end()
   }
 
   return (

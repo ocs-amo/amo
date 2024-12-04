@@ -193,6 +193,7 @@ export const CircleForm: FC<CircleFormProps> = ({
         } else {
           // サークル作成に失敗した場合の処理
           console.error("サークルの作成に失敗しました。", error)
+          end()
         }
       } else if (mode === "edit") {
         // 編集
@@ -208,11 +209,11 @@ export const CircleForm: FC<CircleFormProps> = ({
         } else {
           // サークル更新に失敗した場合の処理
           console.error("サークルの更新に失敗しました。", error)
+          end()
         }
       }
     } catch (error) {
       console.error("Error during circle creation:", error)
-    } finally {
       end()
     }
   }
