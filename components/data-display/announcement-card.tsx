@@ -38,7 +38,7 @@ export const AnnouncementCard: FC<AnnouncementCardProps> = ({
     <Card w="full" h="full" bg="white">
       <CardBody>
         <HStack w="full">
-          <Avatar src={currentAnnouncement.user.image || ""} />
+          <Avatar src={currentAnnouncement.user.profileImageUrl || ""} />
           <VStack w="full">
             <HStack justifyContent="space-between">
               <HStack>

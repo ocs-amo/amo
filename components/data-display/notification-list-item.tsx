@@ -29,7 +29,7 @@ export const NotificationListItem: FC<NotificationListItemProps> = ({
       <HStack as={LinkBox} w="full" p="sm">
         <Box>
           <Avatar
-            src={announcement.user.image || ""}
+            src={announcement.user.profileImageUrl || ""}
             alt={`${announcement.user.name}のアイコン画像`}
           />
         </Box>

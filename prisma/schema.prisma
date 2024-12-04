@@ -20,6 +20,7 @@ model User {
     password       String? // Hashed password (for credentials login)
     createdAt      DateTime @default(now()) // Creation timestamp
     updatedAt      DateTime @updatedAt // Updated timestamp
+    profileImageUrl String?
     image          String? // Optional: Icon image URL or base64 string
     profileText    String? // Optional: Markdown profile text
     instructorFlag Boolean  @default(false) // Indicates if the user is an instructor

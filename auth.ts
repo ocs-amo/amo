@@ -8,30 +8,38 @@ const config: NextAuthConfig = {
   adapter: PrismaAdapter(db),
   session: {
     strategy: "jwt",
+    maxAge: 30 * 24 * 60 * 60, // 30日間
   },
   pages: {
     signIn: "/signin",
   },
   callbacks: {
     async signIn({ user, account, profile }) {
-      if (account?.provider === "microsoft-entra-id" && profile?.email) {
-        delete profile.email_verified
-        // emailから「@」の前の部分を抽出
-        const studentNumber = profile.email.split("@")[0]
-        // もし学籍番号でないなら講師フラグをつける
-        const isInstructor = isNaN(parseInt(studentNumber))
-        if (isInstructor) {
-          user.instructorFlag = true
-          user.studentNumber = ""
-        } else {
-          user.studentNumber = studentNumber
+      try {
+        if (account?.provider === "microsoft-entra-id" && profile?.email) {
+          delete profile.email_verified
+          // emailから「@」の前の部分を抽出
+          const studentNumber = profile.email.split("@")[0]
+          // もし学籍番号でないなら講師フラグをつける
+          const isInstructor = isNaN(parseInt(studentNumber))
+          if (isInstructor) {
+            user.instructorFlag = true
+            user.studentNumber = ""
+          } else {
+            user.studentNumber = studentNumber
+          }
+          user.profileImageUrl = user.image || ""
         }
+        return true
+      } catch (error) {
+        console.error("signIn Error: ", error)
+
+        return false
       }
-      return true
     },
     async jwt({ token, user }) {
       if (user) {
-        token.id = user.id
+        token.id = user.id // 必須データのみトークンに保存
       }
       return token
     },

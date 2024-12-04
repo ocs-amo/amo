@@ -53,7 +53,7 @@ export const getThreadById = async (topicId: string) => {
           select: {
             id: true,
             name: true,
-            image: true,
+            profileImageUrl: true,
           },
         },
         comments: {
@@ -67,7 +67,7 @@ export const getThreadById = async (topicId: string) => {
               select: {
                 id: true,
                 name: true,
-                image: true,
+                profileImageUrl: true,
               },
             },
           },
@@ -92,7 +92,7 @@ export const getThreads = async () => {
           select: {
             id: true,
             name: true,
-            image: true,
+            profileImageUrl: true,
           },
         },
       },
@@ -114,7 +114,7 @@ export const getTopics = async (circleId: string) =>
         select: {
           id: true,
           name: true,
-          image: true,
+          profileImageUrl: true,
         },
       },
     },

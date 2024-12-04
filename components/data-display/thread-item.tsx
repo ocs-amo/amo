@@ -43,7 +43,7 @@ export const ThreadItem: FC<ThreadItemProps> = ({
           flexDir={{ base: "row", md: "column" }}
         >
           <HStack w="full">
-            <Avatar src={topic.user.image || ""} />
+            <Avatar src={topic.user.profileImageUrl || ""} />
             <VStack gap="sm" w="auto" alignItems="center">
               {topic.isImportant && (
                 <Badge w="full" textAlign="center" colorScheme="red">
