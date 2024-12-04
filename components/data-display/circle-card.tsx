@@ -24,7 +24,13 @@ export const CircleCard = memo(
       <GridItem ref={ref} w="full" h="fit-content" as={Card} background="white">
         <LinkBox>
           {data.imagePath ? (
-            <Image w="full" h="40" src={data.imagePath} alt="preview image" />
+            <Image
+              w="full"
+              h="40"
+              objectFit="cover"
+              src={data.imagePath}
+              alt="preview image"
+            />
           ) : (
             <Box w="full" h="40" {...{ backgroundColor: "gray.100" }} />
           )}
