@@ -65,6 +65,7 @@ export const ThreadForm: FC<ThreadFormProps> = ({
         router.push(`/circles/${circleId}/notifications`)
       } else {
         snack({ title: `エラー: ${result.error}`, status: "error" })
+        end()
       }
     } catch (error) {
       console.error("スレッド作成エラー:", error)
