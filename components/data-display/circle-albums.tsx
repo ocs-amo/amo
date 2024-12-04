@@ -111,7 +111,7 @@ export const CircleAlbums: FC<CircleAlbums> = ({
           {albums.map((album) => (
             <GridItem key={album.id} as={Card} flexDir="column" bg="white">
               <LinkBox>
-              <Carousel
+                <Carousel
                   h="xs"
                   controlPrevProps={{
                     icon: <ArrowLeftIcon />, // 左矢印アイコンを指定
@@ -125,7 +125,11 @@ export const CircleAlbums: FC<CircleAlbums> = ({
                   }}
                 >
                   {album.images.map((image) => (
-                    <CarouselSlide key={image.id} as={Center}>
+                    <CarouselSlide
+                      key={image.id}
+                      as={Center}
+                      background="blackAlpha.100"
+                    >
                       <Image
                         boxSize="full"
                         objectFit="cover"
