@@ -1,5 +1,5 @@
 import { Carousel, CarouselSlide } from "@yamada-ui/carousel"
-import { EllipsisIcon } from "@yamada-ui/lucide"
+import { ArrowLeftIcon, ArrowRightIcon, EllipsisIcon } from "@yamada-ui/lucide"
 import type { FC } from "@yamada-ui/react"
 import {
   Button,
@@ -39,6 +39,16 @@ export const AlbumCard: FC<AlbumCard> = ({
       <Carousel
         h={{ base: "sm", md: "xs" }}
         controlProps={{ background: "blackAlpha.500" }}
+        controlPrevProps={{
+          icon: <ArrowLeftIcon />, // 左矢印アイコンを指定
+          bg: "blackAlpha.400", // 背景を黒の半透明に
+          _hover: { bg: "blackAlpha.600" }, // ホバー時に濃い黒に
+        }}
+        controlNextProps={{
+          icon: <ArrowRightIcon />, // 右矢印アイコンを指定
+          bg: "blackAlpha.400", // 背景を黒の半透明に
+          _hover: { bg: "blackAlpha.600" }, // ホバー時に濃い黒に
+        }}
       >
         {currentAlbum.images.map((image) => (
           <CarouselSlide
@@ -49,7 +59,7 @@ export const AlbumCard: FC<AlbumCard> = ({
           >
             <Image
               boxSize="full"
-              objectFit="contain"
+              objectFit="cover"
               src={image.imageUrl}
               alt={image.albumId}
             />
@@ -71,6 +81,7 @@ export const AlbumCard: FC<AlbumCard> = ({
           </CarouselSlide>
         ))}
       </Carousel>
+
       <VStack w="full" h="full">
         <HStack justifyContent="space-between" flexWrap="wrap">
           <Heading>{currentAlbum.title}</Heading>
