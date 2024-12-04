@@ -125,7 +125,11 @@ export const CircleAlbums: FC<CircleAlbums> = ({
                   }}
                 >
                   {album.images.map((image) => (
-                    <CarouselSlide key={image.id} as={Center}>
+                    <CarouselSlide
+                      key={image.id}
+                      as={Center}
+                      background="blackAlpha.100"
+                    >
                       <Image
                         boxSize="full"
                         objectFit="cover"

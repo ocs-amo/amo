@@ -59,7 +59,7 @@ export const AlbumCard: FC<AlbumCard> = ({
           >
             <Image
               boxSize="full"
-              objectFit="cover"
+              objectFit="contain"
               src={image.imageUrl}
               alt={image.albumId}
             />
