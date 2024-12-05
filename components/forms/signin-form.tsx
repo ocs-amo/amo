@@ -38,8 +38,8 @@ export const LoginForm = () => {
     const result = await signin(values)
     if (result?.error) {
       setError(result.error)
+      end()
     }
-    end()
   }
 
   return (
