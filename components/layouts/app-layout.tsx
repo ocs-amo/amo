@@ -9,7 +9,6 @@ import {
 import {
   Avatar,
   Box,
-  Center,
   Heading,
   HStack,
   IconButton,
@@ -227,9 +226,7 @@ export const AppLayout: FC<{
             </MenuItem>
             <MenuItem onClick={() => signOut({ redirectTo: "/signin" })}>
               <HStack w="full">
-                <Center boxSize="10">
-                  <LogOutIcon fontSize="8xs" />
-                </Center>
+                <LogOutIcon fontSize="8xs" />
                 <Text>ログアウト</Text>
               </HStack>
             </MenuItem>
