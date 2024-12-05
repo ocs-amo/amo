@@ -119,7 +119,7 @@ export const ProfileForm: FC<ProfileForm> = ({ user }) => {
       gap="md"
       w="full"
       maxW="3xl"
-      h="full"
+      h={{ base: "full", sm: "fit-content" }}
       m="auto"
       p="md"
     >
