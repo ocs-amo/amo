@@ -198,7 +198,7 @@ export const AlbumForm: FC<AlbumFormProps> = ({ circleId, mode, album }) => {
         )}
       </FormControl>
       <FormControl isInvalid={!!errors.description}>
-        <Label isRequired>内容</Label>
+        <Label>内容</Label>
         <Textarea
           placeholder="内容を入力"
           autosize
