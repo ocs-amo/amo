@@ -133,7 +133,11 @@ export const ThreadCard: FC<ThreadCardProps> = ({
             isInvalid={!!errors.content}
             errorMessage={errors.content?.message}
           >
-            <Textarea {...register("content")} autosize placeholder="メッセージを入力"/>
+            <Textarea
+              {...register("content")}
+              autosize
+              placeholder="メッセージを入力"
+            />
           </FormControl>
           <IconButton
             type="submit"
