@@ -1,7 +1,15 @@
 "use client"
 
 import type { FC } from "@yamada-ui/react"
-import { Box, Heading, HStack, Tag, Text, VStack } from "@yamada-ui/react"
+import {
+  Box,
+  Heading,
+  HStack,
+  Tag,
+  Text,
+  useSafeLayoutEffect,
+  VStack,
+} from "@yamada-ui/react"
 import { useState } from "react"
 import { CircleDetailTabs } from "../disclosure/circle-detail-tabs"
 import { CircleDetailButton } from "../forms/circle-detail-button"
@@ -43,6 +51,10 @@ export const CircleDetailPage: FC<{
       setRequests(await getMembershipRequests(userId, circle.id))
     }
   }
+
+  useSafeLayoutEffect(() => {
+    fetchData()
+  }, [])
 
   const isMember = circle?.members?.some((member) => member.id === userId)
   // ユーザーがサークルの管理者かどうかを確認
