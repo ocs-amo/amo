@@ -104,6 +104,7 @@ export const ActivityMenuButton: FC<ActivityMenuButtonProps> = ({
       (participant) => participant.userId === userId,
     ) ? (
     <Button
+      // ml={{md: "auto"}}
       colorScheme="riverBlue"
       onClick={() => handleParticipation(activity.id)}
     >
@@ -111,6 +112,7 @@ export const ActivityMenuButton: FC<ActivityMenuButtonProps> = ({
     </Button>
   ) : (
     <Button
+      // ml={{md: "auto"}}
       colorScheme="riverBlue"
       onClick={() => handleParticipation(activity.id)}
     >
