@@ -58,7 +58,7 @@ export const AppLayout: FC<{
           fontWeight="light"
           textShadow="1px 1px 0 #666,2px 2px 0 #666,3px 3px 0 #666"
           as={Link}
-          href={`/`}
+          href="/"
         >
           CIRCLIA
         </Heading>
