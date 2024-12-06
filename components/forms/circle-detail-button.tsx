@@ -27,7 +27,7 @@ export const CircleDetailButton: FC<CircleDetailButtonProps> = ({
     case 0: {
       return isMember ? (
         <Button
-          position={"fixed"}
+          position="fixed"
           bottom={{ base: 10, sm: 20 }}
           right={{ base: 10, sm: 5 }}
           zIndex={10}
@@ -50,7 +50,7 @@ export const CircleDetailButton: FC<CircleDetailButtonProps> = ({
     case 1: {
       return isMember ? (
         <Button
-          position={"fixed"}
+          position="fixed"
           bottom={{ base: 10, sm: 20 }}
           right={{ base: 10, sm: 5 }}
           zIndex={10}
@@ -74,7 +74,7 @@ export const CircleDetailButton: FC<CircleDetailButtonProps> = ({
       return isMember ? (
         <Menu>
           <MenuButton
-            position={"fixed"}
+            position="fixed"
             bottom={{ base: 10, sm: 20 }}
             right={{ base: 10, sm: 5 }}
             zIndex={10}
