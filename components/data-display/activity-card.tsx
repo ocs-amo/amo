@@ -59,13 +59,13 @@ export const ActivityCard: FC<ActivityCardProps> = ({
               handleDelete={handleDelete}
             />
           </HStack>
-          <HStack flexDir="row" flexWrap="wrap" alignItems={{ md: "start" }}>
+          <HStack flexWrap="wrap" alignItems={{ md: "start" }}>
             <Text whiteSpace="nowrap">内容:</Text>
             <Text text-wrap="auto" whiteSpace="pre-wrap">
               {currentActivity.description}
             </Text>
           </HStack>
-          <HStack flexDir="row" flexWrap="wrap" alignItems={{ md: "start" }}>
+          <HStack flexWrap="wrap" alignItems={{ md: "start" }}>
             <Text>活動時間:</Text>
             <Text>
               {displayTime(currentActivity.startTime)}
@@ -74,15 +74,15 @@ export const ActivityCard: FC<ActivityCardProps> = ({
                 : undefined}
             </Text>
           </HStack>
-          <HStack flexDir="row" flexWrap="wrap" alignItems={{ md: "start" }}>
+          <HStack flexWrap="wrap" alignItems={{ md: "start" }}>
             <Text>活動場所:</Text>
             <Text>{currentActivity.location}</Text>
           </HStack>
-          <HStack flexDir="row" flexWrap="wrap" alignItems={{ md: "start" }}>
+          <HStack flexWrap="wrap" alignItems={{ md: "start" }}>
             <Text>参加人数:</Text>
             <Text>{currentActivity.participants.length}人</Text>
           </HStack>
-          <HStack flexDir="row" flexWrap="wrap" alignItems={{ md: "start" }}>
+          <HStack flexWrap="wrap" alignItems={{ md: "start" }}>
             <Text whiteSpace="nowrap">備考:</Text>
             <Text text-wrap="auto" whiteSpace="pre-wrap">
               {currentActivity.notes}
