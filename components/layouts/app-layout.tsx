@@ -93,6 +93,17 @@ export const AppLayout: FC<{
               alignItems="center"
               as={Link}
               variant="ghost"
+              href="/notifications"
+              icon={<BellIcon fontSize="2xl" />}
+              title="通知"
+            />
+            <IconButton
+              w="50px"
+              h="50px"
+              justifyContent="center"
+              alignItems="center"
+              as={Link}
+              variant="ghost"
               href="/"
               icon={<HouseIcon fontSize="2xl" />}
               title="ホーム"
@@ -119,17 +130,7 @@ export const AppLayout: FC<{
               icon={<CalendarDaysIcon fontSize="2xl" />}
               title="カレンダー"
             />
-            <IconButton
-              w="50px"
-              h="50px"
-              justifyContent="center"
-              alignItems="center"
-              as={Link}
-              variant="ghost"
-              href="/notifications"
-              icon={<BellIcon fontSize="2xl" />}
-              title="通知"
-            />
+            
             <IconButton
               w="50px"
               h="50px"
