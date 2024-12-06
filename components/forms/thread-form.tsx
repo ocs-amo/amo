@@ -77,7 +77,7 @@ export const ThreadForm: FC<ThreadFormProps> = ({
   return (
     <VStack
       w="full"
-      h="full"
+      h={{ base: "full", sm: "fit-content" }}
       as="form"
       onSubmit={handleSubmit(onSubmit)}
       p="md"

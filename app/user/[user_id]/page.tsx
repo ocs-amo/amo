@@ -60,7 +60,13 @@ const Page = async ({ params }: Props) => {
   }
 
   return (
-    <VStack w="full" maxW="6xl" h="full" p="md" m="auto">
+    <VStack
+      w="full"
+      maxW="6xl"
+      h={{ base: "full", sm: "fit-content" }}
+      p="md"
+      m="auto"
+    >
       <HStack
         w="full"
         maxW="3xl"

@@ -245,7 +245,7 @@ export const CircleForm: FC<CircleFormProps> = ({
     <VStack
       gap={0}
       w="full"
-      h="full"
+      h={{ base: "full", sm: "fit-content" }}
       as="form"
       onSubmit={handleSubmit(onSubmit)}
     >
