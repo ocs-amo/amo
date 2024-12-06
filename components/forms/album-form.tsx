@@ -98,7 +98,13 @@ export const AlbumForm: FC<AlbumFormProps> = ({ circleId, mode, album }) => {
   }
 
   return (
-    <VStack w="full" as="form" onSubmit={handleSubmit(onSubmit)} p="md">
+    <VStack
+      w="full"
+      h="fit-content"
+      as="form"
+      onSubmit={handleSubmit(onSubmit)}
+      p="md"
+    >
       <Heading>アルバム作成</Heading>
       <FormControl isInvalid={!!errors.images}>
         <Controller
@@ -198,7 +204,7 @@ export const AlbumForm: FC<AlbumFormProps> = ({ circleId, mode, album }) => {
         )}
       </FormControl>
       <FormControl isInvalid={!!errors.description}>
-        <Label isRequired>内容</Label>
+        <Label>内容</Label>
         <Textarea
           placeholder="内容を入力"
           autosize

@@ -104,12 +104,12 @@ export const ActivityForm: FC<ActivityFormProps> = ({
   return (
     <VStack
       w="full"
-      h="full"
+      h="fit-content"
       as="form"
       onSubmit={handleSubmit(onSubmit)}
       p="md"
     >
-      <VStack p="md" maxW="5xl" m="auto" gap="lg" flexGrow={1}>
+      <VStack maxW="5xl" m="auto" gap="lg" flexGrow={1}>
         <Heading>{`${circle?.name} 活動日程`}</Heading>
         <FormControl
           display="flex"
