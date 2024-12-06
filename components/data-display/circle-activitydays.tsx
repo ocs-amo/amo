@@ -231,25 +231,24 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
                             </Box>
                           </LinkOverlay>
                           <HStack
-                            flexDir={{ base: "row", md: "column" }}
                             w={{ md: "full" }}
+                            flexWrap="wrap"
+                            justifyContent={{ base: "center", md: "start" }}
                           >
-                            <Text mr={{ md: "auto" }} lineClamp={1}>
-                              {activity.location}
-                            </Text>
-                            <Text mr={{ md: "auto" }}>
+                            <Text lineClamp={1}>{activity.location}</Text>
+                            <Text>
                               {displayTime(activity.startTime)}
                               {activity.endTime
                                 ? `～${displayTime(activity.endTime)}`
                                 : undefined}
                             </Text>
-                            <Text mr={{ md: "auto" }} whiteSpace="nowrap">
+                            <Text
+                              whiteSpace="nowrap"
+                              display={{ base: "inline", md: "none" }}
+                            >
                               {activity.participants.length}人
                             </Text>
-                            <Box
-                              ml={{ md: "auto" }}
-                              display={{ base: "block", md: "none" }}
-                            >
+                            <Box display={{ base: "block", md: "none" }}>
                               <ActivityMenuButton
                                 userId={userId}
                                 isMember={!!isMember}
