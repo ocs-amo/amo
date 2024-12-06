@@ -194,11 +194,7 @@ export const AlbumForm: FC<AlbumFormProps> = ({ circleId, mode, album }) => {
       </FormControl>
       <FormControl isInvalid={!!errors.title}>
         <Label isRequired>タイトル</Label>
-        <Input
-          type="text"
-          placeholder="タイトルを入力"
-          {...register("title")}
-        />
+        <Input type="text" placeholder="例)思い出" {...register("title")} />
         {errors.title && (
           <ErrorMessage mt={0}>{errors.title.message}</ErrorMessage>
         )}
@@ -206,7 +202,7 @@ export const AlbumForm: FC<AlbumFormProps> = ({ circleId, mode, album }) => {
       <FormControl isInvalid={!!errors.description}>
         <Label>内容</Label>
         <Textarea
-          placeholder="内容を入力"
+          placeholder="例)今までの活動風景です"
           autosize
           minH="2xs"
           {...register("description")}
