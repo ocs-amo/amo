@@ -67,8 +67,8 @@ export const CircleDetailButton: FC<CircleDetailButtonProps> = ({
         <Menu>
           <MenuButton
             position={"fixed"}
-            bottom={10}/**スマホなら10 */
-            right={10}
+            bottom={{ base: 10, sm: 20 }}
+            right={{ base: 10, sm: 5 }}
             as={Button}
             leftIcon={<PlusIcon fontSize="2xl" />}
             colorScheme="riverBlue"
