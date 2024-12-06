@@ -181,75 +181,86 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
                 <GridItem key={activity.id}>
                   <Card variant="outline" as={LinkBox} bg="white">
                     <CardBody>
-                      <HStack
-                        justifyContent="space-between"
-                        w="full"
-                        flexDir={{ base: "row", md: "column" }}
-                      >
-                        <LinkOverlay
-                          justifyContent={{ base: "center", md: "start" }}
-                          alignItems="center"
-                          gap="md"
-                          as={Link}
-                          display="flex"
-                          href={`/circles/${circle?.id}/activities/${activity.id}`}
-                          w={{ md: "full" }}
+                      <HStack alignItems="start" w="full">
+                        <Card
+                          variant="outline"
+                          padding="sm"
+                          w="10"
+                          as={Center}
+                          display={{ base: "none", md: "flex" }}
                         >
-                          <Card
-                            variant="outline"
-                            padding="sm"
-                            w="10"
-                            as={Center}
-                          >
-                            {activity.activityDay.getDate()}
-                          </Card>
-                          <Text lineClamp={1}>{activity.title}</Text>
-                          <Box
-                            display={{ base: "none", md: "block" }}
-                            ml="auto"
-                          >
-                            <ActivityMenuButton
-                              userId={userId}
-                              isMember={!!isMember}
-                              isAdmin={!!isAdmin}
-                              circle={circle}
-                              activity={activity}
-                              handleParticipation={handleParticipation}
-                              handleDelete={handleDelete}
-                            />
-                          </Box>
-                        </LinkOverlay>
-
+                          {activity.activityDay.getDate()}
+                        </Card>
                         <HStack
+                          justifyContent="space-between"
+                          w="full"
                           flexDir={{ base: "row", md: "column" }}
-                          w={{ md: "full" }}
                         >
-                          <Text mr={{ md: "auto" }} lineClamp={1}>
-                            {activity.location}
-                          </Text>
-                          <Text mr={{ md: "auto" }}>
-                            {displayTime(activity.startTime)}
-                            {activity.endTime
-                              ? `～${displayTime(activity.endTime)}`
-                              : undefined}
-                          </Text>
-                          <Text mr={{ md: "auto" }} whiteSpace="nowrap">
-                            {activity.participants.length}人
-                          </Text>
-                          <Box
-                            ml={{ md: "auto" }}
-                            display={{ base: "block", md: "none" }}
+                          <LinkOverlay
+                            justifyContent={{ base: "center", md: "start" }}
+                            alignItems="center"
+                            gap="md"
+                            as={Link}
+                            display="flex"
+                            href={`/circles/${circle?.id}/activities/${activity.id}`}
+                            w={{ md: "full" }}
                           >
-                            <ActivityMenuButton
-                              userId={userId}
-                              isMember={!!isMember}
-                              isAdmin={!!isAdmin}
-                              circle={circle}
-                              activity={activity}
-                              handleParticipation={handleParticipation}
-                              handleDelete={handleDelete}
-                            />
-                          </Box>
+                            <Card
+                              variant="outline"
+                              padding="sm"
+                              w="10"
+                              as={Center}
+                              display={{ base: "flex", md: "none" }}
+                            >
+                              {activity.activityDay.getDate()}
+                            </Card>
+                            <Text lineClamp={1}>{activity.title}</Text>
+                            <Box
+                              display={{ base: "none", md: "block" }}
+                              ml="auto"
+                            >
+                              <ActivityMenuButton
+                                userId={userId}
+                                isMember={!!isMember}
+                                isAdmin={!!isAdmin}
+                                circle={circle}
+                                activity={activity}
+                                handleParticipation={handleParticipation}
+                                handleDelete={handleDelete}
+                              />
+                            </Box>
+                          </LinkOverlay>
+                          <HStack
+                            flexDir={{ base: "row", md: "column" }}
+                            w={{ md: "full" }}
+                          >
+                            <Text mr={{ md: "auto" }} lineClamp={1}>
+                              {activity.location}
+                            </Text>
+                            <Text mr={{ md: "auto" }}>
+                              {displayTime(activity.startTime)}
+                              {activity.endTime
+                                ? `～${displayTime(activity.endTime)}`
+                                : undefined}
+                            </Text>
+                            <Text mr={{ md: "auto" }} whiteSpace="nowrap">
+                              {activity.participants.length}人
+                            </Text>
+                            <Box
+                              ml={{ md: "auto" }}
+                              display={{ base: "block", md: "none" }}
+                            >
+                              <ActivityMenuButton
+                                userId={userId}
+                                isMember={!!isMember}
+                                isAdmin={!!isAdmin}
+                                circle={circle}
+                                activity={activity}
+                                handleParticipation={handleParticipation}
+                                handleDelete={handleDelete}
+                              />
+                            </Box>
+                          </HStack>
                         </HStack>
                       </HStack>
                     </CardBody>
