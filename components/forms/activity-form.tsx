@@ -104,7 +104,7 @@ export const ActivityForm: FC<ActivityFormProps> = ({
   return (
     <VStack
       w="full"
-      h={{ base: "full", sm: "fit-content" }}
+      h="fit-content"
       as="form"
       onSubmit={handleSubmit(onSubmit)}
       p="md"

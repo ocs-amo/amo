@@ -100,7 +100,7 @@ export const AlbumForm: FC<AlbumFormProps> = ({ circleId, mode, album }) => {
   return (
     <VStack
       w="full"
-      h={{ base: "full", sm: "fit-content" }}
+      h="fit-content"
       as="form"
       onSubmit={handleSubmit(onSubmit)}
       p="md"
