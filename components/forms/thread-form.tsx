@@ -77,7 +77,7 @@ export const ThreadForm: FC<ThreadFormProps> = ({
   return (
     <VStack
       w="full"
-      h="full"
+      h={{ base: "full", sm: "fit-content" }}
       as="form"
       onSubmit={handleSubmit(onSubmit)}
       p="md"
@@ -118,11 +118,11 @@ export const ThreadForm: FC<ThreadFormProps> = ({
           maxW="2xl"
           isInvalid={!!errors.content}
         >
-          <Label flexGrow={1}>詳細</Label>
+          <Label flexGrow={1}>説明</Label>
           <VStack w="auto">
             <Textarea
               w={{ base: "md", md: "full" }}
-              placeholder="詳細を入力"
+              placeholder="説明を入力"
               autosize
               {...register("content")}
             />

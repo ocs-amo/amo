@@ -1,7 +1,15 @@
 "use client"
 
 import type { FC } from "@yamada-ui/react"
-import { Box, Heading, HStack, Tag, Text, VStack } from "@yamada-ui/react"
+import {
+  Box,
+  Heading,
+  HStack,
+  Tag,
+  Text,
+  useSafeLayoutEffect,
+  VStack,
+} from "@yamada-ui/react"
 import { useState } from "react"
 import { CircleDetailTabs } from "../disclosure/circle-detail-tabs"
 import { CircleDetailButton } from "../forms/circle-detail-button"
@@ -44,6 +52,10 @@ export const CircleDetailPage: FC<{
     }
   }
 
+  useSafeLayoutEffect(() => {
+    fetchData()
+  }, [])
+
   const isMember = circle?.members?.some((member) => member.id === userId)
   // ユーザーがサークルの管理者かどうかを確認
   const isAdmin = circle?.members?.some(
@@ -51,7 +63,7 @@ export const CircleDetailPage: FC<{
   )
 
   return (
-    <VStack w="full" h="full" gap={0} p={0}>
+    <VStack w="full" h={{ base: "full", sm: "fit-content" }} gap={0} p={0}>
       <VStack w="full" h="full" flexGrow={1} p={0}>
         <VStack
           {...(circle?.imagePath

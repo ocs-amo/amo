@@ -9,7 +9,6 @@ import {
 import {
   Avatar,
   Box,
-  Center,
   Heading,
   HStack,
   IconButton,
@@ -96,6 +95,17 @@ export const AppLayout: FC<{
               alignItems="center"
               as={Link}
               variant="ghost"
+              href="/notifications"
+              icon={<BellIcon fontSize="2xl" />}
+              title="通知"
+            />
+            <IconButton
+              w="50px"
+              h="50px"
+              justifyContent="center"
+              alignItems="center"
+              as={Link}
+              variant="ghost"
               href="/"
               icon={<HouseIcon fontSize="2xl" />}
               title="ホーム"
@@ -122,17 +132,7 @@ export const AppLayout: FC<{
               icon={<CalendarDaysIcon fontSize="2xl" />}
               title="カレンダー"
             />
-            <IconButton
-              w="50px"
-              h="50px"
-              justifyContent="center"
-              alignItems="center"
-              as={Link}
-              variant="ghost"
-              href="/notifications"
-              icon={<BellIcon fontSize="2xl" />}
-              title="通知"
-            />
+            
             <IconButton
               w="50px"
               h="50px"
@@ -229,9 +229,7 @@ export const AppLayout: FC<{
             </MenuItem>
             <MenuItem onClick={() => signOut({ redirectTo: "/signin" })}>
               <HStack w="full">
-                <Center boxSize="10">
-                  <LogOutIcon fontSize="8xs" />
-                </Center>
+                <LogOutIcon fontSize="8xs" />
                 <Text>ログアウト</Text>
               </HStack>
             </MenuItem>
