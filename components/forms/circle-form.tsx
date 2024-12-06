@@ -378,7 +378,7 @@ export const CircleForm: FC<CircleFormProps> = ({
                   <VStack w="auto">
                     <MultiAutocomplete
                       w={{ base: "md", md: "full" }}
-                      placeholder="例)塔下　哲司 "
+                      placeholder="講師を選択"
                       {...field}
                       items={instructors}
                       containerProps={{
