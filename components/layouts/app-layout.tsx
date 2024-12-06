@@ -132,7 +132,7 @@ export const AppLayout: FC<{
               icon={<CalendarDaysIcon fontSize="2xl" />}
               title="カレンダー"
             />
-            
+
             <IconButton
               w="50px"
               h="50px"
