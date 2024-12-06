@@ -320,7 +320,7 @@ export const CircleForm: FC<CircleFormProps> = ({
               <Input
                 type="text"
                 w={{ base: "md", md: "full" }}
-                placeholder="サークル名を入力"
+                placeholder="例) amo"
                 {...register("name")}
               />
               {errors.name ? (
@@ -346,7 +346,7 @@ export const CircleForm: FC<CircleFormProps> = ({
             <VStack w="auto">
               <Textarea
                 w={{ base: "md", md: "full" }}
-                placeholder="説明を入力"
+                placeholder="例) 本アプリ開発チーム"
                 autosize
                 {...register("description")}
               />
@@ -378,7 +378,7 @@ export const CircleForm: FC<CircleFormProps> = ({
                   <VStack w="auto">
                     <MultiAutocomplete
                       w={{ base: "md", md: "full" }}
-                      placeholder="講師を選択"
+                      placeholder="例)塔下　哲司 "
                       {...field}
                       items={instructors}
                       containerProps={{
@@ -411,7 +411,7 @@ export const CircleForm: FC<CircleFormProps> = ({
               <Input
                 type="text"
                 w={{ base: "md", md: "full" }}
-                placeholder="タグを入力（カンマ区切り）"
+                placeholder="例) amo,CIRCLIA,アプリ開発"
                 {...register("tags")}
               />
               <Spacer />
@@ -433,7 +433,7 @@ export const CircleForm: FC<CircleFormProps> = ({
                 {...register("location")}
                 type="text"
                 w={{ base: "md", md: "full" }}
-                placeholder="活動場所を入力　ex) 404教室"
+                placeholder="例) 402教室"
               />
               {errors.location ? (
                 <ErrorMessage mt={0}>{errors.location.message}</ErrorMessage>
@@ -459,7 +459,7 @@ export const CircleForm: FC<CircleFormProps> = ({
               <Input
                 type="text"
                 w={{ base: "md", md: "full" }}
-                placeholder="活動日を入力　ex)月、木 , 週１日"
+                placeholder="例) 平日"
                 {...register("activityDay")}
               />
               {errors.activityDay ? (
