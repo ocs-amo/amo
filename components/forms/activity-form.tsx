@@ -125,7 +125,7 @@ export const ActivityForm: FC<ActivityFormProps> = ({
             <Input
               type="text"
               w={{ base: "md", md: "full" }}
-              placeholder="見出しを入力"
+              placeholder="例）ミーティング"
               {...register("title")}
             />
             {errors.title ? (
@@ -149,7 +149,7 @@ export const ActivityForm: FC<ActivityFormProps> = ({
           <VStack w="auto">
             <Textarea
               w={{ base: "md", md: "full" }}
-              placeholder="活動内容を入力"
+              placeholder="例）定例ミーティングです"
               autosize
               {...register("description")}
             />
@@ -210,7 +210,7 @@ export const ActivityForm: FC<ActivityFormProps> = ({
             <Input
               type="text"
               w={{ base: "md", md: "full" }}
-              placeholder="場所を入力"
+              placeholder="例）404教室"
               {...register("location")}
             />
             {errors.location ? (

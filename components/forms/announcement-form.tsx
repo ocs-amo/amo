@@ -109,7 +109,7 @@ export const AnnouncementForm: FC<AnnouncementFormProps> = ({
             <Input
               type="text"
               w={{ base: "md", md: "full" }}
-              placeholder="タイトルを入力"
+              placeholder="例）今月からの新メンバー"
               {...register("title")}
             />
             {errors.title ? (
@@ -135,7 +135,7 @@ export const AnnouncementForm: FC<AnnouncementFormProps> = ({
           <VStack w="auto">
             <Textarea
               w={{ base: "md", md: "full" }}
-              placeholder="詳細を入力"
+              placeholder="例）新しくR○○○の○○　○○が入会しました！"
               autosize
               {...register("content")}
             />

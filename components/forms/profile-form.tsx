@@ -201,7 +201,7 @@ export const ProfileForm: FC<ProfileForm> = ({ user }) => {
         <Label flexGrow={1}>自己紹介</Label>
         <VStack w="auto">
           <Textarea
-            placeholder="説明を入力"
+            placeholder="例）よろしくお願いします"
             minH="md"
             autosize
             {...register("profileText")}
