@@ -56,8 +56,10 @@ export const AppLayout: FC<{
           _firstLetter={{ color: "#35B0D2" }}
           fontWeight="light"
           textShadow="1px 1px 0 #666,2px 2px 0 #666,3px 3px 0 #666"
+          as={Link}
+          href="/"
         >
-          <Link href="/">CIRCLIA</Link>
+          CIRCLIA
         </Heading>
       </VStack>
       <HStack w="full" h="full" gap={0}>
