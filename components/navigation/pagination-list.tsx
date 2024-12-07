@@ -24,7 +24,7 @@ export const PaginationList = <T,>({
   )
 
   return (
-    <VStack w="full" h={{ base: "full", sm: "fit-content" }} p="md">
+    <VStack w="full" h="fit-content" p="md">
       {/* 子コンポーネントに現在のページのデータを渡す */}
       {children(currentPageData)}
 

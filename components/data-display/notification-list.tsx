@@ -10,7 +10,7 @@ interface NotificationList {
 }
 
 export const NotificationList: FC<NotificationList> = ({ announcements }) => (
-  <PaginationList data={announcements}>
+  <PaginationList data={announcements} itemsPerPage={3}>
     {(announcements) => (
       <VStack w="full" h="full" overflowY="auto" gap="md">
         {announcements?.length ? (
