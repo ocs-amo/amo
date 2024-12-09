@@ -128,7 +128,7 @@ export default async function Home() {
             <CardBody>
               <Grid
                 gridTemplateColumns={
-                  circles?.length
+                  instructorCircles?.length
                     ? {
                         base: "repeat(3, 1fr)",
                         xl: "repeat(2, 1fr)",
