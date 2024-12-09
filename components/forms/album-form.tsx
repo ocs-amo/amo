@@ -212,7 +212,13 @@ export const AlbumForm: FC<AlbumFormProps> = ({ circleId, mode, album }) => {
         )}
       </FormControl>
       <Snacks snacks={snacks} />
-      <Center gap="md" justifyContent="end">
+      <Center
+        gap="md"
+        justifyContent="end"
+        position={{ sm: "fixed" }}
+        bottom={{ sm: 20 }}
+        right={{ sm: 5 }}
+      >
         <Button
           colorScheme="riverBlue"
           as={Link}

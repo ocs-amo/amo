@@ -27,6 +27,10 @@ export const CircleDetailButton: FC<CircleDetailButtonProps> = ({
     case 0: {
       return isMember ? (
         <Button
+          position="fixed"
+          bottom={{ base: 10, sm: 20 }}
+          right={{ base: 10, sm: 5 }}
+          zIndex={10}
           as={Link}
           href={`/circles/${circle?.id}/activities/new`}
           leftIcon={<PlusIcon fontSize="2xl" />}
@@ -46,6 +50,10 @@ export const CircleDetailButton: FC<CircleDetailButtonProps> = ({
     case 1: {
       return isMember ? (
         <Button
+          position="fixed"
+          bottom={{ base: 10, sm: 20 }}
+          right={{ base: 10, sm: 5 }}
+          zIndex={10}
           as={Link}
           href={`/circles/${circle?.id}/album/create`}
           leftIcon={<PlusIcon fontSize="2xl" />}
@@ -66,6 +74,10 @@ export const CircleDetailButton: FC<CircleDetailButtonProps> = ({
       return isMember ? (
         <Menu>
           <MenuButton
+            position="fixed"
+            bottom={{ base: 10, sm: 20 }}
+            right={{ base: 10, sm: 5 }}
+            zIndex={10}
             as={Button}
             leftIcon={<PlusIcon fontSize="2xl" />}
             colorScheme="riverBlue"
