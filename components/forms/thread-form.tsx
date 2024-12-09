@@ -98,7 +98,7 @@ export const ThreadForm: FC<ThreadFormProps> = ({
             <Input
               type="text"
               w={{ base: "md", md: "full" }}
-              placeholder="タイトルを入力"
+              placeholder="例）やってみたいこと募集"
               {...register("title")}
             />
             {errors.title ? (
@@ -122,7 +122,7 @@ export const ThreadForm: FC<ThreadFormProps> = ({
           <VStack w="auto">
             <Textarea
               w={{ base: "md", md: "full" }}
-              placeholder="説明を入力"
+              placeholder="例）今後の活動でやってみたいことを募集します"
               autosize
               {...register("content")}
             />

@@ -196,7 +196,7 @@ export const AlbumForm: FC<AlbumFormProps> = ({ circleId, mode, album }) => {
         <Label isRequired>タイトル</Label>
         <Input
           type="text"
-          placeholder="タイトルを入力"
+          placeholder="例)何でもない日の幸せ"
           {...register("title")}
         />
         {errors.title && (
@@ -206,7 +206,7 @@ export const AlbumForm: FC<AlbumFormProps> = ({ circleId, mode, album }) => {
       <FormControl isInvalid={!!errors.description}>
         <Label>内容</Label>
         <Textarea
-          placeholder="内容を入力"
+          placeholder="例)特別なことは何もないけれど、みんなで過ごす日常が一番の宝物です。&#13;&#10;ちょっとした会話、何気ない笑顔が心に残ります。"
           autosize
           minH="2xs"
           {...register("description")}
