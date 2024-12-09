@@ -271,6 +271,7 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
                 <Text>活動がありません</Text>
               </Center>
             )}
+            <Card variant="outlined" padding={{ base: "lg", md: "lg" }} />
           </VStack>
         </>
       )}
