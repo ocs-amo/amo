@@ -206,7 +206,7 @@ export const AlbumForm: FC<AlbumFormProps> = ({ circleId, mode, album }) => {
       <FormControl isInvalid={!!errors.description}>
         <Label>内容</Label>
         <Textarea
-          placeholder="例)特別な言は何もないけれど、みんなで過ごす日常が一番の宝物です。ちょっとした会話、何気ない笑顔が心に残ります。"
+          placeholder="例)特別な言は何もないけれど、みんなで過ごす日常が一番の宝物です。&#13;&#10;ちょっとした会話、何気ない笑顔が心に残ります。"
           autosize
           minH="2xs"
           {...register("description")}
