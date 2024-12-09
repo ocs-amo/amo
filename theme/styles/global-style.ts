@@ -5,7 +5,6 @@ export const globalStyle: UIStyle = {
     backgroundImage: "/images/white_marble.png",
     backgroundSize: "cover",
     backgroundAttachment: "fixed",
-    backgroundPosition: "center center",
   },
   ".ui-input": {
     bg: "rgba(0, 0, 0, 0.04) !important",
