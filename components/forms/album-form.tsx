@@ -202,7 +202,7 @@ export const AlbumForm: FC<AlbumFormProps> = ({ circleId, mode, album }) => {
       <FormControl isInvalid={!!errors.description}>
         <Label>内容</Label>
         <Textarea
-          placeholder="例)今までの活動風景です"
+          placeholder="例)*今までの活動の軌跡*"
           autosize
           minH="2xs"
           {...register("description")}
