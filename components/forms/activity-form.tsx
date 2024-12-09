@@ -12,6 +12,7 @@ import {
   Label,
   Snacks,
   Spacer,
+  Text,
   Textarea,
   useBoolean,
   useSnacks,
@@ -183,6 +184,20 @@ export const ActivityForm: FC<ActivityFormProps> = ({
                     locale="ja"
                     w={{ base: "md", md: "full" }}
                     placeholder="YYYY/MM/DD"
+                    calendarProps={{
+                      dayProps :{
+                        component: ({ isSelected, col, row, date }) => (
+                          <Text
+                            as="span"
+                            color={
+                              !isSelected && date.getDay() === 6 ? "blue.500" : undefined
+                            }
+                          >
+                            {date.getDate()}
+                          </Text>
+                        ),
+                      },
+                      }}
                     {...field}
                   />
                   {errors.date ? (
