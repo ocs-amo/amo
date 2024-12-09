@@ -149,7 +149,7 @@ const Page = async ({ params }: Props) => {
           </Heading>
           <Grid
             gridTemplateColumns={
-              circles?.length
+              instructorCircles?.length
                 ? {
                     base: "repeat(4, 1fr)",
                     lg: "repeat(3, 1fr)",
