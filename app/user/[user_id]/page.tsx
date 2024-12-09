@@ -12,7 +12,10 @@ import {
 } from "@yamada-ui/react"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { getCirclesByUserId } from "@/actions/circle/fetch-circle"
+import {
+  getCirclesByInstructorId,
+  getCirclesByUserId,
+} from "@/actions/circle/fetch-circle"
 import { getUserById } from "@/actions/user/user"
 import { auth } from "@/auth"
 import { CircleCard } from "@/components/data-display/circle-card"
@@ -55,18 +58,15 @@ const Page = async ({ params }: Props) => {
     (account) => account.provider === "microsoft-entra-id",
   )
   const circles = await getCirclesByUserId(userId || "")
+  const instructorCircles = user?.instructorFlag
+    ? await getCirclesByInstructorId(userId || "")
+    : []
   if (!user) {
     notFound()
   }
 
   return (
-    <VStack
-      w="full"
-      maxW="6xl"
-      h={{ base: "full", sm: "fit-content" }}
-      p="md"
-      m="auto"
-    >
+    <VStack w="full" maxW="6xl" h="fit-content" p="md" m="auto">
       <HStack
         w="full"
         maxW="3xl"
@@ -142,6 +142,38 @@ const Page = async ({ params }: Props) => {
           </Center>
         )}
       </Grid>
+      {user?.instructorFlag && (
+        <>
+          <Heading as="h3" size="sm">
+            講師担当サークル
+          </Heading>
+          <Grid
+            gridTemplateColumns={
+              circles?.length
+                ? {
+                    base: "repeat(4, 1fr)",
+                    lg: "repeat(3, 1fr)",
+                    md: "repeat(2, 1fr)",
+                    sm: "repeat(1, 1fr)",
+                  }
+                : undefined
+            }
+            gap="md"
+            w="full"
+            h="full"
+          >
+            {instructorCircles?.length ? (
+              instructorCircles?.map((data) => (
+                <CircleCard key={data.id} data={data} />
+              ))
+            ) : (
+              <Center w="full" h="full">
+                <Text>講師にに入っていません</Text>
+              </Center>
+            )}
+          </Grid>
+        </>
+      )}
     </VStack>
   )
 }

@@ -48,6 +48,7 @@ export const getUserById = async (id: string) => {
         createdAt: true,
         profileImageUrl: true,
         accounts: true,
+        instructorFlag: true,
       },
     })
     return user

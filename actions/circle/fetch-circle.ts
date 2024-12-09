@@ -141,3 +141,40 @@ export const getCirclesByUserId = async (userId: string) => {
     return null
   }
 }
+
+export const getCirclesByInstructorId = async (userId: string) => {
+  try {
+    const circles = await db.circle.findMany({
+      where: {
+        deletedAt: null, // 削除されていないサークル
+        CircleInstructor: {
+          some: {
+            userId: userId, // 特定のユーザーIDに関連するサークルをフィルタリング
+          },
+        },
+      },
+      include: {
+        CircleMember: {
+          where: {
+            leaveDate: null, // 退会日が設定されていないメンバーのみ取得
+          },
+        },
+        CircleInstructor: true, // 講師の情報を取得
+      },
+    })
+
+    return circles.map((circle) => ({
+      id: circle.id,
+      name: circle.name,
+      description: circle.description,
+      location: circle.location,
+      imagePath: circle.imagePath,
+      activityDay: circle.activityDay,
+      memberCount: circle.CircleMember.length, // 退会していないメンバーのみをカウント
+      // instructorCount: circle.CircleInstructor.length, // 関連する講師の数をカウント
+    }))
+  } catch (error) {
+    console.error("getCirclesByInstructorId: ", error)
+    return null
+  }
+}
