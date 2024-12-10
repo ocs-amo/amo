@@ -18,23 +18,8 @@ import Link from "next/link"
 import { useState } from "react"
 import { getWeeklyActivitiesActioins } from "@/actions/circle/fetch-activity"
 import type { getWeeklyActivities } from "@/data/activity"
-import { parseMonthDate , getDayColor } from "@/utils/format"
+import { parseMonthDate , getDayColor , generateWeekDates } from "@/utils/format"
 
-// 月曜日を週の始まりとして週の日付を生成
-const generateWeekDates = (currentDate: Date) => {
-  const startOfWeek = new Date(currentDate)
-  const currentDay = currentDate.getDay()
-  const offset = currentDay === 0 ? -6 : 1 - currentDay // 日曜の場合は月曜まで戻る
-  startOfWeek.setDate(currentDate.getDate() + offset) // 週の月曜日を基準に設定
-
-  const dates = []
-  for (let i = 0; i < 7; i++) {
-    const newDate = new Date(startOfWeek)
-    newDate.setDate(startOfWeek.getDate() + i)
-    dates.push(newDate)
-  }
-  return dates
-}
 
 interface WeekCalendarProps {
   userId: string

@@ -32,3 +32,18 @@ export const getDayColor = (day: number) => {
   if (day === 6) return "blue" // 土曜日
   return "black"
 }
+
+export const generateWeekDates = (currentDate: Date) => {
+  const startOfWeek = new Date(currentDate)
+  const currentDay = currentDate.getDay()
+  const offset = currentDay === 0 ? -6 : 1 - currentDay
+  startOfWeek.setDate(currentDate.getDate() + offset) 
+
+  const dates = []
+  for (let i = 0; i < 7; i++) {
+    const newDate = new Date(startOfWeek)
+    newDate.setDate(startOfWeek.getDate() + i)
+    dates.push(newDate)
+  }
+  return dates
+}
