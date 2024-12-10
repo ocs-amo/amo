@@ -15,6 +15,7 @@ import {
   VStack,
 } from "@yamada-ui/react"
 import { useState } from "react"
+import { io } from "socket.io-client"
 import { AnnouncementCard } from "./announcement-card"
 import { ThreadCard } from "./thread-card"
 import { ThreadItem } from "./thread-item"
@@ -47,6 +48,7 @@ export const CircleThreads: FC<CircleThreadsProps> = ({
   currentThread: thread,
   currentAnnouncement: announcement,
 }) => {
+  const socket = io({ autoConnect: false })
   const [currentThread, setCurrentThread] = useState(thread)
   const [currentAnnouncement, setCurrentAnnouncement] = useState(announcement)
   const [loading, { off: loadingOff, on: loadingOn }] = useBoolean(true)
@@ -126,6 +128,7 @@ export const CircleThreads: FC<CircleThreadsProps> = ({
           circleId={circle?.id || ""}
           currentThread={currentThread}
           isAdmin={!!isAdmin}
+          socket={socket}
           fetchData={fetchData}
           handleDelete={handleDelete}
         />

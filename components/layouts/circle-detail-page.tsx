@@ -2,7 +2,7 @@
 
 import type { FC } from "@yamada-ui/react"
 import {
-  Box,
+  Flex,
   Heading,
   HStack,
   Tag,
@@ -63,7 +63,7 @@ export const CircleDetailPage: FC<{
   )
 
   return (
-    <VStack w="full" h={{ base: "full", sm: "fit-content" }} gap={0} p={0}>
+    <VStack w="full" h="fit-content" gap={0} p={0}>
       <VStack w="full" h="full" flexGrow={1} p={0}>
         <VStack
           {...(circle?.imagePath
@@ -96,21 +96,24 @@ export const CircleDetailPage: FC<{
                 ))}
               </HStack>
             </VStack>
-            <VStack
-              alignItems="end"
-              flexDir={{ base: "column", md: "row" }}
-              flexWrap={{ base: "initial", md: "wrap" }}
-              justifyContent="space-around"
-            >
+            <VStack alignItems="end" justifyContent="space-around">
               <Text>
                 講師：
                 {circle?.instructors
                   ?.map((instructor) => instructor.name)
                   .join(", ")}
               </Text>
-              <Text>人数：{circleData?.members?.length}人</Text>
-              <Text>活動場所：{circle?.location}</Text>
-              <Box>
+              <VStack
+                flexDir={{ base: "column", md: "row" }}
+                justifyContent="end"
+                flexWrap="wrap"
+              >
+                <Text textAlign="end">
+                  人数：{circleData?.members?.length}人
+                </Text>
+                <Text textAlign="end">活動場所：{circle?.location}</Text>
+              </VStack>
+              <Flex w="full" justifyContent="end">
                 <CircleDetailButton
                   userId={userId}
                   tabKey={tabKey || ""}
@@ -118,7 +121,7 @@ export const CircleDetailPage: FC<{
                   isAdmin={!!isAdmin}
                   isMember={!!isMember}
                 />
-              </Box>
+              </Flex>
             </VStack>
           </HStack>
         </VStack>
