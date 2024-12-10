@@ -140,6 +140,7 @@ export const CircleThreads: FC<CircleThreadsProps> = ({
       ) : (
         <>
           <MultiSelect
+            w="sm"
             containerProps={{
               bg: "blackAlpha.50",
             }}
