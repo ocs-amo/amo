@@ -98,7 +98,13 @@ export const AlbumForm: FC<AlbumFormProps> = ({ circleId, mode, album }) => {
   }
 
   return (
-    <VStack w="full" as="form" onSubmit={handleSubmit(onSubmit)} p="md">
+    <VStack
+      w="full"
+      h="fit-content"
+      as="form"
+      onSubmit={handleSubmit(onSubmit)}
+      p="md"
+    >
       <Heading>アルバム作成</Heading>
       <FormControl isInvalid={!!errors.images}>
         <Controller
@@ -190,7 +196,7 @@ export const AlbumForm: FC<AlbumFormProps> = ({ circleId, mode, album }) => {
         <Label isRequired>タイトル</Label>
         <Input
           type="text"
-          placeholder="タイトルを入力"
+          placeholder="例)何でもない日の幸せ"
           {...register("title")}
         />
         {errors.title && (
@@ -198,9 +204,9 @@ export const AlbumForm: FC<AlbumFormProps> = ({ circleId, mode, album }) => {
         )}
       </FormControl>
       <FormControl isInvalid={!!errors.description}>
-        <Label isRequired>内容</Label>
+        <Label>内容</Label>
         <Textarea
-          placeholder="内容を入力"
+          placeholder="例)特別なことは何もないけれど、みんなで過ごす日常が一番の宝物です。&#13;&#10;ちょっとした会話、何気ない笑顔が心に残ります。"
           autosize
           minH="2xs"
           {...register("description")}
@@ -210,7 +216,13 @@ export const AlbumForm: FC<AlbumFormProps> = ({ circleId, mode, album }) => {
         )}
       </FormControl>
       <Snacks snacks={snacks} />
-      <Center gap="md" justifyContent="end">
+      <Center
+        gap="md"
+        justifyContent="end"
+        position={{ sm: "fixed" }}
+        bottom={{ sm: 20 }}
+        right={{ sm: 5 }}
+      >
         <Button
           colorScheme="riverBlue"
           as={Link}

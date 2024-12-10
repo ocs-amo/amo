@@ -105,12 +105,12 @@ export const ActivityForm: FC<ActivityFormProps> = ({
   return (
     <VStack
       w="full"
-      h="full"
+      h="fit-content"
       as="form"
       onSubmit={handleSubmit(onSubmit)}
       p="md"
     >
-      <VStack p="md" maxW="5xl" m="auto" gap="lg" flexGrow={1}>
+      <VStack maxW="5xl" m="auto" gap="lg" flexGrow={1}>
         <Heading>{`${circle?.name} 活動日程`}</Heading>
         <FormControl
           display="flex"
@@ -126,7 +126,7 @@ export const ActivityForm: FC<ActivityFormProps> = ({
             <Input
               type="text"
               w={{ base: "md", md: "full" }}
-              placeholder="見出しを入力"
+              placeholder="例）ミーティング"
               {...register("title")}
             />
             {errors.title ? (
@@ -150,7 +150,7 @@ export const ActivityForm: FC<ActivityFormProps> = ({
           <VStack w="auto">
             <Textarea
               w={{ base: "md", md: "full" }}
-              placeholder="活動内容を入力"
+              placeholder="例）定例ミーティングです"
               autosize
               {...register("description")}
             />
@@ -218,31 +218,6 @@ export const ActivityForm: FC<ActivityFormProps> = ({
           flexDirection={{ base: "row", md: "column" }}
           gap={{ base: "2xl", md: "md" }}
           maxW="2xl"
-          isInvalid={!!errors.location}
-        >
-          <Label flexGrow={1}>場所</Label>
-          <VStack w="auto">
-            <Input
-              type="text"
-              w={{ base: "md", md: "full" }}
-              placeholder="場所を入力"
-              {...register("location")}
-            />
-            {errors.location ? (
-              <ErrorMessage mt={0}>{errors.location.message}</ErrorMessage>
-            ) : (
-              <>
-                <Spacer />
-                <Spacer />
-              </>
-            )}
-          </VStack>
-        </FormControl>
-        <FormControl
-          display="flex"
-          flexDirection={{ base: "row", md: "column" }}
-          gap={{ base: "2xl", md: "md" }}
-          maxW="2xl"
           isInvalid={!!errors.startTime}
         >
           <Label flexGrow={1} isRequired>
@@ -282,6 +257,31 @@ export const ActivityForm: FC<ActivityFormProps> = ({
             />
             {errors.endTime ? (
               <ErrorMessage mt={0}>{errors.endTime.message}</ErrorMessage>
+            ) : (
+              <>
+                <Spacer />
+                <Spacer />
+              </>
+            )}
+          </VStack>
+        </FormControl>
+        <FormControl
+          display="flex"
+          flexDirection={{ base: "row", md: "column" }}
+          gap={{ base: "2xl", md: "md" }}
+          maxW="2xl"
+          isInvalid={!!errors.location}
+        >
+          <Label flexGrow={1}>場所</Label>
+          <VStack w="auto">
+            <Input
+              type="text"
+              w={{ base: "md", md: "full" }}
+              placeholder="例）404教室"
+              {...register("location")}
+            />
+            {errors.location ? (
+              <ErrorMessage mt={0}>{errors.location.message}</ErrorMessage>
             ) : (
               <>
                 <Spacer />

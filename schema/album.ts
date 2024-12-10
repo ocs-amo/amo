@@ -43,7 +43,6 @@ export const AlbumFormSchema = z.object({
   description: z
     .string()
     .trim()
-    .min(1, { message: "内容は必須です。" })
     .max(1000, { message: "1000文字以下にしてください。" }),
 })
 

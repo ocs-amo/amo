@@ -3,6 +3,7 @@ import { MonthPicker } from "@yamada-ui/calendar"
 import { ChevronLeftIcon, ChevronRightIcon } from "@yamada-ui/lucide"
 import type { FC } from "@yamada-ui/react"
 import {
+  Box,
   Card,
   CardBody,
   Center,
@@ -180,46 +181,85 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
                 <GridItem key={activity.id}>
                   <Card variant="outline" as={LinkBox} bg="white">
                     <CardBody>
-                      <HStack justifyContent="space-between" w="full">
-                        <LinkOverlay
-                          justifyContent="center"
-                          alignItems="center"
-                          gap="md"
-                          as={Link}
-                          display="flex"
-                          href={`/circles/${circle?.id}/activities/${activity.id}`}
+                      <HStack alignItems="start" w="full">
+                        <Card
+                          variant="outline"
+                          padding="sm"
+                          w="10"
+                          as={Center}
+                          display={{ base: "none", md: "flex" }}
                         >
-                          <Card
-                            variant="outline"
-                            padding="sm"
-                            w="10"
-                            as={Center}
+                          {activity.activityDay.getDate()}
+                        </Card>
+                        <HStack
+                          justifyContent="space-between"
+                          w="full"
+                          flexDir={{ base: "row", md: "column" }}
+                        >
+                          <LinkOverlay
+                            justifyContent={{ base: "center", md: "start" }}
+                            alignItems="center"
+                            gap="md"
+                            as={Link}
+                            display="flex"
+                            href={`/circles/${circle?.id}/activities/${activity.id}`}
+                            w={{ md: "full" }}
                           >
-                            {activity.activityDay.getDate()}
-                          </Card>
-                          <Text lineClamp={1}>{activity.title}</Text>
-                        </LinkOverlay>
-
-                        <HStack>
-                          <Text lineClamp={1}>{activity.location}</Text>
-                          <Text>
-                            {displayTime(activity.startTime)}
-                            {activity.endTime
-                              ? `～${displayTime(activity.endTime)}`
-                              : undefined}
-                          </Text>
-                          <Text whiteSpace="nowrap">
-                            {activity.participants.length}人
-                          </Text>
-                          <ActivityMenuButton
-                            userId={userId}
-                            isMember={!!isMember}
-                            isAdmin={!!isAdmin}
-                            circle={circle}
-                            activity={activity}
-                            handleParticipation={handleParticipation}
-                            handleDelete={handleDelete}
-                          />
+                            <Card
+                              variant="outline"
+                              padding="sm"
+                              w="10"
+                              as={Center}
+                              display={{ base: "flex", md: "none" }}
+                            >
+                              {activity.activityDay.getDate()}
+                            </Card>
+                            <Text lineClamp={1}>{activity.title}</Text>
+                            <Box
+                              display={{ base: "none", md: "block" }}
+                              ml="auto"
+                            >
+                              <ActivityMenuButton
+                                userId={userId}
+                                isMember={!!isMember}
+                                isAdmin={!!isAdmin}
+                                circle={circle}
+                                activity={activity}
+                                handleParticipation={handleParticipation}
+                                handleDelete={handleDelete}
+                              />
+                            </Box>
+                          </LinkOverlay>
+                          <HStack
+                            w={{ md: "full" }}
+                            flexWrap="wrap"
+                            justifyContent={{ base: "center", md: "start" }}
+                          >
+                            <Text lineClamp={1}>{activity.location}</Text>
+                            <Text>
+                              {displayTime(activity.startTime)}
+                              {activity.endTime
+                                ? `～${displayTime(activity.endTime)}`
+                                : undefined}
+                            </Text>
+                            <Text
+                              whiteSpace="nowrap"
+                              display={{ base: "inline", md: "none" }}
+                            >
+                              {activity.participants.length}人
+                            </Text>
+                            <Box display={{ base: "block", md: "none" }}>
+                              <ActivityMenuButton
+                                userId={userId}
+                                isMember={!!isMember}
+                                isAdmin={!!isAdmin}
+                                circle={circle}
+                                activity={activity}
+                                handleParticipation={handleParticipation}
+                                handleDelete={handleDelete}
+                              />
+                            </Box>
+                          </HStack>
                         </HStack>
                       </HStack>
                     </CardBody>

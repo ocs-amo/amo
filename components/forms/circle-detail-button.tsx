@@ -25,97 +25,140 @@ export const CircleDetailButton: FC<CircleDetailButtonProps> = ({
 }) => {
   switch (handlingTab(tabKey)) {
     case 0: {
-      return isMember ? (
-        <Button
-          as={Link}
-          href={`/circles/${circle?.id}/activities/new`}
-          leftIcon={<PlusIcon fontSize="2xl" />}
-          colorScheme="riverBlue"
-        >
-          追加
-        </Button>
-      ) : (
-        <CircleMembershipButton
-          circleId={circle?.id || ""}
-          userId={userId}
-          isAdmin={!!isAdmin}
-          isMember={!!isMember}
-        />
+      return (
+        <>
+          {isAdmin && (
+            <Button
+              colorScheme="riverBlue"
+              as={Link}
+              href={`/circles/${circle?.id}/edit`}
+            >
+              サークル編集
+            </Button>
+          )}
+          {isMember ? (
+            <Button
+              position="fixed"
+              bottom={{ base: 10, sm: 20 }}
+              right={{ base: 10, sm: 5 }}
+              zIndex={10}
+              as={Link}
+              href={`/circles/${circle?.id}/activities/new`}
+              leftIcon={<PlusIcon fontSize="2xl" />}
+              colorScheme="riverBlue"
+            >
+              追加
+            </Button>
+          ) : (
+            <CircleMembershipButton
+              circleId={circle?.id || ""}
+              userId={userId}
+              isAdmin={!!isAdmin}
+              isMember={!!isMember}
+            />
+          )}
+        </>
       )
     }
     case 1: {
-      return isMember ? (
-        <Button
-          as={Link}
-          href={`/circles/${circle?.id}/album/create`}
-          leftIcon={<PlusIcon fontSize="2xl" />}
-          colorScheme="riverBlue"
-        >
-          作成
-        </Button>
-      ) : (
-        <CircleMembershipButton
-          circleId={circle?.id || ""}
-          userId={userId}
-          isAdmin={!!isAdmin}
-          isMember={!!isMember}
-        />
+      return (
+        <>
+          {isAdmin && (
+            <Button
+              colorScheme="riverBlue"
+              as={Link}
+              href={`/circles/${circle?.id}/edit`}
+            >
+              サークル編集
+            </Button>
+          )}
+          {isMember ? (
+            <Button
+              position="fixed"
+              bottom={{ base: 10, sm: 20 }}
+              right={{ base: 10, sm: 5 }}
+              zIndex={10}
+              as={Link}
+              href={`/circles/${circle?.id}/album/create`}
+              leftIcon={<PlusIcon fontSize="2xl" />}
+              colorScheme="riverBlue"
+            >
+              作成
+            </Button>
+          ) : (
+            <CircleMembershipButton
+              circleId={circle?.id || ""}
+              userId={userId}
+              isAdmin={!!isAdmin}
+              isMember={!!isMember}
+            />
+          )}
+        </>
       )
     }
     case 2: {
-      return isMember ? (
-        <Menu>
-          <MenuButton
-            as={Button}
-            leftIcon={<PlusIcon fontSize="2xl" />}
-            colorScheme="riverBlue"
-          >
-            作成
-          </MenuButton>
-          <MenuList>
-            <MenuItem
-              icon={<BellPlusIcon fontSize="2xl" />}
-              as={Link}
-              href={`/circles/${circle?.id}/announcement/create`}
-            >
-              お知らせ
-            </MenuItem>
-            <MenuItem
-              icon={<MessageCircleMoreIcon fontSize="2xl" />}
-              as={Link}
-              href={`/circles/${circle?.id}/thread/create`}
-            >
-              スレッド
-            </MenuItem>
-          </MenuList>
-        </Menu>
-      ) : (
-        <CircleMembershipButton
-          circleId={circle?.id || ""}
-          userId={userId}
-          isAdmin={!!isAdmin}
-          isMember={!!isMember}
-        />
-      )
-    }
-    case 3: {
       return (
-        <CircleMembershipButton
-          circleId={circle?.id || ""}
-          userId={userId}
-          isAdmin={!!isAdmin}
-          isMember={!!isMember}
-        />
+        <>
+          {isAdmin && (
+            <Button
+              colorScheme="riverBlue"
+              as={Link}
+              href={`/circles/${circle?.id}/edit`}
+            >
+              サークル編集
+            </Button>
+          )}
+          {isMember ? (
+            <Menu>
+              <MenuButton
+                position="fixed"
+                bottom={{ base: 10, sm: 20 }}
+                right={{ base: 10, sm: 5 }}
+                zIndex={10}
+                as={Button}
+                leftIcon={<PlusIcon fontSize="2xl" />}
+                colorScheme="riverBlue"
+              >
+                作成
+              </MenuButton>
+              <MenuList>
+                <MenuItem
+                  icon={<BellPlusIcon fontSize="2xl" />}
+                  as={Link}
+                  href={`/circles/${circle?.id}/announcement/create`}
+                >
+                  お知らせ
+                </MenuItem>
+                <MenuItem
+                  icon={<MessageCircleMoreIcon fontSize="2xl" />}
+                  as={Link}
+                  href={`/circles/${circle?.id}/thread/create`}
+                >
+                  スレッド
+                </MenuItem>
+              </MenuList>
+            </Menu>
+          ) : (
+            <CircleMembershipButton
+              circleId={circle?.id || ""}
+              userId={userId}
+              isAdmin={!!isAdmin}
+              isMember={!!isMember}
+            />
+          )}
+        </>
       )
     }
     default: {
       return (
-        <CircleMembershipButton
-          circleId={circle?.id || ""}
-          userId={userId}
-          isAdmin={!!isAdmin}
-          isMember={!!isMember}
-        />
+        <>
+          <CircleMembershipButton
+            circleId={circle?.id || ""}
+            userId={userId}
+            isAdmin={!!isAdmin}
+            isMember={!!isMember}
+          />
+        </>
       )
     }
   }
