@@ -75,6 +75,7 @@ export const AppLayout: FC<{
           left={0}
           bottom={0}
           display={{ base: "flex", sm: "none" }}
+          background="whiteAlpha.400"
         >
           <VStack>
             <IconButton
