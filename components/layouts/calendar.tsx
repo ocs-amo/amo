@@ -74,7 +74,7 @@ export const CalendarPage: FC<CalendarPageProps> = ({ userId, events }) => {
           p: 0,
           _active: {},
           component: ({ date, isSelected }) => {
-            const isSaturday = date.getDay() === 6; //土曜日かどうかの判定
+            const isSaturday = date.getDay() === 6 //土曜日かどうかの判定
             const dayEvents = currentEvents.filter(
               (event) =>
                 event.activityDay.getFullYear() === date.getFullYear() &&
@@ -89,9 +89,11 @@ export const CalendarPage: FC<CalendarPageProps> = ({ userId, events }) => {
             return (
               <VStack alignItems="center" w="100%" h="100%" overflow="hidden">
                 <Center w="100%" py={1}>
-                <Text
+                  <Text
                     as="span"
-                    color={isSaturday ? "blue.500" : undefined}
+                    color={
+                      isSelected ? "white" : isSaturday ? "blue.500" : undefined
+                    }
                   >
                     {date.getDate()}
                   </Text>

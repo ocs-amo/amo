@@ -26,3 +26,9 @@ export const handlingTab = (key: string) => {
       return 0
   }
 }
+
+export const getDayColor = (day: number) => {
+  if (day === 0) return "red" // 日曜日
+  if (day === 6) return "blue" // 土曜日
+  return "black"
+}
