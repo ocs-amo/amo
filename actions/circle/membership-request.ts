@@ -236,7 +236,7 @@ export const removeMember = async ({
 
     return {
       success: true,
-      message: `メンバー ${targetMemberId} が正常に退会しました。`,
+      message: `メンバー ${targetMember.user.name} が正常に退会しました。`,
     }
   } catch (error) {
     console.error("メンバー削除エラー:", error)
