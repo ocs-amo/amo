@@ -17,13 +17,11 @@ import {
   Text,
   Textarea,
   useBoolean,
-  useSafeLayoutEffect,
   useSnacks,
   VStack,
 } from "@yamada-ui/react"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
-import type { Socket } from "socket.io-client"
 import { ThreadMenuButton } from "../forms/thread-menu-button"
 import { PostCommentAction } from "@/actions/circle/thread-comment"
 import type { getThreadById } from "@/data/thread"
@@ -32,7 +30,6 @@ import { CommentFormSchema } from "@/schema/topic"
 import { parseFullDate } from "@/utils/format"
 
 interface ThreadCardProps {
-  socket: Socket
   userId: string
   circleId: string
   isAdmin: boolean
@@ -46,7 +43,6 @@ export const ThreadCard: FC<ThreadCardProps> = ({
   currentThread,
   isAdmin,
   userId,
-  socket,
   fetchData,
   handleDelete,
 }) => {
@@ -70,41 +66,12 @@ export const ThreadCard: FC<ThreadCardProps> = ({
     if (success) {
       snack({ title: "コメントの作成に成功しました", status: "success" })
       await fetchData()
-      socket.emit("onSubmit", currentThread.id)
       reset()
     } else {
       snack({ title: error || "コメントの作成に失敗しました", status: "error" })
     }
     end()
   }
-
-  useSafeLayoutEffect(() => {
-    fetch("/api/socketio", { method: "POST" }).then(() => {
-      // 既に接続済だったら何もしない
-      if (socket.connected) {
-        return
-      }
-      // socket.ioサーバに接続
-      socket.connect()
-      // joinできなかった時のエラー取得
-      socket.on("join_room_error", (data: string) => {
-        console.error(data)
-      })
-      // join
-      socket.emit("join_room", currentThread.id)
-      // メッセージ受け取り
-      socket.on("sync", () => {
-        fetchData()
-      })
-    })
-
-    return () => {
-      // 登録したイベントは全てクリーンアップ
-      socket.off("connect")
-      socket.off("sync")
-    }
-  }, [socket])
-
   return (
     <>
       <Snacks snacks={snacks} />
