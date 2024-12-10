@@ -186,7 +186,7 @@ export const ActivityForm: FC<ActivityFormProps> = ({
                     placeholder="YYYY/MM/DD"
                     calendarProps={{
                       dayProps :{
-                        component: ({ isSelected, col, row, date }) => (
+                        component: ({ isSelected, date }) => (
                           <Text
                             as="span"
                             color={
