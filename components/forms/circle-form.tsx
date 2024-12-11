@@ -52,7 +52,7 @@ const DeleteCircleButton: FC<{ circleId: string; userId: string }> = ({
   circleId,
   userId,
 }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { open, onOpen, onClose } = useDisclosure()
   const [isDone, { on: doneOn, off: doneOff }] = useBoolean()
   const router = useRouter()
   const handleDelete = async () => {
@@ -81,7 +81,7 @@ const DeleteCircleButton: FC<{ circleId: string; userId: string }> = ({
 
       {/* 削除確認モーダル  */}
       <Modal
-        isOpen={isOpen}
+        open={open}
         onClose={isDone ? () => router.push("/circles") : onClose}
       >
         <ModalOverlay />

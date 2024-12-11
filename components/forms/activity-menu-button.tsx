@@ -38,7 +38,7 @@ export const ActivityMenuButton: FC<ActivityMenuButtonProps> = ({
   handleDelete,
   handleParticipation,
 }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { open, onOpen, onClose } = useDisclosure()
 
   const onDeleteConfirm = async () => {
     await handleDelete(activity.id)
@@ -84,7 +84,7 @@ export const ActivityMenuButton: FC<ActivityMenuButtonProps> = ({
         </MenuList>
       </Menu>
 
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal open={open} onClose={onClose}>
         <ModalOverlay />
         <ModalHeader>活動の削除確認</ModalHeader>
         <ModalBody>
