@@ -1,8 +1,14 @@
 "use client"
 import { Carousel, CarouselSlide } from "@yamada-ui/carousel"
-import { ArrowLeftIcon, ArrowRightIcon, EllipsisIcon } from "@yamada-ui/lucide"
+import {
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  EllipsisIcon,
+  PlusIcon,
+} from "@yamada-ui/lucide"
 import type { FC } from "@yamada-ui/react"
 import {
+  Button,
   Card,
   Center,
   Grid,
@@ -82,6 +88,16 @@ export const CircleAlbums: FC<CircleAlbums> = ({
   }, [])
   return (
     <VStack w="full" h="full">
+      <HStack justifyContent="end">
+        <Button
+          as={Link}
+          href={`/circles/${circleId}/album/create`}
+          leftIcon={<PlusIcon fontSize="2xl" />}
+          colorScheme="riverBlue"
+        >
+          作成
+        </Button>
+      </HStack>
       <Snacks snacks={snacks} />
       {currentAlbum ? (
         <AlbumCard
