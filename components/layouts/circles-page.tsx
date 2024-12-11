@@ -61,7 +61,7 @@ export const CirclesPage: FC<CirclesPageProps> = ({ circles }) => {
           p="md"
           top={0}
           backgroundImage="/images/white_marble.png"
-          backgroundColor="#FFFFFF"
+          backgroundColor="white"
           backgroundAttachment="fixed"
           backgroundSize="cover"
           as="header"
