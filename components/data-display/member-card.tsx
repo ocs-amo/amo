@@ -54,7 +54,7 @@ export const MemberCard: FC<MemberCard> = ({
   handleRemoveMember,
 }) => {
   const {
-    open : isRoleOpen,
+    open: isRoleOpen,
     onOpen: onRoleOpen,
     onClose: onRoleClose,
   } = useDisclosure()
