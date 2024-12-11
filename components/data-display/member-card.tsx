@@ -11,7 +11,7 @@ import {
   IconButton,
   Menu,
   MenuButton,
-  MenuDivider,
+  MenuSeparator,
   MenuItem,
   MenuList,
   Text,
@@ -54,12 +54,12 @@ export const MemberCard: FC<MemberCard> = ({
   handleRemoveMember,
 }) => {
   const {
-    isOpen: isRoleOpen,
+    open : isRoleOpen,
     onOpen: onRoleOpen,
     onClose: onRoleClose,
   } = useDisclosure()
   const {
-    isOpen: isRemoveOpen,
+    open: isRemoveOpen,
     onOpen: onRemoveOpen,
     onClose: onRemoveClose,
   } = useDisclosure()
@@ -149,7 +149,7 @@ export const MemberCard: FC<MemberCard> = ({
                     >
                       一般
                     </MenuItem>
-                    <MenuDivider />
+                    <MenuSeparator />
                     <MenuItem color="red" onClick={() => openRemoveDialog()}>
                       退会
                     </MenuItem>
@@ -171,7 +171,7 @@ export const MemberCard: FC<MemberCard> = ({
                     >
                       一般
                     </MenuItem>
-                    <MenuDivider />
+                    <MenuSeparator />
                     <MenuItem color="red" onClick={() => openRemoveDialog()}>
                       退会
                     </MenuItem>
@@ -182,7 +182,7 @@ export const MemberCard: FC<MemberCard> = ({
           ) : undefined}
 
           {/* 権限変更確認モーダル */}
-          <Modal isOpen={isRoleOpen} onClose={onRoleClose}>
+          <Modal open={isRoleOpen} onClose={onRoleClose}>
             <ModalOverlay />
             <ModalHeader>権限変更の確認</ModalHeader>
             <ModalBody>
@@ -198,7 +198,7 @@ export const MemberCard: FC<MemberCard> = ({
           </Modal>
 
           {/* 退会確認モーダル */}
-          <Modal isOpen={isRemoveOpen} onClose={onRemoveClose}>
+          <Modal open={isRemoveOpen} onClose={onRemoveClose}>
             <ModalOverlay />
             <ModalHeader>サークルの退会確認</ModalHeader>
             <ModalBody>本当に {member.name} さんを退会させますか？</ModalBody>
