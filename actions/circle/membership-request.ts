@@ -1,8 +1,10 @@
 "use server"
+import { getCircleById } from "./fetch-circle"
 import { auth } from "@/auth"
 import {
   addMemberToCircle,
   findActiveMember,
+  getCircleOwner,
   isUserAdmin,
   markMemberAsInactive,
   removeMemberFromCircle,
@@ -54,6 +56,43 @@ export const handleMembershipRequest = async (
     }
 
     await createMembershipRequest(userId, circleId, requestType)
+
+    const ownerUser = await getCircleOwner(circleId)
+    const circle = await getCircleById(circleId)
+
+    const response = await fetch(
+      "https://graph.microsoft.com/v1.0/me/sendMail",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${session.user.id}`, // tokenが取得できない
+        },
+        body: JSON.stringify({
+          message: {
+            subject: "サークルメンバー入会申請が来ています。",
+            body: {
+              contentType: "Text",
+              content: `
+            ${ownerUser?.user.name}さん。
+            ${circle?.name}に${session.user.name}さんから入会申請が来ています。
+            `,
+            },
+            toRecipients: [
+              { emailAddress: { address: ownerUser?.user.email } },
+            ],
+          },
+        }),
+      },
+    )
+    const json = await response.json()
+    console.log(json)
+
+    if (response.ok) {
+      console.log("送信成功")
+    } else {
+      console.log("失敗")
+    }
 
     return { success: true, message: "申請が成功しました。" }
   } catch (error) {
