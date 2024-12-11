@@ -12,11 +12,11 @@ export const AlbumPreviewGrid: FC<{
     gap="md"
     overflow="auto"
     pt="sm"
-    width={{base:"600px",md:"100%"}}
+    width={{ base: "3xl", md: "full" }}
     alignItems="center"
   >
     {images.map((src, index) => (
-      <GridItem key={index} boxSize="100px" position="relative" rounded="md">
+      <GridItem key={index} boxSize="4xs" position="relative" rounded="md">
         <Image
           src={src}
           alt={`preview-${index}`}
