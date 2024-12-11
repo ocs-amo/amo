@@ -1,5 +1,5 @@
 "use client"
-import type { AlertStatus, FC } from "@yamada-ui/react"
+import type { AlertStatusValue, FC } from "@yamada-ui/react"
 import { SimpleGrid, Snacks, useSnacks } from "@yamada-ui/react"
 import { MemberCard } from "./member-card"
 import { MemberRequestCard } from "./member-request-card"
@@ -32,7 +32,7 @@ export const CircleMembers: FC<CircleMembersProps> = ({
 }) => {
   const { data } = membershipRequests
   const { snack, snacks } = useSnacks()
-  const handleSnack = (title: string, status: AlertStatus) => {
+  const handleSnack = (title: string, status: AlertStatusValue) => {
     snack.closeAll()
     snack({ title, status })
   }
