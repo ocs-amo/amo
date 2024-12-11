@@ -80,7 +80,7 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
             placement="right"
             offset={-1.5}
             label={data?.length}
-            isDisabled={!data?.length || !isAdmin}
+            disabled={!data?.length || !isAdmin}
           >
             メンバー一覧
           </Indicator>

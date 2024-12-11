@@ -69,7 +69,7 @@ export const CircleMembershipButton: FC<CircleMembershipButtonProps> = ({
   if (isMember) {
     // 退会申請中の状態を確認
     return pendingWithdrawalRequest ? (
-      <Button colorScheme="riverBlue" isDisabled>
+      <Button colorScheme="riverBlue" disabled>
         退会申請中
       </Button>
     ) : (
@@ -84,7 +84,7 @@ export const CircleMembershipButton: FC<CircleMembershipButtonProps> = ({
   } else {
     // 入会申請中の状態を確認
     return pendingJoinRequest ? (
-      <Button colorScheme="riverBlue" isDisabled>
+      <Button colorScheme="riverBlue" disabled>
         入会申請中
       </Button>
     ) : (
