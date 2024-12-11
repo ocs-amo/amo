@@ -1,6 +1,6 @@
 "use client"
 
-import type { AlertStatus, FC } from "@yamada-ui/react"
+import type { AlertStatusValue, FC } from "@yamada-ui/react"
 import {
   Avatar,
   Badge,
@@ -14,6 +14,7 @@ import {
   LinkBox,
   LinkOverlay,
   Text,
+  useBoolean,
   useDisclosure,
 } from "@yamada-ui/react"
 import Link from "next/link"
@@ -30,7 +31,7 @@ interface MemberRequestCardProps {
     Awaited<ReturnType<typeof getMembershipRequests>>["data"]
   >[number]
   fetchData: () => Promise<void>
-  handleSnack: (title: string, status: AlertStatus) => void
+  handleSnack: (title: string, status: AlertStatusValue) => void
 }
 
 export const MemberRequestCard: FC<MemberRequestCardProps> = ({
@@ -41,6 +42,8 @@ export const MemberRequestCard: FC<MemberRequestCardProps> = ({
   handleSnack,
 }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const [isApproveLoading, { on: approveStart, off: approveEnd }] = useBoolean()
+  const [isRejectLoading, { on: rejectStart, off: rejectEnd }] = useBoolean()
   const [confirmState, setConfirmState] = useState("")
   const requestType = member.requestType === "join" ? "join" : "withdrawal"
   const handleApproveConfirm = () => {
@@ -52,6 +55,8 @@ export const MemberRequestCard: FC<MemberRequestCardProps> = ({
     setConfirmState("reject")
   }
   const handleApprove = async () => {
+    if (isApproveLoading) return
+    approveStart()
     const { message, success } = await handleMembershipRequestAction(
       userId,
       circleId,
@@ -65,8 +70,11 @@ export const MemberRequestCard: FC<MemberRequestCardProps> = ({
     } else {
       handleSnack(message, "error")
     }
+    approveEnd()
   }
   const handleReject = async () => {
+    if (isRejectLoading) return
+    rejectStart()
     const { message, success } = await handleMembershipRequestAction(
       userId,
       circleId,
@@ -80,6 +88,7 @@ export const MemberRequestCard: FC<MemberRequestCardProps> = ({
     } else {
       handleSnack(message, "error")
     }
+    rejectEnd()
   }
   return (
     <GridItem w="full" rounded="md" as={Card} bg="white">
@@ -131,6 +140,7 @@ export const MemberRequestCard: FC<MemberRequestCardProps> = ({
               variant="outline"
               colorScheme="primary"
               onClick={handleApproveConfirm}
+              loading={isApproveLoading}
             >
               承認
             </Button>
@@ -138,6 +148,7 @@ export const MemberRequestCard: FC<MemberRequestCardProps> = ({
               variant="outline"
               colorScheme="danger"
               onClick={handleRejectConfirm}
+              loading={isRejectLoading}
             >
               拒否
             </Button>
