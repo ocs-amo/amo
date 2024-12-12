@@ -80,17 +80,20 @@ export const handleMembershipRequest = async (
       }
     }
 
-    // メール送信
-    const mailContent = `
+    console.log(session.user.accessToken)
+    if (session.user.accessToken) {
+      // メール送信
+      const mailContent = `
 ${ownerUser?.user.name}さん。
 ${circle?.name}に${session.user.name}さんから入会申請が来ています。
 `
-    await sendMail(
-      session.user.email || "",
-      ownerUser.user.email,
-      "サークルメンバー入会申請が来ています。",
-      mailContent,
-    )
+      await sendMail(
+        session.user.accessToken,
+        ownerUser.user.email,
+        "サークルメンバー入会申請が来ています。",
+        mailContent,
+      )
+    }
 
     return { success: true, message: "申請が成功しました。" }
   } catch (error) {

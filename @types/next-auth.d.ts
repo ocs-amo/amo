@@ -1,4 +1,4 @@
-import type { User as NextAuthUser, DefaultSession } from "next-auth"
+import type { User as NextAuthUser } from "next-auth"
 
 declare module "next-auth" {
   interface User extends NextAuthUser {
@@ -8,8 +8,8 @@ declare module "next-auth" {
     accessToken?: string
   }
 
-  interface Session extends DefaultSession {
-    user: User & DefaultSession["user"]
-    accessToken?: string
-  }
+  // interface Session extends DefaultSession {
+  //   user: User & DefaultSession["user"]
+  //   accessToken?: string
+  // }
 }
