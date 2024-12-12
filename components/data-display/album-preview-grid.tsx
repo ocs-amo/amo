@@ -1,6 +1,7 @@
 "use client"
 import type { FC } from "@yamada-ui/react"
-import { CloseIcon, Grid, GridItem, IconButton, Image } from "@yamada-ui/react"
+import { Grid, GridItem, IconButton, Image } from "@yamada-ui/react"
+import { XIcon } from "@yamada-ui/lucide"
 
 export const AlbumPreviewGrid: FC<{
   images: string[]
@@ -25,7 +26,7 @@ export const AlbumPreviewGrid: FC<{
         <IconButton
           size="xs"
           fullRounded
-          icon={<CloseIcon />}
+          icon={<XIcon />}
           position="absolute"
           top="-sm"
           right="-sm"
