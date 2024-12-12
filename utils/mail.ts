@@ -6,27 +6,30 @@ export const sendMail = async (
 ) => {
   const clientId = process.env.AUTH_MICROSOFT_ENTRA_ID_ID
   const clientSecret = process.env.AUTH_MICROSOFT_ENTRA_ID_SECRET
-  const tenantURL = process.env.AUTH_MICROSOFT_ENTRA_ID_ISSUER
+  const tenantId = process.env.AUTH_MICROSOFT_ENTRA_ID_TENANT
 
-  if (!clientId || !clientSecret || !tenantURL) {
+  if (!clientId || !clientSecret || !tenantId) {
     console.error("環境変数が設定されていません。")
     throw new Error("環境変数が不足しています。")
   }
 
   try {
     // 1. アクセストークンの取得
-    const tokenResponse = await fetch(`${tenantURL}/token`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
+    const tokenResponse = await fetch(
+      `https://login.microsoftonline.com/${tenantId}/oauth2/v2.0/token`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams({
+          grant_type: "client_credentials",
+          client_id: clientId,
+          client_secret: clientSecret,
+          scope: "https://graph.microsoft.com/.default",
+        }),
       },
-      body: new URLSearchParams({
-        grant_type: "client_credentials",
-        client_id: clientId,
-        client_secret: clientSecret,
-        scope: "https://graph.microsoft.com/.default",
-      }),
-    })
+    )
 
     if (!tokenResponse.ok) {
       const errorData = await tokenResponse.text() // JSONが返らないかもしれないので text() にする
