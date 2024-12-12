@@ -1,10 +1,5 @@
-import {
-  BellPlusIcon,
-  MessageCircleMoreIcon,
-  PlusIcon,
-} from "@yamada-ui/lucide"
 import type { FC } from "@yamada-ui/react"
-import { Button, Menu, MenuButton, MenuItem, MenuList } from "@yamada-ui/react"
+import { Button } from "@yamada-ui/react"
 import Link from "next/link"
 import { CircleMembershipButton } from "./circle-membership-button"
 import type { getCircleById } from "@/actions/circle/fetch-circle"
@@ -36,20 +31,7 @@ export const CircleDetailButton: FC<CircleDetailButtonProps> = ({
               サークル編集
             </Button>
           )}
-          {isMember ? (
-            <Button
-              position="fixed"
-              bottom={{ base: 10, sm: 20 }}
-              right={{ base: 10, sm: 5 }}
-              zIndex={10}
-              as={Link}
-              href={`/circles/${circle?.id}/activities/new`}
-              startIcon={<PlusIcon fontSize="2xl" />}
-              colorScheme="riverBlue"
-            >
-              追加
-            </Button>
-          ) : (
+          {!isMember && (
             <CircleMembershipButton
               circleId={circle?.id || ""}
               userId={userId}
@@ -72,20 +54,7 @@ export const CircleDetailButton: FC<CircleDetailButtonProps> = ({
               サークル編集
             </Button>
           )}
-          {isMember ? (
-            <Button
-              position="fixed"
-              bottom={{ base: 10, sm: 20 }}
-              right={{ base: 10, sm: 5 }}
-              zIndex={10}
-              as={Link}
-              href={`/circles/${circle?.id}/album/create`}
-              startIcon={<PlusIcon fontSize="2xl" />}
-              colorScheme="riverBlue"
-            >
-              作成
-            </Button>
-          ) : (
+          {!isMember && (
             <CircleMembershipButton
               circleId={circle?.id || ""}
               userId={userId}
@@ -108,37 +77,7 @@ export const CircleDetailButton: FC<CircleDetailButtonProps> = ({
               サークル編集
             </Button>
           )}
-          {isMember ? (
-            <Menu>
-              <MenuButton
-                position="fixed"
-                bottom={{ base: 10, sm: 20 }}
-                right={{ base: 10, sm: 5 }}
-                zIndex={10}
-                as={Button}
-                startIcon={<PlusIcon fontSize="2xl" />}
-                colorScheme="riverBlue"
-              >
-                作成
-              </MenuButton>
-              <MenuList>
-                <MenuItem
-                  icon={<BellPlusIcon fontSize="2xl" />}
-                  as={Link}
-                  href={`/circles/${circle?.id}/announcement/create`}
-                >
-                  お知らせ
-                </MenuItem>
-                <MenuItem
-                  icon={<MessageCircleMoreIcon fontSize="2xl" />}
-                  as={Link}
-                  href={`/circles/${circle?.id}/thread/create`}
-                >
-                  スレッド
-                </MenuItem>
-              </MenuList>
-            </Menu>
-          ) : (
+          {!isMember && (
             <CircleMembershipButton
               circleId={circle?.id || ""}
               userId={userId}

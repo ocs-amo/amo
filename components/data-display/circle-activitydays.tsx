@@ -1,9 +1,10 @@
 "use client"
 import { MonthPicker } from "@yamada-ui/calendar"
-import { ChevronLeftIcon, ChevronRightIcon } from "@yamada-ui/lucide"
+import { ChevronLeftIcon, ChevronRightIcon, PlusIcon } from "@yamada-ui/lucide"
 import type { FC } from "@yamada-ui/react"
 import {
   Box,
+  Button,
   Card,
   CardBody,
   Center,
@@ -150,26 +151,36 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
         />
       ) : (
         <>
-          <HStack justifyContent="start">
-            <MonthPicker
-              w="md"
-              locale="ja"
-              defaultValue={currentMonth}
-              value={currentMonth}
-              onChange={setCurrentMonth}
-            />
-            <HStack>
-              <IconButton
-                onClick={handlePreviousMonth}
-                icon={<ChevronLeftIcon fontSize="2xl" />}
-                colorScheme="riverBlue"
+          <HStack justifyContent="space-between">
+            <HStack justifyContent="start">
+              <MonthPicker
+                w="md"
+                locale="ja"
+                defaultValue={currentMonth}
+                value={currentMonth}
+                onChange={setCurrentMonth}
               />
-              <IconButton
-                onClick={handleNextMonth}
-                icon={<ChevronRightIcon fontSize="2xl" />}
-                colorScheme="riverBlue"
-              />
+              <HStack>
+                <IconButton
+                  onClick={handlePreviousMonth}
+                  icon={<ChevronLeftIcon fontSize="2xl" />}
+                  colorScheme="riverBlue"
+                />
+                <IconButton
+                  onClick={handleNextMonth}
+                  icon={<ChevronRightIcon fontSize="2xl" />}
+                  colorScheme="riverBlue"
+                />
+              </HStack>
             </HStack>
+            <Button
+              as={Link}
+              href={`/circles/${circle?.id}/activities/new`}
+              leftIcon={<PlusIcon fontSize="2xl" />}
+              colorScheme="riverBlue"
+            >
+              追加
+            </Button>
           </HStack>
           <VStack w="full" h="full">
             {loading ? (
