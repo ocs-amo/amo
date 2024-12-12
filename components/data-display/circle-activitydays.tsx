@@ -151,10 +151,14 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
         />
       ) : (
         <>
-          <HStack justifyContent="space-between">
-            <HStack justifyContent="start">
+          <HStack
+            justifyContent="space-between"
+            alignItems="start"
+            flexWrap="wrap"
+          >
+            <HStack justifyContent="start" flexWrap="wrap">
               <MonthPicker
-                w="md"
+                w={{ base: "md", md: "sm", sm: "xs" }}
                 locale="ja"
                 defaultValue={currentMonth}
                 value={currentMonth}
