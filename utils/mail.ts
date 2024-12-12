@@ -7,6 +7,12 @@ export const sendMail = async (
   const clientId = process.env.AUTH_MICROSOFT_ENTRA_ID_ID
   const clientSecret = process.env.AUTH_MICROSOFT_ENTRA_ID_SECRET
   const tenantId = process.env.AUTH_MICROSOFT_ENTRA_ID_ISSUER
+
+  if (!clientId || !clientSecret || !tenantId) {
+    console.error("環境変数が設定されていません。")
+    throw new Error("環境変数が不足しています。")
+  }
+
   try {
     // 1. アクセストークンの取得
     const tokenResponse = await fetch(
@@ -18,17 +24,26 @@ export const sendMail = async (
         },
         body: new URLSearchParams({
           grant_type: "client_credentials",
-          client_id: clientId || "",
-          client_secret: clientSecret || "",
+          client_id: clientId,
+          client_secret: clientSecret,
           scope: "https://graph.microsoft.com/.default",
         }),
       },
     )
 
+    if (!tokenResponse.ok) {
+      const errorData = await tokenResponse.text() // JSONが返らないかもしれないので text() にする
+      console.error("トークン取得エラー:", tokenResponse.status, errorData)
+      throw new Error(
+        `アクセストークンの取得に失敗しました。ステータス: ${tokenResponse.status}`,
+      )
+    }
+
     const tokenData = await tokenResponse.json()
     const accessToken = tokenData.access_token
 
     if (!accessToken) {
+      console.error("トークンの中身が不正です:", tokenData)
       throw new Error("アクセストークンの取得に失敗しました。")
     }
 
@@ -56,9 +71,11 @@ export const sendMail = async (
     )
 
     if (!response.ok) {
-      const errorData = await response.json()
-      console.error("メール送信エラー:", errorData)
-      throw new Error("メール送信に失敗しました。")
+      const errorData = await response.text() // JSONが返らない可能性があるので text() にする
+      console.error("メール送信エラー:", response.status, errorData)
+      throw new Error(
+        `メール送信に失敗しました。ステータス: ${response.status}`,
+      )
     }
 
     console.log("メール送信成功")
