@@ -92,7 +92,7 @@ export const CircleAlbums: FC<CircleAlbums> = ({
         <Button
           as={Link}
           href={`/circles/${circleId}/album/create`}
-          leftIcon={<PlusIcon fontSize="2xl" />}
+          startIcon={<PlusIcon fontSize="2xl" />}
           colorScheme="riverBlue"
         >
           作成
