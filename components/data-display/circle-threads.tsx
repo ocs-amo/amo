@@ -153,7 +153,7 @@ export const CircleThreads: FC<CircleThreadsProps> = ({
         <>
           <HStack justifyContent="space-between">
             <MultiSelect
-              w="md"
+              w="sm"
               containerProps={{
                 bg: "blackAlpha.50",
               }}
