@@ -176,7 +176,7 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
             <Button
               as={Link}
               href={`/circles/${circle?.id}/activities/new`}
-              leftIcon={<PlusIcon fontSize="2xl" />}
+              startIcon={<PlusIcon fontSize="2xl" />}
               colorScheme="riverBlue"
             >
               追加

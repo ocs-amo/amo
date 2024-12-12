@@ -52,7 +52,7 @@ const DeleteCircleButton: FC<{ circleId: string; userId: string }> = ({
   circleId,
   userId,
 }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { open, onOpen, onClose } = useDisclosure()
   const [isDone, { on: doneOn, off: doneOff }] = useBoolean()
   const router = useRouter()
   const handleDelete = async () => {
@@ -81,7 +81,7 @@ const DeleteCircleButton: FC<{ circleId: string; userId: string }> = ({
 
       {/* 削除確認モーダル  */}
       <Modal
-        isOpen={isOpen}
+        open={open}
         onClose={isDone ? () => router.push("/circles") : onClose}
       >
         <ModalOverlay />
@@ -281,7 +281,7 @@ export const CircleForm: FC<CircleFormProps> = ({
                     bg="gray.100"
                     onChange={onChange}
                     icon={<CameraIcon fontSize="5xl" color="gray" />}
-                    isRounded
+                    fullRounded
                     variant="outline"
                   />
                 </Tooltip>
@@ -293,7 +293,7 @@ export const CircleForm: FC<CircleFormProps> = ({
                     variant="outline"
                     onClick={onResetImage}
                     icon={<TrashIcon fontSize="5xl" />}
-                    isRounded
+                    fullRounded
                   />
                 </Tooltip>
               </HStack>
@@ -480,7 +480,7 @@ export const CircleForm: FC<CircleFormProps> = ({
             >
               キャンセル
             </Button>
-            <Button type="submit" isLoading={isLoading} colorScheme="riverBlue">
+            <Button type="submit" loading={isLoading} colorScheme="riverBlue">
               {mode === "create" ? "作成" : "更新"}
             </Button>
           </Center>

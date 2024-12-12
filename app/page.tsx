@@ -5,10 +5,10 @@ import {
   CardBody,
   CardHeader,
   Center,
-  Divider,
   Grid,
   GridItem,
   Heading,
+  Separator,
   Text,
   VStack,
 } from "@yamada-ui/react"
@@ -51,7 +51,7 @@ export default async function Home() {
             {user?.name}
           </Text>
         </Heading>
-        <Divider
+        <Separator
           w="full"
           borderWidth="2px"
           orientation="horizontal"
