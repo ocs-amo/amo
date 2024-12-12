@@ -188,7 +188,7 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
                 <Loading fontSize="xl" />
               </Center>
             ) : activitys && activitys.length > 0 ? (
-              activitys?.map((activity) => (
+              activitys.map((activity) => (
                 <GridItem key={activity.id}>
                   <Card variant="outline" as={LinkBox} bg="white">
                     <CardBody>

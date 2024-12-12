@@ -185,7 +185,7 @@ export const AlbumForm: FC<AlbumFormProps> = ({ circleId, mode, album }) => {
                   <Text>画像をドラッグ&ドロップ</Text>
                 )}
               </Dropzone>
-              {errors?.images && (
+              {errors.images && (
                 <ErrorMessage mt={0}>{errors.images.message}</ErrorMessage>
               )}
             </>

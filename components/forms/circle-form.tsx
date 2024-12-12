@@ -135,7 +135,7 @@ export const CircleForm: FC<CircleFormProps> = ({
   mode,
   instructors,
 }) => {
-  const user = circle?.members?.find((member) => member.id === userId)
+  const user = circle?.members.find((member) => member.id === userId)
   const [isLoading, { on: start, off: end }] = useBoolean()
   const [imagePreview, setImagePreview] = useState<string>(
     circle?.imagePath || "",
@@ -156,9 +156,8 @@ export const CircleForm: FC<CircleFormProps> = ({
       location: circle?.location,
       activityDay: circle?.activityDay || "",
       imagePath: circle?.imagePath,
-      tags: circle?.tags?.map((tag) => tag.tagName),
-      instructors:
-        circle?.instructors?.map((instructor) => instructor.id) || [],
+      tags: circle?.tags.map((tag) => tag.tagName),
+      instructors: circle?.instructors.map((instructor) => instructor.id) || [],
     },
   })
 

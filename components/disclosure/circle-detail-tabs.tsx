@@ -49,7 +49,7 @@ export const CircleDetailTabs: FC<CircleDetailTabsProps> = ({
   currentAlbum,
   fetchData,
 }) => {
-  const userRole = circle?.members?.find((member) => member.id === userId)?.role
+  const userRole = circle?.members.find((member) => member.id === userId)?.role
   const tabIndex = handlingTab(tabKey || "")
   const { data } = membershipRequests
 

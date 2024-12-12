@@ -119,7 +119,7 @@ export const MemberCard: FC<MemberCard> = ({
             <Text>{member.name}</Text>
             <Text>{member.studentNumber}</Text>
           </LinkOverlay>
-          {isAdmin && userId !== member.id && member?.role?.id !== 0 ? (
+          {isAdmin && userId !== member.id && member.role.id !== 0 ? (
             <Menu>
               <MenuButton
                 as={IconButton}
@@ -133,19 +133,19 @@ export const MemberCard: FC<MemberCard> = ({
                   <>
                     <MenuItem
                       onClick={() => openRoleDialog(0, "代表")}
-                      isDisabled={member.role?.id === 0}
+                      isDisabled={member.role.id === 0}
                     >
                       代表
                     </MenuItem>
                     <MenuItem
                       onClick={() => openRoleDialog(1, "副代表")}
-                      isDisabled={member.role?.id === 1}
+                      isDisabled={member.role.id === 1}
                     >
                       副代表
                     </MenuItem>
                     <MenuItem
                       onClick={() => openRoleDialog(2, "一般")}
-                      isDisabled={member.role?.id === 2}
+                      isDisabled={member.role.id === 2}
                     >
                       一般
                     </MenuItem>
@@ -161,13 +161,13 @@ export const MemberCard: FC<MemberCard> = ({
                   <>
                     <MenuItem
                       onClick={() => openRoleDialog(1, "副代表")}
-                      isDisabled={member.role?.id === 1}
+                      isDisabled={member.role.id === 1}
                     >
                       副代表
                     </MenuItem>
                     <MenuItem
                       onClick={() => openRoleDialog(2, "一般")}
-                      isDisabled={member.role?.id === 2}
+                      isDisabled={member.role.id === 2}
                     >
                       一般
                     </MenuItem>
