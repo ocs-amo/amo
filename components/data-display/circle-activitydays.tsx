@@ -158,7 +158,7 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
           >
             <HStack justifyContent="start" flexWrap="wrap">
               <MonthPicker
-                w={{ base: "md", md: "sm", sm: "xs" }}
+                w={{ base: "md", md: "xs" }}
                 locale="ja"
                 defaultValue={currentMonth}
                 value={currentMonth}
