@@ -16,7 +16,9 @@ import {
   fetchPendingMembershipRequests,
   rejectMembershipRequest,
 } from "@/data/membership"
+import { sendMail } from "@/utils/mail"
 
+// メンバーシップリクエスト処理関数
 export const handleMembershipRequest = async (
   userId: string,
   circleId: string,
@@ -33,7 +35,8 @@ export const handleMembershipRequest = async (
         message: "権限がありません。",
       }
     }
-    // 代表が退会申請を送れないようにチェックを追加
+
+    // 代表が退会申請を送れないようにチェック
     if (requestType === "withdrawal") {
       const currentUser = await findActiveMember(userId, circleId)
       if (currentUser && currentUser.roleId === 0) {
@@ -45,6 +48,7 @@ export const handleMembershipRequest = async (
       }
     }
 
+    // 同じリクエストが既に存在するか確認
     const existingRequest = await checkExistingMembershipRequest(
       userId,
       circleId,
@@ -55,45 +59,38 @@ export const handleMembershipRequest = async (
       return { success: false, message: "すでに保留中の申請があります。" }
     }
 
+    // リクエストを作成
     await createMembershipRequest(userId, circleId, requestType)
 
+    // サークル情報とオーナー情報を取得
     const ownerUser = await getCircleOwner(circleId)
     const circle = await getCircleById(circleId)
-    console.log(session.user.accessToken)
 
-    const response = await fetch(
-      "https://graph.microsoft.com/v1.0/me/sendMail",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${session.user.accessToken}`, // tokenが取得できない
-        },
-        body: JSON.stringify({
-          message: {
-            subject: "サークルメンバー入会申請が来ています。",
-            body: {
-              contentType: "Text",
-              content: `
-            ${ownerUser?.user.name}さん。
-            ${circle?.name}に${session.user.name}さんから入会申請が来ています。
-            `,
-            },
-            toRecipients: [
-              { emailAddress: { address: ownerUser?.user.email } },
-            ],
-          },
-        }),
-      },
-    )
-    const json = await response.json()
-    console.log(json)
-
-    if (response.ok) {
-      console.log("送信成功")
-    } else {
-      console.log("失敗")
+    if (!ownerUser?.user.email) {
+      return {
+        success: false,
+        message: "サークルオーナーのメールアドレスが見つかりません。",
+      }
     }
+
+    if (!session.user.accessToken) {
+      return {
+        success: false,
+        message: "アクセストークンが取得できませんでした。",
+      }
+    }
+
+    // メール送信
+    const mailContent = `
+${ownerUser?.user.name}さん。
+${circle?.name}に${session.user.name}さんから入会申請が来ています。
+`
+    await sendMail(
+      session.user.accessToken,
+      ownerUser.user.email,
+      "サークルメンバー入会申請が来ています。",
+      mailContent,
+    )
 
     return { success: true, message: "申請が成功しました。" }
   } catch (error) {
