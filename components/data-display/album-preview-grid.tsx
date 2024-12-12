@@ -24,7 +24,7 @@ export const AlbumPreviewGrid: FC<{
         />
         <IconButton
           size="xs"
-          isRounded
+          fullRounded
           icon={<CloseIcon />}
           position="absolute"
           top="-sm"

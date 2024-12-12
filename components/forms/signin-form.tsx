@@ -93,7 +93,7 @@ export const LoginForm = () => {
             }}
             color="white"
             boxShadow="0px 4px 15px rgba(0, 0, 0, 0.2)"
-            isRounded
+            fullRounded
             transition="all 0.3s ease"
           >
             サインイン

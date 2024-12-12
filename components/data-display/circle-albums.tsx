@@ -162,7 +162,7 @@ export const CircleAlbums: FC<CircleAlbums> = ({
                             as={IconButton}
                             icon={<EllipsisIcon fontSize="2xl" />}
                             variant="outline"
-                            isRounded
+                            fullRounded
                           />
                           <MenuList>
                             <MenuItem

@@ -281,7 +281,7 @@ export const CircleForm: FC<CircleFormProps> = ({
                     bg="gray.100"
                     onChange={onChange}
                     icon={<CameraIcon fontSize="5xl" color="gray" />}
-                    isRounded
+                    fullRounded
                     variant="outline"
                   />
                 </Tooltip>
@@ -293,7 +293,7 @@ export const CircleForm: FC<CircleFormProps> = ({
                     variant="outline"
                     onClick={onResetImage}
                     icon={<TrashIcon fontSize="5xl" />}
-                    isRounded
+                    fullRounded
                   />
                 </Tooltip>
               </HStack>

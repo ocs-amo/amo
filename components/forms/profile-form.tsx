@@ -148,7 +148,7 @@ export const ProfileForm: FC<ProfileForm> = ({ user }) => {
                     as={Button}
                     leftIcon={<FilePenLineIcon fontSize="2xl" />}
                     colorScheme="riverBlue"
-                    isRounded
+                    fullRounded
                     position="absolute"
                     bottom={0}
                     right={0}

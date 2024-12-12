@@ -52,7 +52,7 @@ export const ActivityMenuButton: FC<ActivityMenuButtonProps> = ({
           as={IconButton}
           icon={<EllipsisIcon fontSize="2xl" />}
           variant="ghost"
-          isRounded
+          fullRounded
         />
         <MenuList>
           <MenuItem
