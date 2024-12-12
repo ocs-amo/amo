@@ -1,7 +1,7 @@
 "use client"
 import type { FC } from "@yamada-ui/react"
-import { Grid, GridItem, IconButton, Image } from "@yamada-ui/react"
 import { XIcon } from "@yamada-ui/lucide"
+import { Grid, GridItem, IconButton, Image } from "@yamada-ui/react"
 
 export const AlbumPreviewGrid: FC<{
   images: string[]
