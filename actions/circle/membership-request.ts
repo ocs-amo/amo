@@ -59,6 +59,7 @@ export const handleMembershipRequest = async (
 
     const ownerUser = await getCircleOwner(circleId)
     const circle = await getCircleById(circleId)
+    console.log(session.user.accessToken)
 
     const response = await fetch(
       "https://graph.microsoft.com/v1.0/me/sendMail",
@@ -66,7 +67,7 @@ export const handleMembershipRequest = async (
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${session.user.id}`, // tokenが取得できない
+          Authorization: `Bearer ${session.user.accessToken}`, // tokenが取得できない
         },
         body: JSON.stringify({
           message: {
