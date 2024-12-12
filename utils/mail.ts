@@ -1,5 +1,4 @@
 export const sendMail = async (
-  senderEmail: string,
   recipientEmail: string,
   subject: string,
   content: string,
@@ -26,7 +25,7 @@ export const sendMail = async (
           grant_type: "client_credentials",
           client_id: clientId,
           client_secret: clientSecret,
-          scope: "https://graph.microsoft.com/.default",
+          scope: "https://graph.microsoft.com/.default Mail.Send",
         }),
       },
     )
@@ -49,7 +48,7 @@ export const sendMail = async (
 
     // 2. メールの送信
     const response = await fetch(
-      `https://graph.microsoft.com/v1.0/users/${senderEmail}/sendMail`,
+      `https://graph.microsoft.com/v1.0/me/sendMail`,
       {
         method: "POST",
         headers: {

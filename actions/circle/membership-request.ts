@@ -86,7 +86,6 @@ ${ownerUser?.user.name}さん。
 ${circle?.name}に${session.user.name}さんから入会申請が来ています。
 `
     await sendMail(
-      session.user.accessToken,
       ownerUser.user.email,
       "サークルメンバー入会申請が来ています。",
       mailContent,
