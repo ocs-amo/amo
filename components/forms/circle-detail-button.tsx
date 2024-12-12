@@ -44,7 +44,7 @@ export const CircleDetailButton: FC<CircleDetailButtonProps> = ({
               zIndex={10}
               as={Link}
               href={`/circles/${circle?.id}/activities/new`}
-              leftIcon={<PlusIcon fontSize="2xl" />}
+              startIcon={<PlusIcon fontSize="2xl" />}
               colorScheme="riverBlue"
             >
               追加
@@ -80,7 +80,7 @@ export const CircleDetailButton: FC<CircleDetailButtonProps> = ({
               zIndex={10}
               as={Link}
               href={`/circles/${circle?.id}/album/create`}
-              leftIcon={<PlusIcon fontSize="2xl" />}
+              startIcon={<PlusIcon fontSize="2xl" />}
               colorScheme="riverBlue"
             >
               作成
@@ -116,7 +116,7 @@ export const CircleDetailButton: FC<CircleDetailButtonProps> = ({
                 right={{ base: 10, sm: 5 }}
                 zIndex={10}
                 as={Button}
-                leftIcon={<PlusIcon fontSize="2xl" />}
+                startIcon={<PlusIcon fontSize="2xl" />}
                 colorScheme="riverBlue"
               >
                 作成

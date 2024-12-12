@@ -116,7 +116,7 @@ export const AlbumForm: FC<AlbumFormProps> = ({ circleId, mode, album }) => {
               <VStack display={{ base: "none", md: "flex" }}>
                 <FileButton
                   {...{ ref, ...rest }}
-                  leftIcon={<ImageIcon />}
+                  startIcon={<ImageIcon />}
                   alignItems="center"
                   multiple
                   accept="image/*"

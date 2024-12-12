@@ -146,7 +146,7 @@ export const ProfileForm: FC<ProfileForm> = ({ user }) => {
                 <Menu>
                   <MenuButton
                     as={Button}
-                    leftIcon={<FilePenLineIcon fontSize="2xl" />}
+                    startIcon={<FilePenLineIcon fontSize="2xl" />}
                     colorScheme="riverBlue"
                     fullRounded
                     position="absolute"
@@ -163,7 +163,7 @@ export const ProfileForm: FC<ProfileForm> = ({ user }) => {
                       {...{ ref, name, onChange, onBlur }}
                       accept="image/*"
                       onChange={onChange}
-                      leftIcon={<CameraIcon fontSize="xl" color="gray" />}
+                      startIcon={<CameraIcon fontSize="xl" color="gray" />}
                       justifyContent="start"
                       size="sm"
                     >
@@ -175,7 +175,7 @@ export const ProfileForm: FC<ProfileForm> = ({ user }) => {
                       variant="unstyled"
                       justifyContent="start"
                       size="sm"
-                      leftIcon={<TrashIcon fontSize="xl" color="danger" />}
+                      startIcon={<TrashIcon fontSize="xl" color="danger" />}
                       onClick={onResetImage}
                     >
                       削除
