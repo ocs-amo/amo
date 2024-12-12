@@ -76,7 +76,7 @@ export const CircleMembershipButton: FC<CircleMembershipButtonProps> = ({
       <Button
         colorScheme="riverBlue"
         onClick={handleMemberButtonClick}
-        isLoading={isLoading}
+        loading={isLoading}
       >
         退会申請
       </Button>
@@ -91,7 +91,7 @@ export const CircleMembershipButton: FC<CircleMembershipButtonProps> = ({
       <Button
         colorScheme="riverBlue"
         onClick={handleMemberButtonClick}
-        isLoading={isLoading}
+        loading={isLoading}
       >
         入会申請
       </Button>

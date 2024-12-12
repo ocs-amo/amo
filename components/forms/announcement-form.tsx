@@ -168,7 +168,7 @@ export const AnnouncementForm: FC<AnnouncementFormProps> = ({
           >
             キャンセル
           </Button>
-          <Button colorScheme="riverBlue" type="submit" isLoading={isLoading}>
+          <Button colorScheme="riverBlue" type="submit" loading={isLoading}>
             {mode === "create" ? "作成" : "更新"}
           </Button>
         </Center>

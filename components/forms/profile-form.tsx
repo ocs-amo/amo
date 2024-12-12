@@ -220,7 +220,7 @@ export const ProfileForm: FC<ProfileForm> = ({ user }) => {
         >
           キャンセル
         </Button>
-        <Button type="submit" isLoading={isLoading} colorScheme="riverBlue">
+        <Button type="submit" loading={isLoading} colorScheme="riverBlue">
           更新
         </Button>
       </Center>

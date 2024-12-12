@@ -84,7 +84,7 @@ export const LoginForm = () => {
             type="submit"
             colorScheme="primary"
             width="90%"
-            isLoading={isLoading}
+            loading={isLoading}
             mt={6}
             bgGradient="linear(to-r, teal.400, blue.500)"
             _hover={{

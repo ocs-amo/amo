@@ -480,7 +480,7 @@ export const CircleForm: FC<CircleFormProps> = ({
             >
               キャンセル
             </Button>
-            <Button type="submit" isLoading={isLoading} colorScheme="riverBlue">
+            <Button type="submit" loading={isLoading} colorScheme="riverBlue">
               {mode === "create" ? "作成" : "更新"}
             </Button>
           </Center>
