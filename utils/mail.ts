@@ -1,5 +1,5 @@
 export const sendMail = async (
-  accessToken: string, // 送信者のメール (サービスアカウントのメール)
+  accessToken: string,
   recipientEmail: string,
   subject: string,
   content: string,
@@ -17,7 +17,7 @@ export const sendMail = async (
           message: {
             subject,
             body: {
-              contentType: "Text",
+              contentType: "HTML",
               content,
             },
             toRecipients: [{ emailAddress: { address: recipientEmail } }],
