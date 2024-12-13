@@ -20,6 +20,7 @@ import {
   useSnacks,
   VStack,
 } from "@yamada-ui/react"
+import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { ThreadMenuButton } from "../forms/thread-menu-button"
@@ -28,7 +29,6 @@ import type { getThreadById } from "@/data/thread"
 import type { CommentFormInput } from "@/schema/topic"
 import { CommentFormSchema } from "@/schema/topic"
 import { parseFullDate } from "@/utils/format"
-import Link from "next/link"
 
 interface ThreadCardProps {
   userId: string

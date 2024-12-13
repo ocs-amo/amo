@@ -11,11 +11,11 @@ import {
   Text,
   VStack,
 } from "@yamada-ui/react"
+import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { ThreadMenuButton } from "../forms/thread-menu-button"
 import type { getAnnouncementById } from "@/data/announcement"
 import { parseFullDate } from "@/utils/format"
-import Link from "next/link"
 
 interface AnnouncementCardProps {
   userId: string
