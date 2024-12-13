@@ -20,6 +20,7 @@ import {
   useSnacks,
   VStack,
 } from "@yamada-ui/react"
+import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { ThreadMenuButton } from "../forms/thread-menu-button"
@@ -82,7 +83,11 @@ export const ThreadCard: FC<ThreadCardProps> = ({
           flexDir={{ base: "row", md: "column-reverse" }}
         >
           <HStack>
-            <Avatar src={currentThread.user.profileImageUrl || ""} />
+            <Avatar
+              src={currentThread.user.profileImageUrl || ""}
+              as={Link}
+              href={`/user/${currentThread.user.id}`}
+            />
             <VStack gap={0}>
               <Text>{currentThread.title}</Text>
               <Text fontSize="sm" as="pre" textWrap="wrap">
@@ -111,7 +116,11 @@ export const ThreadCard: FC<ThreadCardProps> = ({
             <Card key={comment.id} w="full" variant="outline">
               <CardBody flexDir="row" justifyContent="space-between">
                 <HStack>
-                  <Avatar src={comment.user.profileImageUrl || ""} />
+                  <Avatar
+                    src={comment.user.profileImageUrl || ""}
+                    as={Link}
+                    href={`/user/${comment.user.id}`}
+                  />
                   <VStack>
                     <Text>{comment.user.name}</Text>
                     <Text as="pre" textWrap="wrap">
