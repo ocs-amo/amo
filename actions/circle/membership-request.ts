@@ -84,14 +84,14 @@ export const handleMembershipRequest = async (
       // メール送信
       const mailContent = `
 <p>${ownerUser?.user.name}さん。こんにちは。</p>
-<p>${circle?.name}に${session.user.name}さんからの入会申請が来ています。</p>
+<p>${circle?.name}に${session.user.name}さんからの${requestType === "join" ? "入会" : "退会"}申請が来ています。</p>
 <br/>
 <p><a href="https://circlia.vercel.app/circles/${circle?.id}/members">申請を許可する</a></p>
 `
       await sendMail(
         session.user.accessToken,
         ownerUser.user.email,
-        "サークルメンバー入会申請が来ています。",
+        `サークルメンバー${requestType === "join" ? "入会" : "退会"}申請が来ています。`,
         mailContent,
       )
     }
