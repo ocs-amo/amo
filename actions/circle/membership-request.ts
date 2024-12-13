@@ -83,10 +83,10 @@ export const handleMembershipRequest = async (
     if (session.user.accessToken) {
       // メール送信
       const mailContent = `
-${ownerUser?.user.name}さん。こんにちは。
-${circle?.name}に${session.user.name}さんからの入会申請が来ています。
-
-<a href="https://circlia.vercel.app/circles/${circle?.id}/members">申請を許可する</a>
+<p>${ownerUser?.user.name}さん。こんにちは。</p>
+<p>${circle?.name}に${session.user.name}さんからの入会申請が来ています。</p>
+<br/>
+<p><a href="https://circlia.vercel.app/circles/${circle?.id}/members">申請を許可する</a></p>
 `
       await sendMail(
         session.user.accessToken,
