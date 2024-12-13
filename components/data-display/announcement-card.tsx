@@ -15,6 +15,7 @@ import { useRouter } from "next/navigation"
 import { ThreadMenuButton } from "../forms/thread-menu-button"
 import type { getAnnouncementById } from "@/data/announcement"
 import { parseFullDate } from "@/utils/format"
+import Link from "next/link"
 
 interface AnnouncementCardProps {
   userId: string
@@ -38,7 +39,11 @@ export const AnnouncementCard: FC<AnnouncementCardProps> = ({
     <Card w="full" h="full" bg="white">
       <CardBody>
         <HStack w="full">
-          <Avatar src={currentAnnouncement.user.profileImageUrl || ""} />
+          <Avatar
+            src={currentAnnouncement.user.profileImageUrl || ""}
+            as={Link}
+            href={`/user/${currentAnnouncement.user.id}`}
+          />
           <VStack w="full">
             <HStack justifyContent="space-between">
               <HStack>
