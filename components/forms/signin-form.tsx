@@ -7,7 +7,6 @@ import {
   Container,
   FormControl,
   Heading,
-  Icon,
   Input,
   Text,
   useBoolean,
@@ -16,6 +15,7 @@ import {
 import { signIn } from "next-auth/react"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
+import { MicrosoftIcon } from "../media-and-icons/microsoft-icon"
 import { signin } from "@/actions/auth/signin"
 import { SigninSchema } from "@/schema/auth"
 import type { SigninForm } from "@/schema/auth"
@@ -100,35 +100,7 @@ export const LoginForm = () => {
           <Button
             colorScheme="purple"
             onClick={() => signIn("microsoft-entra-id")}
-            startIcon={
-              <Icon
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 48 48"
-                fill="currentColor"
-                boxSize="7"
-              >
-                <path
-                  fill="#ff5722"
-                  d="M6 6H22V22H6z"
-                  transform="rotate(-180 14 14)"
-                ></path>
-                <path
-                  fill="#4caf50"
-                  d="M26 6H42V22H26z"
-                  transform="rotate(-180 34 14)"
-                ></path>
-                <path
-                  fill="#ffc107"
-                  d="M26 26H42V42H26z"
-                  transform="rotate(-180 34 34)"
-                ></path>
-                <path
-                  fill="#03a9f4"
-                  d="M6 26H22V42H6z"
-                  transform="rotate(-180 14 34)"
-                ></path>
-              </Icon>
-            }
+            startIcon={<MicrosoftIcon />}
           >
             Microsoftアカウントでサインイン
           </Button>
