@@ -18,8 +18,7 @@ import Link from "next/link"
 import { useState } from "react"
 import { getWeeklyActivitiesActioins } from "@/actions/circle/fetch-activity"
 import type { getWeeklyActivities } from "@/data/activity"
-import { parseMonthDate , getDayColor , generateWeekDates } from "@/utils/format"
-
+import { parseMonthDate, getDayColor, generateWeekDates } from "@/utils/format"
 
 interface WeekCalendarProps {
   userId: string
@@ -41,7 +40,16 @@ export const WeekCalendar: React.FC<WeekCalendarProps> = ({
   const fetchData = async () => {
     const data = await getWeeklyActivitiesActioins(userId, currentDate)
     if (data) {
-      setCalendarData(data)
+      setCalendarData((prevData) => {
+        const mergedData = { ...prevData }
+        for (const [key, value] of Object.entries(data)) {
+          mergedData[key] = {
+            ...(mergedData[key] || {}),
+            ...value,
+          }
+        }
+        return mergedData
+      })
     }
   }
 
