@@ -1,8 +1,10 @@
 "use server"
+import { getCircleById } from "./fetch-circle"
 import { auth } from "@/auth"
 import {
   addMemberToCircle,
   findActiveMember,
+  getCircleOwner,
   isUserAdmin,
   markMemberAsInactive,
   removeMemberFromCircle,
@@ -14,7 +16,9 @@ import {
   fetchPendingMembershipRequests,
   rejectMembershipRequest,
 } from "@/data/membership"
+import { sendMail } from "@/utils/mail"
 
+// メンバーシップリクエスト処理関数
 export const handleMembershipRequest = async (
   userId: string,
   circleId: string,
@@ -31,7 +35,8 @@ export const handleMembershipRequest = async (
         message: "権限がありません。",
       }
     }
-    // 代表が退会申請を送れないようにチェックを追加
+
+    // 代表が退会申請を送れないようにチェック
     if (requestType === "withdrawal") {
       const currentUser = await findActiveMember(userId, circleId)
       if (currentUser && currentUser.roleId === 0) {
@@ -43,6 +48,7 @@ export const handleMembershipRequest = async (
       }
     }
 
+    // 同じリクエストが既に存在するか確認
     const existingRequest = await checkExistingMembershipRequest(
       userId,
       circleId,
@@ -53,7 +59,42 @@ export const handleMembershipRequest = async (
       return { success: false, message: "すでに保留中の申請があります。" }
     }
 
+    // リクエストを作成
     await createMembershipRequest(userId, circleId, requestType)
+
+    // サークル情報とオーナー情報を取得
+    const ownerUser = await getCircleOwner(circleId)
+    const circle = await getCircleById(circleId)
+
+    if (!ownerUser?.user.email) {
+      return {
+        success: false,
+        message: "サークルオーナーのメールアドレスが見つかりません。",
+      }
+    }
+
+    if (!session.user.accessToken) {
+      return {
+        success: false,
+        message: "アクセストークンが取得できませんでした。",
+      }
+    }
+
+    if (session.user.accessToken) {
+      // メール送信
+      const mailContent = `
+<p>${ownerUser?.user.name}さん。こんにちは。</p>
+<p>${circle?.name}に${session.user.name}さんからの入会申請が来ています。</p>
+<br/>
+<p><a href="https://circlia.vercel.app/circles/${circle?.id}/members">申請を許可する</a></p>
+`
+      await sendMail(
+        session.user.accessToken,
+        ownerUser.user.email,
+        "サークルメンバー入会申請が来ています。",
+        mailContent,
+      )
+    }
 
     return { success: true, message: "申請が成功しました。" }
   } catch (error) {

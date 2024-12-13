@@ -1,6 +1,25 @@
 import type { BackCircleForm } from "@/schema/circle"
 import { db } from "@/utils/db"
 
+export const getCircleOwner = async (circleId: string) => {
+  return await db.circleMember.findFirst({
+    where: {
+      circleId,
+      leaveDate: null,
+      roleId: 0,
+    },
+    include: {
+      user: {
+        select: {
+          id: true,
+          name: true,
+          email: true,
+        },
+      },
+    },
+  })
+}
+
 // メンバーを退会（論理削除）させる関数
 export const markMemberAsInactive = async (memberId: number) => {
   return await db.circleMember.update({
