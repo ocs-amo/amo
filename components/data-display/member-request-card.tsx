@@ -140,6 +140,7 @@ export const MemberRequestCard: FC<MemberRequestCardProps> = ({
               variant="outline"
               colorScheme="primary"
               onClick={handleApproveConfirm}
+              disabled={isRejectLoading}
               loading={isApproveLoading}
             >
               承認
@@ -148,6 +149,7 @@ export const MemberRequestCard: FC<MemberRequestCardProps> = ({
               variant="outline"
               colorScheme="danger"
               onClick={handleRejectConfirm}
+              disabled={isApproveLoading}
               loading={isRejectLoading}
             >
               拒否
