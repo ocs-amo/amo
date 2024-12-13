@@ -6,7 +6,7 @@ export const sendMail = async (
 ) => {
   try {
     const response = await fetch(
-      "https://graph.microsoft.com/v1.0/users/me/sendMail",
+      "https://graph.microsoft.com/v1.0/me/sendMail",
       {
         method: "POST",
         headers: {
