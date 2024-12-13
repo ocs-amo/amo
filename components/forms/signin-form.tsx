@@ -1,5 +1,3 @@
-//signin/page.tsxからuse clientの分離
-
 "use client"
 
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -17,6 +15,7 @@ import {
 import { signIn } from "next-auth/react"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
+import { MicrosoftIcon } from "../media-and-icons/microsoft-icon"
 import { signin } from "@/actions/auth/signin"
 import { SigninSchema } from "@/schema/auth"
 import type { SigninForm } from "@/schema/auth"
@@ -101,6 +100,7 @@ export const LoginForm = () => {
           <Button
             colorScheme="purple"
             onClick={() => signIn("microsoft-entra-id")}
+            startIcon={<MicrosoftIcon />}
           >
             Microsoftアカウントでサインイン
           </Button>
