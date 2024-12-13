@@ -10,8 +10,8 @@ export const sendMail = async (
       {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${accessToken}`,
           "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
         },
         body: JSON.stringify({
           message: {
@@ -20,13 +20,7 @@ export const sendMail = async (
               contentType: "Text",
               content,
             },
-            toRecipients: [
-              {
-                emailAddress: {
-                  address: recipientEmail,
-                },
-              },
-            ],
+            toRecipients: [{ emailAddress: { address: recipientEmail } }],
           },
         }),
       },
