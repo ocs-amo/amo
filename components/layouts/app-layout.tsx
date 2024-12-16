@@ -88,6 +88,7 @@ export const AppLayout: FC<{
               href={`/user/${user?.id}`}
               icon={<Avatar src={user?.profileImageUrl || ""} boxSize="8xs" />}
               title="プロフィール"
+              _hover={{transform: "scale(1.2)"}}
             />
             <IconButton
               w="50px"
@@ -99,6 +100,7 @@ export const AppLayout: FC<{
               href="/notifications"
               icon={<BellIcon fontSize="2xl" />}
               title="通知"
+              _hover={{transform: "scale(1.2)"}}
             />
             <IconButton
               w="50px"
@@ -110,6 +112,7 @@ export const AppLayout: FC<{
               href="/"
               icon={<HouseIcon fontSize="2xl" />}
               title="ホーム"
+              _hover={{transform: "scale(1.2)"}}
             />
             <IconButton
               w="50px"
@@ -121,6 +124,7 @@ export const AppLayout: FC<{
               href="/circles"
               icon={<UsersIcon fontSize="2xl" />}
               title="サークル一覧"
+              _hover={{transform: "scale(1.2)"}}
             />
             <IconButton
               w="50px"
@@ -132,6 +136,7 @@ export const AppLayout: FC<{
               href="/calendar"
               icon={<CalendarDaysIcon fontSize="2xl" />}
               title="カレンダー"
+              _hover={{transform: "scale(1.2)"}}
             />
 
             <IconButton
@@ -143,6 +148,7 @@ export const AppLayout: FC<{
               onClick={() => signOut({ redirectTo: "/signin" })}
               icon={<LogOutIcon fontSize="2xl" />}
               title="ログアウト"
+              _hover={{transform: "scale(1.2)"}}
             />
           </VStack>
         </VStack>
@@ -176,6 +182,7 @@ export const AppLayout: FC<{
           href="/notifications"
           icon={<BellIcon fontSize="2xl" />}
           title="通知"
+          _hover={{transform: "scale(1.2)"}}
         />
         <IconButton
           w="50px"
@@ -187,6 +194,7 @@ export const AppLayout: FC<{
           href="/circles"
           icon={<UsersIcon fontSize="2xl" />}
           title="サークル一覧"
+          _hover={{transform: "scale(1.2)"}}
         />
         <IconButton
           w="50px"
@@ -198,6 +206,7 @@ export const AppLayout: FC<{
           href="/"
           icon={<HouseIcon fontSize="2xl" />}
           title="ホーム"
+          _hover={{transform: "scale(1.2)"}}
         />
         <IconButton
           w="50px"
@@ -209,6 +218,7 @@ export const AppLayout: FC<{
           href="/calendar"
           icon={<CalendarDaysIcon fontSize="2xl" />}
           title="カレンダー"
+          _hover={{transform: "scale(1.2)"}}
         />
         <Menu>
           <MenuButton
@@ -220,6 +230,7 @@ export const AppLayout: FC<{
             variant="ghost"
             icon={<Avatar src={user?.profileImageUrl || ""} boxSize="8xs" />}
             title="プロフィール"
+            _hover={{transform: "scale(1.2)"}}
           />
           <MenuList>
             <MenuItem>
