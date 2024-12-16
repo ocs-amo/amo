@@ -58,6 +58,24 @@ export const WeekCalendar: React.FC<WeekCalendarProps> = ({
     fetchData()
   }, [currentDate])
 
+  // 前の週へ移動する関数
+  const PreviousWeek = () => {
+    setCurrentDate((prev) => {
+      const newDate = new Date(prev)
+      newDate.setDate(prev.getDate() - 7)
+      return newDate
+    })
+  }
+
+  // 次の週へ移動する関数
+  const NextWeek = () => {
+    setCurrentDate((prev) => {
+      const newDate = new Date(prev)
+      newDate.setDate(prev.getDate() + 7)
+      return newDate
+    })
+  }
+
   return (
     <GridItem
       as={Card}
@@ -72,28 +90,10 @@ export const WeekCalendar: React.FC<WeekCalendarProps> = ({
             カレンダー
           </Heading>
           <HStack>
-            <Button
-              colorScheme="riverBlue"
-              onClick={() =>
-                setCurrentDate((prev) => {
-                  const newDate = new Date(prev)
-                  newDate.setDate(prev.getDate() - 7) // 前の週
-                  return newDate
-                })
-              }
-            >
+            <Button colorScheme="riverBlue" onClick={PreviousWeek}>
               前の週
             </Button>
-            <Button
-              colorScheme="riverBlue"
-              onClick={() =>
-                setCurrentDate((prev) => {
-                  const newDate = new Date(prev)
-                  newDate.setDate(prev.getDate() + 7) // 次の週
-                  return newDate
-                })
-              }
-            >
+            <Button colorScheme="riverBlue" onClick={NextWeek}>
               次の週
             </Button>
           </HStack>
