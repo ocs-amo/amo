@@ -163,7 +163,21 @@ export const CircleActivitydays: FC<CircleActivitydays> = ({
                 locale="ja"
                 defaultValue={currentMonth}
                 value={currentMonth}
-                onChange={setCurrentMonth}
+                onChange={(newMonth) => {
+                  if (newMonth) {
+                    const now = new Date()
+                    const updatedDate = new Date(
+                      newMonth.getFullYear(),
+                      newMonth.getMonth(),
+                      now.getDate(),
+                      now.getHours(),
+                      now.getMinutes(),
+                      now.getSeconds(),
+                      now.getMilliseconds(),
+                    )
+                    setCurrentMonth(updatedDate)
+                  }
+                }}
               />
               <HStack>
                 <IconButton
