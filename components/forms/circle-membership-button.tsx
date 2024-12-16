@@ -77,6 +77,8 @@ export const CircleMembershipButton: FC<CircleMembershipButtonProps> = ({
         colorScheme="riverBlue"
         onClick={handleMemberButtonClick}
         loading={isLoading}
+        transition={"0.5s"}
+        _hover={{ transform: "scale(1.1)", transition: "0.5s" }}
       >
         退会申請
       </Button>
@@ -92,6 +94,8 @@ export const CircleMembershipButton: FC<CircleMembershipButtonProps> = ({
         colorScheme="riverBlue"
         onClick={handleMemberButtonClick}
         loading={isLoading}
+        transition={"0.5s"}
+        _hover={{ transform: "scale(1.1)", transition: "0.5s" }}
       >
         入会申請
       </Button>

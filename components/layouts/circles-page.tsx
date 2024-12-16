@@ -88,7 +88,13 @@ export const CirclesPage: FC<CirclesPageProps> = ({ circles }) => {
             </InputGroup>
           </HStack>
           <Box textAlign="right">
-            <Button as={Link} href="/circles/create" colorScheme="riverBlue">
+            <Button
+              as={Link}
+              href="/circles/create"
+              colorScheme="riverBlue"
+              transition={"0.5s"}
+              _hover={{ transform: "scale(1.1)", transition: "0.5s" }}
+            >
               サークル作成
             </Button>
           </Box>
