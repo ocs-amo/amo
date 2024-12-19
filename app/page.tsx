@@ -74,14 +74,22 @@ export default async function Home() {
         "notification calendar calendar calendar" 
         "notification calendar calendar calendar" 
         `,
-          md: `
+          md: user?.instructorFlag
+            ? `
+            "avatar"
+            "notification"
+            "instructor-circles"
+            "circles"
+            "calendar"
+          `
+            : `
         "avatar"
         "notification"
         "circles"
         "calendar"
         `,
         }}
-        gap="lg"
+        gap={{ base: "lg", lg: "sm" }}
       >
         <GridItem
           area="avatar"
@@ -124,7 +132,10 @@ export default async function Home() {
               </Heading>
             </CardHeader>
             <CardBody>
-              <CircleList circles={instructorCircles} instructor />
+              <CircleList
+                circles={instructorCircles}
+                instructor={user?.instructorFlag}
+              />
             </CardBody>
           </GridItem>
         )}
@@ -135,7 +146,7 @@ export default async function Home() {
             </Heading>
           </CardHeader>
           <CardBody>
-            <CircleList circles={circles} />
+            <CircleList circles={circles} instructor={user?.instructorFlag} />
           </CardBody>
         </GridItem>
         <WeekCalendar calendarData={calendarData} userId={user?.id || ""} />

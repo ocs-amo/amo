@@ -20,8 +20,8 @@ interface CircleListProps {
 }
 
 export const CircleList: FC<CircleListProps> = ({ circles, instructor }) => {
-  const [columns, setColumns] = useState(3)
-  const [perPage, setPerPage] = useState(3)
+  const [columns, setColumns] = useState(0)
+  const [perPage, setPerPage] = useState(0)
 
   useBreakpointEffect((breakpoint) => {
     switch (breakpoint) {
@@ -31,7 +31,7 @@ export const CircleList: FC<CircleListProps> = ({ circles, instructor }) => {
         break
       case "xl":
         setColumns(2)
-        setPerPage(4)
+        setPerPage(instructor ? 2 : 4)
         break
       case "lg":
         setColumns(1)
@@ -51,32 +51,24 @@ export const CircleList: FC<CircleListProps> = ({ circles, instructor }) => {
     }
   }, [])
 
-  return (
-    <PaginationGrid
-      data={circles || []}
-      itemsPerPage={perPage}
-      columns={columns}
-    >
+  return circles && circles.length > 0 && columns > 0 && perPage > 0 ? (
+    <PaginationGrid data={circles} itemsPerPage={perPage} columns={columns}>
       {(currentPageData) =>
-        currentPageData.length ? (
-          currentPageData.map((data) => (
-            <CircleCard key={data.id} data={data} />
-          ))
-        ) : (
-          <Center w="full" h="full" as={VStack}>
-            {instructor ? (
-              <Text>講師を担当していません</Text>
-            ) : (
-              <>
-                <Text>サークルに入っていません</Text>
-                <Button as={Link} href="/circles">
-                  サークルを探す
-                </Button>
-              </>
-            )}
-          </Center>
-        )
+        currentPageData.map((data) => <CircleCard key={data.id} data={data} />)
       }
     </PaginationGrid>
+  ) : (
+    <Center w="full" h="full" as={VStack}>
+      {instructor ? (
+        <Text>講師を担当していません</Text>
+      ) : (
+        <>
+          <Text>サークルに入っていません</Text>
+          <Button as={Link} href="/circles">
+            サークルを探す
+          </Button>
+        </>
+      )}
+    </Center>
   )
 }
