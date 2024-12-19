@@ -56,7 +56,6 @@ export default async function Home() {
           borderWidth="2px"
           orientation="horizontal"
           variant="solid"
-          borderColor="black"
         />
       </VStack>
       <Grid
