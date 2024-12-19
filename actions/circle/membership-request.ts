@@ -1,6 +1,6 @@
 "use server"
-import { getUserById } from "../user/user"
-import { getCircleById } from "./fetch-circle"
+// import { getUserById } from "../user/user"
+// import { getCircleById } from "./fetch-circle"
 import { auth } from "@/auth"
 import {
   addMemberToCircle,
@@ -17,7 +17,7 @@ import {
   fetchPendingMembershipRequests,
   rejectMembershipRequest,
 } from "@/data/membership"
-import { sendMail } from "@/utils/mail"
+// import { sendMail } from "@/utils/mail"
 
 // メンバーシップリクエスト処理関数
 export const handleMembershipRequest = async (
@@ -65,7 +65,7 @@ export const handleMembershipRequest = async (
 
     // サークル情報とオーナー情報を取得
     const ownerUser = await getCircleOwner(circleId)
-    const circle = await getCircleById(circleId)
+    // const circle = await getCircleById(circleId)
 
     if (!ownerUser?.user.email) {
       return {
@@ -81,7 +81,8 @@ export const handleMembershipRequest = async (
       }
     }
 
-    if (session.user.accessToken) {
+    if (session.user.accessToken)
+      /*{
       // メール送信
       const mailContent = `
 <p>${ownerUser?.user.name}さん。こんにちは。</p>
@@ -95,9 +96,9 @@ export const handleMembershipRequest = async (
         `サークルメンバー${requestType === "join" ? "入会" : "退会"}申請が届いています。`,
         mailContent,
       )
-    }
+    } */
 
-    return { success: true, message: "申請が成功しました。" }
+      return { success: true, message: "申請が成功しました。" }
   } catch (error) {
     console.error(error)
     return { success: false, message: "申請中にエラーが発生しました。" }
@@ -204,7 +205,7 @@ export const handleMembershipRequestAction = async (
     if (!isAdmin) {
       return { success: false, message: "サークルの管理者ではありません。" }
     }
-    const circle = await getCircleById(circleId)
+    // const circle = await getCircleById(circleId)
     // 承認または拒否処理
     if (action === "approve") {
       // 承認と共に対象となるユーザーID（申請者のID）を取得
@@ -212,12 +213,13 @@ export const handleMembershipRequestAction = async (
         requestId,
         adminUserId,
       )
-      const targetUser = await getUserById(targetUserId)
+      // const targetUser = await getUserById(targetUserId)
 
       // リクエストタイプに応じて入会/退会処理を行う
       if (requestType === "join") {
         await addMemberToCircle(targetUserId, circleId, 2) // 対象ユーザーをメンバーに追加
-        if (session.user.accessToken) {
+        if (session.user.accessToken)
+          /*{
           // メール送信
           const mailContent = `
 <p>${targetUser?.name}さん。こんにちは。</p>
@@ -231,11 +233,11 @@ export const handleMembershipRequestAction = async (
             `${circle?.name}への入会が完了しました。`,
             mailContent,
           )
-        }
-        return {
-          success: true,
-          message: "入会申請を承認しました。メンバーに追加しました。",
-        }
+        } */
+          return {
+            success: true,
+            message: "入会申請を承認しました。メンバーに追加しました。",
+          }
       } else {
         await removeMemberFromCircle(targetUserId, circleId) // 対象ユーザーを退会
         return {
