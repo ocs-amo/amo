@@ -88,16 +88,19 @@ export const ThreadCard: FC<ThreadCardProps> = ({
               as={Link}
               href={`/user/${currentThread.user.id}`}
             />
-            <VStack gap={0}>
+            <VStack>
               <Text>{currentThread.title}</Text>
-              <Text fontSize="sm" as="pre" textWrap="wrap">
+              <Text as="pre" textWrap="wrap">
                 {currentThread.content}
               </Text>
             </VStack>
           </HStack>
           <VStack w="auto">
             <HStack>
-              <Text>{parseFullDate(currentThread.createdAt)}</Text>
+              <VStack gap={0}>
+                <Text>{parseFullDate(currentThread.updatedAt)} 更新</Text>
+                <Text>{parseFullDate(currentThread.createdAt)} 作成</Text>
+              </VStack>
               {isAdmin || currentThread.userId === userId ? (
                 <ThreadMenuButton
                   editLink={`/circles/${circleId}/${currentThread.type}/${currentThread.id}/edit`}
